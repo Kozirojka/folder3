@@ -1840,11 +1840,10 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           <div id="problems-statistic" class="tab-content">
             <h3 class="content-title">Statistics</h3>
             <div class="row g-4">
-              <!-- Weekly Progress Chart -->
               <div class="col-md-6">
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h5 class="card-title text-muted mb-3">Тижневий прогрес</h5>
+                    <h5 class="card-title text-muted mb-3">Week progress</h5>
                     <div
                       class="chart-container"
                       style="position: relative; height: 300px"
@@ -1859,7 +1858,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
               <div class="col-md-6">
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h5 class="card-title text-muted mb-3">Емоційний стан</h5>
+                    <h5 class="card-title text-muted mb-3">Emotional state</h5>
                     <div
                       class="chart-container"
                       style="position: relative; height: 300px"
@@ -1875,14 +1874,14 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                 <div class="card shadow-sm">
                   <div class="card-body">
                     <h5 class="card-title text-muted mb-3">
-                      Ключові показники
+                      Key indicators
                     </h5>
                     <div class="row g-3">
                       <div class="col-md-3">
                         <div
                           class="p-3 bg-warning-subtle border-start-custom rounded"
                         >
-                          <h6 class="mb-2">Загальний прогрес</h6>
+                          <h6 class="mb-2">General progress</h6>
                           <h3 class="mb-0">75%</h3>
                         </div>
                       </div>
@@ -1890,24 +1889,17 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                         <div
                           class="p-3 bg-warning-subtle border-start-custom rounded"
                         >
-                          <h6 class="mb-2">Виконані завдання</h6>
-                          <h3 class="mb-0">12/15</h3>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div
-                          class="p-3 bg-warning-subtle border-start-custom rounded"
-                        >
-                          <h6 class="mb-2">Середня оцінка</h6>
-                          <h3 class="mb-0">4.2/5</h3>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div
-                          class="p-3 bg-warning-subtle border-start-custom rounded"
-                        >
-                          <h6 class="mb-2">Відвідані сесії</h6>
+                          <h6 class="mb-2">Complete exercise</h6>
                           <h3 class="mb-0">8/10</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-3">
+                        <div
+                          class="p-3 bg-warning-subtle border-start-custom rounded"
+                        >
+                          <h6 class="mb-2">Attended Session</h6>
+                          <h3 class="mb-0">3/3</h3>
                         </div>
                       </div>
                     </div>
@@ -2504,6 +2496,77 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
             }, 300);
         }
       }
+
+      // Initialize charts
+      document.addEventListener("DOMContentLoaded", function () {
+        // Weekly Progress Chart
+        const weeklyCtx = document.getElementById("weeklyProgressChart").getContext("2d");
+        new Chart(weeklyCtx, {
+          type: "line",
+          data: {
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            datasets: [{
+              label: "Tasks Completed",
+              data: [4, 6, 5, 8, 7, 3, 5],
+              borderColor: "#7c7bad",
+              backgroundColor: "rgba(124, 123, 173, 0.1)",
+              tension: 0.4,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "top",
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 10
+              }
+            }
+          }
+        });
+
+        // Emotional State Chart
+        const emotionalCtx = document.getElementById("emotionalStateChart").getContext("2d");
+        new Chart(emotionalCtx, {
+          type: "radar",
+          data: {
+            labels: ["Anxiety", "Happiness", "Stress", "Confidence", "Energy", "Focus"],
+            datasets: [{
+              label: "This Week",
+              data: [3, 7, 4, 8, 6, 7],
+              backgroundColor: "rgba(124, 123, 173, 0.2)",
+              borderColor: "#7c7bad",
+              pointBackgroundColor: "#7c7bad"
+            },
+            {
+              label: "Last Week",
+              data: [5, 5, 6, 4, 5, 5],
+              backgroundColor: "rgba(255, 193, 7, 0.2)",
+              borderColor: "#ffc107",
+              pointBackgroundColor: "#ffc107"
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: {
+                beginAtZero: true,
+                max: 10,
+                ticks: {
+                  stepSize: 2
+                }
+              }
+            }
+          }
+        });
+      });
     </script>
   </body>
 </html>
