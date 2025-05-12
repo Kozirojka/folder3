@@ -595,6 +595,46 @@
       .comment-toggle:hover {
         text-decoration: underline;
       }
+
+      .rotate-icon {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .rotate-icon.rotate {
+        transform: rotate(180deg);
+      }
+
+      .editable-cell {
+        position: relative;
+      }
+
+      .edit-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        cursor: pointer;
+        color: #6c757d;
+      }
+
+      .editable-cell:hover .edit-icon {
+        opacity: 1;
+      }
+
+      .cell-content {
+        padding-right: 30px;
+      }
+
+      /* Transition for collapse */
+      .collapse {
+        transition: height 0.3s ease-in-out;
+      }
+
+      /* Custom table styles */
+      .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
     </style>
   </head>
   <body>
@@ -1231,12 +1271,120 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           </div>
           <div id="problems-symptoms" class="tab-content">
             <h3 class="content-title">Проблеми та симптоми</h3>
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <p>Тут буде список проблем та симптомів.</p>
+            <div class="card shadow-sm mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center" id="headingTable">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-decoration-none d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">
+                        <span>🔎 Case details: Eating disorders (EDs)</span>
+                    </button>
+                </h5>
+                <i class="fas fa-chevron-down rotate-icon transition rotate" id="toggleIcon"></i>
+              </div>
+        
+              <div id="collapseTable" class="collapse show">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col">Content</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Target appeals</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Weight loss, increased anxiety. The main goal is to stabilize eating behavior and improve psycho-emotional state. Involve the entire family in the therapeutic process.
+                                </div>
+                                <i class="fas fa-pen edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Clinical symptoms</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Recurrent episodes of compulsive overeating with loss of control, anxiety, weight loss. Additionally, increased self-criticism, avoidance of shared meals.
+                                </div>
+                                <i class="fas fa-pen edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Somatic/biological background</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    The general health condition is stable, but significant weight loss has been recorded over the past 6 months. Preliminary data: no serious chronic diseases, regular menstrual cycle is disturbed.
+                                </div>
+                                <i class="fas fa-pen edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Family context</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Complete family: mother, father, older brother. Tense relationship between child and mother, authoritarian parenting style. Family is willing to participate in family therapy.
+                                </div>
+                                <i class="fas fa-pen edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>School/educational situation</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Grade 11, high academic performance. There is strong perfectionism, fear of failure. Relationships with teachers are normal, there are episodes of social isolation among peers.
+                                </div>
+                                <i class="fas fa-pen edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Resources and support</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    The family is willing to participate in the therapeutic process. The girl has a friend who supports her. Hobbies: drawing, blogging. Strengths are noted - responsibility, empathy.
+                                </div>
+                                <i class="fas fa-pen edit-icon"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>            <div class="card shadow-sm">
+              <div class="card-header d-flex justify-content-between align-items-center" id="headingTableHistory">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-decoration-none d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseTableHistory" aria-expanded="false" aria-controls="collapseTableHistory">
+                        <span>🔎 History of behavior, social development, and events in the child's life</span>
+                    </button>
+                </h5>
+                <i class="fas fa-chevron-down rotate-icon transition rotate" id="toggleIconHistory"></i>
+              </div>
+              
+              <div id="collapseTableHistory" class="collapse show">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col">Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Current state of the patient</td>
+                                <td class="editable-cell">
+                                    <div class="cell-content">
+                                        Present symptoms, behaviors, and overall psychological and physical well-being.
+                                    </div>
+                                    <i class="fas fa-pen edit-icon"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
               </div>
             </div>
           </div>
+
           <div id="problems-statistic" class="tab-content">
             <h3 class="content-title">Статистика</h3>
             <div class="row g-4">
