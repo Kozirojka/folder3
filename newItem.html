@@ -65,13 +65,16 @@
         display: flex;
         min-height: 500px;
         position: relative;
+        width: 100%;
       }
 
       /* Vertical Tabs */
       .vertical-tabs {
         width: 250px;
+        min-width: 250px;
         padding: 20px 0;
         border-right: 1px solid #eee;
+        flex-shrink: 0;
       }
 
       .vertical-tab {
@@ -86,6 +89,9 @@
         color: #555;
         transition: all 0.3s ease;
         margin: 5px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .vertical-tab:hover {
@@ -102,6 +108,8 @@
         display: none;
         padding: 30px;
         flex-grow: 1;
+        width: calc(100% - 250px);
+        overflow-x: auto;
       }
 
       .tab-content.active {
