@@ -635,6 +635,77 @@
       .table-hover tbody tr:hover {
         background-color: rgba(0, 0, 0, 0.02);
       }
+
+      /* Interactive Diagram Styles */
+      .diagram-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .hexagon-wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 1rem;
+      }
+
+      .hexagon {
+        width: 150px;
+        height: 150px;
+        background: linear-gradient(135deg, #6b8dd6 0%, #8490ff 100%);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+        color: white;
+        text-align: center;
+      }
+
+      .hexagon:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #5c7ab8 0%, #717dff 100%);
+      }
+
+      .hexagon.active {
+        background: linear-gradient(135deg, #4a68a6 0%, #5e6aff 100%);
+        transform: scale(1.1);
+      }
+
+      .hexagon-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .hexagon-content i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .text-areas-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .text-area-container {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+
+      .text-area-header {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #495057;
+      }
     </style>
   </head>
   <body>
@@ -1429,6 +1500,86 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                 </div>
               </div>
             </div>
+            <!-- Adding new Interactive Diagram Card -->
+            <div class="card shadow-sm mt-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none d-flex align-items-center"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseDiagram"
+                          aria-expanded="false"
+                          aria-controls="collapseDiagram">
+                    <span>🔄 Інтерактивна діаграма Думки-Поведінка-Почуття</span>
+                  </button>
+                </h5>
+                <i class="fas fa-chevron-down rotate-icon transition rotate"></i>
+              </div>
+
+              <div id="collapseDiagram" class="collapse show">
+                <div class="card-body">
+                  <p class="text-muted mb-4">Клікніть на будь-який шестикутник, щоб додати або редагувати нотатки</p>
+                  
+                  <div class="diagram-container">
+                    <div class="hexagon-wrapper">
+                      <div class="hexagon" id="thoughts" onclick="toggleTextArea('thoughts')">
+                        <div class="hexagon-content">
+                          <i class="fas fa-brain mb-2"></i>
+                          <div>ДУМКИ</div>
+                        </div>
+                      </div>
+                      <div class="hexagon" id="behaviors" onclick="toggleTextArea('behaviors')">
+                        <div class="hexagon-content">
+                          <i class="fas fa-running mb-2"></i>
+                          <div>ПОВЕДІНКА</div>
+                        </div>
+                      </div>
+                      <div class="hexagon" id="feelings" onclick="toggleTextArea('feelings')">
+                        <div class="hexagon-content">
+                          <i class="fas fa-heart mb-2"></i>
+                          <div>ПОЧУТТЯ</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Text areas -->
+                    <div class="text-areas-container mt-4">
+                      <div id="thoughts-text-container" class="text-area-container">
+                        <div class="text-area-header">
+                          <i class="fas fa-brain me-2"></i>Мої думки:
+                        </div>
+                        <textarea id="thoughts-text" class="form-control" rows="3" 
+                                placeholder="Запишіть ваші думки тут..."></textarea>
+                        <button class="btn btn-primary mt-2" onclick="saveText('thoughts')">
+                          <i class="fas fa-save me-2"></i>Зберегти
+                        </button>
+                      </div>
+                      
+                      <div id="behaviors-text-container" class="text-area-container" style="display: none;">
+                        <div class="text-area-header">
+                          <i class="fas fa-running me-2"></i>Моя поведінка:
+                        </div>
+                        <textarea id="behaviors-text" class="form-control" rows="3"
+                                placeholder="Запишіть вашу поведінку тут..."></textarea>
+                        <button class="btn btn-primary mt-2" onclick="saveText('behaviors')">
+                          <i class="fas fa-save me-2"></i>Зберегти
+                        </button>
+                      </div>
+                      
+                      <div id="feelings-text-container" class="text-area-container" style="display: none;">
+                        <div class="text-area-header">
+                          <i class="fas fa-heart me-2"></i>Мої почуття:
+                        </div>
+                        <textarea id="feelings-text" class="form-control" rows="3"
+                                placeholder="Запишіть ваші почуття тут..."></textarea>
+                        <button class="btn btn-primary mt-2" onclick="saveText('feelings')">
+                          <i class="fas fa-save me-2"></i>Зберегти
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div id="problems-statistic" class="tab-content">
@@ -1875,6 +2026,67 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
       function showSessionsList() {
         document.getElementById("sessions-list").style.display = "block";
         document.getElementById("session-details").style.display = "none";
+      }
+
+      // Interactive Diagram Functions
+      document.addEventListener('DOMContentLoaded', function() {
+        loadSavedText('thoughts');
+        loadSavedText('behaviors');
+        loadSavedText('feelings');
+      });
+
+      function toggleTextArea(id) {
+        // Remove active class from all hexagons
+        document.querySelectorAll('.hexagon').forEach(hex => {
+            hex.classList.remove('active');
+        });
+        
+        // Add active class to clicked hexagon
+        document.getElementById(id).classList.add('active');
+        
+        // Hide all text areas
+        document.querySelectorAll('.text-area-container').forEach(container => {
+            container.style.display = 'none';
+        });
+        
+        // Show selected text area with fade effect
+        const selectedContainer = document.getElementById(id + '-text-container');
+        if (selectedContainer) {
+            selectedContainer.style.opacity = '0';
+            selectedContainer.style.display = 'block';
+            setTimeout(() => {
+                selectedContainer.style.transition = 'opacity 0.3s ease';
+                selectedContainer.style.opacity = '1';
+            }, 50);
+            document.getElementById(id + '-text').focus();
+        }
+      }
+
+      function saveText(id) {
+        const textarea = document.getElementById(id + '-text');
+        const text = textarea.value;
+        
+        // Save to localStorage
+        localStorage.setItem(id + '-thoughts-behavior-feelings', text);
+        
+        // Show success message
+        const button = textarea.nextElementSibling;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check me-2"></i>Збережено!';
+        button.disabled = true;
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }, 2000);
+      }
+
+      function loadSavedText(id) {
+        const savedText = localStorage.getItem(id + '-thoughts-behavior-feelings');
+        if (savedText) {
+            document.getElementById(id + '-text').value = savedText;
+        }
       }
     </script>
   </body>
