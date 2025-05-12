@@ -647,26 +647,29 @@
         grid-template-areas:
           ". thoughts ."
           "behaviors . feelings";
-        gap: 2rem;
+        gap: 1rem;
         padding: 1rem;
         width: 100%;
-        max-width: 600px;
+        max-width: 500px;
         margin: 0 auto;
       }
 
       #thoughts {
         grid-area: thoughts;
         justify-self: center;
+        margin-bottom: -1rem;
       }
 
       #behaviors {
         grid-area: behaviors;
-        justify-self: start;
+        justify-self: center;
+        margin-left: 3rem;
       }
 
       #feelings {
         grid-area: feelings;
-        justify-self: end;
+        justify-self: center;
+        margin-right: 3rem;
       }
 
       .hexagon {
@@ -722,6 +725,35 @@
         font-weight: 600;
         margin-bottom: 0.5rem;
         color: #495057;
+      }
+      .hexagon-wrapper {
+        display: grid;
+        grid-template-areas:
+          ". thoughts ."
+          "behaviors . feelings";
+        gap: 0.5rem;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+
+      .hexagon {
+        width: 140px;
+        height: 140px;
+      }
+
+      #thoughts { 
+        margin-bottom: -0.5rem;
+        grid-area: thoughts;
+      }
+
+      #behaviors { 
+        margin-left: 2rem;
+        grid-area: behaviors;
+      }
+
+      #feelings { 
+        margin-right: 2rem;
+        grid-area: feelings;
       }
     </style>
   </head>
