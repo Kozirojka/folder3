@@ -234,20 +234,18 @@
         .file-meta {
             font-size: 0.8rem;
             color: #666;
-        }
-
-        .chart-container {
+        }        .chart-container {
             background-color: white;
             border-radius: 6px;
             padding: 15px;
             margin-top: 15px;
-            height: 250px;
+            height: 400px;
             width: 100%;
             position: relative;
         }
 
         canvas {
-            max-height: 220px !important;
+            max-height: 370px !important;
         }
 
         .completed-task {
@@ -520,6 +518,31 @@
             padding: 0.5rem;
             margin: 1rem 0;
             border-left: 3px solid #7C7BAD;
+        }
+
+        /* Session Card Styles */
+        .session-card {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(124, 123, 173, 0.15) !important;
+            border-color: #7C7BAD;
+        }
+
+        .session-card:hover .card-title {
+            color: #7C7BAD;
+        }
+
+        .session-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Back button hover effect */
+        .btn-link:hover {
+            color: #7C7BAD !important;
         }
     </style>
 </head>
@@ -845,12 +868,124 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="session-history" class="tab-content">
-                    <h3 class="content-title">Історія сесій</h3>
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <p>Тут буде відображатися історія попередніх сесій.</p>
+                </div>                <div id="session-history" class="tab-content">
+                    <div id="sessions-list">
+                        <h3 class="content-title">Історія сесій</h3>
+                        <div class="row g-4">
+                            <!-- Session Card 1 -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card shadow-sm h-100 session-card" onclick="showSessionDetails('session1')">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="session-date bg-warning-subtle rounded-circle p-3 me-3">
+                                                <strong>10</strong>
+                                                <div class="small">Тра</div>
+                                            </div>
+                                            <div>
+                                                <h5 class="card-title mb-1">Сесія: Емоційна регуляція</h5>
+                                                <p class="text-muted small mb-0">15:30 - 16:30</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                        </div>
+                                        <p class="card-text">Фокус на управлінні тривогою та стресом. Значний прогрес у використанні технік заземлення.</p>
+                                    </div>
+                                    <div class="card-footer bg-light">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="badge bg-warning-subtle text-warning-emphasis">Завершено</span>
+                                            <span class="text-muted small">Ефективність: 85%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Session Card 2 -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card shadow-sm h-100 session-card" onclick="showSessionDetails('session2')">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="session-date bg-warning-subtle rounded-circle p-3 me-3">
+                                                <strong>8</strong>
+                                                <div class="small">Тра</div>
+                                            </div>
+                                            <div>
+                                                <h5 class="card-title mb-1">Сесія: Когнітивні навички</h5>
+                                                <p class="text-muted small mb-0">14:00 - 15:00</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-success" style="width: 75%"></div>
+                                        </div>
+                                        <p class="card-text">Робота над негативними думками. Практика технік переосмислення.</p>
+                                    </div>
+                                    <div class="card-footer bg-light">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="badge bg-warning-subtle text-warning-emphasis">Завершено</span>
+                                            <span class="text-muted small">Ефективність: 75%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Session Details View -->
+                    <div id="session-details" style="display: none;">
+                        <div class="d-flex align-items-center mb-4">
+                            <button class="btn btn-link text-decoration-none p-0 me-3" onclick="showSessionsList()">
+                                <i class="fas fa-arrow-left"></i> Назад до списку
+                            </button>
+                            <h3 class="content-title mb-0" id="session-title"></h3>
+                        </div>
+
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title text-muted mb-3">Основна інформація</h5>
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <td><strong>Дата:</strong></td>
+                                                <td id="session-date"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Тривалість:</strong></td>
+                                                <td id="session-duration"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Ефективність:</strong></td>
+                                                <td id="session-effectiveness"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title text-muted mb-3">Статистика сесії</h5>
+                                        <div class="chart-container" style="position: relative; height:200px;">
+                                            <canvas id="sessionChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="card shadow-sm h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-muted mb-3">Виконані вправи</h5>
+                                        <div id="session-exercises"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card shadow-sm h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-muted mb-3">Спостереження</h5>
+                                        <div id="session-observations" class="bg-warning-subtle border-start-custom rounded p-3"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1140,6 +1275,105 @@
                 });
             });
         });
+
+        // Session history management
+        const sessionData = {
+            'session1': {
+                title: 'Сесія: Емоційна регуляція',
+                date: '10 травня 2025',
+                duration: '1 година (15:30 - 16:30)',
+                effectiveness: '85%',
+                exercises: [
+                    { name: 'Техніка заземлення', status: 'completed', time: '15 хв' },
+                    { name: 'Дихальні вправи', status: 'completed', time: '20 хв' },
+                    { name: 'Групова дискусія', status: 'completed', time: '25 хв' }
+                ],
+                observations: 'Клієнт демонструє значний прогрес у застосуванні технік заземлення. Відмічається покращення в здатності ідентифікувати тригери тривоги.',
+                chartData: {
+                    labels: ['Спокій', 'Тривога', 'Концентрація', 'Настрій'],
+                    data: [80, 45, 75, 85]
+                }
+            },
+            'session2': {
+                title: 'Сесія: Когнітивні навички',
+                date: '8 травня 2025',
+                duration: '1 година (14:00 - 15:00)',
+                effectiveness: '75%',
+                exercises: [
+                    { name: 'Аналіз думок', status: 'completed', time: '25 хв' },
+                    { name: 'Техніка переосмислення', status: 'completed', time: '20 хв' },
+                    { name: 'Практичні вправи', status: 'partial', time: '15 хв' }
+                ],
+                observations: 'Клієнт успішно застосовує техніки переосмислення негативних думок. Потрібно більше практики в реальних ситуаціях.',
+                chartData: {
+                    labels: ['Спокій', 'Тривога', 'Концентрація', 'Настрій'],
+                    data: [70, 55, 65, 75]
+                }
+            }
+        };
+
+        function showSessionDetails(sessionId) {
+            const session = sessionData[sessionId];
+            if (!session) return;
+
+            document.getElementById('sessions-list').style.display = 'none';
+            document.getElementById('session-details').style.display = 'block';
+            
+            // Update session details
+            document.getElementById('session-title').textContent = session.title;
+            document.getElementById('session-date').textContent = session.date;
+            document.getElementById('session-duration').textContent = session.duration;
+            document.getElementById('session-effectiveness').textContent = session.effectiveness;
+            
+            // Update exercises
+            const exercisesHtml = session.exercises.map(exercise => `
+                <div class="d-flex align-items-center mb-2 p-2 bg-light rounded">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <div class="flex-grow-1">
+                        <div>${exercise.name}</div>
+                        <small class="text-muted">${exercise.time}</small>
+                    </div>
+                    <span class="badge ${exercise.status === 'completed' ? 'bg-success' : 'bg-warning'}">${exercise.status === 'completed' ? 'Виконано' : 'Частково'}</span>
+                </div>
+            `).join('');
+            document.getElementById('session-exercises').innerHTML = exercisesHtml;
+
+            // Update observations
+            document.getElementById('session-observations').textContent = session.observations;
+
+            // Update chart
+            const ctx = document.getElementById('sessionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: session.chartData.labels,
+                    datasets: [{
+                        label: 'Показники сесії',
+                        data: session.chartData.data,
+                        fill: true,
+                        backgroundColor: 'rgba(124, 123, 173, 0.2)',
+                        borderColor: '#7C7BAD',
+                        pointBackgroundColor: '#7C7BAD'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function showSessionsList() {
+            document.getElementById('sessions-list').style.display = 'block';
+            document.getElementById('session-details').style.display = 'none';
+        }
     </script>
 </body>
 </html>
