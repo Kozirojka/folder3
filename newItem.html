@@ -558,6 +558,44 @@
       .btn-link:hover {
         color: #7c7bad !important;
       }
+
+      .comment-text {
+        position: relative;
+        max-height: 60px;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+
+      .comment-text.expanded {
+        max-height: 1000px;
+      }
+
+      .comment-text.collapsible::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: linear-gradient(transparent, rgba(248, 249, 250, 1));
+      }
+
+      .comment-toggle {
+        color: #7C7BAD;
+        border: none;
+        background: none;
+        padding: 0;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: inline-flex;  /* змінено з display: none */
+        align-items: center;
+        gap: 4px;
+        margin-top: 0.5rem;
+      }
+
+      .comment-toggle:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -960,8 +998,14 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                       </p>
 
                       <div class="doctor-note">
-                        <strong>Doctor's Note:</strong> Note physical sensations
-                        associated with emotions
+                        <strong>Doctor's Note:</strong>
+                        <div class="comment-text" id="comment-2">
+                          Note physical sensations associated with emotions. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        </div>
+                        <button class="comment-toggle mt-1" onclick="toggleComment('comment-2')">
+                          <span class="toggle-text">Показати більше</span>
+                          <i class="fas fa-chevron-down"></i>
+                        </button>
                       </div>
 
                       <div class="file-attachment">
@@ -1645,6 +1689,87 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
         document.getElementById("sessions-list").style.display = "block";
         document.getElementById("session-details").style.display = "none";
       }
+
+      function toggleComment(commentId) {
+        const commentEl = document.getElementById(commentId);
+        const button = commentEl.nextElementSibling;
+        const toggleText = button.querySelector('.toggle-text');
+        const icon = button.querySelector('i');
+        
+        commentEl.classList.toggle('expanded');
+        
+        if (commentEl.classList.contains('expanded')) {
+          toggleText.textContent = 'Згорнути';
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+        } else {
+          toggleText.textContent = 'Показати більше';
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize comment sections
+        document.querySelectorAll('.comment-text').forEach(comment => {
+          // Adding collapsible class to enable gradient fade effect
+          comment.classList.add('collapsible');
+          // Make sure toggle button is visible
+          const button = comment.nextElementSibling;
+          if (button && button.classList.contains('comment-toggle')) {
+            button.style.display = 'inline-flex';
+          }
+        });
+        // Initialize anxiety chart
+        const ctx = document.getElementById("anxietyChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: [
+              "Mon 05.05",
+              "Tue 06.05",
+              "Wed 07.05",
+              "Thu 08.05",
+              "Fri 09.05",
+              "Sat 10.05",
+              "Sun 11.05",
+            ],
+            datasets: [
+              {
+                label: "Anxiety Level",
+                data: [2, 4, 5, 5, 8, 6, 2],
+                backgroundColor: "rgba(124, 123, 173, 0.6)",
+                borderColor: "rgba(124, 123, 173, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 10,
+                grid: {
+                  display: false,
+                },
+              },
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+            },
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
+        });
+      });
     </script>
   </body>
 </html>
