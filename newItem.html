@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module Tabs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">    <style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
         .tabs-container {
-            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(138, 127, 185, 0.1);
-            overflow: hidden;
         }
 
         /* Horizontal Tabs */
         .horizontal-tabs {
             display: flex;
-            background: white;
             border-bottom: 2px solid #eee;
             padding: 0 20px;
         }
@@ -31,19 +30,17 @@
             font-weight: 500;
             color: #555;
             transition: all 0.3s ease;
-            border-radius: 12px 12px 0 0;
             position: relative;
             margin: 0 5px;
         }
 
-        .horizontal-tab:hover {            color: #8a7fb9;
-            background-color: #f8f7fc;
+        .horizontal-tab:hover {
+            color: #7C7BAD;
         }
 
         .horizontal-tab.active {
-            color: #8a7fb9;
-            background-color: #f8f7fc;
-            border-bottom: 3px solid #8a7fb9;
+            color: #7C7BAD;
+            border-bottom: 3px solid #7C7BAD;
         }
 
         .horizontal-tab .shortcut {
@@ -61,9 +58,9 @@
             position: relative;
         }
 
-        /* Vertical Tabs */        .vertical-tabs {
+        /* Vertical Tabs */
+        .vertical-tabs {
             width: 250px;
-            background: #f8f7fc;
             padding: 20px 0;
             border-right: 1px solid #eee;
         }
@@ -79,17 +76,16 @@
             font-size: 14px;
             color: #555;
             transition: all 0.3s ease;
-            border-radius: 0 25px 25px 0;
             margin: 5px 0;
-        }        .vertical-tab:hover {
-            background-color: #9e95c5;
-            color: white;
+        }
+
+        .vertical-tab:hover {
+            color: #7C7BAD;
         }
 
         .vertical-tab.active {
-            background-color: #8a7fb9;
-            color: white;
-            box-shadow: 0 4px 15px rgba(138, 127, 185, 0.2);
+            color: #7C7BAD;
+            border-left: 3px solid #7C7BAD;
         }
 
         /* Content */
@@ -116,10 +112,414 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }        .content-title {
-            color: #8a7fb9;
+        }
+
+        .content-title {
+            color: #7C7BAD;
             margin-bottom: 20px;
             font-weight: 600;
+        }
+
+        /* Custom Task Styles */
+        .tasks-section {
+            padding: 20px;
+        }
+
+        .task-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .task-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 0;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #7C7BAD;
+            border-radius: 4px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .task-checkbox:checked {
+            background-color: #7C7BAD;
+            border-color: #7C7BAD;
+        }
+
+        .task-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .task-image {
+            max-width: 200px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .doctor-note {
+            background-color: #f8f9fa;
+            border-left: 4px solid #7C7BAD;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .comment-btn {
+            color: #7C7BAD;
+            border: 1px solid #7C7BAD;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            background: none;
+            transition: all 0.2s;
+        }
+
+        .comment-btn:hover {
+            background-color: #7C7BAD;
+            color: white;
+        }
+
+        .comment-form {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .file-attachment {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .file-icon {
+            color: #7C7BAD;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .file-info {
+            flex-grow: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .file-meta {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            height: 250px;
+            width: 100%;
+            position: relative;
+        }
+
+        canvas {
+            max-height: 220px !important;
+        }
+
+        .completed-task {
+            opacity: 0.7;
+        }
+
+        .completed-task .task-title {
+            text-decoration: line-through;
+        }
+
+        /* Session Info Styles */
+        .session-block {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .session-title {
+            color: #2C3E50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .activities-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .activity-item {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-left: 3px solid #7C7BAD;
+            border-radius: 4px;
+        }
+
+        /* Add Bootstrap classes support for activity items */
+        .border-start-custom {
+            border-left: 3px solid #7C7BAD !important;
+        }
+
+        .bg-light-custom {
+            background-color: #f8f9fa !important;
+        }
+
+        .trigger-table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+        }
+
+        .trigger-table th,
+        .trigger-table td {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            font-size: 0.9rem;
+        }
+
+        .trigger-table th {
+            background: #f8f9fa;
+            color: #2C3E50;
+        }
+
+        .observation-block {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 3px solid #7C7BAD;
+        }
+
+        .edit-button {
+            padding: 0.25rem 0.75rem;
+            color: #7C7BAD;
+            border: 1px solid #7C7BAD;
+            background: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .edit-button:hover {
+            background: #7C7BAD;
+            color: white;
+        }
+
+        .session-rating {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .rating-option {
+            padding: 0.25rem 0.5rem;
+        }
+
+        .file-block {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .file-icon {
+            color: #7C7BAD;
+            margin-right: 1rem;
+        }
+
+        .response-image {
+            max-width: 200px;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        /* Summary Section Styles */
+        .summary-section {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Progress Indicator Styles */
+        .progress-select {
+            width: 100%;
+            padding: 0.375rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+
+        /* End Session/Module Buttons */
+        .end-buttons {
+            margin-top: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid #eee;
+        }
+
+        .end-button {
+            background: none;
+            border: 2px solid #7C7BAD;
+            color: #7C7BAD;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .end-button:hover {
+            background: #7C7BAD;
+            color: white;
+        }
+
+        .end-button.warning {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .end-button.warning:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Feedback Forms */
+        .feedback-form {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .feedback-form.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .next-modules {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .module-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .module-option:hover {
+            border-color: #7C7BAD;
+            background: #f8f7fc;
+        }
+
+        .module-option.selected {
+            border-color: #7C7BAD;
+            background: #f8f7fc;
+        }
+
+        .module-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #7C7BAD;
+            color: white;
+            border-radius: 4px;
+        }
+
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Test indicator styles with Bootstrap utilities */
+        .bg-warning-subtle {
+            background-color: #fff3cd !important;
+        }
+
+        .test-indicator-block {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .test-indicator-block h5 {
+            color: #2C3E50;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #7C7BAD;
+        }
+
+        .test-indicator-content {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+        }
+
+        .test-story {
+            font-style: italic;
+            color: #666;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            border-left: 3px solid #7C7BAD;
         }
     </style>
 </head>
@@ -160,20 +560,286 @@
                     </button>
                 </div>
 
-                <!-- Tab Content -->
-                <div id="session-info" class="tab-content active">
+                <!-- Tab Content -->                <div id="session-info" class="tab-content active">
                     <h3 class="content-title">Інформація про сесію</h3>
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <p>Тут буде відображатися інформація про поточну сесію.</p>
+                    
+                    <div class="session-block">
+                        <h4 class="session-title">Advanced Emotion Mapping</h4>
+                        <p class="text-muted">Client showing improved awareness of emotional triggers. Difficulties with public speaking.</p>
+                        
+                        <div class="activities-block">
+                            <h5>Planned Activities:</h5>
+                            <ul class="activities-list">
+                <li class="p-2 mb-2 bg-light-custom border-start-custom rounded">Body scan meditation</li>
+                <li class="p-2 mb-2 bg-light-custom border-start-custom rounded">Emotion-intensity scaling exercise</li>
+                                <li class="activity-item">
+                                    <div class="trigger-header" onclick="toggleTriggerTable()">
+                                        <span>Trigger identification worksheet</span>
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
+                                    
+                                    <div id="triggerTable" style="display: none;">
+                                        <table class="trigger-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Potential Triggers</th>
+                                                    <th>Patient Responses</th>
+                                                    <th>How This Affects Me</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Speaking in front of the class</td>
+                                                    <td>I felt proud after I finished my school presentation even though I was scared at first.</td>
+                                                    <td>Blushing, shaky voice</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trying something new</td>
+                                                    <td>When I tried a new sport, I was very nervous but stayed until the end of practice.</td>
+                                                    <td>Tummy aches, avoidance behavior</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Unexpected changes in routine</td>
+                                                    <td>
+                                                        Last time when our family trip got canceled, I felt super upset but did my breathing exercise.
+                                                        <img src="https://cdn.openart.ai/uploads/image_B6A-70Oa_1694791168553_1024.jpg" alt="Response illustration" class="response-image">
+                                                    </td>
+                                                    <td>Crying, irritability</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="observation-block">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5>Observations:</h5>
+                                <button class="edit-button" onclick="toggleObservationEdit()">Edit</button>
+                            </div>
+                            <p id="observationText">Client responds well to visual aids, struggles with verbal descriptions of emotions.</p>
+                            <div id="observationEdit" style="display: none;">
+                                <textarea class="form-control" rows="3">Client responds well to visual aids, struggles with verbal descriptions of emotions.</textarea>
+                                <div class="mt-2">
+                                    <button class="edit-button" onclick="saveObservation()">Save</button>
+                                    <button class="edit-button ms-2" onclick="cancelObservation()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>                        <div class="test-indicator-block">
+                            <h5>Test Indicator:</h5>
+                            
+                            <div class="test-indicator-content p-2 mb-2 bg-warning-subtle border-start-custom rounded">
+                                <strong class="d-block mb-2">Test: Self-report: I coped with stress</strong>
+                                <div class="test-story">
+                                    I have a little story about me and me friend and next... text
+                                </div>
+                            </div>
+                            
+                            <div class="file-block p-2 mb-2 bg-warning-subtle border-start-custom rounded">
+                                <i class="fas fa-file-image file-icon"></i>
+                                <div>
+                                    <div>abc_model.jpg</div>
+                                    <small class="text-muted">JPG • 1.8 MB</small>
+                                </div>
+                                <button class="edit-button ms-auto">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- End Buttons -->
+                        <div class="end-buttons">
+                            <button class="end-button" onclick="toggleEndSessionForm()">
+                                <i class="fas fa-flag-checkered me-2"></i>Завершити сесію
+                            </button>
+                            <button class="end-button warning" onclick="toggleEndModuleForm()">
+                                <i class="fas fa-door-closed me-2"></i>Завершити модуль
+                            </button>
+                        </div>
+
+                        <!-- End Session Form -->
+                        <div id="endSessionForm" class="feedback-form">
+                            <h5>Завершення сесії</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Ваші спостереження та висновки:</label>
+                                <textarea class="form-control" rows="3" placeholder="Опишіть результати сесії, важливі моменти..."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Оцінка ефективності сесії:</label>
+                                <select class="form-control">
+                                    <option>Відмінно</option>
+                                    <option>Добре</option>
+                                    <option>Задовільно</option>
+                                    <option>Потребує покращення</option>
+                                </select>
+                            </div>
+
+                            
+                            <div class="next-modules">
+                                <h6>Наступна сесії:</h6>
+                        
+                                <div class="module-option" onclick="selectModule(this)">
+                                    <div class="module-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">СЕСІЯ ТЕСТОВА</div>
+                                        <small class="text-muted">Розвиток комунікації та взаємодії</small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            
+                            <div class="d-flex justify-content-end gap-2">
+                                <button class="end-button" onclick="toggleEndSessionForm()">Скасувати</button>
+                                <button class="end-button">Зберегти та завершити</button>
+                            </div>
+                        </div>
+
+                        <!-- End Module Form -->
+                        <div id="endModuleForm" class="feedback-form">
+                            <h5>Завершення модуля</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Загальний підсумок модуля:</label>
+                                <textarea class="form-control" rows="3" placeholder="Опишіть досягнення, прогрес та рекомендації..."></textarea>
+                            </div>
+                            
+                            <div class="next-modules">
+                                <h6>Оберіть наступний модуль:</h6>
+                                <div class="module-option" onclick="selectModule(this)">
+                                    <div class="module-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">Когнітивна терапія</div>
+                                        <small class="text-muted">Робота з думками та переконаннями</small>
+                                    </div>
+                                </div>
+                                <div class="module-option" onclick="selectModule(this)">
+                                    <div class="module-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">Емоційна регуляція</div>
+                                        <small class="text-muted">Управління емоціями та стресом</small>
+                                    </div>
+                                </div>
+                                <div class="module-option" onclick="selectModule(this)">
+                                    <div class="module-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">Соціальні навички</div>
+                                        <small class="text-muted">Розвиток комунікації та взаємодії</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 mt-3">
+                                <button class="end-button" onclick="toggleEndModuleForm()">Скасувати</button>
+                                <button class="end-button warning">Завершити модуль</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
                 <div id="current-tasks" class="tab-content">
                     <h3 class="content-title">Поточні завдання</h3>
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <p>Тут буде список поточних завдань.</p>
+                    <div class="tasks-section">
+                        <div class="task-card" id="task-1">
+                            <div class="task-body p-3">
+                                <div class="d-flex">
+                                    <input type="checkbox" class="task-checkbox" data-task-id="1">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="task-header">
+                                            <h5 class="task-title">Thought – Emotion – Alternative</h5>
+                                            <button class="comment-btn add-comment-btn" data-task-id="1">
+                                                <i class="bi bi-chat-left-text"></i> Add Comment
+                                            </button>
+                                        </div>
+                                        <p class="task-description">Daily 15-minute breathing exercises</p>
+                                        
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-pj5wGVEUnvpp96LvX1m1Of-laOrd7ljh1A&s" 
+                                             class="task-image" alt="Task illustration">
+
+                                        <div class="comment-form" id="comment-form-1" style="display: none;">
+                                            <form class="task-comment-form" data-task-id="1">
+                                                <div class="mb-2">
+                                                    <label class="form-label small">Doctor's comment:</label>
+                                                    <textarea class="form-control" rows="2" 
+                                                              placeholder="Add your professional observations..."></textarea>
+                                                </div>
+                                                <div class="text-end">
+                                                    <button type="button" class="comment-btn me-2 cancel-comment-btn">Cancel</button>
+                                                    <button type="submit" class="comment-btn">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="task-card completed-task" id="task-2">
+                            <div class="task-body p-3">
+                                <div class="d-flex">
+                                    <input type="checkbox" class="task-checkbox" checked disabled data-task-id="2">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="task-header">
+                                            <h5 class="task-title">What Would a Friend Say?</h5>
+                                            <button class="comment-btn add-comment-btn" data-task-id="2">
+                                                <i class="bi bi-chat-left-text"></i> Edit Comment
+                                            </button>
+                                        </div>
+                                        <p class="task-description">Record emotional states 3 times daily</p>
+                                        
+                                        <div class="doctor-note">
+                                            <strong>Doctor's Note:</strong> Note physical sensations associated with emotions
+                                        </div>
+
+                                        <div class="file-attachment">
+                                            <i class="fas fa-file-image file-icon"></i>
+                                            <div class="file-info">
+                                                <div class="file-name">emotionalState.png</div>
+                                                <div class="file-meta">PNG • 1.2 MB</div>
+                                            </div>
+                                            <button class="comment-btn">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="task-card completed-task" id="task-3">
+                            <div class="task-body p-3">
+                                <div class="d-flex">
+                                    <input type="checkbox" class="task-checkbox" checked disabled data-task-id="3">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="task-header">
+                                            <h5 class="task-title">Thermometry of Anxiety</h5>
+                                            <button class="comment-btn add-comment-btn" data-task-id="3">
+                                                <i class="bi bi-chat-left-text"></i> Edit Comment
+                                            </button>
+                                        </div>
+                                        <p class="task-description">This is an exercise for thermometry of anxiety</p>
+                                        
+                                        <div class="doctor-note">
+                                            <strong>Doctor's Note:</strong> Note physical sensations associated with emotions
+                                        </div>
+
+                                        <div class="chart-container">
+                                            <h6 class="text-muted mb-3">Anxiety Level (Last 7 Days)</h6>
+                                            <canvas id="anxietyChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -253,8 +919,58 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>    <script>
+        function toggleTriggerTable() {
+            const table = document.getElementById('triggerTable');
+            table.style.display = table.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleEndSessionForm() {
+            const form = document.getElementById('endSessionForm');
+            form.classList.toggle('active');
+            // Hide module form if it's open
+            document.getElementById('endModuleForm').classList.remove('active');
+        }
+
+        function toggleEndModuleForm() {
+            const form = document.getElementById('endModuleForm');
+            form.classList.toggle('active');
+            // Hide session form if it's open
+            document.getElementById('endSessionForm').classList.remove('active');
+        }
+
+        function selectModule(element) {
+            // Remove selected class from all options
+            document.querySelectorAll('.module-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            // Add selected class to clicked option
+            element.classList.add('selected');
+        }
+
+        function toggleObservationEdit() {
+            const text = document.getElementById('observationText');
+            const edit = document.getElementById('observationEdit');
+            text.style.display = 'none';
+            edit.style.display = 'block';
+        }
+
+        function saveObservation() {
+            const text = document.getElementById('observationText');
+            const edit = document.getElementById('observationEdit');
+            const textarea = edit.querySelector('textarea');
+            text.textContent = textarea.value;
+            text.style.display = 'block';
+            edit.style.display = 'none';
+        }
+
+        function cancelObservation() {
+            const text = document.getElementById('observationText');
+            const edit = document.getElementById('observationEdit');
+            text.style.display = 'block';
+            edit.style.display = 'none';
+        }
+
         function showModule(moduleId) {
             // Hide all modules
             document.querySelectorAll('.module-content').forEach(content => {
@@ -296,6 +1012,67 @@
                     if (button) button.focus();
                 }
             }
+        });
+
+        // Initialize anxiety chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('anxietyChart').getContext('2d');            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon 05.05', 'Tue 06.05', 'Wed 07.05', 'Thu 08.05', 'Fri 09.05', 'Sat 10.05', 'Sun 11.05'],
+                    datasets: [{
+                        label: 'Anxiety Level',
+                        data: [2, 4, 5, 5, 8, 6, 2],
+                        backgroundColor: 'rgba(124, 123, 173, 0.6)',
+                        borderColor: 'rgba(124, 123, 173, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+
+        // Add event listeners for comment buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const addCommentBtns = document.querySelectorAll('.add-comment-btn');
+            const cancelCommentBtns = document.querySelectorAll('.cancel-comment-btn');
+
+            addCommentBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const taskId = this.dataset.taskId;
+                    document.getElementById(`comment-form-${taskId}`).style.display = 'block';
+                });
+            });
+
+            cancelCommentBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const taskId = this.closest('form').dataset.taskId;
+                    document.getElementById(`comment-form-${taskId}`).style.display = 'none';
+                });
+            });
         });
     </script>
 </body>
