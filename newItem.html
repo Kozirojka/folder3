@@ -96,11 +96,15 @@
 
       .vertical-tab:hover {
         color: #7c7bad;
-      }
-
+      }      
+      
       .vertical-tab.active {
         color: #7c7bad;
         border-left: 3px solid #7c7bad;
+        background: rgba(124, 123, 173, 0.05);
+        border: 1px solid #7c7bad;
+        border-left: 3px solid #7c7bad;
+        border-radius: 4px;
       }
 
       /* Content */
@@ -619,14 +623,59 @@
         padding: 0.5rem;
         margin-bottom: 1rem;
         border-radius: 6px;
-      }
-
-      .test-story {
+      }      .test-story {
         font-style: italic;
         color: #666;
         padding: 0.5rem;
         margin: 1rem 0;
         border-left: 3px solid #7c7bad;
+        position: relative;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        max-width: 70ch;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        line-height: 1.5;
+      }
+
+      .test-story.collapsed {
+        max-height: 80px;
+      }
+
+      .test-story.collapsed::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: linear-gradient(transparent, #fff);
+        pointer-events: none;
+      }
+
+      .expand-btn {
+        color: #7c7bad;
+        border: none;
+        background: none;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 5px;
+      }
+
+      .expand-btn:hover {
+        text-decoration: underline;
+      }
+
+      .expand-icon {
+        transition: transform 0.3s ease;
+        margin-left: 5px;
+      }
+
+      .expand-icon.rotated {
+        transform: rotate(180deg);
       }
 
       /* Session Card Styles */
@@ -1115,13 +1164,22 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                   class="test-indicator-content p-2 mb-2 bg-warning-subtle border-start-custom rounded"
                 >
                   <strong class="d-block mb-2"
-                    >Test: Written transformation of thoughts, psychologist's feedback</strong
-                  >
-                  <div class="test-story">
-                    I have a little story about me and me friend and next...
-                    text
+                    >Test: Written transformation of thoughts, psychologist's feedback</strong>
+                </div>      
+                
+                
+
+                 <div>
+                  
+                    <div class="test-story collapsed">
+                      During the written transformation of thoughts exercise, the client demonstrated the ability to externalize and reflect on persistent negative beliefs, particularly centered around self-worth and fear of being exposed as inadequate. The original thought pattern revealed a deep-rooted cognitive distortion related to imposter syndrome, characterized by all-or-nothing thinking, mental filtering, and overgeneralization. The client expressed the belief that their achievements were due to luck and that failure was inevitable, which has contributed to avoidance behaviors and social withdrawal. In the course of the intervention, the client was encouraged to identify evidence that contradicted these automatic thoughts, such as past successes, positive feedback, and instances where effort clearly contributed to outcomes. With support, the client was able to generate more balanced and compassionate alternative thoughts, acknowledging their abilities while accepting that imperfection is part of the human experience. The client’s writing showed emerging cognitive flexibility, suggesting readiness for deeper restructuring work in future sessions. Continued emphasis will be placed on reinforcing these alternative narratives through behavioral experiments and real-life evidence collection.
+
+                    </div>
+                    <button class="expand-btn" onclick="toggleStory(this)">
+                      <span class="expand-text">Показати більше</span>
+                      <i class="fas fa-chevron-down expand-icon"></i>
+                    </button>
                   </div>
-                </div>
 
                 <div
                   class="file-block p-2 mb-2 bg-warning-subtle border-start-custom rounded"
@@ -1514,7 +1572,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
             <div id="session-details" style="display: none">
               <div class="d-flex align-items-center mb-4">
                 <button
-                  class="btn btn-link text-decoration-none p-0 me-3"
+                  class="btn btn-link text-decoration-none text-black p-0 me-3"
                   onclick="showSessionsList()"
                 >
                   <i class="fas fa-arrow-left"></i> Go back to sessions
@@ -2567,6 +2625,21 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           }
         });
       });
+
+      function toggleStory(button) {
+        const story = button.previousElementSibling;
+        const icon = button.querySelector('.expand-icon');
+        const text = button.querySelector('.expand-text');
+        
+        story.classList.toggle('collapsed');
+        icon.classList.toggle('rotated');
+        
+        if (story.classList.contains('collapsed')) {
+          text.textContent = 'Показати більше';
+        } else {
+          text.textContent = 'Згорнути';
+        }
+      }
     </script>
   </body>
 </html>
