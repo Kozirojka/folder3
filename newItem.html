@@ -457,36 +457,128 @@
       }
 
       .module-option {
-        display: flex;
-        align-items: center;
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        border: 1px solid #eee;
-        border-radius: 4px;
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
+        position: relative;
+        border: 2px solid transparent;
+      }
+
+      .module-option::before {
+        content: "Натисніть, щоб побачити деталі";
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        white-space: nowrap;
+        z-index: 1000;
+      }
+
+      .module-option:hover::before {
+        opacity: 1;
       }
 
       .module-option:hover {
+        box-shadow: 0 6px 12px rgba(124, 123, 173, 0.2);
+        transform: translateY(-3px);
         border-color: #7c7bad;
-        background: #f8f7fc;
       }
 
-      .module-option.selected {
-        border-color: #7c7bad;
-        background: #f8f7fc;
+      .module-option:active {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(124, 123, 173, 0.15);
+      }
+
+      .module-header {
+        position: relative;
       }
 
       .module-icon {
-        width: 32px;
-        height: 32px;
-        margin-right: 1rem;
+        width: 40px;
+        height: 40px;
+        background: #f0f0ff;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-right: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .module-option:hover .module-icon {
         background: #7c7bad;
+      }
+
+      .module-option:hover .module-icon i {
         color: white;
-        border-radius: 4px;
+      }
+
+      .module-icon i {
+        font-size: 1.2rem;
+        color: #7c7bad;
+        transition: color 0.3s ease;
+      }
+
+      .module-expand-icon {
+        transition: transform 0.3s ease;
+        color: #7c7bad;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .module-option.expanded {
+        border-color: #7c7bad;
+        background: #f8f7fc;
+      }
+
+      .module-option.expanded .module-expand-icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .exercise-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        border: 1px solid #eee;
+        transition: all 0.2s ease;
+      }
+
+      .exercise-item:hover {
+        background: #f0f0ff;
+        border-color: #7c7bad;
+      }
+
+      .exercise-item i {
+        font-size: 1.1rem;
+        margin-right: 10px;
+      }
+
+      /* Пульсуюча анімація для нових модулів */
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(124, 123, 173, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(124, 123, 173, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(124, 123, 173, 0); }
+      }
+
+      .module-option.new {
+        animation: pulse 2s infinite;
       }
 
       @keyframes slideDown {
@@ -754,6 +846,62 @@
       #feelings { 
         margin-right: 2rem;
         grid-area: feelings;
+      }
+      .module-option {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .module-option:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        transform: translateY(-2px);
+      }
+
+      .module-icon {
+        width: 40px;
+        height: 40px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+
+      .module-icon i {
+        font-size: 1.2rem;
+        color: #6c757d;
+      }
+
+      .module-expand-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .module-option.expanded .module-expand-icon {
+        transform: rotate(180deg);
+      }
+
+      .module-details {
+        border-top: 1px solid #eee;
+        margin-top: 15px;
+        padding-top: 15px;
+      }
+
+      .exercise-item {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        background: #f8f9fa;
+        border-radius: 6px;
+      }
+
+      .exercise-item i {
+        font-size: 1.1rem;
       }
     </style>
   </head>
@@ -1742,10 +1890,100 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
             <h3 class="content-title">Плани на майбутнє</h3>
             <div class="card shadow-sm">
               <div class="card-body">
-                <p>Тут буде інформація про плани на майбутнє.</p>
+                <div class="next-modules">
+                  <div class="module-option" onclick="toggleModuleDetails(this, 'cognitive')">
+                    <div class="module-header d-flex align-items-center">
+                      <div class="module-icon">
+                        <i class="fas fa-brain"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <div class="fw-bold">Когнітивна терапія</div>
+                        <small class="text-muted">Робота з думками та переконаннями</small>
+                      </div>
+                      <i class="fas fa-chevron-down module-expand-icon"></i>
+                    </div>
+                    <div class="module-details" style="display: none;">
+                      <div class="mt-3 ps-4">
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-check-circle text-success me-2"></i>
+                          <span>Техніка "Аналіз думок" (20 хв)</span>
+                        </div>
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-check-circle text-success me-2"></i>
+                          <span>Вправа "Реструктуризація переконань" (25 хв)</span>
+                        </div>
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-book text-primary me-2"></i>
+                          <span>Практика усвідомленості (15 хв)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="module-option" onclick="toggleModuleDetails(this, 'emotional')">
+                    <div class="module-header d-flex align-items-center">
+                      <div class="module-icon">
+                        <i class="fas fa-heart"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <div class="fw-bold">Емоційна регуляція</div>
+                        <small class="text-muted">Управління емоціями та стресом</small>
+                      </div>
+                      <i class="fas fa-chevron-down module-expand-icon"></i>
+                    </div>
+                    <div class="module-details" style="display: none;">
+                      <div class="mt-3 ps-4">
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-check-circle text-success me-2"></i>
+                          <span>Техніка "Заземлення" (15 хв)</span>
+                        </div>
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-check-circle text-success me-2"></i>
+                          <span>Дихальні вправи (20 хв)</span>
+                        </div>
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-users text-primary me-2"></i>
+                          <span>Групова дискусія (25 хв)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="module-option" onclick="toggleModuleDetails(this, 'social')">
+                    <div class="module-header d-flex align-items-center">
+                      <div class="module-icon">
+                        <i class="fas fa-users"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <div class="fw-bold">Соціальні навички</div>
+                        <small class="text-muted">Розвиток комунікації та взаємодії</small>
+                      </div>
+                      <i class="fas fa-chevron-down module-expand-icon"></i>
+                    </div>
+                    <div class="module-details" style="display: none;">
+                      <div class="mt-3 ps-4">
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-check-circle text-success me-2"></i>
+                          <span>Рольові ігри (30 хв)</span>
+                        </div>
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-check-circle text-success me-2"></i>
+                          <span>Практика активного слухання (20 хв)</span>
+                        </div>
+                        <div class="exercise-item mb-2">
+                          <i class="fas fa-comments text-primary me-2"></i>
+                          <span>Групова взаємодія (25 хв)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+
+
           <div id="future-goals" class="tab-content">
             <h3 class="content-title">Цілі</h3>
             <div class="card shadow-sm">
@@ -2135,6 +2373,30 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
         const savedText = localStorage.getItem(id + '-thoughts-behavior-feelings');
         if (savedText) {
             document.getElementById(id + '-text').value = savedText;
+        }
+      }
+
+      // Add this to your existing JavaScript
+      function toggleModuleDetails(element, moduleId) {
+        const details = element.querySelector('.module-details');
+        const icon = element.querySelector('.module-expand-icon');
+        
+        // Toggle the expanded class
+        element.classList.toggle('expanded');
+        
+        // If details are hidden, show them with animation
+        if (details.style.display === 'none') {
+            details.style.display = 'block';
+            details.style.opacity = '0';
+            setTimeout(() => {
+                details.style.opacity = '1';
+            }, 10);
+        } else {
+            // If details are shown, hide them with animation
+            details.style.opacity = '0';
+            setTimeout(() => {
+                details.style.display = 'none';
+            }, 300);
         }
       }
     </script>
