@@ -904,8 +904,37 @@
       }
 
       .task-image:hover {
-        transform: scale(1.5);
+        transform: scale(1.2);
         cursor: pointer;
+      }
+      .trigger-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: #f0f0ff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid #7c7bad;
+      }
+
+      .trigger-header:hover {
+        background: #e6e6ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(124, 123, 173, 0.2);
+      }
+
+      .trigger-header span {
+        font-weight: 500;
+        color: #7c7bad;
+      }
+
+      .trigger-header i {
+        color: #7c7bad;
+        transition: transform 0.3s ease;
+      }      .trigger-header.active i {
+        transform: rotate(180deg);
       }
     </style>
   </head>
@@ -936,37 +965,37 @@
               class="vertical-tab active"
               onclick="showContent('session-info', 'current')"
             >
-              Інформація про сесію
+              Information about session
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('current-tasks', 'current')"
             >
-              Поточні завдання
+              Current tasks
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('session-history', 'current')"
             >
-              Історія сесій
+              Session history
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('problems-symptoms', 'current')"
             >
-              Проблеми
+              Problems and symptoms
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('problems-statistic', 'current')"
             >
-              Статистика
+              Statistics
             </button>
           </div>
 
           <!-- Tab Content -->
           <div id="session-info" class="tab-content active">
-            <h3 class="content-title">Інформація про сесію</h3>
+            <h3 class="content-title">Information about session</h3>
 
             <div class="session-block">
               <h4 class="session-title">Advanced Emotion Mapping</h4>
@@ -1078,7 +1107,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                   class="test-indicator-content p-2 mb-2 bg-warning-subtle border-start-custom rounded"
                 >
                   <strong class="d-block mb-2"
-                    >Test: Self-report: I coped with stress</strong
+                    >Test: Written transformation of thoughts, psychologist's feedback</strong
                   >
                   <div class="test-story">
                     I have a little story about me and me friend and next...
@@ -1089,10 +1118,10 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                 <div
                   class="file-block p-2 mb-2 bg-warning-subtle border-start-custom rounded"
                 >
-                  <i class="fas fa-file-image file-icon"></i>
+                  <i class="fas fa-file-text file-icon"></i>
                   <div>
-                    <div>abc_model.jpg</div>
-                    <small class="text-muted">JPG • 1.8 MB</small>
+                    <div>MyThoughts</div>
+                    <small class="text-muted">TXT • 0.1 MB</small>
                   </div>
                   <button class="edit-button ms-auto">
                     <i class="fas fa-download"></i> Download
@@ -1103,51 +1132,51 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
               <!-- End Buttons -->
               <div class="end-buttons">
                 <button class="end-button" onclick="toggleEndSessionForm()">
-                  <i class="fas fa-flag-checkered me-2"></i>Завершити сесію
+                  <i class="fas fa-flag-checkered me-2"></i>End session
                 </button>
                 <button
                   class="end-button warning"
                   onclick="toggleEndModuleForm()"
                 >
-                  <i class="fas fa-door-closed me-2"></i>Завершити модуль
+                  <i class="fas fa-door-closed me-2"></i>End module
                 </button>
               </div>
 
               <!-- End Session Form -->
               <div id="endSessionForm" class="feedback-form">
-                <h5>Завершення сесії</h5>
+                <h5>End the session</h5>
                 <div class="mb-3">
                   <label class="form-label"
-                    >Ваші спостереження та висновки:</label
+                    >Your observation and conclutions:</label
                   >
                   <textarea
                     class="form-control"
                     rows="3"
-                    placeholder="Опишіть результати сесії, важливі моменти..."
+                    placeholder="describe result of session and important details..."
                   ></textarea>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Оцінка ефективності сесії:</label>
                   <select class="form-control">
-                    <option>Відмінно</option>
-                    <option>Добре</option>
-                    <option>Задовільно</option>
-                    <option>Потребує покращення</option>
+                    <option>Exelent</option>
+                    <option>Good</option>
+                    <option>Satisfactory</option>
+                    <option>Need some improvment</option>
                   </select>
                 </div>
 
                 <div class="next-modules">
-                  <h6>Наступна сесії:</h6>
+                  <h6>Next session:</h6>
 
                   <div class="module-option" onclick="selectModule(this)">
                     <div class="module-icon">
                       <i class="fas fa-users"></i>
                     </div>
                     <div>
-                      <div class="fw-bold">СЕСІЯ ТЕСТОВА</div>
+                      <div class="fw-bold">Reframing thoughts</div>
                       <small class="text-muted"
-                        >Розвиток комунікації та взаємодії</small
+                        >Change mind of child about stress and anxiety</small
                       >
                     </div>
                   </div>
@@ -1155,17 +1184,17 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
 
                 <div class="d-flex justify-content-end gap-2">
                   <button class="end-button" onclick="toggleEndSessionForm()">
-                    Скасувати
+                    Cancel
                   </button>
-                  <button class="end-button">Зберегти та завершити</button>
+                  <button class="end-button">Save and Complete</button>
                 </div>
               </div>
 
               <!-- End Module Form -->
               <div id="endModuleForm" class="feedback-form">
-                <h5>Завершення модуля</h5>
+                <h5>End the module</h5>
                 <div class="mb-3">
-                  <label class="form-label">Загальний підсумок модуля:</label>
+                  <label class="form-label">General conclutuion:</label>
                   <textarea
                     class="form-control"
                     rows="3"
@@ -1174,15 +1203,14 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                 </div>
 
                 <div class="next-modules">
-                  <h6>Оберіть наступний модуль:</h6>
+                  <h6>Choose next modulle:</h6>
                   <div class="module-option" onclick="selectModule(this)">
                     <div class="module-icon">
                       <i class="fas fa-brain"></i>
                     </div>
-                    <div>
-                      <div class="fw-bold">Когнітивна терапія</div>
+                    <div>                      <div class="fw-bold">Self-compassion</div>
                       <small class="text-muted"
-                        >Робота з думками та переконаннями</small
+                        >Learn self-compassion techniques and practices</small
                       >
                     </div>
                   </div>
@@ -1191,9 +1219,9 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                       <i class="fas fa-heart"></i>
                     </div>
                     <div>
-                      <div class="fw-bold">Емоційна регуляція</div>
+                      <div class="fw-bold">Stress tolerance</div>
                       <small class="text-muted"
-                        >Управління емоціями та стресом</small
+                        >Develop skills for managing stress and anxiety</small
                       >
                     </div>
                   </div>
@@ -1202,9 +1230,8 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                       <i class="fas fa-users"></i>
                     </div>
                     <div>
-                      <div class="fw-bold">Соціальні навички</div>
-                      <small class="text-muted"
-                        >Розвиток комунікації та взаємодії</small
+                      <div class="fw-bold">Mindfulness</div>
+                      <small class="text-muted">Practice mindfulness and present-moment awareness</small
                       >
                     </div>
                   </div>
@@ -1212,16 +1239,16 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
 
                 <div class="d-flex justify-content-end gap-2 mt-3">
                   <button class="end-button" onclick="toggleEndModuleForm()">
-                    Скасувати
+                    Cancel
                   </button>
-                  <button class="end-button warning">Завершити модуль</button>
+                  <button class="end-button warning">Save module</button>
                 </div>
               </div>
             </div>
           </div>          
             <div id="current-tasks" class="tab-content">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h3 class="content-title mb-0">Поточні завдання</h3>
+              <h3 class="content-title mb-0">Current tasks</h3>
               <i class="fas fa-question-circle text-muted" style="font-size: 14px; cursor: help;" data-bs-toggle="tooltip" data-bs-placement="top" title="This is task that patient should complete during the session"></i>
             </div>
 
@@ -1377,7 +1404,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           </div>
           <div id="session-history" class="tab-content">
             <div id="sessions-list">
-              <h3 class="content-title">Історія сесій</h3>
+              <h3 class="content-title">Session history</h3>
               <div class="row g-4">
                 <!-- Session Card 1 -->
                 <div class="col-md-6 col-lg-4">
@@ -1391,11 +1418,11 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                           class="session-date bg-warning-subtle rounded-circle p-3 me-3"
                         >
                           <strong>10</strong>
-                          <div class="small">Тра</div>
+                          <div class="small">May</div>
                         </div>
                         <div>
                           <h5 class="card-title mb-1">
-                            Сесія: Емоційна регуляція
+                            Psychoeducation: Understanding Anxiety of your child
                           </h5>
                           <p class="text-muted small mb-0">15:30 - 16:30</p>
                         </div>
@@ -1407,8 +1434,8 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                         ></div>
                       </div>
                       <p class="card-text">
-                        Фокус на управлінні тривогою та стресом. Значний прогрес
-                        у використанні технік заземлення.
+                        Introduced the concept of anxiety, its causes, symptoms, and impact on children’s daily lives.
+                         Explained the fight-or-flight response and how it manifests in children
                       </p>
                     </div>
                     <div class="card-footer bg-light">
@@ -1417,9 +1444,9 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                       >
                         <span
                           class="badge bg-warning-subtle text-warning-emphasis"
-                          >Завершено</span
+                          >Complete</span
                         >
-                        <span class="text-muted small">Ефективність: 85%</span>
+                        <span class="text-muted small">Efficiency: 85%</span>
                       </div>
                     </div>
                   </div>
@@ -1436,12 +1463,12 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                         <div
                           class="session-date bg-warning-subtle rounded-circle p-3 me-3"
                         >
-                          <strong>8</strong>
-                          <div class="small">Тра</div>
+                          <strong>11</strong>
+                          <div class="small">May</div>
                         </div>
                         <div>
                           <h5 class="card-title mb-1">
-                            Сесія: Когнітивні навички
+                            Child Session: Understanding and Coping with Anxiety
                           </h5>
                           <p class="text-muted small mb-0">14:00 - 15:00</p>
                         </div>
@@ -1453,8 +1480,10 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                         ></div>
                       </div>
                       <p class="card-text">
-                        Робота над негативними думками. Практика технік
-                        переосмислення.
+                        Engaged the child in a conversation about their feelings of anxiety.
+                         Explained what anxiety is in child-friendly terms, 
+                         identified situations that cause worry, and introduced strategies to manage
+                          it using thought-emotion-alternative mapping.
                       </p>
                     </div>
                     <div class="card-footer bg-light">
@@ -1463,9 +1492,9 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                       >
                         <span
                           class="badge bg-warning-subtle text-warning-emphasis"
-                          >Завершено</span
+                          >Complete</span
                         >
-                        <span class="text-muted small">Ефективність: 75%</span>
+                        <span class="text-muted small">Efficiency: 75%</span>
                       </div>
                     </div>
                   </div>
@@ -1480,7 +1509,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                   class="btn btn-link text-decoration-none p-0 me-3"
                   onclick="showSessionsList()"
                 >
-                  <i class="fas fa-arrow-left"></i> Назад до списку
+                  <i class="fas fa-arrow-left"></i> Go back to sessions
                 </button>
                 <h3 class="content-title mb-0" id="session-title"></h3>
               </div>
@@ -1490,26 +1519,26 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                   <div class="row">
                     <div class="col-md-6">
                       <h5 class="card-title text-muted mb-3">
-                        Основна інформація
+                        Main Information
                       </h5>
                       <table class="table table-borderless">
                         <tr>
-                          <td><strong>Дата:</strong></td>
+                          <td><strong>Date:</strong></td>
                           <td id="session-date"></td>
                         </tr>
                         <tr>
-                          <td><strong>Тривалість:</strong></td>
+                          <td><strong>Duration:</strong></td>
                           <td id="session-duration"></td>
                         </tr>
                         <tr>
-                          <td><strong>Ефективність:</strong></td>
+                          <td><strong>Efficiency:</strong></td>
                           <td id="session-effectiveness"></td>
                         </tr>
                       </table>
                     </div>
                     <div class="col-md-6">
                       <h5 class="card-title text-muted mb-3">
-                        Статистика сесії
+                        Session statistics
                       </h5>
                       <div
                         class="chart-container"
@@ -1520,27 +1549,41 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                     </div>
                   </div>
                 </div>
+              </div>              <!-- Goal -->
+              <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                  <h5 class="card-title text-muted mb-3">Goal</h5>
+                  <div id="session-goal" class="bg-light p-3 rounded"></div>
+                </div>
               </div>
 
               <div class="row g-4">
+                <!-- Objectives -->
                 <div class="col-md-6">
                   <div class="card shadow-sm h-100">
                     <div class="card-body">
-                      <h5 class="card-title text-muted mb-3">
-                        Виконані вправи
-                      </h5>
+                      <h5 class="card-title text-muted mb-3">Objectives</h5>
+                      <ul id="session-objectives" class="list-unstyled"></ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Exercises -->
+                <div class="col-md-6">
+                  <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                      <h5 class="card-title text-muted mb-3">Exercises</h5>
                       <div id="session-exercises"></div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="card shadow-sm h-100">
+
+                <!-- Observations -->
+                <div class="col-12">
+                  <div class="card shadow-sm">
                     <div class="card-body">
-                      <h5 class="card-title text-muted mb-3">Спостереження</h5>
-                      <div
-                        id="session-observations"
-                        class="bg-warning-subtle border-start-custom rounded p-3"
-                      ></div>
+                      <h5 class="card-title text-muted mb-3">Observations</h5>
+                      <div id="session-observations" class="bg-warning-subtle border-start-custom rounded p-3"></div>
                     </div>
                   </div>
                 </div>
@@ -1548,7 +1591,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
             </div>
           </div>
           <div id="problems-symptoms" class="tab-content">
-            <h3 class="content-title">Проблеми</h3>
+            <h3 class="content-title">Problems and symptoms</h3>
             <div class="card shadow-sm mb-4">
               <div
                 class="card-header d-flex justify-content-between align-items-center"
@@ -1787,7 +1830,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           </div>
 
           <div id="problems-statistic" class="tab-content">
-            <h3 class="content-title">Статистика</h3>
+            <h3 class="content-title">Statistics</h3>
             <div class="row g-4">
               <!-- Weekly Progress Chart -->
               <div class="col-md-6">
@@ -1876,19 +1919,19 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
               class="vertical-tab active"
               onclick="showContent('future-plans', 'future')"
             >
-              Плани на майбутнє
+              Modules
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('future-goals', 'future')"
             >
-              Цілі
+              Goal
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('future-timeline', 'future')"
             >
-              Часова лінія
+              Time line
             </button>
           </div>
 
@@ -2212,49 +2255,54 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
         });
       });
 
-      // Session history management
       const sessionData = {
         session1: {
-          title: "Сесія: Емоційна регуляція",
-          date: "10 травня 2025",
-          duration: "1 година (15:30 - 16:30)",
+          title: "Psychoeducation: Understanding Anxiety of your child",
+          date: "10 May 2025",
+          duration: "1 h (15:30 - 16:30)",
           effectiveness: "85%",
+          goal: "Introduced the concept of anxiety, its causes, symptoms, and impact on children’s daily lives. Explained the fight-or-flight response and how it manifests in children.",
           exercises: [
-            { name: "Техніка заземлення", status: "completed", time: "15 хв" },
-            { name: "Дихальні вправи", status: "completed", time: "20 хв" },
-            { name: "Групова дискусія", status: "completed", time: "25 хв" },
+            { name: "Observe and record situations where the child shows signs of anxiety.", status: "completed" },
+            { name: "Reflect on how they respond to these situations and what consequences follow.", status: "completed"},
+          ],
+          objectives: [
+            {name: "Understand what anxiety is and how it affects children."},
+            {name: "Recognize the role of avoidance in maintaining anxiety."},
+            {name: "Introduce the ABC model (Antecedent, Behavior, Consequence) to help parents analyze their child’s behavior."},
           ],
           observations:
-            "Клієнт демонструє значний прогрес у застосуванні технік заземлення. Відмічається покращення в здатності ідентифікувати тригери тривоги.",
+            "Parents engaged actively and showed interest in understanding anxiety.",
           chartData: {
             labels: ["Спокій", "Тривога", "Концентрація", "Настрій"],
             data: [80, 45, 75, 85],
           },
         },
         session2: {
-          title: "Сесія: Когнітивні навички",
-          date: "8 травня 2025",
-          duration: "1 година (14:00 - 15:00)",
-          effectiveness: "75%",
+          title: "Child Session: Understanding and Coping with Anxiety",
+          date: "11 May 2025",
+          duration: "1 h (14:00 - 15:00)",
+          effectiveness: "90%",
+          goal: "Engaged the child in a conversation about their feelings of anxiety. Explained what anxiety is in child-friendly terms, identified situations that cause worry, and introduced strategies to manage it using thought-emotion-alternative mapping.",
           exercises: [
-            { name: "Аналіз думок", status: "completed", time: "25 хв" },
             {
-              name: "Техніка переосмислення",
-              status: "completed",
-              time: "20 хв",
-            },
-            { name: "Практичні вправи", status: "partial", time: "15 хв" },
+              name: "Use the 'Thought – Emotion – Alternative Thought' model to reframe one anxious thought.",
+              status: "assigned"
+            }
+          ],
+          objectives: [
+            { name: "Help the child identify what anxiety feels like in their body and mind." },
+            { name: "Teach the child how thoughts influence emotions." },
+            { name: "Introduce the basic cognitive model: Thought → Emotion → Alternative Thought." }
           ],
           observations:
-            "Клієнт успішно застосовує техніки переосмислення негативних думок. Потрібно більше практики в реальних ситуаціях.",
+            "The child was able to name situations that made them anxious and described physical symptoms (e.g., stomach ache, tight chest). Responded well to drawing and role-play. Curious about how thoughts can be changed.",
           chartData: {
             labels: ["Спокій", "Тривога", "Концентрація", "Настрій"],
-            data: [70, 55, 65, 75],
-          },
-        },
-      };
-
-      function showSessionDetails(sessionId) {
+            data: [70, 55, 65, 75]
+          }
+        }
+      };      function showSessionDetails(sessionId) {
         const session = sessionData[sessionId];
         if (!session) return;
 
@@ -2264,29 +2312,44 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
         // Update session details
         document.getElementById("session-title").textContent = session.title;
         document.getElementById("session-date").textContent = session.date;
-        document.getElementById("session-duration").textContent =
-          session.duration;
-        document.getElementById("session-effectiveness").textContent =
-          session.effectiveness;
+        document.getElementById("session-duration").textContent = session.duration;
+        document.getElementById("session-effectiveness").textContent = session.effectiveness;
+        
+        // Update goal
+        document.getElementById("session-goal").textContent = session.goal;
+        
+        // Update objectives
+        const objectivesHtml = session.objectives
+          .map(
+            (objective) => `
+              <li class="mb-2">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                ${objective.name}
+              </li>
+            `
+          )
+          .join("");
+        document.getElementById("session-objectives").innerHTML = objectivesHtml;
 
         // Update exercises
         const exercisesHtml = session.exercises
           .map(
             (exercise) => `
-                <div class="d-flex align-items-center mb-2 p-2 bg-light rounded">
-                    <i class="fas fa-check-circle text-success me-2"></i>
-                    <div class="flex-grow-1">
-                        <div>${exercise.name}</div>
-                        <small class="text-muted">${exercise.time}</small>
-                    </div>
-                    <span class="badge ${
-                      exercise.status === "completed"
-                        ? "bg-success"
-                        : "bg-warning"
-                    }">${
-              exercise.status === "completed" ? "Виконано" : "Частково"
-            }</span>
+              <div class="d-flex align-items-center mb-2 p-2 bg-light rounded">
+                <i class="fas fa-${
+                  exercise.status === "completed" ? "check-circle text-success" :
+                  exercise.status === "in progress" ? "clock text-warning" :
+                  "circle text-muted"
+                } me-2"></i>
+                <div class="flex-grow-1">
+                  <div>${exercise.name}</div>
                 </div>
+                <span class="badge ${
+                  exercise.status === "completed" ? "bg-success" :
+                  exercise.status === "in progress" ? "bg-warning" :
+                  "bg-secondary"
+                }">${exercise.status.charAt(0).toUpperCase() + exercise.status.slice(1)}</span>
+              </div>
             `
           )
           .join("");
