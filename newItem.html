@@ -642,14 +642,31 @@
         flex-direction: column;
         align-items: center;
         gap: 2rem;
-      }
-
-      .hexagon-wrapper {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+      }      .hexagon-wrapper {
+        display: grid;
+        grid-template-areas:
+          ". thoughts ."
+          "behaviors . feelings";
         gap: 2rem;
         padding: 1rem;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      #thoughts {
+        grid-area: thoughts;
+        justify-self: center;
+      }
+
+      #behaviors {
+        grid-area: behaviors;
+        justify-self: start;
+      }
+
+      #feelings {
+        grid-area: feelings;
+        justify-self: end;
       }
 
       .hexagon {
