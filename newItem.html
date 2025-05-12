@@ -558,6 +558,9 @@
                     <button class="vertical-tab" onclick="showContent('problems-symptoms', 'current')">
                         Проблеми та симптоми
                     </button>
+                    <button class="vertical-tab" onclick="showContent('problems-statistic', 'current')">
+                        Статистика
+                    </button>
                 </div>
 
                 <!-- Tab Content -->                <div id="session-info" class="tab-content active">
@@ -856,6 +859,69 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <p>Тут буде список проблем та симптомів.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="problems-statistic" class="tab-content">
+                    <h3 class="content-title">Статистика</h3>
+                    <div class="row g-4">
+                        <!-- Weekly Progress Chart -->
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted mb-3">Тижневий прогрес</h5>
+                                    <div class="chart-container" style="position: relative; height:300px;">
+                                        <canvas id="weeklyProgressChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Emotional State Chart -->
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted mb-3">Емоційний стан</h5>
+                                    <div class="chart-container" style="position: relative; height:300px;">
+                                        <canvas id="emotionalStateChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Key Metrics -->
+                        <div class="col-12">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted mb-3">Ключові показники</h5>
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="p-3 bg-warning-subtle border-start-custom rounded">
+                                                <h6 class="mb-2">Загальний прогрес</h6>
+                                                <h3 class="mb-0">75%</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="p-3 bg-warning-subtle border-start-custom rounded">
+                                                <h6 class="mb-2">Виконані завдання</h6>
+                                                <h3 class="mb-0">12/15</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="p-3 bg-warning-subtle border-start-custom rounded">
+                                                <h6 class="mb-2">Середня оцінка</h6>
+                                                <h3 class="mb-0">4.2/5</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="p-3 bg-warning-subtle border-start-custom rounded">
+                                                <h6 class="mb-2">Відвідані сесії</h6>
+                                                <h3 class="mb-0">8/10</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
