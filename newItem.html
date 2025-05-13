@@ -23,11 +23,11 @@
         margin: 0 auto;
       }
 
-      /* Horizontal Tabs */
-      .horizontal-tabs {
+      /* Horizontal Tabs */      .horizontal-tabs {
         display: flex;
         border-bottom: 2px solid #eee;
         padding: 0 20px;
+        align-items: center;
       }
 
       .horizontal-tab {
@@ -41,6 +41,67 @@
         transition: all 0.3s ease;
         position: relative;
         margin: 0 5px;
+      }
+      
+      .flex-grow-1 {
+        flex-grow: 1;
+      }
+        .horizontal-tab.treatment-plan {
+        background-color: #e9f7ef;
+        color: #2ecc71;
+        border: 2px solid #2ecc71;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-weight: 600;
+        box-shadow: 0 2px 5px rgba(46, 204, 113, 0.2);
+        margin-right: 15px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .horizontal-tab.treatment-plan::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 20%, rgba(255,255,255,0.3) 25%, transparent 30%);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+      }
+      
+      .horizontal-tab.treatment-plan:hover::before {
+        transform: translateX(100%);
+      }
+      
+      .horizontal-tab.treatment-plan:hover {
+        background-color: #2ecc71;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+      }
+      
+      .horizontal-tab.treatment-plan.active {
+        background-color: #27ae60;
+        color: white;
+        border-color: #27ae60;
+        box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+      }
+      
+      /* Treatment module specific styles */
+      #treatment-module .card {
+        transition: all 0.3s ease;
+        border-color: #e0f2e9;
+      }
+      
+      #treatment-module .card:hover {
+        box-shadow: 0 5px 15px rgba(46, 204, 113, 0.1);
+        transform: translateY(-3px);
+      }
+      
+      #treatment-module .content-title {
+        color: #27ae60;
       }
 
       .horizontal-tab:hover {
@@ -1236,8 +1297,7 @@
   </head>
   <body>
     <div class="tabs-container">
-      <!-- Horizontal Tabs -->
-      <div class="horizontal-tabs">
+      <!-- Horizontal Tabs -->      <div class="horizontal-tabs">
         <button class="horizontal-tab active" onclick="showModule('current')">
           Current Module
         </button>
@@ -1246,6 +1306,10 @@
         </button>
         <button class="horizontal-tab" onclick="showModule('previous')">
           Previous Module
+        </button>
+        <div class="flex-grow-1"></div>
+        <button class="horizontal-tab treatment-plan" onclick="showModule('treatment')">
+          <i class="fas fa-clipboard-list me-2"></i> Treatment Plan
         </button>
       </div>
 
@@ -1258,13 +1322,13 @@
               class="vertical-tab active"
               onclick="showContent('session-info', 'current')"
             >
-              Information about session
+              Current session
             </button>
             <button
               class="vertical-tab"
               onclick="showContent('current-tasks', 'current')"
             >
-              Current tasks
+              Tasks
             </button>
             <button
               class="vertical-tab"
@@ -1293,7 +1357,7 @@
 
           <!-- Tab Content -->
           <div id="session-info" class="tab-content active">
-            <h3 class="content-title">Information about session</h3>
+            <h3 class="content-title">Current Session</h3>
 
             <div class="session-block">
               <h4 class="session-title">Advanced Emotion Mapping</h4>
@@ -1594,7 +1658,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           </div>          
             <div id="current-tasks" class="tab-content">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h3 class="content-title mb-0">Current tasks</h3>
+              <h3 class="content-title mb-0">Tasks</h3>
               <i class="fas fa-question-circle text-muted" style="font-size: 14px; cursor: help;" data-bs-toggle="tooltip" data-bs-placement="top" title="This is task that patient should complete during the session"></i>
             </div>
 
@@ -2477,9 +2541,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="module-content" id="previous-module">
+      </div>      <div class="module-content" id="previous-module">
         <div class="content-area">
           <div class="p-4">
             <h3 class="content-title">Previous Module Content</h3>
@@ -2491,6 +2553,191 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      <div class="module-content" id="treatment-module">
+        <div class="content-area">
+          <!-- Vertical Tabs для Treatment Plan -->
+          <div class="vertical-tabs">
+            <button class="vertical-tab active" onclick="showContent('treatment-overview', 'treatment')">
+              Overview
+            </button>
+            <button class="vertical-tab" onclick="showContent('treatment-goals', 'treatment')">
+              Goals
+            </button>
+          </div>
+
+          <!-- Treatment Plan Content -->
+          <div id="treatment-overview" class="tab-content active">
+            <h3 class="content-title">Treatment Plan Overview</h3>
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <div class="alert alert-success mb-4">
+                  <h5><i class="fas fa-check-circle me-2"></i>Active Treatment Plan</h5>
+                  <p class="mb-0">Last updated: May 10, 2025 • Duration: 6 months</p>
+                </div>
+                
+                <h5 class="card-title">Treatment Approach</h5>
+                <p>Cognitive Behavioral Therapy (CBT) focused on anxiety management with supplementary family therapy sessions.</p>
+                
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="card h-100 border-success">
+                      <div class="card-header bg-success bg-opacity-10 text-success fw-bold">
+                        Primary Focus Areas
+                      </div>
+                      <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check text-success me-2"></i>
+                            School anxiety management
+                          </li>
+                          <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Social skills development
+                          </li>
+                          <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Family communication patterns
+                          </li>
+                          <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Emotional regulation techniques
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </div> 
+            </div>            
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center" id="depressionHeader">                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#depressionContent" 
+                          aria-expanded="false" aria-controls="depressionContent">
+                    <span>Depression introduction module</span>
+                  </button>
+                </h5>
+                <span class="badge bg-success text-white fs-6">Completed</span>
+              </div>
+              <div id="depressionContent" class="collapse" aria-labelledby="depressionHeader">
+                <div class="card-body">
+                  <p class="mb-0 fs-5">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                  <ul class="mt-3 fs-5">
+                    <li>Feature psychoeducation-module</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center" id="psychoeducationHeader">                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#psychoeducationContent" 
+                          aria-expanded="false" aria-controls="psychoeducationContent">
+                    <span>Psychoeducation</span>
+                  </button>
+                </h5>
+                <span class="badge bg-success text-white fs-6">Completed</span>
+              </div>
+              <div id="psychoeducationContent" class="collapse" aria-labelledby="psychoeducationHeader">
+                <div class="card-body">
+                  <p class="mb-0 fs-5">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                  <ul class="mt-3 fs-5">
+                    <li>Feature psychoeducation-module</li>
+                  </ul>
+                </div>
+              </div>
+            </div>            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-warning-subtle d-flex justify-content-between align-items-center" id="behavioralHeader">                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#behavioralContent" 
+                          aria-expanded="false" aria-controls="behavioralContent">
+                    <span>Behavioral activation</span>
+                  </button>
+                </h5>
+                <span class="badge bg-warning text-dark fs-6">In Progress</span>
+              </div>
+              <div id="behavioralContent" class="collapse" aria-labelledby="behavioralHeader">
+                <div class="card-body">
+                  <p class="mb-0">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                  <ul class="mt-3">
+                    feature psychoeducation-module
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="problemSolvingHeader">                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#problemSolvingContent" 
+                          aria-expanded="false" aria-controls="problemSolvingContent">
+                    <span>Problem Solving</span>
+                  </button>
+                </h5>
+                <span class="badge bg-secondary text-white fs-6">Not Started</span>
+              </div>
+              <div id="problemSolvingContent" class="collapse" aria-labelledby="problemSolvingHeader">
+                <div class="card-body">
+                  <p class="mb-0">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                  <ul class="mt-3">
+                    feature psychoeducation-module
+                  </ul>
+                </div>
+              </div>
+            </div>  
+
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="cognitiveHeader">                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#cognitiveContent" 
+                          aria-expanded="false" aria-controls="cognitiveContent">
+                    <span>Cognitive restructuring</span>
+                  </button>
+                </h5>
+                <span class="badge bg-secondary text-white fs-6">Not Started</span>
+              </div>
+              <div id="cognitiveContent" class="collapse" aria-labelledby="cognitiveHeader">
+                <div class="card-body">
+                  <p class="mb-0">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                  <ul class="mt-3">
+                    feature psychoeducation-module
+                  </ul>
+                </div>
+              </div>
+            </div>  
+
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="affectHeader">                <h5 class="mb-0">
+                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#affectContent" 
+                          aria-expanded="false" aria-controls="affectContent">
+                    <span>Affect regulation</span>
+                    </button>
+                </h5>
+                <span class="badge bg-secondary text-white fs-6">Not Started</span>
+              </div>
+              <div id="affectContent" class="collapse" aria-labelledby="affectHeader">
+                <div class="card-body">
+                  <p class="mb-0">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                  <ul class="mt-3">
+                    feature psychoeducation-module
+                  </ul>
+                </div>
+              </div>
+            </div>  
+              
+          </div>
+          
+          
+          <div id="treatment-goals" class="tab-content">
+            <h3 class="content-title">Treatment Plan</h3>
+            <!-- Content for Treatment Goals tab -->
+          </div>
+          
         </div>
       </div>
     </div>
@@ -2554,9 +2801,7 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
         const edit = document.getElementById("observationEdit");
         text.style.display = "block";
         edit.style.display = "none";
-      }
-
-      function showModule(moduleId) {
+      }      function showModule(moduleId) {
         // Hide all modules
         document.querySelectorAll(".module-content").forEach((content) => {
           content.classList.remove("active");
@@ -2569,6 +2814,18 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
           tab.classList.remove("active");
         });
         event.currentTarget.classList.add("active");
+        
+        // If treatment plan is selected, show first tab by default
+        if (moduleId === 'treatment' && document.querySelector("#treatment-module .tab-content.active") === null) {
+          document.getElementById('treatment-overview').classList.add('active');
+          document.querySelector("#treatment-module .vertical-tab").classList.add('active');
+        }
+        
+        // If future module is selected, show first tab by default
+        if (moduleId === 'future' && document.querySelector("#future-module .tab-content.active") === null) {
+          document.getElementById('future-plans').classList.add('active');
+          document.querySelector("#future-module .vertical-tab").classList.add('active');
+        }
       }
 
       function showContent(contentId, moduleId) {
