@@ -107,6 +107,42 @@
         border-radius: 4px;
       }
 
+      .end-module-tab {
+        width: calc(100% - 40px);
+        padding: 12px 20px;
+        text-align: center;
+        background: white;
+        cursor: pointer;
+        font-size: 14px;
+        color: #dc3545;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 2px solid #dc3545;
+        border-radius: 8px;
+        margin: 20px;
+        box-shadow: 0 2px 4px rgba(220, 53, 69, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .end-module-tab:hover {
+        background-color: #dc3545;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+      }
+
+      .end-module-tab:active {
+        transform: translateY(0);
+      }
+
+      .end-module-tab i {
+        margin-right: 8px;
+      }
+
       /* Content */
       .tab-content {
         display: none;
@@ -272,6 +308,10 @@
 
       canvas {
         max-height: 370px !important;
+      }
+
+      .psychoeducation-module {
+        border-left-color: #20c997;
       }
 
       .completed-task {
@@ -993,6 +1033,205 @@
       }      .trigger-header.active i {
         transform: rotate(180deg);
       }
+      .diagram-container {
+        position: relative;
+        padding: 20px;
+        min-height: 400px;
+      }
+
+      .hexagon-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+
+      .hexagon {
+        width: 120px;
+        height: 104px;
+        background: #7C7BAD;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      }
+
+      .hexagon:hover {
+        background: #615fa0;
+      }
+
+      .hexagon.active {
+        background: #4a4884;
+      }
+
+      .hexagon-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      }
+
+      .hexagon-content i {
+        font-size: 24px;
+      }
+
+      .hexagon-section {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .text-area-container {
+        flex: 1;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .text-area-container.active {
+        background: #fff;
+        opacity: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .text-area-header {
+        color: #5e5c88;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .form-control {
+        border-color: #d4d3e7;
+      }
+
+      .form-control:focus {
+        border-color: #7C7BAD;
+        box-shadow: 0 0 0 0.2rem rgba(124, 123, 173, 0.25);
+      }
+
+      .btn-primary {
+        background-color: #7C7BAD;
+        border-color: #7C7BAD;
+      }
+
+      .btn-primary:hover {
+        background-color: #615fa0;
+        border-color: #615fa0;
+      }
+      .diagram-container {
+        position: relative;
+        padding: 20px;
+        min-height: 500px;
+      }
+
+      .hexagon-wrapper {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 30px;
+        justify-items: center;
+        margin-bottom: 20px;
+      }
+
+      .top-hexagon {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+        display: flex;
+        justify-content: center;
+      }
+
+      .bottom-hexagons {
+        grid-row: 2;
+        grid-column: 1 / span 2;
+        display: flex;
+        gap: 60px;
+        justify-content: center;
+      }
+
+      .hexagon-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .hexagon {
+        width: 120px;
+        height: 104px;
+        background: #7C7BAD;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        flex-shrink: 0;
+      }
+
+      .hexagon:hover {
+        background: #615fa0;
+      }
+
+      .hexagon.active {
+        background: #4a4884;
+      }
+
+      .hexagon-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      }
+
+      .hexagon-content i {
+        font-size: 24px;
+      }
+
+      .text-area-container {
+        flex: 1;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+        min-width: 250px;
+      }
+
+      .text-area-container.active {
+        background: #fff;
+        opacity: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .text-area-header {
+        color: #5e5c88;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .form-control {
+        border-color: #d4d3e7;
+      }
+
+      .form-control:focus {
+        border-color: #7C7BAD;
+        box-shadow: 0 0 0 0.2rem rgba(124, 123, 173, 0.25);
+      }
+
+      .btn-primary {
+        background-color: #7C7BAD;
+        border-color: #7C7BAD;
+      }
+
+      .btn-primary:hover {
+        background-color: #615fa0;
+        border-color: #615fa0;
+      }
     </style>
   </head>
   <body>
@@ -1001,15 +1240,12 @@
       <div class="horizontal-tabs">
         <button class="horizontal-tab active" onclick="showModule('current')">
           Current Module
-          <span class="shortcut">1</span>
         </button>
         <button class="horizontal-tab" onclick="showModule('future')">
           Future Module
-          <span class="shortcut">2</span>
         </button>
         <button class="horizontal-tab" onclick="showModule('previous')">
           Previous Module
-          <span class="shortcut">3</span>
         </button>
       </div>
 
@@ -1047,6 +1283,11 @@
               onclick="showContent('problems-statistic', 'current')"
             >
               Statistics
+            </button>            <button
+              class="vertical-tab end-module-tab"
+              onclick="showContent('end-module', 'current')"
+            >
+              <i class="fas fa-door-closed"></i>End module
             </button>
           </div>
 
@@ -1154,57 +1395,96 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
                   </div>
                 </div>
               </div>
-              <div class="test-indicator-block">
-                <h5 class="d-flex justify-content-between align-items-center">
-                  Test Indicator:
-                  <i class="fas fa-question-circle text-muted" style="font-size: 14px; cursor: help;" data-bs-toggle="tooltip" data-bs-placement="top" title="This is test that patient should assign before the end of module"></i>
-                </h5>
-
-                <div
-                  class="test-indicator-content p-2 mb-2 bg-dark-subtle border-start-custom rounded"
-                >
-                  <strong class="d-block mb-2"
-                    >Test: Written transformation of thoughts, psychologist's feedback</strong>
-                </div>      
-                
-                
-
-                 <div>
-                  
-                    <div class="test-story collapsed">
-                      During the written transformation of thoughts exercise, the client demonstrated the ability to externalize and reflect on persistent negative beliefs, particularly centered around self-worth and fear of being exposed as inadequate. The original thought pattern revealed a deep-rooted cognitive distortion related to imposter syndrome, characterized by all-or-nothing thinking, mental filtering, and overgeneralization. The client expressed the belief that their achievements were due to luck and that failure was inevitable, which has contributed to avoidance behaviors and social withdrawal. In the course of the intervention, the client was encouraged to identify evidence that contradicted these automatic thoughts, such as past successes, positive feedback, and instances where effort clearly contributed to outcomes. With support, the client was able to generate more balanced and compassionate alternative thoughts, acknowledging their abilities while accepting that imperfection is part of the human experience. The client’s writing showed emerging cognitive flexibility, suggesting readiness for deeper restructuring work in future sessions. Continued emphasis will be placed on reinforcing these alternative narratives through behavioral experiments and real-life evidence collection.
-
-                    </div>
-                    <button class="expand-btn" onclick="toggleStory(this)">
-                      <span class="expand-text">Show more</span>
-                      <i class="fas fa-chevron-down expand-icon"></i>
-                    </button>
+              
+              
+              <!-- Test Indicator -->
+              <div class="card module-card psychoeducation-module">
+                  <div class="card-header module-header d-flex justify-content-between align-items-center" id="psychoeducationHeader" data-bs-toggle="collapse" data-bs-target="#psychoeducationContent">
+                      <h5 class="mb-0"><i class="bi bi-people me-2"></i>Homewok</h5>
+                      <span class="badge bg-success">Completed</span>
                   </div>
-
-                <div
-                  class="file-block p-2 mb-2 bg-dark-subtle border-start-custom rounded"
-                >
-                  <i class="fas fa-file-text file-icon"></i>
-                  <div>
-                    <div>MyThoughts</div>
-                    <small class="text-muted">TXT • 0.1 MB</small>
+                  <div id="psychoeducationContent" class="collapse show">
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5><i class="bi bi-journal-bookmark me-2"></i>Materials Provided</h5>
+                                  <div class="list-group mb-4">
+                                      <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                          "Helping Your Anxious Child" booklet
+                                          <span class="badge bg-primary rounded-pill">05/01/25</span>
+                                      </a>
+                                      <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                          Medication guide for parents
+                                          <span class="badge bg-primary rounded-pill">05/08/25</span>
+                                      </a>
+                                      <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                          School anxiety video series
+                                          <span class="badge bg-primary rounded-pill">04/15/25</span>
+                                      </a>
+                                  </div>
+                                  
+                                  <h5><i class="bi bi-check2-circle me-2"></i>Key Concepts Covered</h5>
+                                  <ul class="list-group list-group-flush">
+                                      <li class="list-group-item">
+                                          <i class="bi bi-check-circle text-success me-2"></i>
+                                          Anxiety vs. fear difference
+                                      </li>
+                                      <li class="list-group-item">
+                                          <i class="bi bi-check-circle text-success me-2"></i>
+                                          Avoidance cycle explanation
+                                      </li>
+                                      <li class="list-group-item">
+                                          <i class="bi bi-check-circle text-success me-2"></i>
+                                          How SSRIs work in children
+                                      </li>
+                                      <li class="list-group-item">
+                                          <i class="bi bi-dash-circle text-secondary me-2"></i>
+                                          Behavioral reinforcement strategies
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="card h-100">
+                                      <div class="card-header bg-light">
+                                          <h6 class="mb-0"><i class="bi bi-house-door me-2"></i>Home Accommodations</h6>
+                                      </div>
+                                      <div class="card-body">
+                                          <div class="form-check mb-3">
+                                              <input class="form-check-input" type="checkbox" checked="">
+                                              <label class="form-check-label">Consistent morning routine</label>
+                                          </div>
+                                          <div class="form-check mb-3">
+                                              <input class="form-check-input" type="checkbox" checked="">
+                                              <label class="form-check-label">Anxiety thermometer use</label>
+                                          </div>
+                                          <div class="form-check mb-3">
+                                              <input class="form-check-input" type="checkbox">
+                                              <label class="form-check-label">Gradual school re-entry plan</label>
+                                          </div>
+                                          <div class="form-check mb-3">
+                                              <input class="form-check-input" type="checkbox">
+                                              <label class="form-check-label">Limited reassurance-seeking</label>
+                                          </div>
+                                          <div class="form-check mb-3">
+                                              <input class="form-check-input" type="checkbox">
+                                              <label class="form-check-label">Reward system for brave behaviors</label>
+                                          </div>
+                                          
+                                          <div class="alert alert-info small mt-3">
+                                              <strong>Next Steps:</strong> Schedule parent-only session to practice exposure scaffolding techniques and reduce accommodation behaviors.
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                  <button class="edit-button ms-auto">
-                    <i class="fas fa-download"></i> Download
-                  </button>
-                </div>
               </div>
 
               <!-- End Buttons -->
               <div class="end-buttons">
                 <button class="end-button" onclick="toggleEndSessionForm()">
                   <i class="fas fa-flag-checkered me-2"></i>End session
-                </button>
-                <button
-                  class="end-button warning"
-                  onclick="toggleEndModuleForm()"
-                >
-                  <i class="fas fa-door-closed me-2"></i>End module
                 </button>
               </div>
 
@@ -1830,63 +2110,73 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
 
               <div id="collapseDiagram" class="collapse show">
                 <div class="card-body">
-                  <p class="text-muted mb-4">Click any hexagon to add or edit notes</p>
+                  <p class="text-muted mb-4">Click on the hexagon to add or edit notes</p>
                   
                   <div class="diagram-container">
+                    <!-- Top Hexagon (Thoughts) -->
                     <div class="hexagon-wrapper">
-                      <div class="hexagon" id="thoughts" onclick="toggleTextArea('thoughts')">
-                        <div class="hexagon-content">
-                          <i class="fas fa-brain mb-2"></i>
-                          <div>THROUGHTS</div>
+                      <div class="top-hexagon">
+                        <div class="hexagon-group">
+                          <div class="hexagon" id="thoughts" onclick="toggleTextArea('thoughts')">
+                            <div class="hexagon-content">
+                              <i class="fas fa-brain mb-2"></i>
+                              <div>THROUGHTS</div>
+                            </div>
+                          </div>
+                          <div id="thoughts-text-container" class="text-area-container">
+                            <div class="text-area-header">
+                              <i class="fas fa-brain me-2"></i>
+                            </div>
+                            <textarea id="thoughts-text" class="form-control" rows="3" 
+                                    placeholder="enter patient throughs"></textarea>
+                            <button class="btn btn-primary mt-2" onclick="saveText('thoughts')">
+                              <i class="fas fa-save me-2"></i>Save
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                      <div class="hexagon" id="behaviors" onclick="toggleTextArea('behaviors')">
-                        <div class="hexagon-content">
-                          <i class="fas fa-running mb-2"></i>
-                          <div>BEHAVIORS</div>
-                        </div>
-                      </div>
-                      <div class="hexagon" id="feelings" onclick="toggleTextArea('feelings')">
-                        <div class="hexagon-content">
-                          <i class="fas fa-heart mb-2"></i>
-                          <div>FEELING</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Text areas -->
-                    <div class="text-areas-container mt-4">
-                      <div id="thoughts-text-container" class="text-area-container">
-                        <div class="text-area-header">
-                          <i class="fas fa-brain me-2"></i>Мої думки:
-                        </div>
-                        <textarea id="thoughts-text" class="form-control" rows="3" 
-                                placeholder="Запишіть ваші думки тут..."></textarea>
-                        <button class="btn btn-primary mt-2" onclick="saveText('thoughts')">
-                          <i class="fas fa-save me-2"></i>Зберегти
-                        </button>
                       </div>
                       
-                      <div id="behaviors-text-container" class="text-area-container" style="display: none;">
-                        <div class="text-area-header">
-                          <i class="fas fa-running me-2"></i>Моя поведінка:
+                      <!-- Bottom Hexagons (Behaviors and Feelings) -->
+                      <div class="bottom-hexagons">
+                        <!-- Behaviors -->
+                        <div class="hexagon-group">
+                          <div class="hexagon" id="behaviors" onclick="toggleTextArea('behaviors')">
+                            <div class="hexagon-content">
+                              <i class="fas fa-running mb-2"></i>
+                              <div>BEHAVIORS</div>
+                            </div>
+                          </div>
+                          <div id="behaviors-text-container" class="text-area-container">
+                            <div class="text-area-header">
+                              <i class="fas fa-running me-2"></i>
+                            </div>
+                            <textarea id="behaviors-text" class="form-control" rows="3"
+                                    placeholder="Enter patient behavior"></textarea>
+                            <button class="btn btn-primary mt-2" onclick="saveText('behaviors')">
+                              <i class="fas fa-save me-2"></i>Save
+                            </button>
+                          </div>
                         </div>
-                        <textarea id="behaviors-text" class="form-control" rows="3"
-                                placeholder="Запишіть вашу поведінку тут..."></textarea>
-                        <button class="btn btn-primary mt-2" onclick="saveText('behaviors')">
-                          <i class="fas fa-save me-2"></i>Зберегти
-                        </button>
-                      </div>
-                      
-                      <div id="feelings-text-container" class="text-area-container" style="display: none;">
-                        <div class="text-area-header">
-                          <i class="fas fa-heart me-2"></i>Мої почуття:
+                        
+                        <!-- Feelings -->
+                        <div class="hexagon-group">
+                          <div class="hexagon" id="feelings" onclick="toggleTextArea('feelings')">
+                            <div class="hexagon-content">
+                              <i class="fas fa-heart mb-2"></i>
+                              <div>FEELINGS</div>
+                            </div>
+                          </div>
+                          <div id="feelings-text-container" class="text-area-container">
+                            <div class="text-area-header">
+                              <i class="fas fa-heart me-2"></i>
+                            </div>
+                            <textarea id="feelings-text" class="form-control" rows="3"
+                                    placeholder="Enter patient feeling"></textarea>
+                            <button class="btn btn-primary mt-2" onclick="saveText('feelings')">
+                              <i class="fas fa-save me-2"></i>Save
+                            </button>
+                          </div>
                         </div>
-                        <textarea id="feelings-text" class="form-control" rows="3"
-                                placeholder="Запишіть ваші почуття тут..."></textarea>
-                        <button class="btn btn-primary mt-2" onclick="saveText('feelings')">
-                          <i class="fas fa-save me-2"></i>Зберегти
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -1966,7 +2256,68 @@ Client responds well to visual aids, struggles with verbal descriptions of emoti
               </div>
             </div>
           </div>
-        </div>
+
+          <!-- End Module Form Content -->
+          <div id="end-module" class="tab-content">
+            <h3 class="content-title">End Module Form</h3>
+            <div class="card card-body shadow-sm">
+              <form id="endModuleForm">
+                <div class="mb-3">
+                  <label class="form-label">Overall Progress Assessment</label>
+                  <select class="form-select" required>
+                    <option value="">Select progress...</option>
+                    <option value="excellent">Excellent Progress</option>
+                    <option value="good">Good Progress</option>
+                    <option value="moderate">Moderate Progress</option>
+                    <option value="minimal">Minimal Progress</option>
+                    <option value="no-progress">No Progress</option>
+                  </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label class="form-label">Module Completion Notes</label>
+                  <textarea class="form-control" rows="4" placeholder="Enter detailed notes about the module completion..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Next Steps Recommendations</label>
+                  <textarea class="form-control" rows="3" placeholder="Recommend next steps or future modules..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Goals Achievement</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="goal1">
+                    <label class="form-check-label" for="goal1">
+                      Primary module objectives met
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="goal2">
+                    <label class="form-check-label" for="goal2">
+                      Patient showed significant improvement
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="goal3">
+                    <label class="form-check-label" for="goal3">
+                      Ready for next module
+                    </label>
+                  </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-check me-2"></i>Complete Module
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary" onclick="showContent('session-info', 'current')">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
       </div>
 
       <div class="module-content" id="future-module">

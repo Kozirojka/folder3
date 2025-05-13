@@ -66,6 +66,8 @@
     border: 1px solid #d4d3e7;
     border-radius: 8px;
     margin-top: 10px;
+    max-width: 400px;
+    max-height: 300px;
   }
 
   .chart-title {
@@ -149,12 +151,18 @@ const scaredChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.5,
         plugins: {
             title: {
                 display: false
             },
             legend: {
-                position: 'bottom'
+                position: 'bottom',
+                labels: {
+                    boxWidth: 12,
+                    padding: 15
+                }
             },
             tooltip: {
                 mode: 'index',
