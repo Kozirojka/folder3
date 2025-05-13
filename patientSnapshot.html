@@ -1,4 +1,3 @@
-<!-- Add Chart.js to the head section -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
@@ -69,11 +68,27 @@
     max-width: 400px;
     max-height: 300px;
   }
-
   .chart-title {
     color: #5e5c88;
     font-size: 1rem;
     margin-bottom: 10px;
+  }
+    .presenting-issue {
+    max-width: 250px;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .patient-info {
+    flex: 0 0 300px;
+  }
+  
+  .charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-end;
+    flex: 1;
   }
 </style>
 
@@ -92,24 +107,26 @@
       </button>
     </div>
   </div>
-
   <div class="card-body text-start">
-    <div class="d-flex flex-wrap gap-4 align-items-start mb-4">
-      <!-- Patient Info Column -->
-      <div class="flex-grow-1">
+    <div class="d-flex flex-wrap gap-4 align-items-start mb-4 justify-content-between">
+      <div class="patient-info">
         <p class="mb-1"><span class="fw-bold">Name:</span> Albert Rudenko</p>
         <p class="mb-1"><span class="fw-bold">Age:</span> 15</p>
         <p class="mb-1"><span class="fw-bold">Mother:</span> Kate Rudenko</p>
         <p class="mb-1"><span class="fw-bold">Location:</span> Lviv, Ukraine</p>
         <p class="mb-1"><span class="fw-bold">Phone:</span> +388 80 0000 028</p>
-        <p><span class="fw-bold">Presenting Issue:</span> Anxiety related to bullying, avoidance behaviors, school refusal.</p>
+        <p class="presenting-issue"><span class="fw-bold">Presenting Issue:</span> Anxiety related to bullying, avoidance behaviors, school refusal.</p>
       </div>
       
-      <!-- SCARED Test Results Chart Column -->
-      <div class="flex-grow-1">
+      <div class="charts-container">
         <div class="chart-container">
-          <h3 class="chart-title">SCARED Test Results Progress</h3>
-          <canvas id="scaredChart"></canvas>
+          <h3 class="chart-title">Child's SCARED Test Results</h3>
+          <canvas id="childScaredChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+          <h3 class="chart-title">Parent's SCARED Test Results</h3>
+          <canvas id="parentScaredChart"></canvas>
         </div>
       </div>
     </div>
@@ -124,9 +141,12 @@
 </div>
 
 <script>
-// Initialize the SCARED test results chart
-const ctx = document.getElementById('scaredChart').getContext('2d');
-const scaredChart = new Chart(ctx, {
+// Initialize the SCARED test results charts
+const childCtx = document.getElementById('childScaredChart').getContext('2d');
+const parentCtx = document.getElementById('parentScaredChart').getContext('2d');
+
+// Child's chart
+const childScaredChart = new Chart(childCtx, {
     type: 'line',
     data: {
         labels: ['Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025'],
@@ -138,7 +158,47 @@ const scaredChart = new Chart(ctx, {
                 backgroundColor: 'rgba(124, 123, 173, 0.1)',
                 tension: 0.4,
                 fill: true
+            }
+        ]
+    },    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.5,
+        plugins: {
+            title: {
+                display: false
             },
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 12,
+                    padding: 15
+                }
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 50,
+                title: {
+                    display: true,
+                    text: 'SCARED Score'
+                }
+            }
+        }
+    }
+});
+
+// Parent's chart
+const parentScaredChart = new Chart(parentCtx, {
+    type: 'line',
+    data: {
+        labels: ['Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025'],
+        datasets: [
             {
                 label: 'Parent Score',
                 data: [45, 40, 37, 33, 30],
