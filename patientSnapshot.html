@@ -1,0 +1,176 @@
+<!-- Add Chart.js to the head section -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  .card-purple {
+    border: 1px solid #b8b5d6;
+    box-shadow: 0 0.5rem 1rem rgba(124, 123, 173, 0.2); /* м'який фіолетовий тінь */
+  }
+
+  .card-purple .card-header {
+    background: linear-gradient(45deg, #7C7BAD, #cfcde9);
+    color: #fff;
+  }
+
+  .btn-purple {
+    background-color: #7C7BAD;
+    border: none;
+    color: #fff;
+  }
+
+  .btn-purple:hover {
+    background-color: #615fa0;
+    color: #fff;
+  }
+
+  .responsible-doctors {
+    background-color: #f4f3f9;
+    padding: 10px;
+    border: 1px solid #d4d3e7;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  .responsible-doctors .fw-bold {
+    color: #5e5c88;
+  }
+
+  .form-check-input:checked {
+    background-color: #7C7BAD;
+    border-color: #7C7BAD;
+  }
+
+  .form-check-label {
+    color: #5e5c88;
+  }
+
+  .card-purple h2,
+  .card-purple h3 {
+    color: #5e5c88;
+  }
+
+  .doctor-link {
+    color: #7C7BAD;
+    text-decoration: none;
+  }
+
+  .doctor-link:hover {
+    text-decoration: underline;
+    color: #5e5c88;
+  }
+
+  /* Add new styles for the chart container */
+  .chart-container {
+    background-color: #f4f3f9;
+    padding: 15px;
+    border: 1px solid #d4d3e7;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  .chart-title {
+    color: #5e5c88;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="card card-purple shadow-sm mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h2 class="card-title h5 mb-0 text-start">Patient Snapshot</h2>
+    <div class="d-flex gap-2">
+      <a href="https://odoo.proxy.abtollc.com/test-results-doctor" class="btn btn-purple btn-sm">
+        <i class="fas fa-link me-1"></i> Test results
+      </a>
+      <button class="btn btn-purple btn-sm">
+        <i class="fas fa-edit me-1"></i> Edit Notes
+      </button>
+      <button class="btn btn-purple btn-sm">
+        <i class="fas fa-download me-1"></i> Download patient story
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body text-start">
+    <div class="d-flex flex-wrap gap-4 align-items-start mb-4">
+      <!-- Patient Info Column -->
+      <div class="flex-grow-1">
+        <p class="mb-1"><span class="fw-bold">Name:</span> Albert Rudenko</p>
+        <p class="mb-1"><span class="fw-bold">Age:</span> 15</p>
+        <p class="mb-1"><span class="fw-bold">Mother:</span> Kate Rudenko</p>
+        <p class="mb-1"><span class="fw-bold">Location:</span> Lviv, Ukraine</p>
+        <p class="mb-1"><span class="fw-bold">Phone:</span> +388 80 0000 028</p>
+        <p><span class="fw-bold">Presenting Issue:</span> Anxiety related to bullying, avoidance behaviors, school refusal.</p>
+      </div>
+      
+      <!-- SCARED Test Results Chart Column -->
+      <div class="flex-grow-1">
+        <div class="chart-container">
+          <h3 class="chart-title">SCARED Test Results Progress</h3>
+          <canvas id="scaredChart"></canvas>
+        </div>
+      </div>
+    </div>
+    
+    <div class="responsible-doctors">
+      <p class="fw-bold">Responsible Doctors:</p>
+      <p>
+        <a href="https://odoo.proxy.abtollc.com/odoo/employees/7" class="doctor-link">Dr. Krystyna Ross</a> - Psychotherapist
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Initialize the SCARED test results chart
+const ctx = document.getElementById('scaredChart').getContext('2d');
+const scaredChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025'],
+        datasets: [
+            {
+                label: 'Child Score',
+                data: [42, 38, 35, 31, 28],
+                borderColor: '#7C7BAD',
+                backgroundColor: 'rgba(124, 123, 173, 0.1)',
+                tension: 0.4,
+                fill: true
+            },
+            {
+                label: 'Parent Score',
+                data: [45, 40, 37, 33, 30],
+                borderColor: '#cfcde9',
+                backgroundColor: 'rgba(207, 205, 233, 0.1)',
+                tension: 0.4,
+                fill: true
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: false
+            },
+            legend: {
+                position: 'bottom'
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 50,
+                title: {
+                    display: true,
+                    text: 'SCARED Score'
+                }
+            }
+        }
+    }
+});
+</script>
