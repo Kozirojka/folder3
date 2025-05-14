@@ -1293,6 +1293,50 @@
         background-color: #615fa0;
         border-color: #615fa0;
       }
+      /* Timeline styles */
+      .timeline-container {
+        position: relative;
+        margin-left: 40px;
+        padding-left: 30px;
+        border-left: 3px solid #e0e0e0;
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 40px;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -44px;
+        top: 24px;
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border: 4px solid #7c7bad;
+        border-radius: 50%;
+        z-index: 2;
+        box-shadow: 0 0 0 2px #f8f9fa;
+        transition: border-color 0.2s;
+      }
+      .timeline-dot.completed {
+        background: #27ae60;
+        border-color: #27ae60;
+      }
+      .timeline-dot.in-progress {
+        background: #ffc107;
+        border-color: #ffc107;
+      }
+      .timeline-dot.not-started {
+        background: #fff;
+        border-color: #adb5bd;
+      }
+      /* Optional: highlight current */
+      .timeline-dot.current {
+        box-shadow: 0 0 0 4px #7c7bad33;
+      }
+      @media (max-width: 600px) {
+        .timeline-container { margin-left: 0; padding-left: 15px; }
+        .timeline-dot { left: -28px; }
+      }
     </style>
   </head>
   <body>
@@ -1425,11 +1469,12 @@
                     </div>
                   </div>
                 </div>
-              </div>              <!-- Improved Observations Section -->
-              <div class="card shadow-sm mb-4">
-                <div class="card-header bg-info-subtle d-flex justify-content-between align-items-center">
+              </div>              
+              <!-- Improved Observations Section -->
+              <div class="card module-card shadow-sm mb-4" style="border-left: 4px solid #ffc107;">
+                <div class="card-header module-header d-flex justify-content-between align-items-center bg-warning-subtle text-warning">
                   <h5 class="mb-0"><i class="fas fa-eye me-2"></i>Therapist Observations</h5>
-                  <button class="btn btn-sm btn-outline-info" onclick="toggleObservationEdit()">
+                  <button class="btn btn-sm btn-outline-warning" onclick="toggleObservationEdit()">
                     <i class="fas fa-edit me-1"></i> Edit
                   </button>
                 </div>
@@ -1456,13 +1501,13 @@
               
                 <!-- Homework Section -->
               <div class="card module-card psychoeducation-module shadow-sm mb-4" style="border-left: 4px solid #198754;">
-                  <div class="card-header module-header d-flex justify-content-between align-items-center bg-success-subtle text-success" id="psychoeducationHeader" data-bs-toggle="collapse" data-bs-target="#psychoeducationContent">
+                  <div class="card-header module-header d-flex justify-content-between align-items-center bg-success-subtle text-success" id="psychoeducationHeader" onclick="toggleHomeworkSection()" style="cursor:pointer;">
                       <h5 class="mb-0"><i class="fas fa-book-reader me-2"></i>Home Assignments</h5>
                       <div>
                           <span class="badge bg-success text-white me-2">Completed</span>
                       </div>
                   </div>
-                  <div id="psychoeducationContent" class="collapse show">
+                  <div id="homeworkContent" style="display: block;">
                       <div class="card-body">
                           <div class="row">
                               <div class="col-md-6">
@@ -1528,6 +1573,16 @@
                       </div>
                   </div>
               </div>
+              <script>
+              function toggleHomeworkSection() {
+                var content = document.getElementById('homeworkContent');
+                if (content.style.display === 'none') {
+                  content.style.display = 'block';
+                } else {
+                  content.style.display = 'none';
+                }
+              }
+              </script>
 
               <!-- End Buttons -->
               <div class="end-buttons">
@@ -2597,1196 +2652,1208 @@
                 </div>
               </div> 
             </div>            
-            <div class="card shadow-sm mb-4">
-              <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center" id="depressionHeader">                <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#depressionContent" 
-                          aria-expanded="false" aria-controls="depressionContent">
-                    <span>Depression introduction module</span>
-                  </button>
-                </h5>
-                <span class="badge bg-success text-white fs-6">Completed</span>
-              </div>
-              <div id="depressionContent" class="collapse" aria-labelledby="depressionHeader">
-                <div class="card-body">
-                    <p id="intro-desc">This module provides an initial assessment and orientation to the depression treatment program.</p>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5 id="intro-assessment-title">Initial Assessment Results</h5>
-                            <ul class="custom-list">
-                                <li id="intro-assessment-1">PHQ-9 Score: 16 (Moderately severe)</li>
-                                <li id="intro-assessment-2">Duration: 4 months</li>
-                                <li id="intro-assessment-3">Sleep: Moderate disturbance</li>
-                                <li id="intro-assessment-4">Appetite: Mild changes</li>
-                                <li id="intro-assessment-5">Energy: Significantly reduced</li>
-                                <li id="intro-assessment-6">Concentration: Moderately impaired</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 id="intro-risk-title">Risk Assessment</h5>
-                            <div class="table-responsive">
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Risk Factor</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Suicidal Ideation</td>
-                                            <td><span class="badge bg-warning">Passive</span></td>
-                                            <td>Monitoring</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Self-harm</td>
-                                            <td><span class="badge bg-success">None</span></td>
-                                            <td>--</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Substance Use</td>
-                                            <td><span class="badge bg-success">None</span></td>
-                                            <td>--</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+            <!-- Timeline for modules -->
+            <div class="timeline-container">
+              <div class="timeline-item">
+                <span class="timeline-dot completed"></span>
+                <!-- Depression introduction module -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center" id="depressionHeader">                <h5 class="mb-0">
+                      <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                              data-bs-toggle="collapse" data-bs-target="#depressionContent" 
+                              aria-expanded="false" aria-controls="depressionContent">
+                        <span>Depression introduction module</span>
+                      </button>
+                    </h5>
+                    <span class="badge bg-success text-white fs-6">Completed</span>
+                  </div>
+                  <div id="depressionContent" class="collapse" aria-labelledby="depressionHeader">
+                    <div class="card-body">
+                        <p id="intro-desc">This module provides an initial assessment and orientation to the depression treatment program.</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 id="intro-assessment-title">Initial Assessment Results</h5>
+                                <ul class="custom-list">
+                                    <li id="intro-assessment-1">PHQ-9 Score: 16 (Moderately severe)</li>
+                                    <li id="intro-assessment-2">Duration: 4 months</li>
+                                    <li id="intro-assessment-3">Sleep: Moderate disturbance</li>
+                                    <li id="intro-assessment-4">Appetite: Mild changes</li>
+                                    <li id="intro-assessment-5">Energy: Significantly reduced</li>
+                                    <li id="intro-assessment-6">Concentration: Moderately impaired</li>
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <h5 id="intro-goals-title" class="mt-4">Treatment Goals (Established)</h5>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <div class="progress-wrapper">
-                                <div class="d-flex justify-content-between">
-                                    <span>Reduce depressive symptoms (PHQ-9 &lt; 10)</span>
-                                    <span>40%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-wrapper">
-                                <div class="d-flex justify-content-between">
-                                    <span>Improve school attendance</span>
-                                    <span>60%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-wrapper">
-                                <div class="d-flex justify-content-between">
-                                    <span>Increase social engagement</span>
-                                    <span>30%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="col-md-6">
+                                <h5 id="intro-risk-title">Risk Assessment</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Risk Factor</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Suicidal Ideation</td>
+                                                <td><span class="badge bg-warning">Passive</span></td>
+                                                <td>Monitoring</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Self-harm</td>
+                                                <td><span class="badge bg-success">None</span></td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Substance Use</td>
+                                                <td><span class="badge bg-success">None</span></td>
+                                                <td>--</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
-                            <div class="progress-wrapper">
-                                <div class="d-flex justify-content-between">
-                                    <span>Develop coping strategies</span>
-                                    <span>25%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-wrapper">
-                                <div class="d-flex justify-content-between">
-                                    <span>Improve family communication</span>
-                                    <span>45%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-wrapper">
-                                <div class="d-flex justify-content-between">
-                                    <span>Sleep regulation</span>
-                                    <span>35%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="interactive-exercise">
-                        <h5 id="intro-family-title">Family Engagement Assessment</h5>
-                        <div class="form-group">
-                            <label>Parent Involvement Level:</label>
-                            <select class="form-select" id="parentInvolvement">
-                                <option value="low">Low</option>
-                                <option value="moderate" selected="">Moderate</option>
-                                <option value="high">High</option>
-                            </select>
-                        </div>
-                        <div class="mt-3">
-                            <label>Family Session Attendance:</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="session1" checked="" disabled="">
-                                <label class="form-check-label" for="session1">Initial Assessment (3/15/25)</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="session2" checked="" disabled="">
-                                <label class="form-check-label" for="session2">Family Psychoeducation (3/29/25)</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="session3">
-                                <label class="form-check-label" for="session3">Next Family Session (5/15/25)</label>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="alert alert-info" id="intro-note">
-                        <strong>Clinical Note:</strong> Initial assessment indicates moderate to severe depression with significant impact on functioning. Patient demonstrates good insight and motivation for treatment. No current suicidal ideation reported, but history of passive thoughts requires monitoring.
-                    </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card shadow-sm mb-4">
-              <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center" id="psychoeducationHeader">                <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#psychoeducationContent" 
-                          aria-expanded="false" aria-controls="psychoeducationContent">
-                    <span>Psychoeducation</span>
-                  </button>
-                </h5>
-                <span class="badge bg-success text-white fs-6">Completed</span>
-              </div>
-              <div id="psychoeducationContent" class="collapse" aria-labelledby="psychoeducationHeader">
-                <div class="card-body">
-                  <p class="mb-0 fs-5">This section contains additional information about the treatment plan that may be helpful for reference.</p>
-                  <ul class="mt-3 fs-5">
-                    <li>Feature psychoeducation-module</li>
-                  </ul>
-                </div>
-              </div>
-            </div>            
-            
-            <div class="card shadow-sm mb-4">
-              <div class="card-header bg-warning-subtle d-flex justify-content-between align-items-center" id="behavioralHeader">                <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#behavioralContent" 
-                          aria-expanded="false" aria-controls="behavioralContent">
-                    <span>Behavioral activation</span>
-                  </button>
-                </h5>
-                <span class="badge bg-warning text-dark fs-6">In Progress</span>
-              </div>
-              <div id="behavioralContent" class="collapse" aria-labelledby="behavioralHeader">
-                <div class="card-body">
-                    <p id="behavioral-desc">This module focuses on increasing engagement in positive activities to improve mood and reduce depressive symptoms.</p>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-8">
-                            <h5 id="behavioral-overview-title">Overview</h5>
-                            <p id="behavioral-overview-text">Behavioral activation is based on the understanding that depression leads to withdrawal from rewarding activities, which further worsens mood. By scheduling and engaging in positive activities, even when motivation is low, we can break this cycle and improve mood.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card bg-light">
-                                <div class="card-body">
-                                    <h6 class="card-title">Quick Stats</h6>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Sessions completed:</span>
-                                        <strong>3/6</strong>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Scheduled activities:</span>
-                                        <strong>7</strong>
-                                    </div>
+                        <h5 id="intro-goals-title" class="mt-4">Treatment Goals (Established)</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="progress-wrapper">
                                     <div class="d-flex justify-content-between">
-                                        <span>Completion rate:</span>
-                                        <strong>43%</strong>
+                                        <span>Reduce depressive symptoms (PHQ-9 &lt; 10)</span>
+                                        <span>40%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h5 id="behavioral-activity-log-title">Activity Monitoring Log</h5>
-                    <p id="behavioral-activity-log-desc">The patient has been tracking daily activities and associated mood ratings (1-10 scale):</p>
-                    
-                    <div class="table-responsive mb-4">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
-                                <tr>
-                                    <th id="behavioral-log-header-day">Day</th>
-                                    <th id="behavioral-log-header-activity">Activity</th>
-                                    <th id="behavioral-log-header-mood">Mood Rating (1-10)</th>
-                                    <th id="behavioral-log-header-notes">Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="behavioral-log-day-1">Monday</td>
-                                    <td id="behavioral-log-activity-1">School, homework, video games</td>
-                                    <td id="behavioral-log-mood-1">4</td>
-                                    <td id="behavioral-log-notes-1">Felt tired all day, struggled to focus</td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-log-day-2">Tuesday</td>
-                                    <td id="behavioral-log-activity-2">School, basketball practice, homework</td>
-                                    <td id="behavioral-log-mood-2">6</td>
-                                    <td id="behavioral-log-notes-2">Felt better after exercise</td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-log-day-3">Wednesday</td>
-                                    <td id="behavioral-log-activity-3">School, stayed in room all evening</td>
-                                    <td id="behavioral-log-mood-3">3</td>
-                                    <td id="behavioral-log-notes-3">Had argument with mom, felt very low</td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-log-day-4">Thursday</td>
-                                    <td id="behavioral-log-activity-4">School, study group, brief walk</td>
-                                    <td id="behavioral-log-mood-4">5</td>
-                                    <td id="behavioral-log-notes-4">Group project went well, felt accomplished</td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-log-day-5">Friday</td>
-                                    <td id="behavioral-log-activity-5">School, met friend for coffee, movie night</td>
-                                    <td id="behavioral-log-mood-5">7</td>
-                                    <td id="behavioral-log-notes-5">Best day of the week, enjoyed social time</td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-log-day-6">Saturday</td>
-                                    <td id="behavioral-log-activity-6">Slept late, homework, video games</td>
-                                    <td id="behavioral-log-mood-6">5</td>
-                                    <td id="behavioral-log-notes-6">Relaxing but felt unproductive</td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-log-day-7">Sunday</td>
-                                    <td id="behavioral-log-activity-7">Family lunch, studied, brief walk</td>
-                                    <td id="behavioral-log-mood-7">4</td>
-                                    <td id="behavioral-log-notes-7">Anxious about upcoming week</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <h5 id="behavioral-activity-correlation-title" class="mb-0">Activity-Mood Correlation</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Physical Exercise
-                                            <span class="badge bg-success rounded-pill">+2.3 points</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Social Interaction
-                                            <span class="badge bg-success rounded-pill">+2.1 points</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Outdoor Activities
-                                            <span class="badge bg-success rounded-pill">+1.8 points</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Creative Activities
-                                            <span class="badge bg-success rounded-pill">+1.2 points</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Screen Time &gt; 4hrs
-                                            <span class="badge bg-danger rounded-pill">-1.5 points</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h5 id="behavioral-pleasant-title">Pleasant Activities List</h5>
-                    <p id="behavioral-pleasant-desc">The patient has identified the following activities as potentially mood-enhancing:</p>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h6 id="behavioral-pleasant-physical-title" class="mb-0">Physical Activities</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical1" checked="">
-                                        <label class="form-check-label" for="physical1" id="behavioral-physical-1">Basketball practice</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical2" checked="">
-                                        <label class="form-check-label" for="physical2" id="behavioral-physical-2">Walking outdoors</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical3">
-                                        <label class="form-check-label" for="physical3" id="behavioral-physical-3">Bike riding</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical4">
-                                        <label class="form-check-label" for="physical4" id="behavioral-physical-4">Swimming</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h6 id="behavioral-pleasant-social-title" class="mb-0">Social Activities</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="social1" checked="">
-                                        <label class="form-check-label" for="social1" id="behavioral-social-1">Coffee with friends</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="social2">
-                                        <label class="form-check-label" for="social2" id="behavioral-social-2">Movie nights</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="social3">
-                                        <label class="form-check-label" for="social3" id="behavioral-social-3">Study group</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="social4">
-                                        <label class="form-check-label" for="social4" id="behavioral-social-4">Family game night</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h6 id="behavioral-pleasant-personal-title" class="mb-0">Personal Activities</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="personal1" checked="">
-                                        <label class="form-check-label" for="personal1" id="behavioral-personal-1">Reading fiction</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="personal2">
-                                        <label class="form-check-label" for="personal2" id="behavioral-personal-2">Drawing/art</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="personal3">
-                                        <label class="form-check-label" for="personal3" id="behavioral-personal-3">Listening to music</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="personal4">
-                                        <label class="form-check-label" for="personal4" id="behavioral-personal-4">Cooking new recipes</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h5 id="behavioral-activity-schedule-title">Weekly Activity Schedule (Current Week)</h5>
-                    <p id="behavioral-activity-schedule-desc">The patient has committed to the following activities this week:</p>
-                    
-                    <div class="table-responsive mb-4">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
-                                <tr>
-                                    <th id="behavioral-schedule-header-day">Day</th>
-                                    <th id="behavioral-schedule-header-planned">Planned Activity</th>
-                                    <th id="behavioral-schedule-header-completed">Completed?</th>
-                                    <th id="behavioral-schedule-header-mood">Mood After (1-10)</th>
-                                    <th id="behavioral-schedule-header-obstacles">Obstacles/Facilitators</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="behavioral-schedule-day-1">Monday</td>
-                                    <td id="behavioral-schedule-planned-1">15-minute walk after school</td>
-                                    <td id="behavioral-schedule-completed-1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed1" checked="">
-                                            <label class="form-check-label" for="completed1"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-1">
-                                        <input type="number" class="form-control" min="1" max="10" value="6">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-1">
-                                        <input type="text" class="form-control" value="Weather was nice">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-schedule-day-2">Tuesday</td>
-                                    <td id="behavioral-schedule-planned-2">Basketball practice</td>
-                                    <td id="behavioral-schedule-completed-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed2" checked="">
-                                            <label class="form-check-label" for="completed2"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-2">
-                                        <input type="number" class="form-control" min="1" max="10" value="7">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-2">
-                                        <input type="text" class="form-control" value="Friend encouraged me to go">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-schedule-day-3">Wednesday</td>
-                                    <td id="behavioral-schedule-planned-3">Read for 30 minutes</td>
-                                    <td id="behavioral-schedule-completed-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed3" checked="">
-                                            <label class="form-check-label" for="completed3"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-3">
-                                        <input type="number" class="form-control" min="1" max="10" value="5">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-3">
-                                        <input type="text" class="form-control" value="Hard to focus, tired">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-schedule-day-4">Thursday</td>
-                                    <td id="behavioral-schedule-planned-4">Study group at library</td>
-                                    <td id="behavioral-schedule-completed-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed4">
-                                            <label class="form-check-label" for="completed4"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-4">
-                                        <input type="number" class="form-control" min="1" max="10">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-4">
-                                        <input type="text" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-schedule-day-5">Friday</td>
-                                    <td id="behavioral-schedule-planned-5">Coffee with Alex after school</td>
-                                    <td id="behavioral-schedule-completed-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed5">
-                                            <label class="form-check-label" for="completed5"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-5">
-                                        <input type="number" class="form-control" min="1" max="10">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-5">
-                                        <input type="text" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-schedule-day-6">Saturday</td>
-                                    <td id="behavioral-schedule-planned-6">Family walk in the park (30 min)</td>
-                                    <td id="behavioral-schedule-completed-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed6">
-                                            <label class="form-check-label" for="completed6"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-6">
-                                        <input type="number" class="form-control" min="1" max="10">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-6">
-                                        <input type="text" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="behavioral-schedule-day-7">Sunday</td>
-                                    <td id="behavioral-schedule-planned-7">Try new pasta recipe for dinner</td>
-                                    <td id="behavioral-schedule-completed-7">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="completed7">
-                                            <label class="form-check-label" for="completed7"></label>
-                                        </div>
-                                    </td>
-                                    <td id="behavioral-schedule-mood-7">
-                                        <input type="number" class="form-control" min="1" max="10">
-                                    </td>
-                                    <td id="behavioral-schedule-obstacles-7">
-                                        <input type="text" class="form-control">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <h5 id="behavioral-next-steps-title" class="mb-0">Next Steps</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="next-step-1">
-                                        <label class="form-check-label" for="next-step-1">
-                                            Increase frequency of physical activities to 3x per week
-                                        </label>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="next-step-2">
-                                        <label class="form-check-label" for="next-step-2">
-                                            Introduce one new social activity next week
-                                        </label>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="next-step-3">
-                                        <label class="form-check-label" for="next-step-3">
-                                            Practice identifying early warning signs of mood decline
-                                        </label>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="next-step-4">
-                                        <label class="form-check-label" for="next-step-4">
-                                            Review potential obstacles and develop contingency plans
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="alert alert-info" id="behavioral-notes">
-                        <strong>Clinical Notes:</strong> Patient is showing good engagement with behavioral activation. Initial resistance to scheduling activities has decreased. Notable improvement in mood following physical activities and social interactions. Will continue to build on these patterns and gradually increase activity complexity and duration. Therapy adherence currently at 75%. Consider reinforcing connection between activity completion and mood improvement.
-                    </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="problemSolvingHeader">                <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#problemSolvingContent" 
-                          aria-expanded="false" aria-controls="problemSolvingContent">
-                    <span>Problem Solving</span>
-                  </button>
-                </h5>
-                <span class="badge bg-secondary text-white fs-6">Not Started</span>
-              </div>
-              <div id="problemSolvingContent" class="collapse" aria-labelledby="problemSolvingHeader">
-                <div class="card-body">
-                    <p id="problem-desc">This module focuses on developing systematic approaches to solving problems that contribute to depression.</p>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-8">
-                            <h5 id="problem-overview-title">Module Overview</h5>
-                            <p id="problem-overview-text">Problem-solving therapy helps patients identify specific problems in their lives, generate potential solutions, select the most promising approach, and implement and evaluate the outcomes.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card bg-light">
-                                <div class="card-body">
-                                    <h6 class="card-title">Module Timeline</h6>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Scheduled start:</span>
-                                        <strong>June 15, 2023</strong>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Estimated duration:</span>
-                                        <strong>3 weeks</strong>
-                                    </div>
+                                
+                                <div class="progress-wrapper">
                                     <div class="d-flex justify-content-between">
-                                        <span>Current status:</span>
-                                        <strong>Pending</strong>
+                                        <span>Improve school attendance</span>
+                                        <span>60%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Increase social engagement</span>
+                                        <span>30%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <h5 id="problem-key-components-title" class="mb-0">Key Components</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <h6 class="card-title">Problem Identification</h6>
-                                                    <p class="card-text">Clear and specific definition of problems that contribute to depression.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <h6 class="card-title">Solution Generation</h6>
-                                                    <p class="card-text">Brainstorming multiple potential solutions without immediate judgment.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <h6 class="card-title">Decision Making</h6>
-                                                    <p class="card-text">Evaluating pros and cons of each solution and selecting the most promising approach.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <h6 class="card-title">Implementation &amp; Review</h6>
-                                                    <p class="card-text">Creating an action plan, implementing the solution, and evaluating outcomes.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <h5 id="problem-goals-title" class="mb-0">Module Goals</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item d-flex align-items-center">
-                                                    <i class="bi bi-check-circle text-muted me-3"></i>
-                                                    <span>Identify at least 3 significant problems contributing to current depressive symptoms</span>
-                                                </li>
-                                                <li class="list-group-item d-flex align-items-center">
-                                                    <i class="bi bi-check-circle text-muted me-3"></i>
-                                                    <span>Learn and apply structured problem-solving framework to daily challenges</span>
-                                                </li>
-                                                <li class="list-group-item d-flex align-items-center">
-                                                    <i class="bi bi-check-circle text-muted me-3"></i>
-                                                    <span>Reduce feelings of being overwhelmed by breaking problems into manageable steps</span>
-                                                </li>
-                                                <li class="list-group-item d-flex align-items-center">
-                                                    <i class="bi bi-check-circle text-muted me-3"></i>
-                                                    <span>Successfully implement solutions for at least 2 identified problems</span>
-                                                </li>
-                                                <li class="list-group-item d-flex align-items-center">
-                                                    <i class="bi bi-check-circle text-muted me-3"></i>
-                                                    <span>Develop confidence in ability to address future problems independently</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <h5 id="problem-prep-title" class="mb-0">Preparation Work</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Before beginning this module, please review the following resources:</p>
-                                    
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="prep-1">
-                                            <label class="form-check-label" for="prep-1">
-                                                Review "Introduction to Problem-Solving" handout
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="prep-2">
-                                            <label class="form-check-label" for="prep-2">
-                                                Complete "Problem Inventory" worksheet
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="prep-3">
-                                            <label class="form-check-label" for="prep-3">
-                                                Watch video: "Problem-Solving Basics" (15 min)
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="prep-4">
-                                            <label class="form-check-label" for="prep-4">
-                                                Journal about recent problems and attempted solutions
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="alert alert-secondary" id="problem-pending">
-                        <i class="bi bi-info-circle"></i> This module has not been started yet. It will be introduced in session 5 after completion of the Behavioral Activation module.
-                    </div>
-                </div>
-              </div>
-            </div>  
-
-            <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="cognitiveHeader">                <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#cognitiveContent" 
-                          aria-expanded="false" aria-controls="cognitiveContent">
-                    <span>Cognitive restructuring</span>
-                  </button>
-                </h5>
-                <span class="badge bg-secondary text-white fs-6">Not Started</span>
-              </div>
-              <div id="cognitiveContent" class="collapse" aria-labelledby="cognitiveHeader">
-                <div class="card-body">
-                    <p id="cognitive-desc">This module focuses on identifying and challenging negative thought patterns that maintain depression.</p>
-                    
-                    <h5 id="cognitive-overview-title">Overview</h5>
-                    <p id="cognitive-overview-text">Cognitive restructuring helps patients identify distorted thoughts, evaluate their accuracy, and develop more balanced alternative perspectives.</p>
-                    
-                    <h5 id="cognitive-distortions-title">Common Cognitive Distortions</h5>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 id="cognitive-distortion-1-title">All-or-Nothing Thinking</h6>
-                                    <p id="cognitive-distortion-1-desc">Seeing situations in black-and-white terms</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cognitive-distortion-1-check">
-                                        <label class="form-check-label" for="cognitive-distortion-1-check">Present in patient</label>
-                                    </div>
-                                    <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 id="cognitive-distortion-2-title">Catastrophizing</h6>
-                                    <p id="cognitive-distortion-2-desc">Predicting the worst possible outcome</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cognitive-distortion-2-check">
-                                        <label class="form-check-label" for="cognitive-distortion-2-check">Present in patient</label>
-                                    </div>
-                                    <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 id="cognitive-distortion-3-title">Personalization</h6>
-                                    <p id="cognitive-distortion-3-desc">Taking excessive responsibility for external events</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cognitive-distortion-3-check">
-                                        <label class="form-check-label" for="cognitive-distortion-3-check">Present in patient</label>
-                                    </div>
-                                    <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 id="cognitive-distortion-4-title">Mind Reading</h6>
-                                    <p id="cognitive-distortion-4-desc">Assuming others' thoughts without evidence</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cognitive-distortion-4-check">
-                                        <label class="form-check-label" for="cognitive-distortion-4-check">Present in patient</label>
-                                    </div>
-                                    <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h5 id="cognitive-thought-record-title">Thought Record</h5>
-                    <div class="table-responsive mb-4">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Situation</th>
-                                    <th>Automatic Thought</th>
-                                    <th>Emotion &amp; Intensity (0-100)</th>
-                                    <th>Evidence For</th>
-                                    <th>Evidence Against</th>
-                                    <th>Alternative Thought</th>
-                                    <th>New Emotion &amp; Intensity (0-100)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <textarea class="form-control" rows="2" placeholder="Describe the situation..."></textarea>
-                                    </td>
-                                    <td>
-                                        <textarea class="form-control" rows="2" placeholder="What went through your mind?"></textarea>
-                                    </td>
-                                    <td>
-                                        <select class="form-select mb-1">
-                                            <option selected="">Choose emotion...</option>
-                                            <option>Sadness</option>
-                                            <option>Anxiety</option>
-                                            <option>Shame</option>
-                                            <option>Guilt</option>
-                                            <option>Anger</option>
-                                        </select>
-                                        <input type="number" class="form-control" min="0" max="100" placeholder="Intensity">
-                                    </td>
-                                    <td>
-                                        <textarea class="form-control" rows="2" placeholder="What supports this thought?"></textarea>
-                                    </td>
-                                    <td>
-                                        <textarea class="form-control" rows="2" placeholder="What contradicts this thought?"></textarea>
-                                    </td>
-                                    <td>
-                                        <textarea class="form-control" rows="2" placeholder="More balanced perspective?"></textarea>
-                                    </td>
-                                    <td>
-                                        <select class="form-select mb-1">
-                                            <option selected="">Choose emotion...</option>
-                                            <option>Sadness</option>
-                                            <option>Anxiety</option>
-                                            <option>Shame</option>
-                                            <option>Guilt</option>
-                                            <option>Anger</option>
-                                        </select>
-                                        <input type="number" class="form-control" min="0" max="100" placeholder="Intensity">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="7">
-                                        <button class="btn btn-primary btn-sm">Add Row</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <h5 id="cognitive-exercise-title">Cognitive Challenge Exercise</h5>
-                    <div class="interactive-exercise">
-                        <div class="mb-3">
-                            <label for="core-belief" class="form-label">Identified Core Negative Belief:</label>
-                            <input type="text" class="form-control" id="core-belief" placeholder="Enter core belief...">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Evidence Evaluation:</label>
-                            <div class="input-group mb-2">
-                                <span class="input-group-text">For</span>
-                                <input type="text" class="form-control" placeholder="Add evidence supporting belief...">
-                                <button class="btn btn-outline-secondary">Add</button>
-                            </div>
-                            <ul class="list-group mb-3" id="evidence-for-list">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Evidence item will appear here</span>
-                                    <button class="btn btn-sm btn-outline-danger">Remove</button>
-                                </li>
-                            </ul>
                             
-                            <div class="input-group mb-2">
-                                <span class="input-group-text">Against</span>
-                                <input type="text" class="form-control" placeholder="Add evidence contradicting belief...">
-                                <button class="btn btn-outline-secondary">Add</button>
+                            <div class="col-md-6">
+                                <div class="progress-wrapper">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Develop coping strategies</span>
+                                        <span>25%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Improve family communication</span>
+                                        <span>45%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Sleep regulation</span>
+                                        <span>35%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <ul class="list-group" id="evidence-against-list">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Evidence item will appear here</span>
-                                    <button class="btn btn-sm btn-outline-danger">Remove</button>
-                                </li>
-                            </ul>
                         </div>
                         
-                        <div class="mb-3">
-                            <label for="alternative-belief" class="form-label">Alternative Balanced Belief:</label>
-                            <input type="text" class="form-control" id="alternative-belief" placeholder="Enter alternative belief...">
+                        <div class="interactive-exercise">
+                            <h5 id="intro-family-title">Family Engagement Assessment</h5>
+                            <div class="form-group">
+                                <label>Parent Involvement Level:</label>
+                                <select class="form-select" id="parentInvolvement">
+                                    <option value="low">Low</option>
+                                    <option value="moderate" selected="">Moderate</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="mt-3">
+                                <label>Family Session Attendance:</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="session1" checked="" disabled="">
+                                    <label class="form-check-label" for="session1">Initial Assessment (3/15/25)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="session2" checked="" disabled="">
+                                    <label class="form-check-label" for="session2">Family Psychoeducation (3/29/25)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="session3">
+                                    <label class="form-check-label" for="session3">Next Family Session (5/15/25)</label>
+                                </div>
+                            </div>
+                            
                         </div>
                         
-                        <div class="mb-3">
-                            <label for="belief-rating-before" class="form-label">Belief Strength (Before): <span id="belief-before-value">50</span>%</label>
-                            <input type="range" class="form-range" id="belief-rating-before" min="0" max="100" value="50" oninput="document.getElementById('belief-before-value').textContent = this.value">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="belief-rating-after" class="form-label">Belief Strength (After): <span id="belief-after-value">50</span>%</label>
-                            <input type="range" class="form-range" id="belief-rating-after" min="0" max="100" value="50" oninput="document.getElementById('belief-after-value').textContent = this.value">
+                        <div class="alert alert-info" id="intro-note">
+                            <strong>Clinical Note:</strong> Initial assessment indicates moderate to severe depression with significant impact on functioning. Patient demonstrates good insight and motivation for treatment. No current suicidal ideation reported, but history of passive thoughts requires monitoring.
                         </div>
                     </div>
-                    
-                    <div class="alert alert-secondary" id="cognitive-notes">
-                        <strong>Clinical Notes:</strong> Module not yet started. Will focus on identifying key negative thought patterns related to academic performance and social comparisons when initiated.
-                    </div>
+                  </div>
                 </div>
               </div>
-            </div>  
-
-            <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="affectHeader">                <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#affectContent" 
-                          aria-expanded="false" aria-controls="affectContent">
-                    <span>Affect regulation</span>
-                    </button>
-                </h5>
-                <span class="badge bg-secondary text-white fs-6">Not Started</span>
+              <div class="timeline-item">
+                <span class="timeline-dot completed"></span>
+                <!-- Psychoeducation -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center" id="psychoeducationHeader">                <h5 class="mb-0">
+                      <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                              data-bs-toggle="collapse" data-bs-target="#psychoeducationContent" 
+                              aria-expanded="false" aria-controls="psychoeducationContent">
+                        <span>Psychoeducation</span>
+                      </button>
+                    </h5>
+                    <span class="badge bg-success text-white fs-6">Completed</span>
+                  </div>
+                  <div id="psychoeducationContent" class="collapse" aria-labelledby="psychoeducationHeader">
+                    <div class="card-body">
+                      <p class="mb-0 fs-5">This section contains additional information about the treatment plan that may be helpful for reference.</p>
+                      <ul class="mt-3 fs-5">
+                        <li>Feature psychoeducation-module</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div id="affectContent" class="collapse" aria-labelledby="affectHeader">
-                <div class="card-body">
-                    <p id="affect-desc">This module focuses on developing skills to identify, understand, and manage emotional responses.</p>
-                    
-                    <h5 id="affect-awareness-title">Emotional Awareness</h5>
-                    <p id="affect-awareness-text">Building the ability to recognize and name emotions as they occur.</p>
-                    
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h6 id="affect-daily-title">Daily Emotion Tracking</h6>
+              <div class="timeline-item">
+                <span class="timeline-dot in-progress"></span>
+                <!-- Behavioral activation -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header bg-warning-subtle d-flex justify-content-between align-items-center" id="behavioralHeader">                <h5 class="mb-0">
+                      <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                              data-bs-toggle="collapse" data-bs-target="#behavioralContent" 
+                              aria-expanded="false" aria-controls="behavioralContent">
+                        <span>Behavioral activation</span>
+                      </button>
+                    </h5>
+                    <span class="badge bg-warning text-dark fs-6">In Progress</span>
+                  </div>
+                  <div id="behavioralContent" class="collapse" aria-labelledby="behavioralHeader">
+                    <div class="card-body">
+                        <p id="behavioral-desc">This module focuses on increasing engagement in positive activities to improve mood and reduce depressive symptoms.</p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-8">
+                                <h5 id="behavioral-overview-title">Overview</h5>
+                                <p id="behavioral-overview-text">Behavioral activation is based on the understanding that depression leads to withdrawal from rewarding activities, which further worsens mood. By scheduling and engaging in positive activities, even when motivation is low, we can break this cycle and improve mood.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Quick Stats</h6>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Sessions completed:</span>
+                                            <strong>3/6</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Scheduled activities:</span>
+                                            <strong>7</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Completion rate:</span>
+                                            <strong>43%</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="behavioral-activity-log-title">Activity Monitoring Log</h5>
+                        <p id="behavioral-activity-log-desc">The patient has been tracking daily activities and associated mood ratings (1-10 scale):</p>
+                        
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th id="behavioral-log-header-day">Day</th>
+                                        <th id="behavioral-log-header-activity">Activity</th>
+                                        <th id="behavioral-log-header-mood">Mood Rating (1-10)</th>
+                                        <th id="behavioral-log-header-notes">Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="behavioral-log-day-1">Monday</td>
+                                        <td id="behavioral-log-activity-1">School, homework, video games</td>
+                                        <td id="behavioral-log-mood-1">4</td>
+                                        <td id="behavioral-log-notes-1">Felt tired all day, struggled to focus</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-log-day-2">Tuesday</td>
+                                        <td id="behavioral-log-activity-2">School, basketball practice, homework</td>
+                                        <td id="behavioral-log-mood-2">6</td>
+                                        <td id="behavioral-log-notes-2">Felt better after exercise</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-log-day-3">Wednesday</td>
+                                        <td id="behavioral-log-activity-3">School, stayed in room all evening</td>
+                                        <td id="behavioral-log-mood-3">3</td>
+                                        <td id="behavioral-log-notes-3">Had argument with mom, felt very low</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-log-day-4">Thursday</td>
+                                        <td id="behavioral-log-activity-4">School, study group, brief walk</td>
+                                        <td id="behavioral-log-mood-4">5</td>
+                                        <td id="behavioral-log-notes-4">Group project went well, felt accomplished</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-log-day-5">Friday</td>
+                                        <td id="behavioral-log-activity-5">School, met friend for coffee, movie night</td>
+                                        <td id="behavioral-log-mood-5">7</td>
+                                        <td id="behavioral-log-notes-5">Best day of the week, enjoyed social time</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-log-day-6">Saturday</td>
+                                        <td id="behavioral-log-activity-6">Slept late, homework, video games</td>
+                                        <td id="behavioral-log-mood-6">5</td>
+                                        <td id="behavioral-log-notes-6">Relaxing but felt unproductive</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-log-day-7">Sunday</td>
+                                        <td id="behavioral-log-activity-7">Family lunch, studied, brief walk</td>
+                                        <td id="behavioral-log-mood-7">4</td>
+                                        <td id="behavioral-log-notes-7">Anxious about upcoming week</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 id="behavioral-activity-correlation-title" class="mb-0">Activity-Mood Correlation</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Physical Exercise
+                                                <span class="badge bg-success rounded-pill">+2.3 points</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Social Interaction
+                                                <span class="badge bg-success rounded-pill">+2.1 points</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Outdoor Activities
+                                                <span class="badge bg-success rounded-pill">+1.8 points</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Creative Activities
+                                                <span class="badge bg-success rounded-pill">+1.2 points</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Screen Time &gt; 4hrs
+                                                <span class="badge bg-danger rounded-pill">-1.5 points</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="behavioral-pleasant-title">Pleasant Activities List</h5>
+                        <p id="behavioral-pleasant-desc">The patient has identified the following activities as potentially mood-enhancing:</p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h6 id="behavioral-pleasant-physical-title" class="mb-0">Physical Activities</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical1" checked="">
+                                            <label class="form-check-label" for="physical1" id="behavioral-physical-1">Basketball practice</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical2" checked="">
+                                            <label class="form-check-label" for="physical2" id="behavioral-physical-2">Walking outdoors</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical3">
+                                            <label class="form-check-label" for="physical3" id="behavioral-physical-3">Bike riding</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical4">
+                                            <label class="form-check-label" for="physical4" id="behavioral-physical-4">Swimming</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h6 id="behavioral-pleasant-social-title" class="mb-0">Social Activities</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="social1" checked="">
+                                            <label class="form-check-label" for="social1" id="behavioral-social-1">Coffee with friends</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="social2">
+                                            <label class="form-check-label" for="social2" id="behavioral-social-2">Movie nights</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="social3">
+                                            <label class="form-check-label" for="social3" id="behavioral-social-3">Study group</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="social4">
+                                            <label class="form-check-label" for="social4" id="behavioral-social-4">Family game night</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h6 id="behavioral-pleasant-personal-title" class="mb-0">Personal Activities</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="personal1" checked="">
+                                            <label class="form-check-label" for="personal1" id="behavioral-personal-1">Reading fiction</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="personal2">
+                                            <label class="form-check-label" for="personal2" id="behavioral-personal-2">Drawing/art</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="personal3">
+                                            <label class="form-check-label" for="personal3" id="behavioral-personal-3">Listening to music</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="personal4">
+                                            <label class="form-check-label" for="personal4" id="behavioral-personal-4">Cooking new recipes</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="behavioral-activity-schedule-title">Weekly Activity Schedule (Current Week)</h5>
+                        <p id="behavioral-activity-schedule-desc">The patient has committed to the following activities this week:</p>
+                        
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th id="behavioral-schedule-header-day">Day</th>
+                                        <th id="behavioral-schedule-header-planned">Planned Activity</th>
+                                        <th id="behavioral-schedule-header-completed">Completed?</th>
+                                        <th id="behavioral-schedule-header-mood">Mood After (1-10)</th>
+                                        <th id="behavioral-schedule-header-obstacles">Obstacles/Facilitators</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-1">Monday</td>
+                                        <td id="behavioral-schedule-planned-1">15-minute walk after school</td>
+                                        <td id="behavioral-schedule-completed-1">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="completed1" checked="">
+                                                <label class="form-check-label" for="completed1"></label>
+                                            </div>
+                                        </td>
+                                        <td id="behavioral-schedule-mood-1">
+                                            <input type="number" class="form-control" min="1" max="10" value="6">
+                                        </td>
+                                        <td id="behavioral-schedule-obstacles-1">
+                                            <input type="text" class="form-control" value="Weather was nice">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-2">Tuesday</td>
+                                        <td id="behavioral-schedule-planned-2">Basketball practice</td>
+                                        <td id="behavioral-schedule-completed-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="completed2" checked="">
+                                                <label class="form-check-label" for="completed2"></label>
+                                            </div>
+                                        </td>
+                                        <td id="behavioral-schedule-mood-2">
+                                            <input type="number" class="form-control" min="1" max="10" value="7">
+                                        </td>
+                                        <td id="behavioral-schedule-obstacles-2">
+                                            <input type="text" class="form-control" value="Friend encouraged me to go">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-3">Wednesday</td>
+                                        <td id="behavioral-schedule-planned-3">Read for 30 minutes</td>
+                                        <td id="behavioral-schedule-completed-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="completed3" checked="">
+                                                <label class="form-check-label" for="completed3"></label>
+                                            </div>
+                                        </td>
+                                        <td id="behavioral-schedule-mood-3">
+                                            <input type="number" class="form-control" min="1" max="10" value="5">
+                                        </td>
+                                        <td id="behavioral-schedule-obstacles-3">
+                                            <input type="text" class="form-control" value="Hard to focus, tired">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-4">Thursday</td>
+                                        <td id="behavioral-schedule-planned-4">Study group at library</td>
+                                            <input type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-5">Friday</td>
+                                        <td id="behavioral-schedule-planned-5">Coffee with Alex after school</td>
+                                        <td id="behavioral-schedule-completed-5">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="completed5">
+                                                <label class="form-check-label" for="completed5"></label>
+                                            </div>
+                                        </td>
+                                        <td id="behavioral-schedule-mood-5">
+                                            <input type="number" class="form-control" min="1" max="10">
+                                        </td>
+                                        <td id="behavioral-schedule-obstacles-5">
+                                            <input type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-6">Saturday</td>
+                                        <td id="behavioral-schedule-planned-6">Family walk in the park (30 min)</td>
+                                        <td id="behavioral-schedule-completed-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="completed6">
+                                                <label class="form-check-label" for="completed6"></label>
+                                            </div>
+                                        </td>
+                                        <td id="behavioral-schedule-mood-6">
+                                            <input type="number" class="form-control" min="1" max="10">
+                                        </td>
+                                        <td id="behavioral-schedule-obstacles-6">
+                                            <input type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="behavioral-schedule-day-7">Sunday</td>
+                                        <td id="behavioral-schedule-planned-7">Try new pasta recipe for dinner</td>
+                                        <td id="behavioral-schedule-completed-7">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="completed7">
+                                                <label class="form-check-label" for="completed7"></label>
+                                            </div>
+                                        </td>
+                                        <td id="behavioral-schedule-mood-7">
+                                            <input type="number" class="form-control" min="1" max="10">
+                                        </td>
+                                        <td id="behavioral-schedule-obstacles-7">
+                                            <input type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 id="behavioral-next-steps-title" class="mb-0">Next Steps</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="next-step-1">
+                                            <label class="form-check-label" for="next-step-1">
+                                                Increase frequency of physical activities to 3x per week
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="next-step-2">
+                                            <label class="form-check-label" for="next-step-2">
+                                                Introduce one new social activity next week
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="next-step-3">
+                                            <label class="form-check-label" for="next-step-3">
+                                                Practice identifying early warning signs of mood decline
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="next-step-4">
+                                            <label class="form-check-label" for="next-step-4">
+                                                Review potential obstacles and develop contingency plans
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info" id="behavioral-notes">
+                            <strong>Clinical Notes:</strong> Patient is showing good engagement with behavioral activation. Initial resistance to scheduling activities has decreased. Notable improvement in mood following physical activities and social interactions. Will continue to build on these patterns and gradually increase activity complexity and duration. Therapy adherence currently at 75%. Consider reinforcing connection between activity completion and mood improvement.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-dot not-started"></span>
+                <!-- Problem Solving -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header bg-light d-flex justify-content-between align-items-center" id="problemSolvingHeader">                <h5 class="mb-0">
+                      <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                              data-bs-toggle="collapse" data-bs-target="#problemSolvingContent" 
+                              aria-expanded="false" aria-controls="problemSolvingContent">
+                        <span>Problem Solving</span>
+                      </button>
+                    </h5>
+                    <span class="badge bg-secondary text-white fs-6">Not Started</span>
+                  </div>
+                  <div id="problemSolvingContent" class="collapse" aria-labelledby="problemSolvingHeader">
+                    <div class="card-body">
+                        <p id="problem-desc">This module focuses on developing systematic approaches to solving problems that contribute to depression.</p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-8">
+                                <h5 id="problem-overview-title">Module Overview</h5>
+                                <p id="problem-overview-text">Problem-solving therapy helps patients identify specific problems in their lives, generate potential solutions, select the most promising approach, and implement and evaluate the outcomes.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Module Timeline</h6>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Scheduled start:</span>
+                                            <strong>June 15, 2023</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Estimated duration:</span>
+                                            <strong>3 weeks</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Current status:</span>
+                                            <strong>Pending</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 id="problem-key-components-title" class="mb-0">Key Components</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Problem Identification</h6>
+                                                        <p class="card-text">Clear and specific definition of problems that contribute to depression.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Solution Generation</h6>
+                                                        <p class="card-text">Brainstorming multiple potential solutions without immediate judgment.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Decision Making</h6>
+                                                        <p class="card-text">Evaluating pros and cons of each solution and selecting the most promising approach.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Implementation &amp; Review</h6>
+                                                        <p class="card-text">Creating an action plan, implementing the solution, and evaluating outcomes.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 id="problem-goals-title" class="mb-0">Module Goals</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <i class="bi bi-check-circle text-muted me-3"></i>
+                                                        <span>Identify at least 3 significant problems contributing to current depressive symptoms</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <i class="bi bi-check-circle text-muted me-3"></i>
+                                                        <span>Learn and apply structured problem-solving framework to daily challenges</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <i class="bi bi-check-circle text-muted me-3"></i>
+                                                        <span>Reduce feelings of being overwhelmed by breaking problems into manageable steps</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <i class="bi bi-check-circle text-muted me-3"></i>
+                                                        <span>Successfully implement solutions for at least 2 identified problems</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <i class="bi bi-check-circle text-muted me-3"></i>
+                                                        <span>Develop confidence in ability to address future problems independently</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 id="problem-prep-title" class="mb-0">Preparation Work</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Before beginning this module, please review the following resources:</p>
+                                        
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="prep-1">
+                                                <label class="form-check-label" for="prep-1">
+                                                    Review "Introduction to Problem-Solving" handout
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="prep-2">
+                                                <label class="form-check-label" for="prep-2">
+                                                    Complete "Problem Inventory" worksheet
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="prep-3">
+                                                <label class="form-check-label" for="prep-3">
+                                                    Watch video: "Problem-Solving Basics" (15 min)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="prep-4">
+                                                <label class="form-check-label" for="prep-4">
+                                                    Journal about recent problems and attempted solutions
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-secondary" id="problem-pending">
+                            <i class="bi bi-info-circle"></i> This module has not been started yet. It will be introduced in session 5 after completion of the Behavioral Activation module.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-dot not-started"></span>
+                <!-- Cognitive restructuring -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header bg-light d-flex justify-content-between align-items-center" id="cognitiveHeader">                <h5 class="mb-0">
+                      <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                              data-bs-toggle="collapse" data-bs-target="#cognitiveContent" 
+                              aria-expanded="false" aria-controls="cognitiveContent">
+                        <span>Cognitive restructuring</span>
+                      </button>
+                    </h5>
+                    <span class="badge bg-secondary text-white fs-6">Not Started</span>
+                  </div>
+                  <div id="cognitiveContent" class="collapse" aria-labelledby="cognitiveHeader">
+                    <div class="card-body">
+                        <p id="cognitive-desc">This module focuses on identifying and challenging negative thought patterns that maintain depression.</p>
+                        
+                        <h5 id="cognitive-overview-title">Overview</h5>
+                        <p id="cognitive-overview-text">Cognitive restructuring helps patients identify distorted thoughts, evaluate their accuracy, and develop more balanced alternative perspectives.</p>
+                        
+                        <h5 id="cognitive-distortions-title">Common Cognitive Distortions</h5>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h6 id="cognitive-distortion-1-title">All-or-Nothing Thinking</h6>
+                                        <p id="cognitive-distortion-1-desc">Seeing situations in black-and-white terms</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="cognitive-distortion-1-check">
+                                            <label class="form-check-label" for="cognitive-distortion-1-check">Present in patient</label>
+                                        </div>
+                                        <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h6 id="cognitive-distortion-2-title">Catastrophizing</h6>
+                                        <p id="cognitive-distortion-2-desc">Predicting the worst possible outcome</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="cognitive-distortion-2-check">
+                                            <label class="form-check-label" for="cognitive-distortion-2-check">Present in patient</label>
+                                        </div>
+                                        <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h6 id="cognitive-distortion-3-title">Personalization</h6>
+                                        <p id="cognitive-distortion-3-desc">Taking excessive responsibility for external events</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="cognitive-distortion-3-check">
+                                            <label class="form-check-label" for="cognitive-distortion-3-check">Present in patient</label>
+                                        </div>
+                                        <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h6 id="cognitive-distortion-4-title">Mind Reading</h6>
+                                        <p id="cognitive-distortion-4-desc">Assuming others' thoughts without evidence</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="cognitive-distortion-4-check">
+                                            <label class="form-check-label" for="cognitive-distortion-4-check">Present in patient</label>
+                                        </div>
+                                        <input type="text" class="form-control mt-2" placeholder="Examples from patient...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="cognitive-thought-record-title">Thought Record</h5>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Situation</th>
+                                        <th>Automatic Thought</th>
+                                        <th>Emotion &amp; Intensity (0-100)</th>
+                                        <th>Evidence For</th>
+                                        <th>Evidence Against</th>
+                                        <th>Alternative Thought</th>
+                                        <th>New Emotion &amp; Intensity (0-100)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <textarea class="form-control" rows="2" placeholder="Describe the situation..."></textarea>
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" rows="2" placeholder="What went through your mind?"></textarea>
+                                        </td>
+                                        <td>
+                                            <select class="form-select mb-1">
+                                                <option selected="">Choose emotion...</option>
+                                                <option>Sadness</option>
+                                                <option>Anxiety</option>
+                                                <option>Shame</option>
+                                                <option>Guilt</option>
+                                                <option>Anger</option>
+                                            </select>
+                                            <input type="number" class="form-control" min="0" max="100" placeholder="Intensity">
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" rows="2" placeholder="What supports this thought?"></textarea>
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" rows="2" placeholder="What contradicts this thought?"></textarea>
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" rows="2" placeholder="More balanced perspective?"></textarea>
+                                        </td>
+                                        <td>
+                                            <select class="form-select mb-1">
+                                                <option selected="">Choose emotion...</option>
+                                                <option>Sadness</option>
+                                                <option>Anxiety</option>
+                                                <option>Shame</option>
+                                                <option>Guilt</option>
+                                                <option>Anger</option>
+                                            </select>
+                                            <input type="number" class="form-control" min="0" max="100" placeholder="Intensity">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7">
+                                            <button class="btn btn-primary btn-sm">Add Row</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h5 id="cognitive-exercise-title">Cognitive Challenge Exercise</h5>
+                        <div class="interactive-exercise">
+                            <div class="mb-3">
+                                <label for="core-belief" class="form-label">Identified Core Negative Belief:</label>
+                                <input type="text" class="form-control" id="core-belief" placeholder="Enter core belief...">
+                            </div>
                             
                             <div class="mb-3">
-                                <label for="emotion-date" class="form-label">Date:</label>
-                                <input type="date" class="form-control" id="emotion-date">
+                                <label class="form-label">Evidence Evaluation:</label>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">For</span>
+                                    <input type="text" class="form-control" placeholder="Add evidence supporting belief...">
+                                    <button class="btn btn-outline-secondary">Add</button>
+                                </div>
+                                <ul class="list-group mb-3" id="evidence-for-list">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>Evidence item will appear here</span>
+                                        <button class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </li>
+                                </ul>
+                                
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">Against</span>
+                                    <input type="text" class="form-control" placeholder="Add evidence contradicting belief...">
+                                    <button class="btn btn-outline-secondary">Add</button>
+                                </div>
+                                <ul class="list-group" id="evidence-against-list">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>Evidence item will appear here</span>
+                                        <button class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </li>
+                                </ul>
                             </div>
                             
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Time</th>
-                                            <th>Emotion</th>
-                                            <th>Intensity (1-10)</th>
-                                            <th>Trigger/Context</th>
-                                            <th>Body Sensations</th>
-                                            <th>Response</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <input type="time" class="form-control">
-                                            </td>
-                                            <td>
-                                                <select class="form-select">
-                                                    <option selected="">Choose...</option>
-                                                    <option>Sadness</option>
-                                                    <option>Anxiety</option>
-                                                    <option>Anger</option>
-                                                    <option>Joy</option>
-                                                    <option>Fear</option>
-                                                    <option>Shame</option>
-                                                    <option>Guilt</option>
-                                                    <option>Other</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" min="1" max="10">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="6">
-                                                <button class="btn btn-primary btn-sm">Add Entry</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="mb-3">
+                                <label for="alternative-belief" class="form-label">Alternative Balanced Belief:</label>
+                                <input type="text" class="form-control" id="alternative-belief" placeholder="Enter alternative belief...">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="belief-rating-before" class="form-label">Belief Strength (Before): <span id="belief-before-value">50</span>%</label>
+                                <input type="range" class="form-range" id="belief-rating-before" min="0" max="100" value="50" oninput="document.getElementById('belief-before-value').textContent = this.value">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="belief-rating-after" class="form-label">Belief Strength (After): <span id="belief-after-value">50</span>%</label>
+                                <input type="range" class="form-range" id="belief-rating-after" min="0" max="100" value="50" oninput="document.getElementById('belief-after-value').textContent = this.value">
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-secondary" id="cognitive-notes">
+                            <strong>Clinical Notes:</strong> Module not yet started. Will focus on identifying key negative thought patterns related to academic performance and social comparisons when initiated.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-dot not-started"></span>
+                <!-- Affect regulation -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header bg-light d-flex justify-content-between align-items-center" id="affectHeader">                <h5 class="mb-0">
+                      <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5" type="button" 
+                              data-bs-toggle="collapse" data-bs-target="#affectContent" 
+                              aria-expanded="false" aria-controls="affectContent">
+                        <span>Affect regulation</span>
+                        </button>
+                    </h5>
+                    <span class="badge bg-secondary text-white fs-6">Not Started</span>
+                  </div>
+                  <div id="affectContent" class="collapse" aria-labelledby="affectHeader">
+                    <div class="card-body">
+                        <p id="affect-desc">This module focuses on developing skills to identify, understand, and manage emotional responses.</p>
+                        
+                        <h5 id="affect-awareness-title">Emotional Awareness</h5>
+                        <p id="affect-awareness-text">Building the ability to recognize and name emotions as they occur.</p>
+                        
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h6 id="affect-daily-title">Daily Emotion Tracking</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="emotion-date" class="form-label">Date:</label>
+                                    <input type="date" class="form-control" id="emotion-date">
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Time</th>
+                                                <th>Emotion</th>
+                                                <th>Intensity (1-10)</th>
+                                                <th>Trigger/Context</th>
+                                                <th>Body Sensations</th>
+                                                <th>Response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="time" class="form-control">
+                                                </td>
+                                                <td>
+                                                    <select class="form-select">
+                                                        <option selected="">Choose...</option>
+                                                        <option>Sadness</option>
+                                                        <option>Anxiety</option>
+                                                        <option>Anger</option>
+                                                        <option>Joy</option>
+                                                        <option>Fear</option>
+                                                        <option>Shame</option>
+                                                        <option>Guilt</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control" min="1" max="10">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">
+                                                    <button class="btn btn-primary btn-sm">Add Entry</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="affect-strategies-title">Emotion Regulation Strategies</h5>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h6 class="mb-0">Breathing Techniques</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="breathing-1">
+                                            <label class="form-check-label" for="breathing-1">4-7-8 Breathing</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="breathing-2">
+                                            <label class="form-check-label" for="breathing-2">Box Breathing</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="breathing-3">
+                                            <label class="form-check-label" for="breathing-3">Diaphragmatic Breathing</label>
+                                        </div>
+                                        <div class="mt-2">
+                                            <label class="form-label">Effectiveness Rating:</label>
+                                            <select class="form-select">
+                                                <option selected="">Select...</option>
+                                                <option>Not Tried</option>
+                                                <option>Not Effective (1-2)</option>
+                                                <option>Somewhat Effective (3-4)</option>
+                                                <option>Moderately Effective (5-6)</option>
+                                                <option>Very Effective (7-8)</option>
+                                                <option>Extremely Effective (9-10)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h6 class="mb-0">Mindfulness Practices</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="mindfulness-1">
+                                            <label class="form-check-label" for="mindfulness-1">Body Scan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="mindfulness-2">
+                                            <label class="form-check-label" for="mindfulness-2">5 Senses Exercise</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="mindfulness-3">
+                                            <label class="form-check-label" for="mindfulness-3">Guided Meditation</label>
+                                        </div>
+                                        <div class="mt-2">
+                                            <label class="form-label">Effectiveness Rating:</label>
+                                            <select class="form-select">
+                                                <option selected="">Select...</option>
+                                                <option>Not Tried</option>
+                                                <option>Not Effective (1-2)</option>
+                                                <option>Somewhat Effective (3-4)</option>
+                                                <option>Moderately Effective (5-6)</option>
+                                                <option>Very Effective (7-8)</option>
+                                                <option>Extremely Effective (9-10)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        <h6 class="mb-0">Physical Regulation</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical-1">
+                                            <label class="form-check-label" for="physical-1">Progressive Muscle Relaxation</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical-2">
+                                            <label class="form-check-label" for="physical-2">Cold Water Technique</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="physical-3">
+                                            <label class="form-check-label" for="physical-3">Brief Exercise</label>
+                                        </div>
+                                        <div class="mt-2">
+                                            <label class="form-label">Effectiveness Rating:</label>
+                                            <select class="form-select">
+                                                <option selected="">Select...</option>
+                                                <option>Not Tried</option>
+                                                <option>Not Effective (1-2)</option>
+                                                <option>Somewhat Effective (3-4)</option>
+                                                <option>Moderately Effective (5-6)</option>
+                                                <option>Very Effective (7-8)</option>
+                                                <option>Extremely Effective (9-10)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="affect-crisis-title">Crisis Response Plan</h5>
+                        <div class="interactive-exercise">
+                            <div class="mb-3">
+                                <label class="form-label">Warning Signs (check all that apply):</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="warning-1">
+                                            <label class="form-check-label" for="warning-1">Isolation</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="warning-2">
+                                            <label class="form-check-label" for="warning-2">Sleep disturbance</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="warning-3">
+                                            <label class="form-check-label" for="warning-3">Negative self-talk</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="warning-4">
+                                            <label class="form-check-label" for="warning-4">Appetite changes</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="warning-5">
+                                            <label class="form-check-label" for="warning-5">Hopelessness</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="warning-6">
+                                            <label class="form-check-label" for="warning-6">Other</label>
+                                            <input type="text" class="form-control mt-1" placeholder="Specify...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="coping-strategies" class="form-label">Coping Strategies to Use:</label>
+                                <textarea class="form-control" id="coping-strategies" rows="3" placeholder="List personal coping strategies..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="support-contacts" class="form-label">Support Contacts:</label>
+                                <textarea class="form-control" id="support-contacts" rows="3" placeholder="List people who can help..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="crisis-resources" class="form-label">Crisis Resources:</label>
+                                <textarea class="form-control" id="crisis-resources" rows="3" disabled="">National Suicide Prevention Lifeline: 988
+                                    Crisis Text Line: Text HOME to 741741
+                                    Local Crisis Center: [To be filled by clinician]</textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-secondary" id="affect-notes">
+                                <strong>Clinical Notes:</strong> Module not yet started. Will focus on developing emotional awareness and regulation strategies tailored to the patient's specific emotional triggers.
                             </div>
                         </div>
                     </div>
-                    
-                    <h5 id="affect-strategies-title">Emotion Regulation Strategies</h5>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h6 class="mb-0">Breathing Techniques</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="breathing-1">
-                                        <label class="form-check-label" for="breathing-1">4-7-8 Breathing</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="breathing-2">
-                                        <label class="form-check-label" for="breathing-2">Box Breathing</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="breathing-3">
-                                        <label class="form-check-label" for="breathing-3">Diaphragmatic Breathing</label>
-                                    </div>
-                                    <div class="mt-2">
-                                        <label class="form-label">Effectiveness Rating:</label>
-                                        <select class="form-select">
-                                            <option selected="">Select...</option>
-                                            <option>Not Tried</option>
-                                            <option>Not Effective (1-2)</option>
-                                            <option>Somewhat Effective (3-4)</option>
-                                            <option>Moderately Effective (5-6)</option>
-                                            <option>Very Effective (7-8)</option>
-                                            <option>Extremely Effective (9-10)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h6 class="mb-0">Mindfulness Practices</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="mindfulness-1">
-                                        <label class="form-check-label" for="mindfulness-1">Body Scan</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="mindfulness-2">
-                                        <label class="form-check-label" for="mindfulness-2">5 Senses Exercise</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="mindfulness-3">
-                                        <label class="form-check-label" for="mindfulness-3">Guided Meditation</label>
-                                    </div>
-                                    <div class="mt-2">
-                                        <label class="form-label">Effectiveness Rating:</label>
-                                        <select class="form-select">
-                                            <option selected="">Select...</option>
-                                            <option>Not Tried</option>
-                                            <option>Not Effective (1-2)</option>
-                                            <option>Somewhat Effective (3-4)</option>
-                                            <option>Moderately Effective (5-6)</option>
-                                            <option>Very Effective (7-8)</option>
-                                            <option>Extremely Effective (9-10)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h6 class="mb-0">Physical Regulation</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical-1">
-                                        <label class="form-check-label" for="physical-1">Progressive Muscle Relaxation</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical-2">
-                                        <label class="form-check-label" for="physical-2">Cold Water Technique</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="physical-3">
-                                        <label class="form-check-label" for="physical-3">Brief Exercise</label>
-                                    </div>
-                                    <div class="mt-2">
-                                        <label class="form-label">Effectiveness Rating:</label>
-                                        <select class="form-select">
-                                            <option selected="">Select...</option>
-                                            <option>Not Tried</option>
-                                            <option>Not Effective (1-2)</option>
-                                            <option>Somewhat Effective (3-4)</option>
-                                            <option>Moderately Effective (5-6)</option>
-                                            <option>Very Effective (7-8)</option>
-                                            <option>Extremely Effective (9-10)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h5 id="affect-crisis-title">Crisis Response Plan</h5>
-                    <div class="interactive-exercise">
-                        <div class="mb-3">
-                            <label class="form-label">Warning Signs (check all that apply):</label>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="warning-1">
-                                        <label class="form-check-label" for="warning-1">Isolation</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="warning-2">
-                                        <label class="form-check-label" for="warning-2">Sleep disturbance</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="warning-3">
-                                        <label class="form-check-label" for="warning-3">Negative self-talk</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="warning-4">
-                                        <label class="form-check-label" for="warning-4">Appetite changes</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="warning-5">
-                                        <label class="form-check-label" for="warning-5">Hopelessness</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="warning-6">
-                                        <label class="form-check-label" for="warning-6">Other</label>
-                                        <input type="text" class="form-control mt-1" placeholder="Specify...">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="coping-strategies" class="form-label">Coping Strategies to Use:</label>
-                            <textarea class="form-control" id="coping-strategies" rows="3" placeholder="List personal coping strategies..."></textarea>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="support-contacts" class="form-label">Support Contacts:</label>
-                            <textarea class="form-control" id="support-contacts" rows="3" placeholder="List people who can help..."></textarea>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="crisis-resources" class="form-label">Crisis Resources:</label>
-                            <textarea class="form-control" id="crisis-resources" rows="3" disabled="">National Suicide Prevention Lifeline: 988
-                                Crisis Text Line: Text HOME to 741741
-                                Local Crisis Center: [To be filled by clinician]</textarea>
-                            </div>
-                        </div>
-                        
-                        <div class="alert alert-secondary" id="affect-notes">
-                            <strong>Clinical Notes:</strong> Module not yet started. Will focus on developing emotional awareness and regulation strategies tailored to the patient's specific emotional triggers.
-                        </div>
-                    </div>
+                  </div>
                 </div>
               </div>
             </div>  
