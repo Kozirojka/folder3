@@ -102,7 +102,7 @@
       <button class="btn btn-purple btn-sm">
         <i class="fas fa-edit me-1"></i> Edit Notes
       </button>
-      <button class="btn btn-purple btn-sm">
+      <button id="downloadButton" class="btn btn-purple btn-sm">
         <i class="fas fa-download me-1"></i> Download patient story
       </button>
     </div>
@@ -118,14 +118,13 @@
         <p class="presenting-issue"><span class="fw-bold">Presenting Issue:</span> Anxiety related to bullying, avoidance behaviors, school refusal.</p>
       </div>
       
-      <div class="charts-container">
-        <div class="chart-container">
-          <h3 class="chart-title">Child's SCARED Test Results</h3>
+      <div class="charts-container">        <div class="chart-container">
+          <h3 class="chart-title">Child's Anxiety Test Results</h3>
           <canvas id="childScaredChart"></canvas>
         </div>
         
         <div class="chart-container">
-          <h3 class="chart-title">Parent's Depression Test Results</h3>
+          <h3 class="chart-title">Parent's Assessment of Child's Anxiety</h3>
           <canvas id="parentScaredChart"></canvas>
         </div>
       </div>
@@ -141,29 +140,52 @@
 </div>
 
 <script>
-// Initialize the SCARED test results charts
+// Initialize the anxiety test results charts
 const childCtx = document.getElementById('childScaredChart').getContext('2d');
 const parentCtx = document.getElementById('parentScaredChart').getContext('2d');
 
-// Child's chart
+document.getElementById('downloadButton').addEventListener('click', function () {
+    const fileUrl = 'https://kozirojka.github.io/ClearJSProject/MedicalHistory.pdf';
+    // Відкриваємо PDF у новій вкладці браузера
+    window.open(fileUrl, '_blank');
+  });
+
+
+// Child's anxiety chart - showing different anxiety domains
 const childScaredChart = new Chart(childCtx, {
-    type: 'line',
+    type: 'radar',
     data: {
-        labels: ['Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025'],
+        labels: ['Social Anxiety', 'Separation Anxiety', 'School Avoidance', 'Panic Disorder', 'Generalized Anxiety'],
         datasets: [
             {
-                label: 'Child Score',
-                data: [42, 38, 35, 31, 28],
+                label: 'Child Self-Report (May 2025)',
+                data: [9, 7, 12, 8, 10],
                 borderColor: '#7C7BAD',
-                backgroundColor: 'rgba(124, 123, 173, 0.1)',
-                tension: 0.4,
-                fill: true
+                backgroundColor: 'rgba(124, 123, 173, 0.2)',
+                borderWidth: 2,
+                pointBackgroundColor: '#7C7BAD',
+                pointRadius: 3
             }
         ]
-    },    options: {
+    },    
+    options: {
         responsive: true,
         maintainAspectRatio: true,
         aspectRatio: 1.5,
+        scales: {
+            r: {
+                min: 0,
+                max: 15,
+                ticks: {
+                    stepSize: 3
+                },
+                pointLabels: {
+                    font: {
+                        size: 10
+                    }
+                }
+            }
+        },
         plugins: {
             title: {
                 display: false
@@ -176,37 +198,46 @@ const childScaredChart = new Chart(childCtx, {
                 }
             },
             tooltip: {
-                mode: 'index',
-                intersect: false
-            }
-        },
-        scales: {
-            y: {
-                min: 0,
-                max: 50,
-                title: {
-                    display: true,
-                    text: 'SCARED Score'
+                callbacks: {
+                    label: function(context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed !== null) {
+                            label += context.parsed + ' points';
+                        }
+                        return label;
+                    }
                 }
             }
         }
     }
 });
 
-// Parent's chart
+// Parent's assessment chart - comparing their view with child's
 const parentScaredChart = new Chart(parentCtx, {
     type: 'bar',
     data: {
-        labels: ['Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025'],
+        labels: ['Social Anxiety', 'Separation Anxiety', 'School Avoidance', 'Panic Disorder', 'Generalized Anxiety'],
         datasets: [
             {
-                label: 'Parent Depression Score',
-                data: [18, 22, 20, 17, 15],
+                label: 'Parent Assessment (May 2025)',
+                data: [11, 5, 14, 6, 12],
                 backgroundColor: 'rgba(207, 205, 233, 0.7)',
                 borderColor: '#7C7BAD',
                 borderWidth: 1,
-                borderRadius: 6,
-                maxBarThickness: 30
+                borderRadius: 4,
+                maxBarThickness: 20
+            },
+            {
+                label: 'Child Self-Report',
+                data: [9, 7, 12, 8, 10],
+                backgroundColor: 'rgba(124, 123, 173, 0.4)',
+                borderColor: '#615fa0',
+                borderWidth: 1,
+                borderRadius: 4,
+                maxBarThickness: 20
             }
         ]
     },
@@ -227,16 +258,28 @@ const parentScaredChart = new Chart(parentCtx, {
             },
             tooltip: {
                 mode: 'index',
-                intersect: false
+                intersect: false,
+                callbacks: {
+                    label: function(context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += context.parsed.y + ' points';
+                        }
+                        return label;
+                    }
+                }
             }
         },
         scales: {
             y: {
                 min: 0,
-                max: 30,
+                max: 15,
                 title: {
                     display: true,
-                    text: 'Depression Score'
+                    text: 'Anxiety Score'
                 }
             }
         }
