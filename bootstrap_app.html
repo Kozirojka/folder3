@@ -183,6 +183,58 @@
             background-color: #FFF8DC;
             z-index: 10;
         }
+          /* Стилі для форми додавання нового пластиря */
+        .create-plaster-btn {
+            width: 90%;
+            height: 100px;
+            background-color: #e9f5ff;
+            border-radius: 15px;
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 5px auto;
+            flex-shrink: 0;
+            border: 2px dashed #007bff;
+            transition: all 0.3s ease;
+        }
+        
+        .create-plaster-btn:hover {
+            background-color: #d0e8ff;
+            transform: scale(1.02);
+        }
+        
+        .create-plaster-form {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 50;
+        }
+        
+        .create-plaster-form.active {
+            display: block;
+        }
+        
+        .form-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 40;
+        }
         
         /* Style for mobile view */
         @media (max-width: 768px) {
@@ -193,6 +245,15 @@
             
             .plaster-container {
                 max-height: 350px;
+            }
+            
+            .create-plaster-form {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 300px;
             }
         }</style>
 </head>
@@ -257,6 +318,9 @@
                                 <div class="col-md-5">                                    <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4 class="mb-0">Пластирі</h4>
                                         <div class="navigation-buttons">
+                                            <button class="btn btn-sm btn-outline-success me-1" id="addPlasterBtn" title="Додати новий пластир">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                             <button class="btn btn-sm btn-outline-primary me-1" id="scrollUpBtn">
                                                 <i class="fas fa-chevron-up"></i>
                                             </button>
