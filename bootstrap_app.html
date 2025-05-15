@@ -232,7 +232,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: transparent;
+            background: rgba(0,0,0,0.5);
             z-index: 40;
         }
         
@@ -378,6 +378,34 @@
                                 </div>
                             </div>
                             
+                            <!-- Форма для створення нового пластиря -->
+                            <div class="create-plaster-form-container position-fixed" style="display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 90%; max-width: 400px;">
+                                <div class="card shadow">
+                                    <div class="card-header bg-primary-subtle d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0">Створення нового пластиря</h5>
+                                        <button type="button" class="btn-close" id="closeCreateFormBtn" aria-label="Close"></button>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="createPlasterForm">
+                                            <div class="mb-3">
+                                                <label for="plasterTitle" class="form-label">Назва пластиря</label>
+                                                <input type="text" class="form-control" id="plasterTitle" placeholder="Введіть назву" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="plasterImage" class="form-label">URL зображення</label>
+                                                <input type="url" class="form-control" id="plasterImage" placeholder="Введіть URL зображення" required>
+                                                <small class="text-muted">Додайте посилання на зображення з інтернету</small>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <button type="button" class="btn btn-secondary" id="cancelPlasterBtn">Скасувати</button>
+                                                <button type="submit" class="btn btn-primary" id="savePlasterBtn">Зберегти</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-overlay" id="formOverlay"></div>
+                            
                             <!-- Інструкції та кнопка скидання -->
                             <div class="mt-4">
                                 <div class="alert alert-info">
@@ -405,7 +433,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get all plasters and problem items
-            const plasters = document.querySelectorAll('.plaster');
+            let plasters = document.querySelectorAll('.plaster');
             const problemItems = document.querySelectorAll('.problem-item');
             const resetBtn = document.getElementById('resetBtn');
               // Add drag event listeners to plasters
@@ -442,6 +470,106 @@
             scrollDownBtn.addEventListener('click', () => {
                 plasterContainer.scrollBy({ top: 150, behavior: 'smooth' });
             });
+            
+            // Функціонал додавання нового пластиря
+            const addPlasterBtn = document.getElementById('addPlasterBtn');
+            const createPlasterForm = document.querySelector('.create-plaster-form-container');
+            const formOverlay = document.getElementById('formOverlay');
+            const closeCreateFormBtn = document.getElementById('closeCreateFormBtn');
+            const cancelPlasterBtn = document.getElementById('cancelPlasterBtn');
+            const createPlasterFormEl = document.getElementById('createPlasterForm');
+            
+            // Показуємо форму при натисканні на кнопку "+"
+            addPlasterBtn.addEventListener('click', () => {
+                createPlasterForm.style.display = 'block';
+                formOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Блокуємо прокрутку сторінки
+            });
+            
+            // Функції закриття форми
+            function closeCreateForm() {
+                createPlasterForm.style.display = 'none';
+                formOverlay.style.display = 'none';
+                document.body.style.overflow = ''; // Дозволяємо прокрутку сторінки
+                createPlasterFormEl.reset(); // Очищаємо форму
+            }
+            
+            closeCreateFormBtn.addEventListener('click', closeCreateForm);
+            cancelPlasterBtn.addEventListener('click', closeCreateForm);
+            formOverlay.addEventListener('click', closeCreateForm);
+            
+            // Зберегти новий пластир
+            createPlasterFormEl.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('plasterTitle').value.trim();
+                const imageUrl = document.getElementById('plasterImage').value.trim();
+                
+                if (!title || !imageUrl) {
+                    alert('Будь ласка, заповніть всі поля');
+                    return;
+                }
+                
+                // Створюємо новий унікальний ID для пластиря
+                const newId = getNextPlasterId();
+                
+                // Створюємо новий елемент пластиря
+                createNewPlaster(newId, title, imageUrl);
+                
+                // Закриваємо форму
+                closeCreateForm();
+            });
+            
+            // Функція для отримання наступного ID пластиря
+            function getNextPlasterId() {
+                let maxId = 0;
+                plasters.forEach(plaster => {
+                    const id = parseInt(plaster.getAttribute('data-plaster-id'));
+                    if (id > maxId) {
+                        maxId = id;
+                    }
+                });
+                return maxId + 1;
+            }
+            
+            // Функція для створення нового пластиря
+            function createNewPlaster(id, title, imageUrl) {
+                // Створюємо новий елемент div для пластиря
+                const newPlaster = document.createElement('div');
+                newPlaster.className = 'plaster';
+                newPlaster.setAttribute('draggable', 'true');
+                newPlaster.setAttribute('data-plaster-id', id);
+                
+                // Створюємо зображення
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = title;
+                
+                // Додаємо зображення до пластиря
+                newPlaster.appendChild(img);
+                
+                // Додаємо новий пластир до контейнера
+                plasterContainer.appendChild(newPlaster);
+                
+                // Додаємо обробники подій до нового пластиря
+                newPlaster.addEventListener('dragstart', dragStart);
+                newPlaster.addEventListener('dragend', dragEnd);
+                
+                // Додаємо подію для клацання по зображенню
+                img.addEventListener('click', showFullImage);
+                
+                // Зберігаємо оригінальний HTML
+                newPlaster.originalHTML = newPlaster.innerHTML;
+                
+                // Прокручуємо до нового пластиря
+                plasterContainer.scrollTo({
+                    top: plasterContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+                
+                // Оновлюємо список плястирів
+                plasters = document.querySelectorAll('.plaster');
+            }
             
             // Drag Functions
             function dragStart() {
