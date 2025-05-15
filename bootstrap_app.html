@@ -59,13 +59,20 @@
             right: 0;
             transform: translateX(5px);
         }
-        
-        .plaster img {
+          .plaster img {
             width: 80%;
             height: 80%;
             object-fit: cover;
             border-radius: 8px;
             z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        /* При наведенні курсором зображення розширюється */
+        .plaster:hover img {
+            width: 95%;
+            height: 95%;
+            transform: scale(1.1);
         }
         
         /* Problem styles */
@@ -75,8 +82,7 @@
             gap: 15px;
             padding: 15px;
         }
-        
-        .problem-item {
+          .problem-item {
             padding: 10px;
             background-color: #f8f9fa;
             border: 2px dashed #ced4da;
@@ -84,19 +90,66 @@
             min-height: 60px;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
         
-        .problem-item.filled {
+        .problem-item span {
+            flex-shrink: 0;
+        }.problem-item.filled {
             border: 2px solid #198754;
             background-color: #d1e7dd;
         }
         
         .applied-plaster {
-            width: 60px;
-            height: 40px;
-            margin-left: 10px;
+            width: 50px;
+            height: 35px;
             object-fit: cover;
             border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .applied-plaster:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .applied-plasters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-left: 10px;
+            align-items: center;
+        }
+        
+        /* Стилі для модального вікна з повним зображенням */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            margin-top: 10%;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
         
         /* Drag and drop styles */
@@ -119,12 +172,16 @@
         
         .plaster-container::-webkit-scrollbar-thumb:hover {
             background: #555;
+        }        /* Highlight effect for better visibility in vertical layout */
+        .plaster {
+            transition: all 0.3s ease;
         }
-          /* Highlight effect for better visibility in vertical layout */
+        
         .plaster:hover {
-            transform: rotate(0deg) scale(1.03);
-            transition: transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            background-color: #FFF8DC;
+            z-index: 10;
         }
         
         /* Style for mobile view */
@@ -270,8 +327,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>    <!-- Bootstrap JS Bundle with Popper -->
+        </div>    </div>
+    
+    <!-- Модальне вікно для перегляду повного зображення -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="modalImage">
+    </div>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
@@ -280,11 +344,14 @@
             const plasters = document.querySelectorAll('.plaster');
             const problemItems = document.querySelectorAll('.problem-item');
             const resetBtn = document.getElementById('resetBtn');
-            
-            // Add drag event listeners to plasters
+              // Add drag event listeners to plasters
             plasters.forEach(plaster => {
                 plaster.addEventListener('dragstart', dragStart);
                 plaster.addEventListener('dragend', dragEnd);
+                
+                // Add click event for full image preview
+                const plasterImg = plaster.querySelector('img');
+                plasterImg.addEventListener('click', showFullImage);
                 
                 // Make a clone of the plaster to restore it later
                 plaster.originalHTML = plaster.innerHTML;
@@ -337,14 +404,11 @@
                     this.style.borderColor = '#ced4da';
                 }
             }
-            
-            function drop(e) {
+              function drop(e) {
                 e.preventDefault();
                 
-                // Check if the problem already has a plaster
-                if (this.classList.contains('filled')) {
-                    return;
-                }
+                // Тепер ми дозволяємо додавати кілька пластирів на одну проблему
+                // Прибираємо перевірку на filled
                 
                 const plasterId = e.dataTransfer.getData('text/plain');
                 const plasterElem = document.querySelector(`.plaster[data-plaster-id="${plasterId}"]`);
@@ -360,7 +424,19 @@
                     appliedImg.classList.add('applied-plaster');
                     appliedImg.setAttribute('data-original-plaster', plasterId);
                     
-                    this.appendChild(appliedImg);
+                    // Додамо обгортку для пластиря, якщо це перший пластир
+                    if (!this.querySelector('.applied-plasters-container')) {
+                        const plastersContainer = document.createElement('div');
+                        plastersContainer.classList.add('applied-plasters-container');
+                        plastersContainer.style.display = 'flex';
+                        plastersContainer.style.flexWrap = 'wrap';
+                        plastersContainer.style.gap = '5px';
+                        plastersContainer.style.marginLeft = '10px';
+                        this.appendChild(plastersContainer);
+                    }
+                    
+                    // Додаємо пластир у контейнер для пластирів
+                    this.querySelector('.applied-plasters-container').appendChild(appliedImg);
                     this.classList.add('filled');
                     
                     // Disable the original plaster
@@ -372,17 +448,17 @@
                     playSuccessSound();
                 }
             }
-            
-            // Reset the exercise
+              // Reset the exercise
             function resetExercise() {
                 // Remove applied plasters from problems
                 problemItems.forEach(problem => {
                     problem.classList.remove('filled');
                     problem.style.borderColor = '#ced4da';
                     
-                    const appliedPlaster = problem.querySelector('.applied-plaster');
-                    if (appliedPlaster) {
-                        problem.removeChild(appliedPlaster);
+                    // Видаляємо контейнер з усіма пластирями
+                    const plastersContainer = problem.querySelector('.applied-plasters-container');
+                    if (plastersContainer) {
+                        problem.removeChild(plastersContainer);
                     }
                 });
                 
@@ -393,13 +469,44 @@
                     plaster.style.cursor = 'grab';
                 });
             }
-            
-            // Optional: Success sound
+              // Optional: Success sound
             function playSuccessSound() {
                 // You can add a sound effect here if needed
                 // const audio = new Audio('path/to/success-sound.mp3');
                 // audio.play();
             }
+            
+            // Модальне вікно для зображень
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.querySelector('.image-modal-close');
+            
+            // Функція для показу повного зображення
+            function showFullImage(e) {
+                e.stopPropagation();
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+            
+            // Закрити модальне вікно при кліку на хрестик
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = "none";
+            });
+            
+            // Закрити модальне вікно при кліку за межами зображення
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+            
+            // Додати відслідковування кліків на прикріплені пластирі для перегляду
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('applied-plaster')) {
+                    modal.style.display = "block";
+                    modalImg.src = e.target.src;
+                }
+            });
         });
     </script>
 </body>
