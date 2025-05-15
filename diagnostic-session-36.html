@@ -1,143 +1,421 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
-  .card {
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 10px;
-  }
-  .card-header {
-    min-height: 50px;
-    font-weight: 600;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    cursor: pointer;
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  .form-group label {
-    font-weight: 500;
-    color: #495057;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .btn-save {
-    background-color: #dddddd;
-    border: none;
-    padding: 10px 20px;
-    font-weight: 500;
-    margin-top: 15px;
-    transition: all 0.3s;
-  }
-  .btn-save:hover {
-    background-color: #cccccc; 
-  }
-  .trigger-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  .trigger-item {
-    width: 180px;
-    height: 200px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    padding: 15px 10px;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-   .trigger-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  .trigger-item.selected {
-    background-color: #e3f2fd;
-    border-color: #4a6fa5;
-  }
-   .trigger-img {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 10px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  .trigger-label {
-    font-size: 16px;
-    font-weight: 500;
-    color: #495057;
-  }
-  .trigger-icon {
-    font-size: 30px;
-    margin-bottom: 10px;
-    color: #4a6fa5;
-  }
-  .trigger-item.selected .trigger-icon {
-    color: #2c3e50;
-  }
-  .trigger-label {
-    font-size: 14px;
-    color: #495057;
-  }
-  .instruction-text {
-    background-color: #f8f9fa;
-    border-left: 4px solid #4a6fa5;
-    padding: 15px;
-    margin-bottom: 25px;
-    border-radius: 0 5px 5px 0;
-  }
-  .symptom-badge {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-  .action-card {
-    transition: transform 0.2s;
-  }
-  .action-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  }
-  .btn-action {
-    display: inline-block;
-    margin-top: 10px;
-  }
-  .next-steps-list .step-item {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .next-steps-list .step-item:hover {
-    background-color: #f8f9fa;
-    transform: translateX(5px);
-  }
-  .next-steps-list .step-item small {
-    font-size: 0.85em;
-    opacity: 0.7;
-  }
-  .collapse-icon {
-    transition: transform 0.3s ease;
-  }
-  .collapsed .collapse-icon {
-    transform: rotate(-90deg);
-  }
-  /* Add a toggle indicator to show that headers are expandable */
-  .expandable-indicator {
-    margin-left: 10px;
-    font-size: 14px;
-    color: #6c757d;
-  }
+    .card {
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .card-header {
+        min-height: 50px;
+        font-weight: 600;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+        cursor: pointer;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: 500;
+        color: #495057;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .btn-save {
+        background-color: #dddddd;
+        border: none;
+        padding: 10px 20px;
+        font-weight: 500;
+        margin-top: 15px;
+        transition: all 0.3s;
+    }
+
+    .btn-save:hover {
+        background-color: #cccccc;
+    }
+
+    .trigger-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .trigger-item {
+        width: 180px;
+        height: 200px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        padding: 15px 10px;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .trigger-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .trigger-item.selected {
+        background-color: #e3f2fd;
+        border-color: #4a6fa5;
+    }
+
+    .trigger-img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .trigger-label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #495057;
+    }
+
+    .trigger-icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+        color: #4a6fa5;
+    }
+
+    .trigger-item.selected .trigger-icon {
+        color: #2c3e50;
+    }
+
+    .trigger-label {
+        font-size: 14px;
+        color: #495057;
+    }
+
+    .instruction-text {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4a6fa5;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-radius: 0 5px 5px 0;
+    }
+
+    .symptom-badge {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .action-card {
+        transition: transform 0.2s;
+    }
+
+    .action-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-action {
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .next-steps-list .step-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .next-steps-list .step-item:hover {
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+
+    .next-steps-list .step-item small {
+        font-size: 0.85em;
+        opacity: 0.7;
+    }
+
+    .collapse-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .collapsed .collapse-icon {
+        transform: rotate(-90deg);
+    }
+
+    /* Add a toggle indicator to show that headers are expandable */
+    .expandable-indicator {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+
+    /* CREATE STYLES FOR EXERCISES with plaster */
+
+    .plaster-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 15px;
+        padding: 15px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+        max-height: 500px;
+        width: 100%;
+    }
+
+    .plaster {
+        width: 90%;
+        height: 100px;
+        background-color: #FFEFD5;
+        border-radius: 15px;
+        padding: 10px;
+        cursor: grab;
+        position: relative;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        transform: rotate(-2deg);
+        margin: 5px auto;
+        flex-shrink: 0;
+    }
+
+    .plaster::before,
+    .plaster::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 110%;
+        background-color: #FFE4B5;
+        top: -5%;
+    }
+
+    .plaster::before {
+        left: 0;
+    }
+
+    .plaster::after {
+        right: 0;
+    }
+
+    .plaster img {
+        width: 80%;
+        height: 80%;
+        object-fit: cover;
+        border-radius: 8px;
+        z-index: 5;
+    }
+
+    /* Image expands when hovered */
+
+    /* Problem styles */
+    .problem-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .problem-item {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border: 2px dashed #ced4da;
+        border-radius: 5px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .problem-item span {
+        flex-shrink: 0;
+    }
+
+    .problem-item.filled {
+        border: 2px solid #198754;
+        background-color: #d1e7dd;
+    }
+
+    .applied-plaster {
+        width: 50px;
+        height: 35px;
+        object-fit: cover;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .applied-plaster:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .applied-plasters-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-left: 10px;
+        align-items: center;
+    }
+
+    /* Styles for full image modal window */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .image-modal-content {
+        margin: auto;
+        display: block;
+        max-width: 80%;
+        max-height: 80%;
+        margin-top: 10%;
+    }
+
+    .image-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Drag and drop styles */
+    .dragging {
+        opacity: 0.5;
+    }
+
+    /* Style for scrollbar */
+    .plaster-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .plaster-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .plaster-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .plaster-container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Highlight effect for better visibility in vertical layout */
+    .plaster {
+        transition: all 0.3s ease;
+    }
+
+    .plaster:hover {
+        transform: rotate(0deg) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        background-color: #FFF8DC;
+        z-index: 10;
+    }
+
+    /* Styles for adding new plaster form */
+    .create-plaster-btn {
+        width: 90%;
+        height: 100px;
+        background-color: #e9f5ff;
+        border-radius: 15px;
+        padding: 10px;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin: 5px auto;
+        flex-shrink: 0;
+        border: 2px dashed #007bff;
+        transition: all 0.3s ease;
+    }
+
+    .create-plaster-btn:hover {
+        background-color: #d0e8ff;
+        transform: scale(1.02);
+    }
+
+    .create-plaster-form {
+        display: none;
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        z-index: 50;
+    }
+
+    .create-plaster-form.active {
+        display: block;
+    }
+
+    .form-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+    }
+
+    /* Style for mobile view */
+    @media (max-width: 768px) {
+        .plaster {
+            width: 95%;
+            height: 80px;
+        }
+
+        .plaster-container {
+            max-height: 350px;
+        }
+
+        .create-plaster-form {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 300px;
+        }
+    }
 </style>
 
 
@@ -145,36 +423,43 @@
 
 <div class="container py-4">
     <h2 class="mb-2 text-center">Patient Medical Record</h2>
-    
+
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseSessionDetails">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseSessionDetails">
             <h5 class="mb-0">Session details</h5>
             <i class="bi bi-chevron-down collapse-icon"></i>
-        </div>            
+        </div>
         <div class="collapse show" id="collapseSessionDetails" data-parent="#caseModules">
             <div class="card-body">
                 <div class="mb-4">
                     <h5 class="d-flex justify-content-between">
                         Goal of Consultation
-                        <i class="bi bi-pencil edit-icon-session" style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
+                        <i class="bi bi-pencil edit-icon-session"
+                            style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
                     </h5>
                     <div class="form-group">
-                        <div class="content-display" id="consultationGoalDisplay">To assess the current state of eating disorder, establish rapport with the patient and family, and develop an initial treatment plan.</div>
-                        <textarea class="form-control d-none" id="consultationGoal" rows="3" placeholder="Enter consultation goal...">To assess the current state of eating disorder, establish rapport with the patient and family, and develop an initial treatment plan.</textarea>
+                        <div class="content-display" id="consultationGoalDisplay">To assess the current state of eating
+                            disorder, establish rapport with the patient and family, and develop an initial treatment
+                            plan.</div>
+                        <textarea class="form-control d-none" id="consultationGoal" rows="3"
+                            placeholder="Enter consultation goal...">To assess the current state of eating disorder, establish rapport with the patient and family, and develop an initial treatment plan.</textarea>
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <h5 class="d-flex justify-content-between">
                         Observations
-                        <i class="bi bi-pencil edit-icon-session" style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
+                        <i class="bi bi-pencil edit-icon-session"
+                            style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
                     </h5>
                     <div class="form-group">
                         <div class="content-display" id="observationsDisplay">- Patient appears anxious but cooperative
-- Notable difficulty discussing eating habits
-- Physical appearance indicates significant weight loss
-- Good verbal communication skills despite emotional distress</div>
-                        <textarea class="form-control d-none" id="observations" rows="4" placeholder="Enter observations...">- Patient appears anxious but cooperative
+                            - Notable difficulty discussing eating habits
+                            - Physical appearance indicates significant weight loss
+                            - Good verbal communication skills despite emotional distress</div>
+                        <textarea class="form-control d-none" id="observations" rows="4"
+                            placeholder="Enter observations...">- Patient appears anxious but cooperative
 - Notable difficulty discussing eating habits
 - Physical appearance indicates significant weight loss
 - Good verbal communication skills despite emotional distress</textarea>
@@ -184,18 +469,25 @@
                 <div class="mb-4">
                     <h5 class="d-flex justify-content-between">
                         Session Summary
-                        <i class="bi bi-pencil edit-icon-session" style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
+                        <i class="bi bi-pencil edit-icon-session"
+                            style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
                     </h5>
                     <div class="form-group">
-                        <div class="content-display" id="sessionSummaryDisplay">The initial session established a foundation for treatment. Patient exhibits classic ED symptoms with anxiety components. Family support system is present and engaged. Immediate concerns include weight stabilization and anxiety management. Treatment plan will focus on family-based approach with individual therapy components.</div>
-                        <textarea class="form-control d-none" id="sessionSummary" rows="4" placeholder="Enter session summary...">The initial session established a foundation for treatment. Patient exhibits classic ED symptoms with anxiety components. Family support system is present and engaged. Immediate concerns include weight stabilization and anxiety management. Treatment plan will focus on family-based approach with individual therapy components.</textarea>
+                        <div class="content-display" id="sessionSummaryDisplay">The initial session established a
+                            foundation for treatment. Patient exhibits classic ED symptoms with anxiety components.
+                            Family support system is present and engaged. Immediate concerns include weight
+                            stabilization and anxiety management. Treatment plan will focus on family-based approach
+                            with individual therapy components.</div>
+                        <textarea class="form-control d-none" id="sessionSummary" rows="4"
+                            placeholder="Enter session summary...">The initial session established a foundation for treatment. Patient exhibits classic ED symptoms with anxiety components. Family support system is present and engaged. Immediate concerns include weight stabilization and anxiety management. Treatment plan will focus on family-based approach with individual therapy components.</textarea>
                     </div>
                 </div>
-                
+
                 <div class="mb-4">
                     <h5 class="d-flex justify-content-between">
                         Next Steps
-                        <i class="bi bi-pencil edit-icon-session" style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
+                        <i class="bi bi-pencil edit-icon-session"
+                            style="cursor: pointer; font-size: 0.8em; color: #6c757d;"></i>
                     </h5>
                     <div class="form-group">
                         <div class="content-display next-steps-list" id="nextStepsDisplay">
@@ -212,144 +504,99 @@
 5. Regular check-ins with support system</textarea>
                     </div>
                 </div>
-                
+
                 <div class="mt-4">
-                    <button class="btn btn-secondary btn-small" id="endSessionBtn" style="background-color: #6c757d; border-color: #6c757d;">
+                    <button class="btn btn-secondary btn-small" id="endSessionBtn"
+                        style="background-color: #6c757d; border-color: #6c757d;">
                         <i class="bi bi-check-circle me-2"></i>End Session
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseCaseDetails">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseCaseDetails">
             <h5 class="mb-0">Case details: Eating disorders (EDs)</h5>
             <i class="bi bi-chevron-down collapse-icon"></i>
         </div>
-    
+
         <div class="collapse" id="collapseCaseDetails" data-parent="#caseModules">
             <div class="card-body">
                 <table class="table table-bordered table-hover">
                     <thead class="table-light">
-                    <tr>
-                        <th scope="col">Category</th>
-                        <th scope="col">Content</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col">Content</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Target appeals</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                Weight loss, increased anxiety. The main goal is to stabilize eating behavior and improve psycho-emotional state. Involve the entire family in the therapeutic process.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Clinical symptoms</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                Recurrent episodes of compulsive overeating with loss of control, anxiety, weight loss. Additionally, increased self-criticism, avoidance of shared meals.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Somatic/biological background</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                The general health condition is stable, but significant weight loss has been recorded over the past 6 months. Preliminary data: no serious chronic diseases, regular menstrual cycle is disturbed.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Family context</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                Complete family: mother, father, older brother. Tense relationship between child and mother, authoritarian parenting style. Family is willing to participate in family therapy.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>School/educational situation</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                Grade 11, high academic performance. There is strong perfectionism, fear of failure. Relationships with teachers are normal, there are episodes of social isolation among peers.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Resources and support</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                The family is willing to participate in the therapeutic process. The girl has a friend who supports her. Hobbies: drawing, blogging. Strengths are noted - responsibility, empathy.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseHistory">
-            <h5 class="mb-0">History of behavior, social development, and events in the child's life </h5>
-            <i class="bi bi-chevron-down collapse-icon"></i>
-        </div>
-    
-        <div class="collapse" id="collapseHistory" data-parent="#caseModules">
-            <div class="card-body">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-light">
-                    <tr>
-                        <th scope="col">Period</th>
-                        <th scope="col">Biological, Psychological, Social component Events/Facts</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Target appeals</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                Weight loss, increased anxiety. The main goal is to stabilize eating behavior and improve psycho-emotional state. Involve the entire family in the therapeutic process.
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Remote events</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Recent Life Events</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Current state of the patient</td>
-                        <td class="editable-cell">
-                            <div class="cell-content">
-                                
-                            </div>
-                            <i class="bi bi-pencil edit-icon"></i>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>Target appeals</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Weight loss, increased anxiety. The main goal is to stabilize eating behavior and
+                                    improve psycho-emotional state. Involve the entire family in the therapeutic
+                                    process.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Clinical symptoms</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Recurrent episodes of compulsive overeating with loss of control, anxiety, weight
+                                    loss. Additionally, increased self-criticism, avoidance of shared meals.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Somatic/biological background</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    The general health condition is stable, but significant weight loss has been
+                                    recorded over the past 6 months. Preliminary data: no serious chronic diseases,
+                                    regular menstrual cycle is disturbed.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Family context</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Complete family: mother, father, older brother. Tense relationship between child and
+                                    mother, authoritarian parenting style. Family is willing to participate in family
+                                    therapy.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>School/educational situation</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Grade 11, high academic performance. There is strong perfectionism, fear of failure.
+                                    Relationships with teachers are normal, there are episodes of social isolation among
+                                    peers.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Resources and support</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    The family is willing to participate in the therapeutic process. The girl has a
+                                    friend who supports her. Hobbies: drawing, blogging. Strengths are noted -
+                                    responsibility, empathy.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -357,7 +604,69 @@
     </div>
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseSymptoms">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseHistory">
+            <h5 class="mb-0">History of behavior, social development, and events in the child's life </h5>
+            <i class="bi bi-chevron-down collapse-icon"></i>
+        </div>
+
+        <div class="collapse" id="collapseHistory" data-parent="#caseModules">
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Period</th>
+                            <th scope="col">Biological, Psychological, Social component Events/Facts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Target appeals</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+                                    Weight loss, increased anxiety. The main goal is to stabilize eating behavior and
+                                    improve psycho-emotional state. Involve the entire family in the therapeutic
+                                    process.
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Remote events</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Recent Life Events</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Current state of the patient</td>
+                            <td class="editable-cell">
+                                <div class="cell-content">
+
+                                </div>
+                                <i class="bi bi-pencil edit-icon"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseSymptoms">
             <h5 class="mb-0">Symptoms</h5>
             <i class="bi bi-chevron-down collapse-icon"></i>
         </div>
@@ -365,14 +674,16 @@
             <div class="card-body">
                 <h6>Present Symptoms:</h6>
                 <div class="d-flex flex-wrap">
-                    <span class="badge bg-danger symptom-badge">Recurrent episodes of compulsive overeating and loss of control at the same time</span>
+                    <span class="badge bg-danger symptom-badge">Recurrent episodes of compulsive overeating and loss of
+                        control at the same time</span>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="card">
-        <div class="card-header d-flex bg-info justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseDiagnostics">
+        <div class="card-header d-flex bg-info justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseDiagnostics">
             <h5 class="mb-0"><i class="bi bi-clipboard-check me-2"></i>Diagnostic Exercises</h5>
             <i class="bi bi-chevron-down collapse-icon"></i>
         </div>
@@ -380,20 +691,25 @@
             <div class="card-body">
                 <div class="mb-4">
                     <h5><i class="bi bi-book me-2"></i>Exercise 1: My Emotional Story</h5>
-                    
+
                     <div class="instruction-text">
-                        <p>This exercise helps identify and process emotional experiences. By structuring your story, you can gain insight into your feelings and needs. Complete each section honestly - there are no right or wrong answers.</p>
-                        <p><strong>Tip:</strong> Try to focus on specific events and how they made you feel, rather than general statements.</p>
+                        <p>This exercise helps identify and process emotional experiences. By structuring your story,
+                            you can gain insight into your feelings and needs. Complete each section honestly - there
+                            are no right or wrong answers.</p>
+                        <p><strong>Tip:</strong> Try to focus on specific events and how they made you feel, rather than
+                            general statements.</p>
                     </div>
-                    
+
                     <form class="story-form">
                         <div class="form-group">
                             <label for="startWith">It all started when...</label>
-                            <input type="text" class="form-control" id="startWith" placeholder="Describe the beginning of the situation">
+                            <input type="text" class="form-control" id="startWith"
+                                placeholder="Describe the beginning of the situation">
                         </div>
                         <div class="form-group">
                             <label for="thenInMyMind">Then, in my mind...</label>
-                            <input type="text" class="form-control" id="thenInMyMind" placeholder="What thoughts went through your head">
+                            <input type="text" class="form-control" id="thenInMyMind"
+                                placeholder="What thoughts went through your head">
                         </div>
                         <div class="form-group">
                             <label for="afterThat">After that...</label>
@@ -401,33 +717,40 @@
                         </div>
                         <div class="form-group">
                             <label for="feelings">The feelings I experienced were...</label>
-                            <input type="text" class="form-control" id="feelings" placeholder="List your emotional reactions">
+                            <input type="text" class="form-control" id="feelings"
+                                placeholder="List your emotional reactions">
                         </div>
                         <div class="form-group">
                             <label for="thinkingThat">I think what I was feeling was...</label>
-                            <input type="text" class="form-control" id="thinkingThat" placeholder="Your interpretation of those feelings">
+                            <input type="text" class="form-control" id="thinkingThat"
+                                placeholder="Your interpretation of those feelings">
                         </div>
                         <div class="form-group">
                             <label for="betterIf">It would have been better if I felt...</label>
-                            <input type="text" class="form-control" id="betterIf" placeholder="What emotions would have been healthier">
+                            <input type="text" class="form-control" id="betterIf"
+                                placeholder="What emotions would have been healthier">
                         </div>
                         <div class="form-group">
                             <label for="iNeed">What I need is...</label>
                             <input type="text" class="form-control" id="iNeed" placeholder="Your current needs">
                             <small class="text-muted mt-1 d-block">because...</small>
-                            <input type="text" class="form-control mt-2" id="because" placeholder="Reason for these needs">
+                            <input type="text" class="form-control mt-2" id="because"
+                                placeholder="Reason for these needs">
                         </div>
                         <div class="form-group">
                             <label for="feelBetter">I feel better when...</label>
-                            <input type="text" class="form-control" id="feelBetter" placeholder="What helps you feel improved">
+                            <input type="text" class="form-control" id="feelBetter"
+                                placeholder="What helps you feel improved">
                         </div>
                         <div class="form-group">
                             <label for="supportPeople">People who can support me:</label>
-                            <input type="text" class="form-control" id="supportPeople" placeholder="List supportive individuals">
+                            <input type="text" class="form-control" id="supportPeople"
+                                placeholder="List supportive individuals">
                         </div>
                         <div class="form-group">
                             <label for="selfFeeling">When I'm upset, I...</label>
-                            <input type="text" class="form-control" id="selfFeeling" placeholder="Your coping mechanisms">
+                            <input type="text" class="form-control" id="selfFeeling"
+                                placeholder="Your coping mechanisms">
                             <small class="text-muted mt-1 d-block">to feel better again.</small>
                         </div>
                         <button type="button" class="btn btn-save">
@@ -435,61 +758,261 @@
                         </button>
                     </form>
                 </div>
-                
+
                 <div>
                     <h5><i class="bi bi-lightning me-2"></i>Exercise 2: Identify Emotional Triggers</h5>
-                    
+
                     <div class="instruction-text">
-                        <p>Select any icons below that represent situations or stimuli that trigger strong emotional reactions for you. This helps identify patterns in what may cause distress.</p>
-                        <p><strong>Note:</strong> Many people with eating disorders have specific triggers around food, body image, or social situations. Select all that apply to you.</p>
+                        <p>Select any icons below that represent situations or stimuli that trigger strong emotional
+                            reactions for you. This helps identify patterns in what may cause distress.</p>
+                        <p><strong>Note:</strong> Many people with eating disorders have specific triggers around food,
+                            body image, or social situations. Select all that apply to you.</p>
                     </div>
-                    
+
                     <div class="trigger-container">
                         <div class="trigger-item">
-                            <img src="https://plus.unsplash.com/premium_photo-1661777702966-aed29ab4106b?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Meal Times" class="trigger-img" loading="lazy">
+                            <img src="https://plus.unsplash.com/premium_photo-1661777702966-aed29ab4106b?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Meal Times" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Meal Times</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://plus.unsplash.com/premium_photo-1681400641919-d5d03f6c0720?q=80&amp;w=2021&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Weighing" class="trigger-img" loading="lazy">
+                            <img src="https://plus.unsplash.com/premium_photo-1681400641919-d5d03f6c0720?q=80&amp;w=2021&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Weighing" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Weighing</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://images.unsplash.com/photo-1624553492354-7e52d86ad537?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Social Events" class="trigger-img" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1624553492354-7e52d86ad537?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Social Events" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Social Events</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://images.unsplash.com/photo-1529939620248-273fd31a7cdf?q=80&amp;w=2063&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Comments" class="trigger-img" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1529939620248-273fd31a7cdf?q=80&amp;w=2063&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Comments" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Comments</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://plus.unsplash.com/premium_photo-1713586579594-f3b6b1ef03ca?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clothing" class="trigger-img" loading="lazy">
+                            <img src="https://plus.unsplash.com/premium_photo-1713586579594-f3b6b1ef03ca?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Clothing" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Clothing</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://images.unsplash.com/photo-1620847227885-5e879f5750fe?q=80&amp;w=1974&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mirrors" class="trigger-img" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1620847227885-5e879f5750fe?q=80&amp;w=1974&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Mirrors" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Mirrors</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://images.unsplash.com/photo-1561311943-3c6efcf0cba7?q=80&amp;w=2127&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Appointments" class="trigger-img" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1561311943-3c6efcf0cba7?q=80&amp;w=2127&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Appointments" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Fireworks</div>
                         </div>
                         <div class="trigger-item">
-                            <img src="https://images.unsplash.com/photo-1511989130945-c2b632959395?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Medical Exams" class="trigger-img" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1511989130945-c2b632959395?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Medical Exams" class="trigger-img" loading="lazy">
                             <div class="trigger-label">Man in uniform</div>
                         </div>
                     </div>
-                    
+
                     <button type="button" class="btn btn-save">
                         <i class="bi bi-save me-2"></i>Save Selected Triggers
                     </button>
                 </div>
 
+                <div style="margin-top: 20px;">
+                    <h5><i class="bi bi-lightning me-2"></i>Exercise 3: Identify Emotional Triggers</h5>
+
+                    <div class="instruction-text">
+                        <p>Use this tool to help your patient explore emotional triggers related to their eating behaviors and mental health. 
+                        Ask them to drag any of the <strong>plasters</strong> onto the issues they find emotionally difficult or sensitive.</p>
+
+                        <p>This interactive activity is designed to uncover patterns of distress by visually mapping triggers such as food-related situations, 
+                        body image concerns, family dynamics, or social stressors.</p>
+
+                        <p><strong>Clinical Tip:</strong> If the patient does not identify with the preset options, you can click the <strong>“+”</strong> button to create a custom plaster that reflects their specific experience.</p>
+                    </div>
+
+
+                    <div id="contentSection" class="collapse show" aria-labelledby="headerSection">
+                        <div class="card-body">
+                            <div class="row"> <!-- Problems (left) -->
+                                <div class="col-md-7">
+                                    <h4 class="mb-3">Problems</h4>
+                                    <div class="problem-container">
+                                        <div class="problem-item" data-problem-id="1">
+                                            <span>Low self-esteem</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="2">
+                                            <span>Poor family eating habits</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="3">
+                                            <span>Lack of support from loved ones</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="4">
+                                            <span>Social isolation</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="5">
+                                            <span>Sleep pattern disruption</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="6">
+                                            <span>Negative thoughts and attitudes</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="7">
+                                            <span>Excessive anxiety</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="8">
+                                            <span>Concentration problems</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="9">
+                                            <span>Lack of physical activity</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="10">
+                                            <span>Relationship problems with others</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- Plasters (right) -->
+                                <div class="col-md-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="mb-0">Plasters</h4>
+                                        <div class="navigation-buttons">
+                                            <button class="btn btn-sm btn-outline-success me-1" id="addPlasterBtn"
+                                                title="Add new plaster">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-primary me-1" id="scrollUpBtn">
+                                                <i class="fas fa-chevron-up"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-primary" id="scrollDownBtn">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="plaster-container">
+                                        <div class="plaster" draggable="true" data-plaster-id="1">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 1">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="2">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 2">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="3">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                alt="Plaster 3">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="4">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 4">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="5">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 5">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="6">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 6">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="7">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 7">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="8">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                alt="Plaster 8">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="9">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 9">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="10">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 10">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="11">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 11">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="12">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                alt="Plaster 12">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="13">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 13">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="14">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 14">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="15">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 15">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Form for creating a new plaster -->
+                            <div class="create-plaster-form-container position-fixed"
+                                style="display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 90%; max-width: 400px;">
+                                <div class="card shadow">
+                                    <div
+                                        class="card-header bg-primary-subtle d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0">Create a new plaster</h5>
+                                        <button type="button" class="btn-close" id="closeCreateFormBtn"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="createPlasterForm">
+                                            <div class="mb-3">
+                                                <label for="plasterTitle" class="form-label">Plaster
+                                                    name</label>
+                                                <input type="text" class="form-control" id="plasterTitle"
+                                                    placeholder="Enter name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="plasterDescription" class="form-label">Plaster
+                                                    description</label>
+                                                <textarea class="form-control" id="plasterDescription"
+                                                    placeholder="Enter description" rows="3"></textarea>
+                                                <small class="text-muted">Describe your "plaster" for solving
+                                                    the
+                                                    problem</small>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="cancelPlasterBtn">Cancel</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    id="savePlasterBtn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-overlay" id="formOverlay"></div>
+                            <div class="mt-4">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> Drag the plasters from the right side
+                                    onto the
+                                    problems on the left to "cure" them.
+                                </div>
+                                <button class="btn btn-warning" id="resetBtn">
+                                    <i class="fas fa-redo"></i> Reset exercise
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="imageModal" class="image-modal">
+                        <span class="image-modal-close">&times;</span>
+                        <img class="image-modal-content" id="modalImage">
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-    
+
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseRecommendations">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseRecommendations">
             <h5 class="mb-0">Recommendations </h5>
             <i class="bi bi-chevron-down collapse-icon"></i>
         </div>
@@ -516,9 +1039,10 @@
             </div>
         </div>
     </div>
-    
+
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseTherapeuticActions">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#collapseTherapeuticActions">
             <h5 class="mb-0">Therapeutic Actions </h5>
             <i class="bi bi-chevron-down collapse-icon"></i>
         </div>
@@ -540,7 +1064,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="card mb-3 action-card border-success">
                         <div class="card-body">
                             <h6 class="card-title">
@@ -558,7 +1082,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="card mb-3 action-card border-warning">
                         <div class="card-body">
                             <h6 class="card-title">
@@ -571,13 +1095,14 @@
                                     Family is involved in the treatment process
                                 </label>
                             </div>
-                            <small class="text-muted d-block mb-2">Family composition is available in patient information</small>
+                            <small class="text-muted d-block mb-2">Family composition is available in patient
+                                information</small>
                             <button type="button" class="btn btn-outline-warning btn-action">
                                 <i class="bi bi-people me-2"></i>Family work completed
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="card mb-3 action-card border-info">
                         <div class="card-body">
                             <h6 class="card-title">
@@ -590,7 +1115,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="card mb-3 action-card border-danger">
                         <div class="card-body">
                             <h6 class="card-title">
@@ -598,7 +1123,8 @@
                                 5. Assign a psychiatrist for assessment of comorbid disorder
                             </h6>
                             <p class="card-text">Create an appointment with the psychiatrist and adolescent</p>
-                            <a href="https://odoo.proxy.abtollc.com/odoo/calendar/calendar.event/new" class="btn btn-outline-danger btn-action">
+                            <a href="https://odoo.proxy.abtollc.com/odoo/calendar/calendar.event/new"
+                                class="btn btn-outline-danger btn-action">
                                 <i class="bi bi-calendar-plus me-2"></i>Create appointment
                             </a>
                         </div>
@@ -612,7 +1138,7 @@
 <script>
     function scrollToAction(actionId) {
         let targetElement;
-        switch(actionId) {
+        switch (actionId) {
             case 'weight':
                 targetElement = document.querySelector('.action-card.border-primary');
                 break;
@@ -639,19 +1165,19 @@
     }
     document.addEventListener('DOMContentLoaded', function () {
         const triggerItems = document.querySelectorAll('.trigger-item');
-    triggerItems.forEach(item => {
-      item.addEventListener('click', function() {
-        this.classList.toggle('selected');
-      });
-    });
-        
+        triggerItems.forEach(item => {
+            item.addEventListener('click', function () {
+                this.classList.toggle('selected');
+            });
+        });
+
         const saveButtons = document.querySelectorAll('.btn-save');
         saveButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const originalText = this.innerHTML;
                 this.innerHTML = '<i class="bi bi-check me-2"></i>Saved!';
                 this.disabled = true;
-                
+
                 setTimeout(() => {
                     this.innerHTML = originalText;
                     this.disabled = false;
@@ -699,17 +1225,17 @@
                 icon.addEventListener('click', makeEditable);
             });
         }
-        
+
         bindEditIcons();
-        
+
         // Handle session content editing
         const editIcons = document.querySelectorAll('.edit-icon-session');
         editIcons.forEach(icon => {
-            icon.addEventListener('click', function() {
+            icon.addEventListener('click', function () {
                 const section = this.closest('.mb-4');
                 const display = section.querySelector('.content-display');
                 const textarea = section.querySelector('textarea');
-                
+
                 if (display.classList.contains('d-none')) {
                     // Save mode
                     display.textContent = textarea.value;
@@ -728,7 +1254,7 @@
         // Handle End Session button
         const endSessionBtn = document.getElementById('endSessionBtn');
         if (endSessionBtn) {
-            endSessionBtn.addEventListener('click', function() {
+            endSessionBtn.addEventListener('click', function () {
                 const goal = document.getElementById('consultationGoal').value;
                 const observations = document.getElementById('observations').value;
                 const summary = document.getElementById('sessionSummary').value;
@@ -740,5 +1266,397 @@
                 }
             });
         }
+
+
+
+        
     });
+
+
+            // CODE FOR DRUG AND DROPPPP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    document.addEventListener('DOMContentLoaded', function () {
+            // Get all plasters and problem items
+            let plasters = document.querySelectorAll('.plaster');
+            const problemItems = document.querySelectorAll('.problem-item');
+            const resetBtn = document.getElementById('resetBtn');
+            // Add drag event listeners to plasters
+            plasters.forEach(plaster => {
+                plaster.addEventListener('dragstart', dragStart);
+                plaster.addEventListener('dragend', dragEnd);
+
+                // Add click event for full image preview
+                const plasterImg = plaster.querySelector('img');
+                plasterImg.addEventListener('click', showFullImage);
+
+                // Make a clone of the plaster to restore it later
+                plaster.originalHTML = plaster.innerHTML;
+            });
+
+            // Add drop event listeners to problem items
+            problemItems.forEach(problem => {
+                problem.addEventListener('dragover', dragOver);
+                problem.addEventListener('dragenter', dragEnter);
+                problem.addEventListener('dragleave', dragLeave);
+                problem.addEventListener('drop', drop);
+            });
+            // Reset button functionality
+            resetBtn.addEventListener('click', resetExercise);
+            // Scroll buttons functionality
+            const scrollUpBtn = document.getElementById('scrollUpBtn');
+            const scrollDownBtn = document.getElementById('scrollDownBtn');
+            const plasterContainer = document.querySelector('.plaster-container');
+
+            scrollUpBtn.addEventListener('click', () => {
+                plasterContainer.scrollBy({ top: -150, behavior: 'smooth' });
+            });
+
+            scrollDownBtn.addEventListener('click', () => {
+                plasterContainer.scrollBy({ top: 150, behavior: 'smooth' });
+            });
+            // Functionality for adding a new plaster
+            const addPlasterBtn = document.getElementById('addPlasterBtn');
+            const createPlasterForm = document.querySelector('.create-plaster-form-container');
+            const formOverlay = document.getElementById('formOverlay');
+            const closeCreateFormBtn = document.getElementById('closeCreateFormBtn');
+            const cancelPlasterBtn = document.getElementById('cancelPlasterBtn');
+            const createPlasterFormEl = document.getElementById('createPlasterForm');
+
+            // Show form when "+" button is clicked
+            addPlasterBtn.addEventListener('click', () => {
+                createPlasterForm.style.display = 'block';
+                formOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Block page scrolling
+            });
+
+            // Form closing functions
+            function closeCreateForm() {
+                createPlasterForm.style.display = 'none';
+                formOverlay.style.display = 'none';
+                document.body.style.overflow = ''; // Allow page scrolling
+                createPlasterFormEl.reset(); // Clear the form
+            }
+
+            closeCreateFormBtn.addEventListener('click', closeCreateForm);
+            cancelPlasterBtn.addEventListener('click', closeCreateForm);
+            formOverlay.addEventListener('click', closeCreateForm);            // Save new plaster
+            createPlasterFormEl.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const title = document.getElementById('plasterTitle').value.trim();
+                const description = document.getElementById('plasterDescription').value.trim();
+
+                if (!title) {
+                    alert('Please enter a plaster name');
+                    return;
+                }
+
+                // Create a new unique ID for the plaster
+                const newId = getNextPlasterId();
+
+                // Create a new plaster element
+                createNewPlaster(newId, title, description);
+
+                // Close the form
+                closeCreateForm();
+            });
+
+            // Function to get the next plaster ID
+            function getNextPlasterId() {
+                let maxId = 0;
+                plasters.forEach(plaster => {
+                    const id = parseInt(plaster.getAttribute('data-plaster-id'));
+                    if (id > maxId) {
+                        maxId = id;
+                    }
+                });
+                return maxId + 1;
+            }              // Function to create a new plaster
+            function createNewPlaster(id, title, description) {
+                // Create a new div element for the plaster
+                const newPlaster = document.createElement('div');
+                newPlaster.className = 'plaster';
+                newPlaster.setAttribute('draggable', 'true');
+                newPlaster.setAttribute('data-plaster-id', id);
+                newPlaster.setAttribute('data-title', title);
+                newPlaster.setAttribute('data-description', description || '');
+
+                // Create text content
+                const textContent = document.createElement('div');
+                textContent.className = 'plaster-text';
+                textContent.innerText = title;
+                textContent.style.width = '80%';
+                textContent.style.height = '80%';
+                textContent.style.display = 'flex';
+                textContent.style.justifyContent = 'center';
+                textContent.style.alignItems = 'center';
+                textContent.style.fontWeight = 'bold';
+                textContent.style.textAlign = 'center';
+                textContent.style.color = '#333';
+                textContent.style.fontSize = '16px';
+                textContent.style.padding = '8px';
+                textContent.style.borderRadius = '8px';
+                textContent.style.backgroundColor = '#fff';
+                textContent.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                textContent.style.zIndex = '5';
+                textContent.style.wordBreak = 'break-word';
+                textContent.style.overflow = 'hidden';
+
+                // Add text to the plaster
+                newPlaster.appendChild(textContent);
+
+                // Add the new plaster to the container
+                plasterContainer.appendChild(newPlaster);
+
+                // Add event handlers to the new plaster
+                newPlaster.addEventListener('dragstart', dragStart);
+                newPlaster.addEventListener('dragend', dragEnd);
+
+                // Add event for clicking on text
+                newPlaster.addEventListener('click', showPlasterDetails);
+
+                // Save the original HTML
+                newPlaster.originalHTML = newPlaster.innerHTML;
+
+                // Scroll to the new plaster
+                plasterContainer.scrollTo({
+                    top: plasterContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+
+                // Update the list of plasters
+                plasters = document.querySelectorAll('.plaster');
+            }
+
+            // Drag Functions
+            function dragStart() {
+                this.classList.add('dragging');
+                // Store the plaster's ID for drop handling
+                event.dataTransfer.setData('text/plain', this.getAttribute('data-plaster-id'));
+            }
+
+            function dragEnd() {
+                this.classList.remove('dragging');
+            }
+
+            function dragOver(e) {
+                e.preventDefault();
+            }
+
+            function dragEnter(e) {
+                e.preventDefault();
+                this.style.borderColor = '#198754';
+            }
+
+            function dragLeave() {
+                if (!this.classList.contains('filled')) {
+                    this.style.borderColor = '#ced4da';
+                }
+            } function drop(e) {
+                e.preventDefault();
+
+                // Now we allow adding multiple plasters to one problem
+
+                const plasterId = e.dataTransfer.getData('text/plain');
+                const plasterElem = document.querySelector(`.plaster[data-plaster-id="${plasterId}"]`);
+
+                if (plasterElem) {
+                    // Check if this is a plaster with an image or text
+                    const img = plasterElem.querySelector('img');
+                    const textContent = plasterElem.querySelector('.plaster-text');
+
+                    // Add a wrapper for the plaster if this is the first plaster
+                    if (!this.querySelector('.applied-plasters-container')) {
+                        const plastersContainer = document.createElement('div');
+                        plastersContainer.classList.add('applied-plasters-container');
+                        plastersContainer.style.display = 'flex';
+                        plastersContainer.style.flexWrap = 'wrap';
+                        plastersContainer.style.gap = '5px';
+                        plastersContainer.style.marginLeft = '10px';
+                        this.appendChild(plastersContainer);
+                    }
+
+                    if (img) {
+                        // If this is a plaster with an image
+                        const imgSrc = img.getAttribute('src');
+                        const appliedImg = document.createElement('img');
+                        appliedImg.src = imgSrc;
+                        appliedImg.classList.add('applied-plaster');
+                        appliedImg.setAttribute('data-original-plaster', plasterId);
+
+                        // Add the plaster to the plasters container
+                        this.querySelector('.applied-plasters-container').appendChild(appliedImg);
+                    } else if (textContent) {
+                        // If this is a text plaster
+                        const appliedText = document.createElement('div');
+                        appliedText.innerText = textContent.innerText;
+                        appliedText.classList.add('applied-plaster', 'applied-text-plaster');
+                        appliedText.setAttribute('data-original-plaster', plasterId);
+                        appliedText.setAttribute('data-title', plasterElem.getAttribute('data-title') || '');
+                        appliedText.setAttribute('data-description', plasterElem.getAttribute('data-description') || '');
+                        appliedText.style.width = '60px';
+                        appliedText.style.height = '35px';
+                        appliedText.style.display = 'flex';
+                        appliedText.style.justifyContent = 'center';
+                        appliedText.style.alignItems = 'center';
+                        appliedText.style.backgroundColor = '#fff8dc';
+                        appliedText.style.border = '1px solid #ddd';
+                        appliedText.style.borderRadius = '5px';
+                        appliedText.style.fontSize = '10px';
+                        appliedText.style.fontWeight = 'bold';
+                        appliedText.style.overflow = 'hidden';
+                        appliedText.style.cursor = 'pointer';
+
+                        // Add the plaster to the plasters container
+                        this.querySelector('.applied-plasters-container').appendChild(appliedText);
+                    }
+
+                    this.classList.add('filled');
+
+                    // Disable the original plaster
+                    plasterElem.style.opacity = '0.5';
+                    plasterElem.setAttribute('draggable', 'false');
+                    plasterElem.style.cursor = 'not-allowed';
+
+                    // Play a success sound (optional)
+                    playSuccessSound();
+                }
+            }
+            // Reset the exercise
+            function resetExercise() {
+                // Remove applied plasters from problems
+                problemItems.forEach(problem => {
+                    problem.classList.remove('filled');
+                    problem.style.borderColor = '#ced4da';
+
+                    // Видаляємо контейнер з усіма пластирями
+                    const plastersContainer = problem.querySelector('.applied-plasters-container');
+                    if (plastersContainer) {
+                        problem.removeChild(plastersContainer);
+                    }
+                });
+
+                // Reset all plasters
+                plasters.forEach(plaster => {
+                    plaster.style.opacity = '1';
+                    plaster.setAttribute('draggable', 'true');
+                    plaster.style.cursor = 'grab';
+                });
+            }
+            // Optional: Success sound
+            function playSuccessSound() {
+                // You can add a sound effect here if needed
+                // const audio = new Audio('path/to/success-sound.mp3');
+                // audio.play();
+            }
+
+            // Модальне вікно для зображень
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.querySelector('.image-modal-close');
+
+            // Функція для показу повного зображення
+            function showFullImage(e) {
+                e.stopPropagation();
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+
+            // Закрити модальне вікно при кліку на хрестик
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = "none";
+            });
+            // Закрити модальне вікно при кліку за межами зображення
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // Додати відслідковування кліків на прикріплені пластирі для перегляду
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('applied-plaster')) {
+                    if (e.target.tagName === 'IMG') {
+                        // Якщо це картинка
+                        modal.style.display = "block";
+                        modalImg.style.display = "block";
+                        modalImg.src = e.target.src;
+
+                        // Сховати текстовий контейнер, якщо він є
+                        const textContainer = modal.querySelector('.modal-text-content');
+                        if (textContainer) {
+                            textContainer.style.display = "none";
+                        }
+                    } else if (e.target.classList.contains('applied-text-plaster')) {
+                        // Якщо це текстовий пластир
+                        const title = e.target.getAttribute('data-title') || '';
+                        const description = e.target.getAttribute('data-description') || '';
+
+                        modal.style.display = "block";
+                        modalImg.style.display = "none";
+
+                        // Створюємо або оновлюємо текстовий контейнер
+                        let textContainer = modal.querySelector('.modal-text-content');
+                        if (!textContainer) {
+                            textContainer = document.createElement('div');
+                            textContainer.className = 'modal-text-content';
+                            textContainer.style.backgroundColor = "white";
+                            textContainer.style.padding = "20px";
+                            textContainer.style.borderRadius = "8px";
+                            textContainer.style.maxWidth = "80%";
+                            textContainer.style.margin = "10% auto";
+                            textContainer.style.maxHeight = "70vh";
+                            textContainer.style.overflow = "auto";
+                            modal.appendChild(textContainer);
+                        } else {
+                            textContainer.style.display = "block";
+                        }
+
+                        // Заповнюємо текстовий контейнер
+                        textContainer.innerHTML = `
+                            <h3 class="mb-3">${title}</h3>
+                            ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
+                        `;
+                    }
+                }
+            });
+
+            // Функція для показу деталей пластиря
+            function showPlasterDetails(e) {
+                e.stopPropagation();
+                const title = this.getAttribute('data-title') || '';
+                const description = this.getAttribute('data-description') || '';
+
+                // Підготуємо вміст для модального вікна
+                modal.style.display = "block";
+
+                // Зміна стилів модального вікна для відображення тексту
+                modalImg.style.display = "none";
+
+                // Створюємо контейнер для тексту, якщо його ще немає
+                let textContainer = modal.querySelector('.modal-text-content');
+                if (!textContainer) {
+                    textContainer = document.createElement('div');
+                    textContainer.className = 'modal-text-content';
+                    textContainer.style.backgroundColor = "white";
+                    textContainer.style.padding = "20px";
+                    textContainer.style.borderRadius = "8px";
+                    textContainer.style.maxWidth = "80%";
+                    textContainer.style.margin = "10% auto";
+                    textContainer.style.maxHeight = "70vh";
+                    textContainer.style.overflow = "auto";
+                    modal.appendChild(textContainer);
+                } else {
+                    textContainer.style.display = "block";
+                }
+
+                // Заповнюємо контейнер даними
+                textContainer.innerHTML = `
+                    <h3 class="mb-3">${title}</h3>
+                    ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
+                `;
+            }
+
+            // Модальне вікно для зображень
+        });
 </script>

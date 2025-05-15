@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,9 @@
             scroll-behavior: smooth;
             max-height: 500px;
             width: 100%;
-        }        .plaster {
+        }
+
+        .plaster {
             width: 90%;
             height: 100px;
             background-color: #FFEFD5;
@@ -28,7 +31,7 @@
             padding: 10px;
             cursor: grab;
             position: relative;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,8 +40,9 @@
             margin: 5px auto;
             flex-shrink: 0;
         }
-        
-        .plaster::before, .plaster::after {
+
+        .plaster::before,
+        .plaster::after {
             content: '';
             position: absolute;
             width: 25px;
@@ -46,17 +50,18 @@
             background-color: #FFE4B5;
             top: -5%;
         }
-        
+
         .plaster::before {
             left: 0;
             transform: translateX(-5px);
         }
-        
+
         .plaster::after {
             right: 0;
             transform: translateX(5px);
         }
-          .plaster img {
+
+        .plaster img {
             width: 80%;
             height: 80%;
             object-fit: cover;
@@ -64,13 +69,14 @@
             z-index: 5;
             transition: all 0.3s ease;
         }
-          /* Image expands when hovered */
+
+        /* Image expands when hovered */
         .plaster:hover img {
             width: 95%;
             height: 95%;
             transform: scale(1.1);
         }
-        
+
         /* Problem styles */
         .problem-container {
             display: flex;
@@ -78,7 +84,8 @@
             gap: 15px;
             padding: 15px;
         }
-          .problem-item {
+
+        .problem-item {
             padding: 10px;
             background-color: #f8f9fa;
             border: 2px dashed #ced4da;
@@ -88,14 +95,16 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        
+
         .problem-item span {
             flex-shrink: 0;
-        }.problem-item.filled {
+        }
+
+        .problem-item.filled {
             border: 2px solid #198754;
             background-color: #d1e7dd;
         }
-        
+
         .applied-plaster {
             width: 50px;
             height: 35px;
@@ -104,12 +113,12 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
-        
+
         .applied-plaster:hover {
             transform: scale(1.1);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        
+
         .applied-plasters-container {
             display: flex;
             flex-wrap: wrap;
@@ -117,7 +126,8 @@
             margin-left: 10px;
             align-items: center;
         }
-          /* Styles for full image modal window */
+
+        /* Styles for full image modal window */
         .image-modal {
             display: none;
             position: fixed;
@@ -126,9 +136,9 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0, 0, 0, 0.7);
         }
-        
+
         .image-modal-content {
             margin: auto;
             display: block;
@@ -136,7 +146,7 @@
             max-height: 80%;
             margin-top: 10%;
         }
-        
+
         .image-modal-close {
             position: absolute;
             top: 15px;
@@ -146,38 +156,44 @@
             font-weight: bold;
             cursor: pointer;
         }
-        
+
         /* Drag and drop styles */
         .dragging {
             opacity: 0.5;
-        }        /* Style for scrollbar */
+        }
+
+        /* Style for scrollbar */
         .plaster-container::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         .plaster-container::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 10px;
         }
-        
+
         .plaster-container::-webkit-scrollbar-thumb {
             background: #888;
             border-radius: 10px;
         }
-        
+
         .plaster-container::-webkit-scrollbar-thumb:hover {
             background: #555;
-        }        /* Highlight effect for better visibility in vertical layout */
+        }
+
+        /* Highlight effect for better visibility in vertical layout */
         .plaster {
             transition: all 0.3s ease;
         }
-        
+
         .plaster:hover {
             transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             background-color: #FFF8DC;
             z-index: 10;
-        }          /* Styles for adding new plaster form */
+        }
+
+        /* Styles for adding new plaster form */
         .create-plaster-btn {
             width: 90%;
             height: 100px;
@@ -186,7 +202,7 @@
             padding: 10px;
             cursor: pointer;
             position: relative;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -196,12 +212,12 @@
             border: 2px dashed #007bff;
             transition: all 0.3s ease;
         }
-        
+
         .create-plaster-btn:hover {
             background-color: #d0e8ff;
             transform: scale(1.02);
         }
-        
+
         .create-plaster-form {
             display: none;
             position: absolute;
@@ -211,14 +227,14 @@
             background-color: white;
             border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             z-index: 50;
         }
-        
+
         .create-plaster-form.active {
             display: block;
         }
-        
+
         .form-overlay {
             display: none;
             position: fixed;
@@ -226,21 +242,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 40;
         }
-        
+
         /* Style for mobile view */
         @media (max-width: 768px) {
             .plaster {
                 width: 95%;
                 height: 80px;
             }
-            
+
             .plaster-container {
                 max-height: 350px;
             }
-            
+
             .create-plaster-form {
                 position: fixed;
                 top: 50%;
@@ -249,15 +265,18 @@
                 width: 90%;
                 max-width: 300px;
             }
-        }</style>
+        }
+    </style>
 </head>
-<body>    <div class="container">
+
+<body>
+    <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
-                
+
                 <div class="card">
                     <div class="card-header bg-primary-subtle d-flex justify-content-between align-items-center"
-                        id="headerSection" data-bs-toggle="collapse" data-bs-target="#contentSection" 
+                        id="headerSection" data-bs-toggle="collapse" data-bs-target="#contentSection"
                         aria-expanded="true" aria-controls="contentSection" style="cursor: pointer;">
                         <h5 class="mb-0">
                             <span class="text-black d-flex align-items-center fs-5">
@@ -266,10 +285,10 @@
                         </h5>
                         <span class="badge bg-primary text-white fs-6">Interactive</span>
                     </div>
-                    
+
                     <div id="contentSection" class="collapse show" aria-labelledby="headerSection">
                         <div class="card-body">
-                            <div class="row">                                <!-- Problems (left) -->
+                            <div class="row"> <!-- Problems (left) -->
                                 <div class="col-md-7">
                                     <h4 class="mb-3">Problems</h4>
                                     <div class="problem-container">
@@ -304,11 +323,13 @@
                                             <span>Relationship problems with others</span>
                                         </div>
                                     </div>
-                                </div>                                  <!-- Plasters (right) -->
-                                <div class="col-md-5">                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                </div> <!-- Plasters (right) -->
+                                <div class="col-md-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4 class="mb-0">Plasters</h4>
                                         <div class="navigation-buttons">
-                                            <button class="btn btn-sm btn-outline-success me-1" id="addPlasterBtn" title="Add new plaster">
+                                            <button class="btn btn-sm btn-outline-success me-1" id="addPlasterBtn"
+                                                title="Add new plaster">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                             <button class="btn btn-sm btn-outline-primary me-1" id="scrollUpBtn">
@@ -318,85 +339,112 @@
                                                 <i class="fas fa-chevron-down"></i>
                                             </button>
                                         </div>
-                                    </div><div class="plaster-container">
+                                    </div>
+                                    <div class="plaster-container">
                                         <div class="plaster" draggable="true" data-plaster-id="1">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 1">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 1">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="2">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 2">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 2">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="3">
-                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Plaster 3">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                alt="Plaster 3">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="4">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 4">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 4">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="5">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 5">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 5">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="6">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 6">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 6">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="7">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 7">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 7">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="8">
-                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Plaster 8">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                alt="Plaster 8">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="9">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 9">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 9">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="10">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 10">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 10">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="11">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 11">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 11">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="12">
-                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Plaster 12">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                alt="Plaster 12">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="13">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 13">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 13">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="14">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 14">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                alt="Plaster 14">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="15">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 15">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                alt="Plaster 15">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                              <!-- Form for creating a new plaster -->
-                            <div class="create-plaster-form-container position-fixed" style="display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 90%; max-width: 400px;">
+                            <!-- Form for creating a new plaster -->
+                            <div class="create-plaster-form-container position-fixed"
+                                style="display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 90%; max-width: 400px;">
                                 <div class="card shadow">
-                                    <div class="card-header bg-primary-subtle d-flex justify-content-between align-items-center">
+                                    <div
+                                        class="card-header bg-primary-subtle d-flex justify-content-between align-items-center">
                                         <h5 class="mb-0">Create a new plaster</h5>
-                                        <button type="button" class="btn-close" id="closeCreateFormBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" id="closeCreateFormBtn"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="card-body">
-                                        <form id="createPlasterForm">                                            <div class="mb-3">
+                                        <form id="createPlasterForm">
+                                            <div class="mb-3">
                                                 <label for="plasterTitle" class="form-label">Plaster name</label>
-                                                <input type="text" class="form-control" id="plasterTitle" placeholder="Enter name" required>
+                                                <input type="text" class="form-control" id="plasterTitle"
+                                                    placeholder="Enter name" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="plasterDescription" class="form-label">Plaster description</label>
-                                                <textarea class="form-control" id="plasterDescription" placeholder="Enter description" rows="3"></textarea>
-                                                <small class="text-muted">Describe your "plaster" for solving the problem</small>
+                                                <label for="plasterDescription" class="form-label">Plaster
+                                                    description</label>
+                                                <textarea class="form-control" id="plasterDescription"
+                                                    placeholder="Enter description" rows="3"></textarea>
+                                                <small class="text-muted">Describe your "plaster" for solving the
+                                                    problem</small>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <button type="button" class="btn btn-secondary" id="cancelPlasterBtn">Cancel</button>
-                                                <button type="submit" class="btn btn-primary" id="savePlasterBtn">Save</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="cancelPlasterBtn">Cancel</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    id="savePlasterBtn">Save</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-overlay" id="formOverlay"></div>
-                              <!-- Instructions and reset button -->
+                            <!-- Instructions and reset button -->
                             <div class="mt-4">
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> Drag the plasters from the right side onto the problems on the left to "cure" them.
+                                    <i class="fas fa-info-circle"></i> Drag the plasters from the right side onto the
+                                    problems on the left to "cure" them.
                                 </div>
                                 <button class="btn btn-warning" id="resetBtn">
                                     <i class="fas fa-redo"></i> Reset exercise
@@ -406,36 +454,37 @@
                     </div>
                 </div>
             </div>
-        </div>    </div>
-    
+        </div>
+    </div>
+
     <!-- Модальне вікно для перегляду повного зображення -->
     <div id="imageModal" class="image-modal">
         <span class="image-modal-close">&times;</span>
         <img class="image-modal-content" id="modalImage">
     </div>
-    
+
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Get all plasters and problem items
             let plasters = document.querySelectorAll('.plaster');
             const problemItems = document.querySelectorAll('.problem-item');
             const resetBtn = document.getElementById('resetBtn');
-              // Add drag event listeners to plasters
+            // Add drag event listeners to plasters
             plasters.forEach(plaster => {
                 plaster.addEventListener('dragstart', dragStart);
                 plaster.addEventListener('dragend', dragEnd);
-                
+
                 // Add click event for full image preview
                 const plasterImg = plaster.querySelector('img');
                 plasterImg.addEventListener('click', showFullImage);
-                
+
                 // Make a clone of the plaster to restore it later
                 plaster.originalHTML = plaster.innerHTML;
             });
-            
+
             // Add drop event listeners to problem items
             problemItems.forEach(problem => {
                 problem.addEventListener('dragover', dragOver);
@@ -443,35 +492,35 @@
                 problem.addEventListener('dragleave', dragLeave);
                 problem.addEventListener('drop', drop);
             });
-              // Reset button functionality
+            // Reset button functionality
             resetBtn.addEventListener('click', resetExercise);
-              // Scroll buttons functionality
+            // Scroll buttons functionality
             const scrollUpBtn = document.getElementById('scrollUpBtn');
             const scrollDownBtn = document.getElementById('scrollDownBtn');
             const plasterContainer = document.querySelector('.plaster-container');
-            
+
             scrollUpBtn.addEventListener('click', () => {
                 plasterContainer.scrollBy({ top: -150, behavior: 'smooth' });
             });
-            
+
             scrollDownBtn.addEventListener('click', () => {
                 plasterContainer.scrollBy({ top: 150, behavior: 'smooth' });
             });
-              // Functionality for adding a new plaster
+            // Functionality for adding a new plaster
             const addPlasterBtn = document.getElementById('addPlasterBtn');
             const createPlasterForm = document.querySelector('.create-plaster-form-container');
             const formOverlay = document.getElementById('formOverlay');
             const closeCreateFormBtn = document.getElementById('closeCreateFormBtn');
             const cancelPlasterBtn = document.getElementById('cancelPlasterBtn');
             const createPlasterFormEl = document.getElementById('createPlasterForm');
-            
+
             // Show form when "+" button is clicked
             addPlasterBtn.addEventListener('click', () => {
                 createPlasterForm.style.display = 'block';
                 formOverlay.style.display = 'block';
                 document.body.style.overflow = 'hidden'; // Block page scrolling
             });
-            
+
             // Form closing functions
             function closeCreateForm() {
                 createPlasterForm.style.display = 'none';
@@ -479,31 +528,31 @@
                 document.body.style.overflow = ''; // Allow page scrolling
                 createPlasterFormEl.reset(); // Clear the form
             }
-            
+
             closeCreateFormBtn.addEventListener('click', closeCreateForm);
             cancelPlasterBtn.addEventListener('click', closeCreateForm);
             formOverlay.addEventListener('click', closeCreateForm);            // Save new plaster
-            createPlasterFormEl.addEventListener('submit', function(e) {
+            createPlasterFormEl.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 const title = document.getElementById('plasterTitle').value.trim();
                 const description = document.getElementById('plasterDescription').value.trim();
-                
+
                 if (!title) {
                     alert('Please enter a plaster name');
                     return;
                 }
-                
+
                 // Create a new unique ID for the plaster
                 const newId = getNextPlasterId();
-                
+
                 // Create a new plaster element
                 createNewPlaster(newId, title, description);
-                
+
                 // Close the form
                 closeCreateForm();
             });
-            
+
             // Function to get the next plaster ID
             function getNextPlasterId() {
                 let maxId = 0;
@@ -523,7 +572,7 @@
                 newPlaster.setAttribute('data-plaster-id', id);
                 newPlaster.setAttribute('data-title', title);
                 newPlaster.setAttribute('data-description', description || '');
-                
+
                 // Create text content
                 const textContent = document.createElement('div');
                 textContent.className = 'plaster-text';
@@ -544,70 +593,70 @@
                 textContent.style.zIndex = '5';
                 textContent.style.wordBreak = 'break-word';
                 textContent.style.overflow = 'hidden';
-                
+
                 // Add text to the plaster
                 newPlaster.appendChild(textContent);
-                
+
                 // Add the new plaster to the container
                 plasterContainer.appendChild(newPlaster);
-                
+
                 // Add event handlers to the new plaster
                 newPlaster.addEventListener('dragstart', dragStart);
                 newPlaster.addEventListener('dragend', dragEnd);
-                
+
                 // Add event for clicking on text
                 newPlaster.addEventListener('click', showPlasterDetails);
-                
+
                 // Save the original HTML
                 newPlaster.originalHTML = newPlaster.innerHTML;
-                
+
                 // Scroll to the new plaster
                 plasterContainer.scrollTo({
                     top: plasterContainer.scrollHeight,
                     behavior: 'smooth'
                 });
-                
+
                 // Update the list of plasters
                 plasters = document.querySelectorAll('.plaster');
             }
-            
+
             // Drag Functions
             function dragStart() {
                 this.classList.add('dragging');
                 // Store the plaster's ID for drop handling
                 event.dataTransfer.setData('text/plain', this.getAttribute('data-plaster-id'));
             }
-            
+
             function dragEnd() {
                 this.classList.remove('dragging');
             }
-            
+
             function dragOver(e) {
                 e.preventDefault();
             }
-            
+
             function dragEnter(e) {
                 e.preventDefault();
                 this.style.borderColor = '#198754';
             }
-            
+
             function dragLeave() {
                 if (!this.classList.contains('filled')) {
                     this.style.borderColor = '#ced4da';
                 }
-            }              function drop(e) {
+            } function drop(e) {
                 e.preventDefault();
-                
+
                 // Now we allow adding multiple plasters to one problem
-                
+
                 const plasterId = e.dataTransfer.getData('text/plain');
                 const plasterElem = document.querySelector(`.plaster[data-plaster-id="${plasterId}"]`);
-                
+
                 if (plasterElem) {
                     // Check if this is a plaster with an image or text
                     const img = plasterElem.querySelector('img');
                     const textContent = plasterElem.querySelector('.plaster-text');
-                    
+
                     // Add a wrapper for the plaster if this is the first plaster
                     if (!this.querySelector('.applied-plasters-container')) {
                         const plastersContainer = document.createElement('div');
@@ -618,7 +667,7 @@
                         plastersContainer.style.marginLeft = '10px';
                         this.appendChild(plastersContainer);
                     }
-                    
+
                     if (img) {
                         // If this is a plaster with an image
                         const imgSrc = img.getAttribute('src');
@@ -626,7 +675,7 @@
                         appliedImg.src = imgSrc;
                         appliedImg.classList.add('applied-plaster');
                         appliedImg.setAttribute('data-original-plaster', plasterId);
-                        
+
                         // Add the plaster to the plasters container
                         this.querySelector('.applied-plasters-container').appendChild(appliedImg);
                     } else if (textContent) {
@@ -649,36 +698,36 @@
                         appliedText.style.fontWeight = 'bold';
                         appliedText.style.overflow = 'hidden';
                         appliedText.style.cursor = 'pointer';
-                        
+
                         // Add the plaster to the plasters container
                         this.querySelector('.applied-plasters-container').appendChild(appliedText);
                     }
-                    
+
                     this.classList.add('filled');
-                    
+
                     // Disable the original plaster
                     plasterElem.style.opacity = '0.5';
                     plasterElem.setAttribute('draggable', 'false');
                     plasterElem.style.cursor = 'not-allowed';
-                    
+
                     // Play a success sound (optional)
                     playSuccessSound();
                 }
             }
-              // Reset the exercise
+            // Reset the exercise
             function resetExercise() {
                 // Remove applied plasters from problems
                 problemItems.forEach(problem => {
                     problem.classList.remove('filled');
                     problem.style.borderColor = '#ced4da';
-                    
+
                     // Видаляємо контейнер з усіма пластирями
                     const plastersContainer = problem.querySelector('.applied-plasters-container');
                     if (plastersContainer) {
                         problem.removeChild(plastersContainer);
                     }
                 });
-                
+
                 // Reset all plasters
                 plasters.forEach(plaster => {
                     plaster.style.opacity = '1';
@@ -686,45 +735,45 @@
                     plaster.style.cursor = 'grab';
                 });
             }
-              // Optional: Success sound
+            // Optional: Success sound
             function playSuccessSound() {
                 // You can add a sound effect here if needed
                 // const audio = new Audio('path/to/success-sound.mp3');
                 // audio.play();
             }
-            
+
             // Модальне вікно для зображень
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeBtn = document.querySelector('.image-modal-close');
-            
+
             // Функція для показу повного зображення
             function showFullImage(e) {
                 e.stopPropagation();
                 modal.style.display = "block";
                 modalImg.src = this.src;
             }
-            
+
             // Закрити модальне вікно при кліку на хрестик
             closeBtn.addEventListener('click', () => {
                 modal.style.display = "none";
             });
-              // Закрити модальне вікно при кліку за межами зображення
+            // Закрити модальне вікно при кліку за межами зображення
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = "none";
                 }
             });
-            
+
             // Додати відслідковування кліків на прикріплені пластирі для перегляду
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (e.target.classList.contains('applied-plaster')) {
                     if (e.target.tagName === 'IMG') {
                         // Якщо це картинка
                         modal.style.display = "block";
                         modalImg.style.display = "block";
                         modalImg.src = e.target.src;
-                        
+
                         // Сховати текстовий контейнер, якщо він є
                         const textContainer = modal.querySelector('.modal-text-content');
                         if (textContainer) {
@@ -734,10 +783,10 @@
                         // Якщо це текстовий пластир
                         const title = e.target.getAttribute('data-title') || '';
                         const description = e.target.getAttribute('data-description') || '';
-                        
+
                         modal.style.display = "block";
                         modalImg.style.display = "none";
-                        
+
                         // Створюємо або оновлюємо текстовий контейнер
                         let textContainer = modal.querySelector('.modal-text-content');
                         if (!textContainer) {
@@ -754,7 +803,7 @@
                         } else {
                             textContainer.style.display = "block";
                         }
-                        
+
                         // Заповнюємо текстовий контейнер
                         textContainer.innerHTML = `
                             <h3 class="mb-3">${title}</h3>
@@ -763,19 +812,19 @@
                     }
                 }
             });
-            
+
             // Функція для показу деталей пластиря
             function showPlasterDetails(e) {
                 e.stopPropagation();
                 const title = this.getAttribute('data-title') || '';
                 const description = this.getAttribute('data-description') || '';
-                
+
                 // Підготуємо вміст для модального вікна
                 modal.style.display = "block";
-                
+
                 // Зміна стилів модального вікна для відображення тексту
                 modalImg.style.display = "none";
-                
+
                 // Створюємо контейнер для тексту, якщо його ще немає
                 let textContainer = modal.querySelector('.modal-text-content');
                 if (!textContainer) {
@@ -792,16 +841,17 @@
                 } else {
                     textContainer.style.display = "block";
                 }
-                
+
                 // Заповнюємо контейнер даними
                 textContainer.innerHTML = `
                     <h3 class="mb-3">${title}</h3>
                     ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
                 `;
             }
-            
+
             // Модальне вікно для зображень
         });
     </script>
 </body>
+
 </html>
