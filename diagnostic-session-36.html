@@ -1283,11 +1283,16 @@
             // Add drag event listeners to plasters
             plasters.forEach(plaster => {
                 plaster.addEventListener('dragstart', dragStart);
-                plaster.addEventListener('dragend', dragEnd);
-
-                // Add click event for full image preview
+                plaster.addEventListener('dragend', dragEnd);                // Add click event for full image preview
                 const plasterImg = plaster.querySelector('img');
-                plasterImg.addEventListener('click', showFullImage);
+                plaster.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (e.target.tagName === 'IMG') {
+                        modal.style.display = "block";
+                        modalImg.src = e.target.src;
+                    }
+                });
 
                 // Make a clone of the plaster to restore it later
                 plaster.originalHTML = plaster.innerHTML;
@@ -1553,13 +1558,13 @@
             // Модальне вікно для зображень
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            const closeBtn = document.querySelector('.image-modal-close');
-
-            // Функція для показу повного зображення
+            const closeBtn = document.querySelector('.image-modal-close');            // Функція для показу повного зображення
             function showFullImage(e) {
                 e.stopPropagation();
-                modal.style.display = "block";
-                modalImg.src = this.src;
+                if (e.target.tagName === 'IMG') {
+                    modal.style.display = "block";
+                    modalImg.src = e.target.src;
+                }
             }
 
             // Закрити модальне вікно при кліку на хрестик
