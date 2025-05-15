@@ -1,0 +1,168 @@
+<div class="card-header bg-success-subtle d-flex justify-content-between align-items-center"
+                id="depressionHeader" data-bs-toggle="collapse" data-bs-target="#depressionContent" 
+                aria-expanded="false" aria-controls="depressionContent" style="cursor: pointer;">
+                <h5 class="mb-0">
+                  <span class="text-black d-flex align-items-center fs-5">
+                    <span>Anxiety introduction module</span>
+                  </span>
+                </h5>
+                <span class="badge bg-success text-white fs-6">Completed</span>
+              </div>
+              <div id="depressionContent" class="collapse" aria-labelledby="depressionHeader">
+                <div class="card-body">
+                  <p id="intro-desc">This module provides an initial assessment and orientation to the depression
+                    treatment program.</p>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5 id="intro-assessment-title">Initial Assessment Results</h5>
+                      <ul class="custom-list">
+                        <li id="intro-assessment-1">PHQ-9 Score: 16 (Moderately severe)</li>
+                        <li id="intro-assessment-2">Duration: 4 months</li>
+                        <li id="intro-assessment-3">Sleep: Moderate disturbance</li>
+                        <li id="intro-assessment-4">Appetite: Mild changes</li>
+                        <li id="intro-assessment-5">Energy: Significantly reduced</li>
+                        <li id="intro-assessment-6">Concentration: Moderately impaired</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 id="intro-risk-title">Risk Assessment</h5>
+                      <div class="table-responsive">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th>Risk Factor</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Suicidal Ideation</td>
+                              <td><span class="badge bg-warning">Passive</span></td>
+                              <td>Monitoring</td>
+                            </tr>
+                            <tr>
+                              <td>Self-harm</td>
+                              <td><span class="badge bg-success">None</span></td>
+                              <td>--</td>
+                            </tr>
+                            <tr>
+                              <td>Substance Use</td>
+                              <td><span class="badge bg-success">None</span></td>
+                              <td>--</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h5 id="intro-goals-title" class="mt-4">Treatment Goals (Established)</h5>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <div class="progress-wrapper">
+                        <div class="d-flex justify-content-between">
+                          <span>Reduce depressive symptoms (PHQ-9 &lt; 10)</span>
+                          <span>40%</span>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="40"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="progress-wrapper">
+                        <div class="d-flex justify-content-between">
+                          <span>Improve school attendance</span>
+                          <span>60%</span>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="progress-wrapper">
+                        <div class="d-flex justify-content-between">
+                          <span>Increase social engagement</span>
+                          <span>30%</span>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="progress-wrapper">
+                        <div class="d-flex justify-content-between">
+                          <span>Develop coping strategies</span>
+                          <span>25%</span>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="progress-wrapper">
+                        <div class="d-flex justify-content-between">
+                          <span>Improve family communication</span>
+                          <span>45%</span>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 45%" aria-valuenow="45"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="progress-wrapper">
+                        <div class="d-flex justify-content-between">
+                          <span>Sleep regulation</span>
+                          <span>35%</span>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="interactive-exercise">
+                    <h5 id="intro-family-title">Family Engagement Assessment</h5>
+                    <div class="form-group">
+                      <label>Parent Involvement Level:</label>
+                      <select class="form-select" id="parentInvolvement">
+                        <option value="low">Low</option>
+                        <option value="moderate" selected="">Moderate</option>
+                        <option value="high">High</option>
+                      </select>
+                    </div>
+                    <div class="mt-3">
+                      <label>Family Session Attendance:</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="session1" checked="" disabled="">
+                        <label class="form-check-label" for="session1">Initial Assessment (3/15/25)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="session2" checked="" disabled="">
+                        <label class="form-check-label" for="session2">Family Psychoeducation (3/29/25)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="session3">
+                        <label class="form-check-label" for="session3">Next Family Session (5/15/25)</label>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="alert alert-info" id="intro-note">
+                    <strong>Clinical Note:</strong> Initial assessment indicates moderate to severe depression with
+                    significant impact on functioning. Patient demonstrates good insight and motivation for treatment.
+                    No current suicidal ideation reported, but history of passive thoughts requires monitoring.
+                  </div>
+                </div>
+              </div>

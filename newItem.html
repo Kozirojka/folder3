@@ -1635,20 +1635,26 @@
               </div>
             </div>
 
-            <!-- Homework Section -->            <div class="card module-card psychoeducation-module shadow-sm mb-4" style="border-left: 4px solid #198754;">
+            <!-- Homework Section -->            
+            <div class="card module-card psychoeducation-module shadow-sm mb-4" style="border-left: 4px solid #198754;">
               <div
                 class="card-header module-header d-flex justify-content-between align-items-center bg-success-subtle text-success"
-                id="psychoeducationHeader">
+                id="psychoeducationHeader"
+                data-bs-toggle="collapse"
+                data-bs-target="#homeworkContent" 
+                aria-expanded="true" 
+                aria-controls="homeworkContent"
+                style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none d-flex align-items-center text-success border-0 p-0" data-bs-toggle="collapse"
-                    data-bs-target="#homeworkContent" aria-expanded="true" aria-controls="homeworkContent">
+                  <div class="d-flex align-items-center text-success">
                     <i class="fas fa-book-reader me-2"></i>Home Assignments
-                  </button>
+                  </div>
                 </h5>
                 <div>
                   <span class="badge bg-success text-white me-2">Completed</span>
                 </div>
               </div>
+
               <div id="homeworkContent" class="collapse show" aria-labelledby="psychoeducationHeader">
                 <div class="card-body">
                   <div class="row">
@@ -1707,15 +1713,6 @@
 
                             <p class="text-muted mt-2"><small>I think my mind in this moment somethings like that </small></p>  
                           </div>
-
-                          <div class="d-flex justify-content-center">
-                            <button class="btn btn-sm btn-outline-primary me-2">
-                              <i class="fas fa-download me-1"></i> Download
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary">
-                              <i class="fas fa-external-link-alt me-1"></i> View Full
-                            </button>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -1723,20 +1720,19 @@
                 </div>
               </div>
             </div>         
-             <script>
-              function toggleHomeworkSection() {
-                $('#homeworkContent').collapse('toggle');
-              }
-            </script>
-
+            
             <div class="card module-card shadow-sm mb-4" style="border-left: 4px solid #0d6efd;">
               <div class="card-header module-header d-flex justify-content-between align-items-center bg-primary-subtle text-primary"
-                id="diagramHeader">
+                id="diagramHeader"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseDiagram" 
+                aria-expanded="true" 
+                aria-controls="collapseDiagram"
+                style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none d-flex align-items-center text-primary border-0 p-0" data-bs-toggle="collapse"
-                    data-bs-target="#collapseDiagram" aria-expanded="true" aria-controls="collapseDiagram">
+                  <div class="text-decoration-none d-flex align-items-center text-primary">
                     <i class="fas fa-project-diagram me-2"></i><span>Cognitive Behavioral Triangle</span>
-                  </button>
+                  </div>
                 </h5>
                 <i class="fas fa-chevron-down rotate-icon transition rotate"></i>
               </div>
@@ -1837,6 +1833,7 @@
                 </div>
               </div>
             </div>
+            
             <!-- End Buttons -->
             <div class="end-buttons">
               <button class="end-button" onclick="toggleEndSessionForm()">
@@ -2706,13 +2703,12 @@
             <!-- Depression introduction module -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center"
-                id="depressionHeader">
+                id="depressionHeader" data-bs-toggle="collapse" data-bs-target="#depressionContent" 
+                aria-expanded="false" aria-controls="depressionContent" style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#depressionContent" aria-expanded="false"
-                    aria-controls="depressionContent">
-                    <span>Depression introduction module</span>
-                  </button>
+                  <span class="text-black d-flex align-items-center fs-5">
+                    <span>Anxiety introduction module</span>
+                  </span>
                 </h5>
                 <span class="badge bg-success text-white fs-6">Completed</span>
               </div>
@@ -2881,13 +2877,12 @@
             <!-- Psychoeducation -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center"
-                id="psychoeducationHeader">
+                  id="psychoeducationHeader" data-bs-toggle="collapse" data-bs-target="#psychoeducationContent"
+                  aria-expanded="false" aria-controls="psychoeducationContent" style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#psychoeducationContent"
-                    aria-expanded="false" aria-controls="psychoeducationContent">
+                  <span class="text-black d-flex align-items-center fs-5">
                     <span>Psychoeducation</span>
-                  </button>
+                  </span>
                 </h5>
                 <span class="badge bg-success text-white fs-6">Completed</span>
               </div>
@@ -2907,13 +2902,12 @@
             <!-- Behavioral activation -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-warning-subtle d-flex justify-content-between align-items-center"
-                id="behavioralHeader">
+                  id="behavioralHeader" data-bs-toggle="collapse" data-bs-target="#behavioralContent" 
+                  aria-expanded="false" aria-controls="behavioralContent" style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#behavioralContent" aria-expanded="false"
-                    aria-controls="behavioralContent">
+                  <span class="text-black d-flex align-items-center fs-5">
                     <span>Behavioral activation</span>
-                  </button>
+                  </span>
                 </h5>
                 <span class="badge bg-warning text-dark fs-6">In Progress</span>
               </div>
@@ -3312,13 +3306,12 @@
             <!-- Problem Solving -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-light d-flex justify-content-between align-items-center"
-                id="problemSolvingHeader">
+                  id="problemSolvingHeader" data-bs-toggle="collapse" data-bs-target="#problemSolvingContent"
+                  aria-expanded="false" aria-controls="problemSolvingContent" style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#problemSolvingContent"
-                    aria-expanded="false" aria-controls="problemSolvingContent">
+                  <span class="text-black d-flex align-items-center fs-5">
                     <span>Problem Solving</span>
-                  </button>
+                  </span>
                 </h5>
                 <span class="badge bg-secondary text-white fs-6">Not Started</span>
               </div>
@@ -3503,13 +3496,13 @@
             <span class="timeline-dot not-started"></span>
             <!-- Cognitive restructuring -->
             <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="cognitiveHeader">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" 
+                  id="cognitiveHeader" data-bs-toggle="collapse" data-bs-target="#cognitiveContent" 
+                  aria-expanded="false" aria-controls="cognitiveContent" style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#cognitiveContent" aria-expanded="false"
-                    aria-controls="cognitiveContent">
+                  <span class="text-black d-flex align-items-center fs-5">
                     <span>Cognitive restructuring</span>
-                  </button>
+                  </span>
                 </h5>
                 <span class="badge bg-secondary text-white fs-6">Not Started</span>
               </div>
@@ -3717,13 +3710,13 @@
             <span class="timeline-dot not-started"></span>
             <!-- Affect regulation -->
             <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="affectHeader">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" 
+                  id="affectHeader" data-bs-toggle="collapse" data-bs-target="#affectContent" 
+                  aria-expanded="false" aria-controls="affectContent" style="cursor: pointer;">
                 <h5 class="mb-0">
-                  <button class="btn btn-link text-decoration-none text-black d-flex align-items-center collapsed fs-5"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#affectContent" aria-expanded="false"
-                    aria-controls="affectContent">
+                  <span class="text-black d-flex align-items-center fs-5">
                     <span>Affect regulation</span>
-                  </button>
+                  </span>
                 </h5>
                 <span class="badge bg-secondary text-white fs-6">Not Started</span>
               </div>
@@ -3999,6 +3992,29 @@
     function toggleEndSessionForm() {
       const form = document.getElementById("endSessionForm");
       form.classList.toggle("active");
+      
+      // If the form is now active (visible), scroll to center it
+      if (form.classList.contains("active")) {
+        // Wait a tiny bit for the form to be fully visible
+        setTimeout(() => {
+          // Get the form's position and dimensions
+          const formRect = form.getBoundingClientRect();
+          
+          // Get the viewport height
+          const viewportHeight = window.innerHeight;
+          
+          // Calculate the scroll adjustment to center the form
+          // This takes the form's top position and adjusts it to center the form in the viewport
+          const scrollAdjustment = formRect.top - (viewportHeight / 2) + (formRect.height / 2);
+          
+          // Scroll by that amount (smoothly)
+          window.scrollBy({
+            top: scrollAdjustment,
+            behavior: 'smooth'
+          });
+        }, 50); // Small timeout to ensure the form is rendered
+      }
+      
       // Hide module form if it's open
       document.getElementById("endModuleForm").classList.remove("active");
     }

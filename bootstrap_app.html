@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Plasters Exercise</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+        
+        /* Plaster styles */
+        .plaster-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
+        }
+        
+        .plaster {
+            width: 180px;
+            height: 100px;
+            background-color: #FFEFD5;
+            border-radius: 15px;
+            padding: 10px;
+            cursor: grab;
+            position: relative;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transform: rotate(-5deg);
+            margin: 10px;
+        }
+        
+        .plaster::before, .plaster::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 110%;
+            background-color: #FFE4B5;
+            top: -5%;
+        }
+        
+        .plaster::before {
+            left: 0;
+            transform: translateX(-5px);
+        }
+        
+        .plaster::after {
+            right: 0;
+            transform: translateX(5px);
+        }
+        
+        .plaster img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 8px;
+            z-index: 5;
+        }
+        
+        /* Problem styles */
+        .problem-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
+        }
+        
+        .problem-item {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 2px dashed #ced4da;
+            border-radius: 5px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .problem-item.filled {
+            border: 2px solid #198754;
+            background-color: #d1e7dd;
+        }
+        
+        .applied-plaster {
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        /* Drag and drop styles */
+        .dragging {
+            opacity: 0.5;
+        }
+        
+        /* Style for mobile view */
+        @media (max-width: 768px) {
+            .plaster {
+                width: 150px;
+                height: 80px;
+            }
+        }    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <h2 class="mb-4 text-center">Вирішення проблем: Перетягніть пластирі на проблеми</h2>
+                
+                <div class="card">
+                    <div class="card-header bg-primary-subtle d-flex justify-content-between align-items-center"
+                        id="headerSection" data-bs-toggle="collapse" data-bs-target="#contentSection" 
+                        aria-expanded="true" aria-controls="contentSection" style="cursor: pointer;">
+                        <h5 class="mb-0">
+                            <span class="text-black d-flex align-items-center fs-5">
+                                <span>Вправа з перетягування</span>
+                            </span>
+                        </h5>
+                        <span class="badge bg-primary text-white fs-6">Інтерактивна</span>
+                    </div>
+                    
+                    <div id="contentSection" class="collapse show" aria-labelledby="headerSection">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Проблеми (ліворуч) -->
+                                <div class="col-md-7">
+                                    <h4 class="mb-3">Проблеми</h4>
+                                    <div class="problem-container">
+                                        <div class="problem-item" data-problem-id="1">
+                                            <span>Низька самооцінка</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="2">
+                                            <span>Неправильне харчування в родині</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="3">
+                                            <span>Відсутність підтримки від близьких</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="4">
+                                            <span>Соціальна ізоляція</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="5">
+                                            <span>Порушення режиму сну</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="6">
+                                            <span>Негативні думки та установки</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="7">
+                                            <span>Надмірна тривожність</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="8">
+                                            <span>Проблеми з концентрацією</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="9">
+                                            <span>Відсутність фізичної активності</span>
+                                        </div>
+                                        <div class="problem-item" data-problem-id="10">
+                                            <span>Проблеми у стосунках з оточуючими</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Пластирі (праворуч) -->
+                                <div class="col-md-5">
+                                    <h4 class="mb-3">Пластирі</h4>
+                                    <div class="plaster-container">
+                                        <div class="plaster" draggable="true" data-plaster-id="1">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Пластир 1">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="2">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 2">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="3">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Пластир 3">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="4">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 4">
+                                        </div>
+                                        <div class="plaster" draggable="true" data-plaster-id="5">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 5">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Інструкції та кнопка скидання -->
+                            <div class="mt-4">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> Перетягніть пластирі з правої сторони на проблеми зліва, щоб "вилікувати" їх.
+                                </div>
+                                <button class="btn btn-warning" id="resetBtn">
+                                    <i class="fas fa-redo"></i> Скинути вправу
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all plasters and problem items
+            const plasters = document.querySelectorAll('.plaster');
+            const problemItems = document.querySelectorAll('.problem-item');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            // Add drag event listeners to plasters
+            plasters.forEach(plaster => {
+                plaster.addEventListener('dragstart', dragStart);
+                plaster.addEventListener('dragend', dragEnd);
+                
+                // Make a clone of the plaster to restore it later
+                plaster.originalHTML = plaster.innerHTML;
+            });
+            
+            // Add drop event listeners to problem items
+            problemItems.forEach(problem => {
+                problem.addEventListener('dragover', dragOver);
+                problem.addEventListener('dragenter', dragEnter);
+                problem.addEventListener('dragleave', dragLeave);
+                problem.addEventListener('drop', drop);
+            });
+            
+            // Reset button functionality
+            resetBtn.addEventListener('click', resetExercise);
+            
+            // Drag Functions
+            function dragStart() {
+                this.classList.add('dragging');
+                // Store the plaster's ID for drop handling
+                event.dataTransfer.setData('text/plain', this.getAttribute('data-plaster-id'));
+            }
+            
+            function dragEnd() {
+                this.classList.remove('dragging');
+            }
+            
+            function dragOver(e) {
+                e.preventDefault();
+            }
+            
+            function dragEnter(e) {
+                e.preventDefault();
+                this.style.borderColor = '#198754';
+            }
+            
+            function dragLeave() {
+                if (!this.classList.contains('filled')) {
+                    this.style.borderColor = '#ced4da';
+                }
+            }
+            
+            function drop(e) {
+                e.preventDefault();
+                
+                // Check if the problem already has a plaster
+                if (this.classList.contains('filled')) {
+                    return;
+                }
+                
+                const plasterId = e.dataTransfer.getData('text/plain');
+                const plasterElem = document.querySelector(`.plaster[data-plaster-id="${plasterId}"]`);
+                
+                if (plasterElem) {
+                    // Get the image from the plaster
+                    const img = plasterElem.querySelector('img');
+                    const imgSrc = img.getAttribute('src');
+                    
+                    // Add the plaster image to the problem
+                    const appliedImg = document.createElement('img');
+                    appliedImg.src = imgSrc;
+                    appliedImg.classList.add('applied-plaster');
+                    appliedImg.setAttribute('data-original-plaster', plasterId);
+                    
+                    this.appendChild(appliedImg);
+                    this.classList.add('filled');
+                    
+                    // Disable the original plaster
+                    plasterElem.style.opacity = '0.5';
+                    plasterElem.setAttribute('draggable', 'false');
+                    plasterElem.style.cursor = 'not-allowed';
+                    
+                    // Play a success sound (optional)
+                    playSuccessSound();
+                }
+            }
+            
+            // Reset the exercise
+            function resetExercise() {
+                // Remove applied plasters from problems
+                problemItems.forEach(problem => {
+                    problem.classList.remove('filled');
+                    problem.style.borderColor = '#ced4da';
+                    
+                    const appliedPlaster = problem.querySelector('.applied-plaster');
+                    if (appliedPlaster) {
+                        problem.removeChild(appliedPlaster);
+                    }
+                });
+                
+                // Reset all plasters
+                plasters.forEach(plaster => {
+                    plaster.style.opacity = '1';
+                    plaster.setAttribute('draggable', 'true');
+                    plaster.style.cursor = 'grab';
+                });
+            }
+            
+            // Optional: Success sound
+            function playSuccessSound() {
+                // You can add a sound effect here if needed
+                // const audio = new Audio('path/to/success-sound.mp3');
+                // audio.play();
+            }
+        });
+    </script>
+</body>
+</html>
