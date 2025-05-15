@@ -67,8 +67,7 @@
             z-index: 5;
             transition: all 0.3s ease;
         }
-        
-        /* При наведенні курсором зображення розширюється */
+          /* Image expands when hovered */
         .plaster:hover img {
             width: 95%;
             height: 95%;
@@ -121,8 +120,7 @@
             margin-left: 10px;
             align-items: center;
         }
-        
-        /* Стилі для модального вікна з повним зображенням */
+          /* Styles for full image modal window */
         .image-modal {
             display: none;
             position: fixed;
@@ -182,8 +180,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.25);
             background-color: #FFF8DC;
             z-index: 10;
-        }
-          /* Стилі для форми додавання нового пластиря */
+        }          /* Styles for adding new plaster form */
         .create-plaster-btn {
             width: 90%;
             height: 100px;
@@ -257,11 +254,9 @@
             }
         }</style>
 </head>
-<body>
-    <div class="container">
+<body>    <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
-                <h2 class="mb-4 text-center">Вирішення проблем: Перетягніть пластирі на проблеми</h2>
                 
                 <div class="card">
                     <div class="card-header bg-primary-subtle d-flex justify-content-between align-items-center"
@@ -269,56 +264,54 @@
                         aria-expanded="true" aria-controls="contentSection" style="cursor: pointer;">
                         <h5 class="mb-0">
                             <span class="text-black d-flex align-items-center fs-5">
-                                <span>Вправа з перетягування</span>
+                                <span>Drag and Drop Exercise</span>
                             </span>
                         </h5>
-                        <span class="badge bg-primary text-white fs-6">Інтерактивна</span>
+                        <span class="badge bg-primary text-white fs-6">Interactive</span>
                     </div>
                     
                     <div id="contentSection" class="collapse show" aria-labelledby="headerSection">
                         <div class="card-body">
-                            <div class="row">
-                                <!-- Проблеми (ліворуч) -->
+                            <div class="row">                                <!-- Problems (left) -->
                                 <div class="col-md-7">
-                                    <h4 class="mb-3">Проблеми</h4>
+                                    <h4 class="mb-3">Problems</h4>
                                     <div class="problem-container">
                                         <div class="problem-item" data-problem-id="1">
-                                            <span>Низька самооцінка</span>
+                                            <span>Low self-esteem</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="2">
-                                            <span>Неправильне харчування в родині</span>
+                                            <span>Poor family eating habits</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="3">
-                                            <span>Відсутність підтримки від близьких</span>
+                                            <span>Lack of support from loved ones</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="4">
-                                            <span>Соціальна ізоляція</span>
+                                            <span>Social isolation</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="5">
-                                            <span>Порушення режиму сну</span>
+                                            <span>Sleep pattern disruption</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="6">
-                                            <span>Негативні думки та установки</span>
+                                            <span>Negative thoughts and attitudes</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="7">
-                                            <span>Надмірна тривожність</span>
+                                            <span>Excessive anxiety</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="8">
-                                            <span>Проблеми з концентрацією</span>
+                                            <span>Concentration problems</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="9">
-                                            <span>Відсутність фізичної активності</span>
+                                            <span>Lack of physical activity</span>
                                         </div>
                                         <div class="problem-item" data-problem-id="10">
-                                            <span>Проблеми у стосунках з оточуючими</span>
+                                            <span>Relationship problems with others</span>
                                         </div>
                                     </div>
-                                </div>
-                                  <!-- Пластирі (праворуч) -->
+                                </div>                                  <!-- Plasters (right) -->
                                 <div class="col-md-5">                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="mb-0">Пластирі</h4>
+                                        <h4 class="mb-0">Plasters</h4>
                                         <div class="navigation-buttons">
-                                            <button class="btn btn-sm btn-outline-success me-1" id="addPlasterBtn" title="Додати новий пластир">
+                                            <button class="btn btn-sm btn-outline-success me-1" id="addPlasterBtn" title="Add new plaster">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                             <button class="btn btn-sm btn-outline-primary me-1" id="scrollUpBtn">
@@ -330,89 +323,86 @@
                                         </div>
                                     </div><div class="plaster-container">
                                         <div class="plaster" draggable="true" data-plaster-id="1">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Пластир 1">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 1">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="2">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 2">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 2">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="3">
-                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Пластир 3">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Plaster 3">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="4">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 4">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 4">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="5">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 5">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 5">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="6">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Пластир 6">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 6">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="7">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 7">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 7">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="8">
-                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Пластир 8">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Plaster 8">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="9">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 9">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 9">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="10">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Пластир 10">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 10">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="11">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 11">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 11">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="12">
-                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Пластир 12">
+                                            <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs=" alt="Plaster 12">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="13">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 13">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 13">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="14">
-                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Пластир 14">
+                                            <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg" alt="Plaster 14">
                                         </div>
                                         <div class="plaster" draggable="true" data-plaster-id="15">
-                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Пластир 15">
+                                            <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg" alt="Plaster 15">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- Форма для створення нового пластиря -->
+                              <!-- Form for creating a new plaster -->
                             <div class="create-plaster-form-container position-fixed" style="display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 90%; max-width: 400px;">
                                 <div class="card shadow">
                                     <div class="card-header bg-primary-subtle d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">Створення нового пластиря</h5>
+                                        <h5 class="mb-0">Create a new plaster</h5>
                                         <button type="button" class="btn-close" id="closeCreateFormBtn" aria-label="Close"></button>
                                     </div>
                                     <div class="card-body">
-                                        <form id="createPlasterForm">
-                                            <div class="mb-3">
-                                                <label for="plasterTitle" class="form-label">Назва пластиря</label>
-                                                <input type="text" class="form-control" id="plasterTitle" placeholder="Введіть назву" required>
+                                        <form id="createPlasterForm">                                            <div class="mb-3">
+                                                <label for="plasterTitle" class="form-label">Plaster name</label>
+                                                <input type="text" class="form-control" id="plasterTitle" placeholder="Enter name" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="plasterImage" class="form-label">URL зображення</label>
-                                                <input type="url" class="form-control" id="plasterImage" placeholder="Введіть URL зображення" required>
-                                                <small class="text-muted">Додайте посилання на зображення з інтернету</small>
+                                                <label for="plasterDescription" class="form-label">Plaster description</label>
+                                                <textarea class="form-control" id="plasterDescription" placeholder="Enter description" rows="3"></textarea>
+                                                <small class="text-muted">Describe your "plaster" for solving the problem</small>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <button type="button" class="btn btn-secondary" id="cancelPlasterBtn">Скасувати</button>
-                                                <button type="submit" class="btn btn-primary" id="savePlasterBtn">Зберегти</button>
+                                                <button type="button" class="btn btn-secondary" id="cancelPlasterBtn">Cancel</button>
+                                                <button type="submit" class="btn btn-primary" id="savePlasterBtn">Save</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-overlay" id="formOverlay"></div>
-                            
-                            <!-- Інструкції та кнопка скидання -->
+                              <!-- Instructions and reset button -->
                             <div class="mt-4">
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> Перетягніть пластирі з правої сторони на проблеми зліва, щоб "вилікувати" їх.
+                                    <i class="fas fa-info-circle"></i> Drag the plasters from the right side onto the problems on the left to "cure" them.
                                 </div>
                                 <button class="btn btn-warning" id="resetBtn">
-                                    <i class="fas fa-redo"></i> Скинути вправу
+                                    <i class="fas fa-redo"></i> Reset exercise
                                 </button>
                             </div>
                         </div>
@@ -470,8 +460,7 @@
             scrollDownBtn.addEventListener('click', () => {
                 plasterContainer.scrollBy({ top: 150, behavior: 'smooth' });
             });
-            
-            // Функціонал додавання нового пластиря
+              // Functionality for adding a new plaster
             const addPlasterBtn = document.getElementById('addPlasterBtn');
             const createPlasterForm = document.querySelector('.create-plaster-form-container');
             const formOverlay = document.getElementById('formOverlay');
@@ -479,48 +468,46 @@
             const cancelPlasterBtn = document.getElementById('cancelPlasterBtn');
             const createPlasterFormEl = document.getElementById('createPlasterForm');
             
-            // Показуємо форму при натисканні на кнопку "+"
+            // Show form when "+" button is clicked
             addPlasterBtn.addEventListener('click', () => {
                 createPlasterForm.style.display = 'block';
                 formOverlay.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Блокуємо прокрутку сторінки
+                document.body.style.overflow = 'hidden'; // Block page scrolling
             });
             
-            // Функції закриття форми
+            // Form closing functions
             function closeCreateForm() {
                 createPlasterForm.style.display = 'none';
                 formOverlay.style.display = 'none';
-                document.body.style.overflow = ''; // Дозволяємо прокрутку сторінки
-                createPlasterFormEl.reset(); // Очищаємо форму
+                document.body.style.overflow = ''; // Allow page scrolling
+                createPlasterFormEl.reset(); // Clear the form
             }
             
             closeCreateFormBtn.addEventListener('click', closeCreateForm);
             cancelPlasterBtn.addEventListener('click', closeCreateForm);
-            formOverlay.addEventListener('click', closeCreateForm);
-            
-            // Зберегти новий пластир
+            formOverlay.addEventListener('click', closeCreateForm);            // Save new plaster
             createPlasterFormEl.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 const title = document.getElementById('plasterTitle').value.trim();
-                const imageUrl = document.getElementById('plasterImage').value.trim();
+                const description = document.getElementById('plasterDescription').value.trim();
                 
-                if (!title || !imageUrl) {
-                    alert('Будь ласка, заповніть всі поля');
+                if (!title) {
+                    alert('Please enter a plaster name');
                     return;
                 }
                 
-                // Створюємо новий унікальний ID для пластиря
+                // Create a new unique ID for the plaster
                 const newId = getNextPlasterId();
                 
-                // Створюємо новий елемент пластиря
-                createNewPlaster(newId, title, imageUrl);
+                // Create a new plaster element
+                createNewPlaster(newId, title, description);
                 
-                // Закриваємо форму
+                // Close the form
                 closeCreateForm();
             });
             
-            // Функція для отримання наступного ID пластиря
+            // Function to get the next plaster ID
             function getNextPlasterId() {
                 let maxId = 0;
                 plasters.forEach(plaster => {
@@ -530,44 +517,60 @@
                     }
                 });
                 return maxId + 1;
-            }
-            
-            // Функція для створення нового пластиря
-            function createNewPlaster(id, title, imageUrl) {
-                // Створюємо новий елемент div для пластиря
+            }              // Function to create a new plaster
+            function createNewPlaster(id, title, description) {
+                // Create a new div element for the plaster
                 const newPlaster = document.createElement('div');
                 newPlaster.className = 'plaster';
                 newPlaster.setAttribute('draggable', 'true');
                 newPlaster.setAttribute('data-plaster-id', id);
+                newPlaster.setAttribute('data-title', title);
+                newPlaster.setAttribute('data-description', description || '');
                 
-                // Створюємо зображення
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = title;
+                // Create text content
+                const textContent = document.createElement('div');
+                textContent.className = 'plaster-text';
+                textContent.innerText = title;
+                textContent.style.width = '80%';
+                textContent.style.height = '80%';
+                textContent.style.display = 'flex';
+                textContent.style.justifyContent = 'center';
+                textContent.style.alignItems = 'center';
+                textContent.style.fontWeight = 'bold';
+                textContent.style.textAlign = 'center';
+                textContent.style.color = '#333';
+                textContent.style.fontSize = '16px';
+                textContent.style.padding = '8px';
+                textContent.style.borderRadius = '8px';
+                textContent.style.backgroundColor = '#fff';
+                textContent.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                textContent.style.zIndex = '5';
+                textContent.style.wordBreak = 'break-word';
+                textContent.style.overflow = 'hidden';
                 
-                // Додаємо зображення до пластиря
-                newPlaster.appendChild(img);
+                // Add text to the plaster
+                newPlaster.appendChild(textContent);
                 
-                // Додаємо новий пластир до контейнера
+                // Add the new plaster to the container
                 plasterContainer.appendChild(newPlaster);
                 
-                // Додаємо обробники подій до нового пластиря
+                // Add event handlers to the new plaster
                 newPlaster.addEventListener('dragstart', dragStart);
                 newPlaster.addEventListener('dragend', dragEnd);
                 
-                // Додаємо подію для клацання по зображенню
-                img.addEventListener('click', showFullImage);
+                // Add event for clicking on text
+                newPlaster.addEventListener('click', showPlasterDetails);
                 
-                // Зберігаємо оригінальний HTML
+                // Save the original HTML
                 newPlaster.originalHTML = newPlaster.innerHTML;
                 
-                // Прокручуємо до нового пластиря
+                // Scroll to the new plaster
                 plasterContainer.scrollTo({
                     top: plasterContainer.scrollHeight,
                     behavior: 'smooth'
                 });
                 
-                // Оновлюємо список плястирів
+                // Update the list of plasters
                 plasters = document.querySelectorAll('.plaster');
             }
             
@@ -595,28 +598,20 @@
                 if (!this.classList.contains('filled')) {
                     this.style.borderColor = '#ced4da';
                 }
-            }
-              function drop(e) {
+            }              function drop(e) {
                 e.preventDefault();
                 
-                // Тепер ми дозволяємо додавати кілька пластирів на одну проблему
-                // Прибираємо перевірку на filled
+                // Now we allow adding multiple plasters to one problem
                 
                 const plasterId = e.dataTransfer.getData('text/plain');
                 const plasterElem = document.querySelector(`.plaster[data-plaster-id="${plasterId}"]`);
                 
                 if (plasterElem) {
-                    // Get the image from the plaster
+                    // Check if this is a plaster with an image or text
                     const img = plasterElem.querySelector('img');
-                    const imgSrc = img.getAttribute('src');
+                    const textContent = plasterElem.querySelector('.plaster-text');
                     
-                    // Add the plaster image to the problem
-                    const appliedImg = document.createElement('img');
-                    appliedImg.src = imgSrc;
-                    appliedImg.classList.add('applied-plaster');
-                    appliedImg.setAttribute('data-original-plaster', plasterId);
-                    
-                    // Додамо обгортку для пластиря, якщо це перший пластир
+                    // Add a wrapper for the plaster if this is the first plaster
                     if (!this.querySelector('.applied-plasters-container')) {
                         const plastersContainer = document.createElement('div');
                         plastersContainer.classList.add('applied-plasters-container');
@@ -627,8 +622,41 @@
                         this.appendChild(plastersContainer);
                     }
                     
-                    // Додаємо пластир у контейнер для пластирів
-                    this.querySelector('.applied-plasters-container').appendChild(appliedImg);
+                    if (img) {
+                        // If this is a plaster with an image
+                        const imgSrc = img.getAttribute('src');
+                        const appliedImg = document.createElement('img');
+                        appliedImg.src = imgSrc;
+                        appliedImg.classList.add('applied-plaster');
+                        appliedImg.setAttribute('data-original-plaster', plasterId);
+                        
+                        // Add the plaster to the plasters container
+                        this.querySelector('.applied-plasters-container').appendChild(appliedImg);
+                    } else if (textContent) {
+                        // If this is a text plaster
+                        const appliedText = document.createElement('div');
+                        appliedText.innerText = textContent.innerText;
+                        appliedText.classList.add('applied-plaster', 'applied-text-plaster');
+                        appliedText.setAttribute('data-original-plaster', plasterId);
+                        appliedText.setAttribute('data-title', plasterElem.getAttribute('data-title') || '');
+                        appliedText.setAttribute('data-description', plasterElem.getAttribute('data-description') || '');
+                        appliedText.style.width = '60px';
+                        appliedText.style.height = '35px';
+                        appliedText.style.display = 'flex';
+                        appliedText.style.justifyContent = 'center';
+                        appliedText.style.alignItems = 'center';
+                        appliedText.style.backgroundColor = '#fff8dc';
+                        appliedText.style.border = '1px solid #ddd';
+                        appliedText.style.borderRadius = '5px';
+                        appliedText.style.fontSize = '10px';
+                        appliedText.style.fontWeight = 'bold';
+                        appliedText.style.overflow = 'hidden';
+                        appliedText.style.cursor = 'pointer';
+                        
+                        // Add the plaster to the plasters container
+                        this.querySelector('.applied-plasters-container').appendChild(appliedText);
+                    }
+                    
                     this.classList.add('filled');
                     
                     // Disable the original plaster
@@ -684,8 +712,7 @@
             closeBtn.addEventListener('click', () => {
                 modal.style.display = "none";
             });
-            
-            // Закрити модальне вікно при кліку за межами зображення
+              // Закрити модальне вікно при кліку за межами зображення
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = "none";
@@ -695,10 +722,88 @@
             // Додати відслідковування кліків на прикріплені пластирі для перегляду
             document.addEventListener('click', function(e) {
                 if (e.target.classList.contains('applied-plaster')) {
-                    modal.style.display = "block";
-                    modalImg.src = e.target.src;
+                    if (e.target.tagName === 'IMG') {
+                        // Якщо це картинка
+                        modal.style.display = "block";
+                        modalImg.style.display = "block";
+                        modalImg.src = e.target.src;
+                        
+                        // Сховати текстовий контейнер, якщо він є
+                        const textContainer = modal.querySelector('.modal-text-content');
+                        if (textContainer) {
+                            textContainer.style.display = "none";
+                        }
+                    } else if (e.target.classList.contains('applied-text-plaster')) {
+                        // Якщо це текстовий пластир
+                        const title = e.target.getAttribute('data-title') || '';
+                        const description = e.target.getAttribute('data-description') || '';
+                        
+                        modal.style.display = "block";
+                        modalImg.style.display = "none";
+                        
+                        // Створюємо або оновлюємо текстовий контейнер
+                        let textContainer = modal.querySelector('.modal-text-content');
+                        if (!textContainer) {
+                            textContainer = document.createElement('div');
+                            textContainer.className = 'modal-text-content';
+                            textContainer.style.backgroundColor = "white";
+                            textContainer.style.padding = "20px";
+                            textContainer.style.borderRadius = "8px";
+                            textContainer.style.maxWidth = "80%";
+                            textContainer.style.margin = "10% auto";
+                            textContainer.style.maxHeight = "70vh";
+                            textContainer.style.overflow = "auto";
+                            modal.appendChild(textContainer);
+                        } else {
+                            textContainer.style.display = "block";
+                        }
+                        
+                        // Заповнюємо текстовий контейнер
+                        textContainer.innerHTML = `
+                            <h3 class="mb-3">${title}</h3>
+                            ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
+                        `;
+                    }
                 }
             });
+            
+            // Функція для показу деталей пластиря
+            function showPlasterDetails(e) {
+                e.stopPropagation();
+                const title = this.getAttribute('data-title') || '';
+                const description = this.getAttribute('data-description') || '';
+                
+                // Підготуємо вміст для модального вікна
+                modal.style.display = "block";
+                
+                // Зміна стилів модального вікна для відображення тексту
+                modalImg.style.display = "none";
+                
+                // Створюємо контейнер для тексту, якщо його ще немає
+                let textContainer = modal.querySelector('.modal-text-content');
+                if (!textContainer) {
+                    textContainer = document.createElement('div');
+                    textContainer.className = 'modal-text-content';
+                    textContainer.style.backgroundColor = "white";
+                    textContainer.style.padding = "20px";
+                    textContainer.style.borderRadius = "8px";
+                    textContainer.style.maxWidth = "80%";
+                    textContainer.style.margin = "10% auto";
+                    textContainer.style.maxHeight = "70vh";
+                    textContainer.style.overflow = "auto";
+                    modal.appendChild(textContainer);
+                } else {
+                    textContainer.style.display = "block";
+                }
+                
+                // Заповнюємо контейнер даними
+                textContainer.innerHTML = `
+                    <h3 class="mb-3">${title}</h3>
+                    ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
+                `;
+            }
+            
+            // Модальне вікно для зображень
         });
     </script>
 </body>
