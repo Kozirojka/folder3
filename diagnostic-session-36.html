@@ -179,11 +179,10 @@
         scroll-behavior: smooth;
         max-height: 500px;
         width: 100%;
-    }
-
+    }    
     .plaster {
-        width: 90%;
-        height: 100px;
+        width: 70%;
+        height: 140px;
         background-color: #FFEFD5;
         border-radius: 15px;
         padding: 10px;
@@ -215,11 +214,9 @@
 
     .plaster::after {
         right: 0;
-    }
-
-    .plaster img {
-        width: 80%;
-        height: 80%;
+    }    .plaster img {
+        width: 90%;
+        height: 90%;
         object-fit: cover;
         border-radius: 8px;
         z-index: 5;
@@ -329,9 +326,7 @@
 
     .plaster-container::-webkit-scrollbar-thumb:hover {
         background: #555;
-    }
-
-    /* Highlight effect for better visibility in vertical layout */
+    }    /* Highlight effect for better visibility in vertical layout */
     .plaster {
         transition: all 0.3s ease;
     }
@@ -342,11 +337,14 @@
         background-color: #FFF8DC;
         z-index: 10;
     }
+    
+    .plaster:hover img {
+        transform: scale(1.05);
+    }
 
-    /* Styles for adding new plaster form */
-    .create-plaster-btn {
-        width: 90%;
-        height: 100px;
+    /* Styles for adding new plaster form */    .create-plaster-btn {
+        width: 70%;
+        height: 140px;
         background-color: #e9f5ff;
         border-radius: 15px;
         padding: 10px;
@@ -396,11 +394,10 @@
         z-index: 40;
     }
 
-    /* Style for mobile view */
-    @media (max-width: 768px) {
+    /* Style for mobile view */    @media (max-width: 768px) {
         .plaster {
-            width: 95%;
-            height: 80px;
+            width: 80%;
+            height: 130px;
         }
 
         .plaster-container {
