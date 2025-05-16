@@ -1493,14 +1493,12 @@
     <!-- Horizontal Tabs -->
     <div class="horizontal-tabs">
       <button class="horizontal-tab active" onclick="showModule('current')">
-        Current Module
+        Threatment
       </button>
       <button class="horizontal-tab" onclick="showModule('future')">
-        Future Module
+        Therapy
       </button>
-      <button class="horizontal-tab" onclick="showModule('previous')">
-        Previous Module
-      </button>
+      
       <div class="flex-grow-1"></div>
       <button class="horizontal-tab treatment-plan" onclick="showModule('treatment')">
         <i class="fas fa-clipboard-list me-2"></i> Treatment Plan
@@ -2477,170 +2475,26 @@
 
     <div class="module-content" id="future-module">
       <div class="content-area">
-        <!-- Vertical Tabs for Future Module -->
         <div class="vertical-tabs">
           <button class="vertical-tab active" onclick="showContent('future-plans', 'future')">
-            Modules
+            НАЗВА ТВОЄЇ ВКЛАДКИ
           </button>
           
         </div>
 
-        <!-- Future Module Content -->
         <div id="future-plans" class="tab-content active">
-          <h3 class="content-title">Next modules</h3>
+          <h3 class="content-title">БУДЕШ БАВИТИСЬ НЕЮ</h3>
           <div class="card shadow-sm">
             <div class="card-body">
-              <div class="next-modules">
-                <div class="module-option" onclick="toggleModuleDetails(this, 'cognitive')">
-                  <div class="module-header d-flex align-items-center">
-                    <div class="module-icon">
-                      <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                      <div class="fw-bold">Self-compassion</div>
-                      <small class="text-muted">Learn self-compassion techniques and practices</small>
-                    </div>
-                    <i class="fas fa-chevron-down module-expand-icon"></i>
-                  </div>
-                  <div class="module-details" style="display: none;">
-                    <div class="mt-3 ps-4">
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Drawing: "I am my own friend"</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Support affirmations</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>"What would a friend say in this situation?"</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-book text-primary me-2"></i>
-                        <span>Test: Self-reflection: "How do I talk to myself?"</span>
-                      </div>
-                    </div>
-                    <p class="mt-3 text-muted">This module helps children develop a kinder inner voice and build
-                      emotional resilience through self-compassion exercises. It teaches them how to be understanding
-                      and supportive towards themselves, especially during difficult moments.</p>
-                  </div>
-                </div>
-
-                <div class="module-option" onclick="toggleModuleDetails(this, 'emotional')">
-                  <div class="module-header d-flex align-items-center">
-                    <div class="module-icon">
-                      <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                      <div class="fw-bold">Stress tolerance</div>
-                      <small class="text-muted">Develop skills for managing stress and anxiety</small>
-                    </div>
-                    <i class="fas fa-chevron-down module-expand-icon"></i>
-                  </div>
-                  <div class="module-details" style="display: none;">
-                    <div class="mt-3 ps-4">
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Metaphor: "The storm will pass"</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Technique: "Ice in the hand"</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Exercise: "What helps me cope with tension"</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-book text-primary me-2"></i>
-                        <span>Test: Self-reflection: "I coped with the tension"</span>
-                      </div>
-                    </div>
-                    <p class="mt-3 text-muted">This module focuses on building resilience to stress and anxiety.
-                      Children learn practical techniques to manage overwhelming emotions, recognize stress triggers,
-                      and develop healthy coping mechanisms for challenging situations.</p>
-                  </div>
-                </div>
-
-                <div class="module-option" onclick="toggleModuleDetails(this, 'social')">
-                  <div class="module-header d-flex align-items-center">
-                    <div class="module-icon">
-                      <i class="fas fa-users"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                      <div class="fw-bold">Mindfulness</div>
-                      <small class="text-muted">Practice mindfulness and present-moment awareness</small>
-                    </div>
-                    <i class="fas fa-chevron-down module-expand-icon"></i>
-                  </div>
-                  <div class="module-details" style="display: none;">
-                    <div class="mt-3 ps-4">
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Game: "5 things around me"</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>4-7-8 breathing</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Mindful consumption</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Mandala</span>
-                      </div>
-                      <div class="exercise-item mb-2">
-                        <i class="fas fa-book text-primary me-2"></i>
-                        <span>Test: MAAS-C scale or behavioral assessment of concentration</span>
-                      </div>
-                    </div>
-                    <p class="mt-3 text-muted">This module introduces children to mindfulness practices, helping them
-                      stay grounded in the present moment. Through simple exercises and games, they learn to observe
-                      their thoughts and feelings without judgment, improving their focus and emotional awareness.</p>
-                  </div>
-                </div>
-              </div>
+              
+              
             </div>
           </div>
         </div>
       </div>
-
-
-
-      <div id="future-goals" class="tab-content">
-        <h3 class="content-title">Goals</h3>
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <p>Тут будуть описані цілі.</p>
-          </div>
-        </div>
-      </div>
-      <div id="future-timeline" class="tab-content">
-        <h3 class="content-title">Timeline</h3>
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <p>Тут буде часова лінія майбутніх подій.</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-  <div class="module-content" id="previous-module">
-    <div class="content-area d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
-      <div class="p-4 text-center" style="max-width: 500px; width: 100%;">
-        <div class="card shadow-sm">
-          <div class="card-body text-center py-5">
-            <i class="fas fa-folder-open text-muted mb-3" style="font-size: 4rem;"></i>
-            <h5 class="text-muted mb-2">No completed modules</h5>
-            <p class="text-muted small">Modules appear here after they are completed</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <div class="module-content" id="treatment-module">
     <div class="content-area">
