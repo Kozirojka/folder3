@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         .plaster-container {
             display: flex;
@@ -94,6 +96,7 @@
             display: flex;
             align-items: center;
             flex-wrap: wrap;
+            position: relative; /* додаємо для позиціонування кнопки скидання */
         }
 
         .problem-item span {
@@ -265,6 +268,21 @@
                 width: 90%;
                 max-width: 300px;
             }
+        }
+
+        /* Reset icon for individual problem */
+        .problem-reset {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            color: #dc3545;
+            display: none;
+            z-index: 10;
+        }
+
+        .problem-item.filled:hover .problem-reset {
+            display: block;
         }
     </style>
 </head>
@@ -491,6 +509,33 @@
                 problem.addEventListener('dragenter', dragEnter);
                 problem.addEventListener('dragleave', dragLeave);
                 problem.addEventListener('drop', drop);
+            });
+            // Додаємо іконку скинути до кожної проблеми
+            problemItems.forEach(problem => {
+                const resetIcon = document.createElement('span');
+                resetIcon.className = 'problem-reset';
+                resetIcon.innerHTML = '<i class="fas fa-times"></i>';
+                resetIcon.title = 'Скинути пластирі';
+                problem.appendChild(resetIcon);
+                resetIcon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const container = problem.querySelector('.applied-plasters-container');
+                    if (container) {
+                        // Відновлюємо оригінальні пластирі
+                        container.querySelectorAll('[data-original-plaster]').forEach(child => {
+                            const id = child.getAttribute('data-original-plaster');
+                            const original = document.querySelector(`.plaster[data-plaster-id="${id}"]`);
+                            if (original) {
+                                original.style.opacity = '1';
+                                original.setAttribute('draggable', 'true');
+                                original.style.cursor = 'grab';
+                            }
+                        });
+                        container.remove();
+                    }
+                    problem.classList.remove('filled');
+                    problem.style.borderColor = '#ced4da';
+                });
             });
             // Reset button functionality
             resetBtn.addEventListener('click', resetExercise);
