@@ -99,44 +99,61 @@
             font-weight: 500;
             color: #455A64;
             font-size: 1.05rem;
-        }
-        
-        /* Нові стилі для проблем з фото */
+        }          /* Нові стилі для проблем з фото */
         .problem-item {
             padding: 0;
-            overflow: hidden;
+            overflow: visible;
             display: flex;
             flex-direction: row;
             align-items: stretch;
-        }
-        
-        .problem-image {
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            position: relative;
+        }.problem-image {
             width: 80px;
             height: 80px;
             object-fit: cover;
             border-right: 2px solid #E0E0E0;
             align-self: stretch;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-origin: left center;
         }
         
-        .problem-content {
+        /* Ефект збільшення зображення проблеми при наведенні */
+        .problem-image:hover {
+            transform: scale(1.5);
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }          .problem-content {
             display: flex;
             flex: 1;
             padding: 12px;
             align-items: center;
             position: relative;
+            z-index: 5;
         }
-        
-        .problem-title {
+          .problem-title {
             font-weight: 500;
             color: #455A64;
             font-size: 1.05rem;
             margin-right: 10px;
+            flex: 1;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }        .problem-item.filled {
             border: 2px solid #66BB6A;
             background-color: #E8F5E9;
             box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
             transform: translateY(-2px);
-        }        .applied-plaster {
+        }
+        
+        /* Maintain hover effect for filled items */
+        .problem-item.filled .problem-image:hover {
+            transform: scale(1.5);
+            z-index: 100;
+        }.applied-plaster {
             width: 50px;
             height: 35px;
             object-fit: cover;
