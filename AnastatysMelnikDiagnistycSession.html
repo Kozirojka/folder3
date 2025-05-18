@@ -2431,21 +2431,30 @@
                             </div>
                         </form>
                     </div>
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-start mb-3">
-                            <button class="btn"
-                                style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
-                                onclick="showContent('notes', 'future')">
-                                <i class="bi bi-journal-text me-2"></i>Go to Notes
-                            </button>
-                        </div>
+                    
 
-                        <div class="d-flex justify-content-start">
-                            <button class="btn"
-                                style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
-                                onclick="showContent('tasks', 'future')">
-                                <i class="bi bi-clipboard-check me-2"></i>Go to Exercises
-                            </button>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                        <div class="card h-100 bg-light">
+                            <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-clipboard-list text-primary me-2"></i>Diagnostic Tasks
+                            </h6>
+                            <p class="card-text text-muted">View completed assessment tasks.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm"
+                                onclick="showContent('tasks', 'future')">Go to Exercises</a>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="card h-100 bg-light">
+                            <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-exclamation-triangle text-warning me-2"></i>Problems &
+                                Symptoms</h6>
+                            <p class="card-text text-muted">Review detailed case information and symptom history.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm"
+                                onclick="showContent('notes', 'future')">Go to Notes</a>
+                            </div>
+                        </div>
                         </div>
                     </div>
 

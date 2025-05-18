@@ -1,8 +1,9 @@
 <style>
-
-        td, th {
+    td,
+    th {
         border-right: none !important;
     }
+
     .notification-popup {
         bottom: 90px;
         width: 280px;
@@ -123,93 +124,98 @@
 
 <div class="container my-5">
     <div class="dashboard-grid">
-            <div class="dashboard-card full-row">
-    <div class="dashboard-card-header card-tasks" style="background-color: #5e81ac; color: white;">
-        📝 Daily Tasks
-    </div>
-    <div class="dashboard-card-body">
-        
-        <div class="mb-3">
-            <div class="progress" style="height: 20px;">
-                <div id="reporterTaskProgressBar" class="progress-bar bg-success" role="progressbar" style="width: 0%">
-                    0%
-                </div>
+        <div class="dashboard-card full-row">
+            <div class="dashboard-card-header card-tasks" style="background-color: #5e81ac; color: white;">
+                📝 Daily Tasks
             </div>
-            <div class="mt-1 text-end small text-muted" id="taskSummary">0 of 0 tasks completed</div>
-        </div>
+            <div class="dashboard-card-body">
 
-        
-            <table class="table align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>Patient</th>
-                        <th>Action</th>
-                        <th>Status</th>
-                        <th>Reporter</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody id="reporterTaskList">
-                    <tr>
-                        <td>
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-2" type="checkbox" onchange="updateReporterTaskProgress(event)">
-                                Albert Rudenko
-                            </div>
-                        </td>
-                        <td>Reschedule visit</td>
-                        <td><span class="badge bg-danger">Urgent</span></td>
-                        <td>Dr. Julia Lane</td>
-                        <td>
-                            <a href="/odoo/to-do/20" class="btn btn-s btn-primary">Details</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-2" type="checkbox" onchange="updateReporterTaskProgress(event)">
-                                Nestor Moroz
-                            </div>
-                        </td>
-                        <td>Approve meeting</td>
-                        <td><span class="badge bg-primary">To do</span></td>
-                        <td>Administrator</td>
-                        <td>
-                            <a href="/odoo/to-do/21" class="btn btn-s btn-primary">Details</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-2" type="checkbox" onchange="updateReporterTaskProgress(event)">
-                                Peter Rudenko
-                            </div>
-                        </td>
-                        <td>Reschedule visit</td>
-                        <td><span class="badge bg-danger">Urgent</span></td>
-                        <td>Dr. David West</td>
-                        <td>
-                            <a href="/odoo/to-do/22" class="btn btn-s btn-primary">Details</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-2" type="checkbox" onchange="updateReporterTaskProgress(event)">
-                                Alice Koval
-                            </div>
-                        </td>
-                        <td>Approve meeting</td>
-                        <td><span class="badge bg-warning text-dark">In Progress</span></td>
-                        <td>Administrator</td>
-                        <td>
-                            <a href="/odoo/to-do/23" class="btn btn-s btn-primary">Details</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </div>
-</div>
+                <div class="mb-3">
+                    <div class="progress" style="height: 20px;">
+                        <div id="reporterTaskProgressBar" class="progress-bar bg-success" role="progressbar"
+                            style="width: 0%">
+                            0%
+                        </div>
+                    </div>
+                    <div class="mt-1 text-end small text-muted" id="taskSummary">0 of 0 tasks completed</div>
+                </div>
+
+
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Patient</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                            <th>Reporter</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reporterTaskList">
+                        <tr>
+                            <td>
+                                <div class="form-check d-flex align-items-center">
+                                    <input class="form-check-input me-2" type="checkbox"
+                                        onchange="updateReporterTaskProgress(event)">
+                                    Albert Rudenko
+                                </div>
+                            </td>
+                            <td>Reschedule visit</td>
+                            <td><span class="badge bg-danger">Urgent</span></td>
+                            <td>Dr. Julia Lane</td>
+                            <td>
+                                <a href="/odoo/to-do/20" class="btn btn-s btn-primary">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check d-flex align-items-center">
+                                    <input class="form-check-input me-2" type="checkbox"
+                                        onchange="updateReporterTaskProgress(event)">
+                                    Nestor Moroz
+                                </div>
+                            </td>
+                            <td>Approve meeting</td>
+                            <td><span class="badge bg-primary">To do</span></td>
+                            <td>Administrator</td>
+                            <td>
+                                <a href="/odoo/to-do/21" class="btn btn-s btn-primary">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check d-flex align-items-center">
+                                    <input class="form-check-input me-2" type="checkbox"
+                                        onchange="updateReporterTaskProgress(event)">
+                                    Peter Rudenko
+                                </div>
+                            </td>
+                            <td>Reschedule visit</td>
+                            <td><span class="badge bg-danger">Urgent</span></td>
+                            <td>Dr. David West</td>
+                            <td>
+                                <a href="/odoo/to-do/22" class="btn btn-s btn-primary">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check d-flex align-items-center">
+                                    <input class="form-check-input me-2" type="checkbox"
+                                        onchange="updateReporterTaskProgress(event)">
+                                    Alice Koval
+                                </div>
+                            </td>
+                            <td>Approve meeting</td>
+                            <td><span class="badge bg-warning text-dark">In Progress</span></td>
+                            <td>Administrator</td>
+                            <td>
+                                <a href="/odoo/to-do/23" class="btn btn-s btn-primary">Details</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <div class="dashboard-card full-row">
             <div class="dashboard-card-header card-treatment">🩺 In Treatment Patients</div>
@@ -217,42 +223,61 @@
 
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle pill-filter" type="button" id="statusFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary dropdown-toggle pill-filter" type="button"
+                            id="statusFilter" data-bs-toggle="dropdown" aria-expanded="false">
                             Status
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="statusFilter">
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="all">All Statuses</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Attending">Attending</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Missed Appointment">Missed Appointment</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Taking Medicine">Taking Medicine</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Missed Taking Medicine">Missed Taking Medicine</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Improvement">Improvement</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Stable">Stable</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Deterioration">Deterioration</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="all">All Statuses</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Attending">Attending</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Missed Appointment">Missed Appointment</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Taking Medicine">Taking Medicine</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Missed Taking Medicine">Missed Taking Medicine</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Improvement">Improvement</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Stable">Stable</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status"
+                                    data-filter-value="Deterioration">Deterioration</button></li>
                         </ul>
                     </div>
 
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle pill-filter" type="button" id="treatmentPhaseFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary dropdown-toggle pill-filter" type="button"
+                            id="treatmentPhaseFilter" data-bs-toggle="dropdown" aria-expanded="false">
                             Treatment Phase
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="treatmentPhaseFilter">
-                            <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="all">All Phases</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Therapy">Therapy</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Medication">Medication</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Observation">Observation</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="phase"
+                                    data-filter-value="all">All Phases</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="phase"
+                                    data-filter-value="Therapy">Therapy</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="phase"
+                                    data-filter-value="Medication">Medication</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="phase"
+                                    data-filter-value="Observation">Observation</button></li>
                         </ul>
                     </div>
 
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle pill-filter" type="button" id="doctorFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary dropdown-toggle pill-filter" type="button"
+                            id="doctorFilter" data-bs-toggle="dropdown" aria-expanded="false">
                             Doctor
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="doctorFilter">
-                            <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="all">All Doctors</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Emily Carter">Dr. Adam Storm</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Raj Patel">Dr. David West</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Lin Zhao">Dr. Julia Lane</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="doctor"
+                                    data-filter-value="all">All Doctors</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="doctor"
+                                    data-filter-value="Dr. Emily Carter">Dr. Adam Storm</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="doctor"
+                                    data-filter-value="Dr. Raj Patel">Dr. David West</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="doctor"
+                                    data-filter-value="Dr. Lin Zhao">Dr. Julia Lane</button></li>
                         </ul>
                     </div>
 
@@ -279,21 +304,24 @@
                             <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Missed Appointment"></div>
                                         <div>Missed Appointment</div>
                                     </div>
                                 </td>
-                                <td>Therapy</td>                                
+                                <td>Therapy</td>
                                 <td>Albert Rudenko</td>
                                 <td>15</td>
                                 <td>Dr. Adam Storm</td>
-                                <td><a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" class="btn btn-primary btn-m">Details</a>
+                                <td><a href="https://odoo.proxy.abtollc.com/odoo/contacts/33"
+                                        class="btn btn-primary btn-m">Details</a>
                                 </td>
                             </tr>
                             <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Lin Zhao">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Missed Appointment"></div>
                                         <div>Missed Appointment</div>
                                     </div>
                                 </td>
@@ -302,15 +330,18 @@
                                 <td>14</td>
                                 <td>Dr. Julia Lane</td>
                                 <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/22" class="btn btn-primary btn-m" >
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/22"
+                                        class="btn btn-primary btn-m">
                                         Details
                                     </a>
                                 </td>
                             </tr>
-                            <tr data-phase="Medication" data-status="Missed Taking Medicine" data-doctor="Dr. Raj Patel">
+                            <tr data-phase="Medication" data-status="Missed Taking Medicine"
+                                data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Taking Medicine"></div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Missed Taking Medicine"></div>
                                         <div>Missed Taking Medicine</div>
                                     </div>
                                 </td>
@@ -319,7 +350,8 @@
                                 <td>10</td>
                                 <td>Dr. David West</td>
                                 <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/21" class="btn btn-primary btn-m" >
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/21"
+                                        class="btn btn-primary btn-m">
                                         Details
                                     </a>
                                 </td>
@@ -327,20 +359,22 @@
                             <tr data-phase="Observation" data-status="Deterioration" data-doctor="Dr. Lin Zhao">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Deterioration"></div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Deterioration"></div>
                                         <div>Deterioration</div>
                                     </div>
-                                </td>                                
+                                </td>
                                 <td>Observation</td>
                                 <td>Lev Kozak</td>
                                 <td>13</td>
                                 <td>Dr. David West</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Observation" data-status="Deterioration" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Deterioration"></div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Deterioration"></div>
                                         <div>Deterioration</div>
                                     </div>
                                 </td>
@@ -348,12 +382,14 @@
                                 <td>Anton Melnyk</td>
                                 <td>12</td>
                                 <td>Dr. Adam Storm</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
-                            <tr data-phase="Medication" data-status="Missed Taking Medicine" data-doctor="Dr. Raj Patel">
+                            <tr data-phase="Medication" data-status="Missed Taking Medicine"
+                                data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Taking Medicine"></div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Missed Taking Medicine"></div>
                                         <div>Missed Taking Medicine</div>
                                     </div>
                                 </td>
@@ -361,12 +397,13 @@
                                 <td>Anastasia Melnyk</td>
                                 <td>14</td>
                                 <td>Dr. David West</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Attending"></div>
+                                        <div class="rounded-circle bg-success d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Attending"></div>
                                         <div>Attending</div>
                                     </div>
                                 </td>
@@ -374,12 +411,13 @@
                                 <td>Walter Moroz</td>
                                 <td>17</td>
                                 <td>Dr. David Westl</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Therapy" data-status="Upcoming appointment" data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-warning d-inline-block me-2" style="width: 16px; height: 16px;" title="Upcoming appointment"></div>
+                                        <div class="rounded-circle bg-warning d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Upcoming appointment"></div>
                                         <div>Upcoming appointment</div>
                                     </div>
                                 </td>
@@ -387,12 +425,13 @@
                                 <td>Anton Melnyk</td>
                                 <td>17</td>
                                 <td>Dr. David West</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Attending"></div>
+                                        <div class="rounded-circle bg-success d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Attending"></div>
                                         <div>Attending</div>
                                     </div>
                                 </td>
@@ -400,12 +439,13 @@
                                 <td>Walter Moroz</td>
                                 <td>16</td>
                                 <td>Dr. Adam Storm</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Medication" data-status="Taking Medicine" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Taking Medicine"></div>
+                                        <div class="rounded-circle bg-success d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Taking Medicine"></div>
                                         <div>Taking Medicine</div>
                                     </div>
                                 </td>
@@ -413,12 +453,13 @@
                                 <td>Anton Melnyk</td>
                                 <td>12</td>
                                 <td>Dr. Adam Storm</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Medication" data-status="Taking Medicine" data-doctor="Dr. Lin Zhao">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Taking Medicine"></div>
+                                        <div class="rounded-circle bg-success d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Taking Medicine"></div>
                                         <div>Taking Medicine</div>
                                     </div>
                                 </td>
@@ -426,12 +467,13 @@
                                 <td>Albert Rudenko</td>
                                 <td>18</td>
                                 <td>Dr. Julia Lane</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Observation" data-status="Stable" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-warning d-inline-block me-2" style="width: 16px; height: 16px;" title="Stable"></div>
+                                        <div class="rounded-circle bg-warning d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Stable"></div>
                                         <div>Stable</div>
                                     </div>
                                 </td>
@@ -439,12 +481,13 @@
                                 <td>Ivan Koval</td>
                                 <td>11</td>
                                 <td>Dr. Adam Storm</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                             <tr data-phase="Observation" data-status="Improvement" data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Improvement"></div>
+                                        <div class="rounded-circle bg-success d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Improvement"></div>
                                         <div>Improvement</div>
                                     </div>
                                 </td>
@@ -452,12 +495,14 @@
                                 <td>Alice Koval</td>
                                 <td>16</td>
                                 <td>Dr. David West</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
-                            <tr data-phase="Observation" data-status="Stable" data-doctor="Dr. Raj Patel" class="patient-row-stable">
+                            <tr data-phase="Observation" data-status="Stable" data-doctor="Dr. Raj Patel"
+                                class="patient-row-stable">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-warning d-inline-block me-2" style="width: 16px; height: 16px;" title="Stable"></div>
+                                        <div class="rounded-circle bg-warning d-inline-block me-2"
+                                            style="width: 16px; height: 16px;" title="Stable"></div>
                                         <div>Stable</div>
                                     </div>
                                 </td>
@@ -465,7 +510,7 @@
                                 <td>Albert Rudenko</td>
                                 <td>15</td>
                                 <td>Dr. David West</td>
-                                <td><button class="btn btn-primary btn-m" disabled>Details</button></td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -491,52 +536,59 @@
                     <tbody>
                         <tr data-patient="Albert Rudenko">
                             <td>
-                                <a href="#" class="new-patient-name" data-bs-toggle="modal" data-bs-target="#patientModalAlbert">Albert Rudenko</a>
+                                <span class="new-patient-name">Albert Rudenko</span>
                             </td>
                             <td>11.12.2015</td>
                             <td>9</td>
                             <td>
-                                <a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" target="_blank" class="btn btn-primary btn-m">Details</a>
+                                <button class="btn btn-primary btn-m" data-bs-toggle="modal"
+                                    data-bs-target="#patientModalAlbert">Details</button>
                             </td>
                             <td>Olga Rudenko</td>
                             <td>
-                                <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#neededActionModal" data-patient="Albert Rudenko">Add
+                                <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal"
+                                    data-bs-target="#neededActionModal" data-patient="Albert Rudenko">Add
                                     Record</button>
                             </td>
                         </tr>
                         <tr data-patient="Nestor Moroz">
                             <td>
-                                <a href="#" class="new-patient-name" data-bs-toggle="modal" data-bs-target="#patientModalNestor">Nestor Moroz</a>
+                                <span class="new-patient-name">Nestor Moroz</span>
                             </td>
                             <td>13.05.2011</td>
                             <td>14</td>
                             <td>
-                                <a href="https://odoo.proxy.abtollc.com/odoo/contacts/22" target="_blank" class="btn btn-primary btn-m">Details</a>
+                                <button class="btn btn-primary btn-m" data-bs-toggle="modal"
+                                    data-bs-target="#patientModalNestor">Details</button>
                             </td>
                             <td>Viktor Moroz</td>
                             <td>
-                                <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#neededActionModal" data-patient="Nestor Moroz">Add Record</button>
+                                <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal"
+                                    data-bs-target="#neededActionModal" data-patient="Nestor Moroz">Add Record</button>
                             </td>
                         </tr>
                         <tr data-patient="Peter Rudenko">
                             <td>
-                                <a href="#" class="new-patient-name" data-bs-toggle="modal" data-bs-target="#patientModalPeter">Peter Rudenko</a>
+                                <span class="new-patient-name">Peter Rudenko</span>
                             </td>
                             <td>22.08.2013</td>
                             <td>11</td>
                             <td>
-                                <a href="https://odoo.proxy.abtollc.com/odoo/contacts/21" target="_blank" class="btn btn-primary btn-m">Details</a>
+                                <button class="btn btn-primary btn-m" data-bs-toggle="modal"
+                                    data-bs-target="#patientModalPeter">Details</button>
                             </td>
                             <td>Olga Rudenko</td>
                             <td>
-                                <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#neededActionModal" data-patient="Peter Rudenko">Add Record</button>
+                                <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal"
+                                    data-bs-target="#neededActionModal" data-patient="Peter Rudenko">Add Record</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="modal fade" id="patientModalAlbert" tabindex="-1" aria-labelledby="patientModalAlbertLabel" aria-hidden="true">
+        <div class="modal fade" id="patientModalAlbert" tabindex="-1" aria-labelledby="patientModalAlbertLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -570,7 +622,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="patientModalNestor" tabindex="-1" aria-labelledby="patientModalNestorLabel" aria-hidden="true">
+        <div class="modal fade" id="patientModalNestor" tabindex="-1" aria-labelledby="patientModalNestorLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -604,7 +657,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="patientModalPeter" tabindex="-1" aria-labelledby="patientModalPeterLabel" aria-hidden="true">
+        <div class="modal fade" id="patientModalPeter" tabindex="-1" aria-labelledby="patientModalPeterLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -638,7 +692,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="neededActionModal" tabindex="-1" aria-labelledby="neededActionModalLabel" aria-hidden="true">
+        <div class="modal fade" id="neededActionModal" tabindex="-1" aria-labelledby="neededActionModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -712,7 +767,8 @@
                             </div>
                             <div class="mb-3">
                                 <h6>📎 Additional Notes</h6>
-                                <textarea class="form-control" rows="3" placeholder="Any additional context or comments..."></textarea>
+                                <textarea class="form-control" rows="3"
+                                    placeholder="Any additional context or comments..."></textarea>
                             </div>
                         </form>
                     </div>
@@ -723,7 +779,7 @@
                 </div>
             </div>
         </div>
-                <div class="dashboard-card col-span-2">
+        <div class="dashboard-card col-span-2">
             <div class="dashboard-card-header card-patients" style="background-color: #007bff; color: white;">
                 🧑‍⚕️ Doctors
             </div>
@@ -736,7 +792,8 @@
                         <p><strong>Contact:</strong> +380 67 111 2233</p>
                         <p>
                             <strong>Assigned Patients:</strong>
-                            <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#assignedPatientsModalOlga">
+                            <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal"
+                                data-bs-target="#assignedPatientsModalOlga">
                                 5
                             </button>
                         </p>
@@ -747,7 +804,8 @@
                         <p><strong>Contact:</strong> +380 67 555 3321</p>
                         <p>
                             <strong>Assigned Patients:</strong>
-                            <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#assignedPatientsModalMaria">
+                            <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal"
+                                data-bs-target="#assignedPatientsModalMaria">
                                 3
                             </button>
                         </p>
@@ -783,294 +841,303 @@
                                 <option>Anastasia Melnyk</option>
                             </select>
                         </div>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary w-100 mt-2">Book Appointment</a>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary w-100 mt-2">Book
+                            Appointment</a>
                     </div>
                 </div>
             </div>
         </div>
 
-</div>
+    </div>
 
 
-        <div class="modal fade" id="assignedPatientsModalOlga" tabindex="-1" aria-labelledby="assignedPatientsModalLabelOlga" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="assignedPatientsModalLabelOlga">Assigned Patients for Dr.Anna Grey
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="list-unstyled">
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" target="_blank">Albert
-                                    Rudenko</a></li>
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/7" target="_blank">Ivan Koval</a>
-                            </li>
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/36" target="_blank">Anastasia
-                                    Melnyk</a></li>
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/21" target="_blank">Peter
-                                    Rudenko</a></li>
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/22" target="_blank">Nestor
-                                    Moroz</a></li>
-                        </ul>
-                    </div>
+    <div class="modal fade" id="assignedPatientsModalOlga" tabindex="-1"
+        aria-labelledby="assignedPatientsModalLabelOlga" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assignedPatientsModalLabelOlga">Assigned Patients for Dr.Anna Grey
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="assignedPatientsModalMaria" tabindex="-1" aria-labelledby="assignedPatientsModalLabelMaria" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="assignedPatientsModalLabelMaria">Assigned Patients for Dr.David West
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="list-unstyled">
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/8" target="_blank">Lev Kozak</a>
-                            </li>
-                             <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/23" target="_blank">Walter Moroz</a>
-                            </li>
-                            <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/36" target="_blank">Anastasia Melnyk</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="justify-content: flex-start !important;" class="o-mail-ChatHub-bubbles position-fixed d-flex flex-column align-content-start justify-content-end align-items-center bottom-0">
-            <div class="d-flex flex-column align-content-start justify-content-end align-items-center gap-1">
-
-
-                <button id="notificationBtn" class="cw_notification_button btn btn-primary rounded-pill shadow position-fixed bottom-0 start-0 m-3 p-3 lh-1" aria-label="Toggle Notifications">
-                    <i class="fa fa-bell" aria-hidden="true"></i>
-                    <span class="cw_notification_badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        3
-                        <span class="visually-hidden">unread notifications</span>
-                    </span>
-                </button>
-
-
-                <div id="notificationPopup" class="notification-popup card position-fixed start-0 mb-2" style="display: none;">
-                    <div class="card-header notification-header py-2 px-3 small">
-                        Notifications
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item notification-item px-3 py-2 small">🔔 <strong>New user!</strong> A.
-                            Rudenko filled initial form.</li>
-                        <li class="list-group-item notification-item px-3 py-2 small">📩 <strong>New message</strong>
-                            from Dr. A.Grey.
+                <div class="modal-body">
+                    <ul class="list-unstyled">
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" target="_blank">Albert
+                                Rudenko</a></li>
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/7" target="_blank">Ivan Koval</a>
                         </li>
-                        <li class="list-group-item notification-item px-3 py-2 small">✅ <strong>Meeting
-                                request!</strong> W.Moroz requested meeting with psychiatrist.</li>
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/36" target="_blank">Anastasia
+                                Melnyk</a></li>
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/21" target="_blank">Peter
+                                Rudenko</a></li>
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/22" target="_blank">Nestor
+                                Moroz</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-        <div class="text-start d-none" id="page-guide">
-            <p>This is the main workspace for Case Managers, containing all essential information related to patient
-                management and coordination.</p>
-            
-            <p><b>Key Features:</b></p>
-            
-            <p><b>Patients in Treatment:</b></p>
-            <p>View a list of patients currently undergoing treatment. To see more information about a specific patient,
-                click the <b>"Details"</b> button.</p>
-            
-            <p><b>New Patients Table:</b></p>
-            <p>This section displays new patient entries submitted via the consultation request form.</p>
-            
-            <p>Click on a <b>patient's name</b> to view the initial details provided in the form.</p>
-            
-            <p>Click <b>"Details"</b> to open the full patient profile.</p>
-            
-            <p><b>Add Record / Case Manager Checklist:</b></p>
-            <p>Clicking the <b>"Add Record"</b> button opens the Case Manager Checklist, outlining the steps the Case
-                Manager should follow for each case.</p>
-            
-            <p><b>Doctors &amp; Assigned Patients:</b></p>
-            <p>This table shows a list of doctors and the number of patients assigned to each.</p>
-            
-            <p>Click on <b>the number of assigned patients</b> to view the list.</p>
-            
-            <p>Click on <b>a patient's name</b> to access their full profile.</p>
-            
-            <p><b>Appointments:</b></p>
-            <p>Use this section to schedule appointments by assigning specific dates and times for patient sessions with
-                doctors.</p>
-        </div>
-
-        <script>
-
-
-            function redirectToDoctor() {
-                // Перенаправлення на вказаний URL
-                window.location.href = "https://odoo.proxy.abtollc.com/doctor-child-2";
-            }
-
-
-
-            function redirectToAlbertRudenko() {
-                if (window.top === window.self) {
-                    // Ми не в iframe
-                    window.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/33';
-                } else {
-                    // Ми в iframe
-                    window.top.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/33';
-                }
-            }
-
-            function redirectToNestorMoroz() {
-                if (window.top === window.self) {
-                    // Ми не в iframe
-                    window.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/22';
-                } else {
-                    // Ми в iframe
-                    window.top.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/22';
-                }
-            }
-
-            function redirectToPeterRudenko() {
-                if (window.top === window.self) {
-                    // Ми не в iframe
-                    window.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/21';
-                } else {
-                    // Ми в iframe
-                    window.top.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/21';
-                }
-            }
-
-
-            document.addEventListener('DOMContentLoaded', () => {
-                // Видаляємо старий обробник для кнопок Details
-                document.querySelectorAll('.new-view-details-btn').forEach(btn => {
-                    // Видаляємо атрибути для модального вікна
-                    btn.removeAttribute('data-bs-toggle');
-                    btn.removeAttribute('data-bs-target');
-                    // Додаємо обробник події для редіректу
-
-                });
-
-                let currentFilters = {
-                    status: 'all',
-                    phase: 'all',
-                    doctor: 'all'
-                };
-
-                const showAllCheckbox = document.getElementById('showAllPatientsCheckbox');
-                const tableBody = document.getElementById('treatmentPatientsTable')?.querySelector('tbody');
-                const filterOptions = document.querySelectorAll('.filter-option');
-                const dropdownToggles = {
-                    status: document.getElementById('statusFilter'),
-                    phase: document.getElementById('treatmentPhaseFilter'),
-                    doctor: document.getElementById('doctorFilter')
-                };
-
-                if (!showAllCheckbox || !tableBody || filterOptions.length === 0) {
-                    console.error("Required filtering elements not found. Filtering might not work correctly.");
-                    return;
-                }
-
-                function applyFilters() {
-                    if (!tableBody) return;
-
-                    const patientRows = tableBody.querySelectorAll('tr');
-                    const showAllChecked = showAllCheckbox.checked; // Get checkbox state
-
-                    patientRows.forEach(row => {
-                        const rowStatus = row.dataset.status;
-                        const rowPhase = row.dataset.phase;
-                        const rowDoctor = row.dataset.doctor;
-
-                        const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null;
-
-
-                        const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
-                        const phaseMatch = (currentFilters.phase === 'all' || currentFilters.phase === rowPhase);
-                        const doctorMatch = (currentFilters.doctor === 'all' || currentFilters.doctor === rowDoctor);
-
-                        const checkboxAllows = (showAllChecked || !isGreen); // Row is allowed if checkbox is checked OR if the row is not green
-
-                        const isVisible = statusMatch && phaseMatch && doctorMatch && checkboxAllows;
-
-                        row.style.display = isVisible ? '' : 'none'; // '' resets to default (visible for table rows)
-                    });
-                }
-
-
-                filterOptions.forEach(option => {
-                    option.addEventListener('click', function () {
-                        const group = this.dataset.filterGroup; // e.g., 'status', 'phase', 'doctor'
-                        const value = this.dataset.filterValue; // e.g., 'Attending', 'Therapy', 'all'
-
-                        // Update the current filter state
-                        currentFilters[group] = value;
-
-                        // Update the corresponding dropdown toggle button text (UX improvement)
-                        const toggleButton = dropdownToggles[group];
-                        if (toggleButton) {
-                            // Use text content of the clicked item for the button label
-                            let buttonText = this.textContent;
-                            // Optional: Shorten text for 'All ...' options if desired
-                            if (value === 'all') {
-                                // Construct a default 'All ...' or just use the group name
-                                buttonText = group.charAt(0).toUpperCase() + group.slice(1); // e.g. "Status", "Phase", "Doctor"
-                                // Or use the full text like "All Statuses" if preferred: buttonText = this.textContent;
-                            }
-                            toggleButton.textContent = buttonText;
-                        }
-
-                        // Re-apply all filters based on the new state
-                        applyFilters();
-                    });
-                });
-
-                // 2. "Show All Patients" Checkbox
-                showAllCheckbox.addEventListener('change', applyFilters); // Re-apply filters when checkbox changes
-
-                // --- Initial Filter Application ---
-                // Apply filters once on page load to set the correct initial view based on defaults
-                applyFilters();
-            });
-
-
-            const btn = document.getElementById("notificationBtn");
-            const popup = document.getElementById("notificationPopup");
-
-            btn.addEventListener("click", () => {
-                popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
-            });
-
-            // Optional: Close popup when clicking outside
-            document.addEventListener("click", (e) => {
-                if (!btn.contains(e.target) && !popup.contains(e.target)) {
-                    popup.style.display = "none";
-                }
-            });
-
-
-
-    function updateReporterTaskProgress() {
-        const checkboxes = document.querySelectorAll('#reporterTaskList input[type="checkbox"]');
-        const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
-        const total = checkboxes.length;
-        const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
-
-        const bar = document.getElementById('reporterTaskProgressBar');
-        const summary = document.getElementById('taskSummary');
-
-        bar.style.width = percent + '%';
-        bar.innerText = percent + '%';
-        summary.innerText = `${checked} of ${total} tasks completed`;
-    }
-
-    // Run once on load in case any boxes are pre-checked
-    document.addEventListener('DOMContentLoaded', updateReporterTaskProgress);
-
-
-
-        </script>
     </div>
+
+
+    <div class="modal fade" id="assignedPatientsModalMaria" tabindex="-1"
+        aria-labelledby="assignedPatientsModalLabelMaria" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assignedPatientsModalLabelMaria">Assigned Patients for Dr.David West
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-unstyled">
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/8" target="_blank">Lev Kozak</a>
+                        </li>
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/23" target="_blank">Walter Moroz</a>
+                        </li>
+                        <li><a href="https://odoo.proxy.abtollc.com/odoo/contacts/36" target="_blank">Anastasia
+                                Melnyk</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="justify-content: flex-start !important;"
+        class="o-mail-ChatHub-bubbles position-fixed d-flex flex-column align-content-start justify-content-end align-items-center bottom-0">
+        <div class="d-flex flex-column align-content-start justify-content-end align-items-center gap-1">
+
+
+            <button id="notificationBtn"
+                class="cw_notification_button btn btn-primary rounded-pill shadow position-fixed bottom-0 start-0 m-3 p-3 lh-1"
+                aria-label="Toggle Notifications">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <span
+                    class="cw_notification_badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                    <span class="visually-hidden">unread notifications</span>
+                </span>
+            </button>
+
+
+            <div id="notificationPopup" class="notification-popup card position-fixed start-0 mb-2"
+                style="display: none;">
+                <div class="card-header notification-header py-2 px-3 small">
+                    Notifications
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item notification-item px-3 py-2 small">🔔 <strong>New user!</strong> A.
+                        Rudenko filled initial form.</li>
+                    <li class="list-group-item notification-item px-3 py-2 small">📩 <strong>New message</strong>
+                        from Dr. A.Grey.
+                    </li>
+                    <li class="list-group-item notification-item px-3 py-2 small">✅ <strong>Meeting
+                            request!</strong> W.Moroz requested meeting with psychiatrist.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="text-start d-none" id="page-guide">
+        <p>This is the main workspace for Case Managers, containing all essential information related to patient
+            management and coordination.</p>
+
+        <p><b>Key Features:</b></p>
+
+        <p><b>Patients in Treatment:</b></p>
+        <p>View a list of patients currently undergoing treatment. To see more information about a specific patient,
+            click the <b>"Details"</b> button.</p>
+
+        <p><b>New Patients Table:</b></p>
+        <p>This section displays new patient entries submitted via the consultation request form.</p>
+
+        <p>Click on a <b>patient's name</b> to view the initial details provided in the form.</p>
+
+        <p>Click <b>"Details"</b> to open the full patient profile.</p>
+
+        <p><b>Add Record / Case Manager Checklist:</b></p>
+        <p>Clicking the <b>"Add Record"</b> button opens the Case Manager Checklist, outlining the steps the Case
+            Manager should follow for each case.</p>
+
+        <p><b>Doctors &amp; Assigned Patients:</b></p>
+        <p>This table shows a list of doctors and the number of patients assigned to each.</p>
+
+        <p>Click on <b>the number of assigned patients</b> to view the list.</p>
+
+        <p>Click on <b>a patient's name</b> to access their full profile.</p>
+
+        <p><b>Appointments:</b></p>
+        <p>Use this section to schedule appointments by assigning specific dates and times for patient sessions with
+            doctors.</p>
+    </div>
+
+    <script>
+
+
+        function redirectToDoctor() {
+            // Перенаправлення на вказаний URL
+            window.location.href = "https://odoo.proxy.abtollc.com/doctor-child-2";
+        }
+
+
+
+        function redirectToAlbertRudenko() {
+            if (window.top === window.self) {
+                // Ми не в iframe
+                window.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/33';
+            } else {
+                // Ми в iframe
+                window.top.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/33';
+            }
+        }
+
+        function redirectToNestorMoroz() {
+            if (window.top === window.self) {
+                // Ми не в iframe
+                window.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/22';
+            } else {
+                // Ми в iframe
+                window.top.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/22';
+            }
+        }
+
+        function redirectToPeterRudenko() {
+            if (window.top === window.self) {
+                // Ми не в iframe
+                window.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/21';
+            } else {
+                // Ми в iframe
+                window.top.location.href = 'https://odoo.proxy.abtollc.com/odoo/contacts/21';
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Видаляємо старий обробник для кнопок Details
+            document.querySelectorAll('.new-view-details-btn').forEach(btn => {
+                // Видаляємо атрибути для модального вікна
+                btn.removeAttribute('data-bs-toggle');
+                btn.removeAttribute('data-bs-target');
+                // Додаємо обробник події для редіректу
+
+            });
+
+            let currentFilters = {
+                status: 'all',
+                phase: 'all',
+                doctor: 'all'
+            };
+
+            const showAllCheckbox = document.getElementById('showAllPatientsCheckbox');
+            const tableBody = document.getElementById('treatmentPatientsTable')?.querySelector('tbody');
+            const filterOptions = document.querySelectorAll('.filter-option');
+            const dropdownToggles = {
+                status: document.getElementById('statusFilter'),
+                phase: document.getElementById('treatmentPhaseFilter'),
+                doctor: document.getElementById('doctorFilter')
+            };
+
+            if (!showAllCheckbox || !tableBody || filterOptions.length === 0) {
+                console.error("Required filtering elements not found. Filtering might not work correctly.");
+                return;
+            }
+
+            function applyFilters() {
+                if (!tableBody) return;
+
+                const patientRows = tableBody.querySelectorAll('tr');
+                const showAllChecked = showAllCheckbox.checked; // Get checkbox state
+
+                patientRows.forEach(row => {
+                    const rowStatus = row.dataset.status;
+                    const rowPhase = row.dataset.phase;
+                    const rowDoctor = row.dataset.doctor;
+
+                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null;
+
+
+                    const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
+                    const phaseMatch = (currentFilters.phase === 'all' || currentFilters.phase === rowPhase);
+                    const doctorMatch = (currentFilters.doctor === 'all' || currentFilters.doctor === rowDoctor);
+
+                    const checkboxAllows = (showAllChecked || !isGreen); // Row is allowed if checkbox is checked OR if the row is not green
+
+                    const isVisible = statusMatch && phaseMatch && doctorMatch && checkboxAllows;
+
+                    row.style.display = isVisible ? '' : 'none'; // '' resets to default (visible for table rows)
+                });
+            }
+
+
+            filterOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const group = this.dataset.filterGroup; // e.g., 'status', 'phase', 'doctor'
+                    const value = this.dataset.filterValue; // e.g., 'Attending', 'Therapy', 'all'
+
+                    // Update the current filter state
+                    currentFilters[group] = value;
+
+                    // Update the corresponding dropdown toggle button text (UX improvement)
+                    const toggleButton = dropdownToggles[group];
+                    if (toggleButton) {
+                        // Use text content of the clicked item for the button label
+                        let buttonText = this.textContent;
+                        // Optional: Shorten text for 'All ...' options if desired
+                        if (value === 'all') {
+                            // Construct a default 'All ...' or just use the group name
+                            buttonText = group.charAt(0).toUpperCase() + group.slice(1); // e.g. "Status", "Phase", "Doctor"
+                            // Or use the full text like "All Statuses" if preferred: buttonText = this.textContent;
+                        }
+                        toggleButton.textContent = buttonText;
+                    }
+
+                    // Re-apply all filters based on the new state
+                    applyFilters();
+                });
+            });
+
+            // 2. "Show All Patients" Checkbox
+            showAllCheckbox.addEventListener('change', applyFilters); // Re-apply filters when checkbox changes
+
+            // --- Initial Filter Application ---
+            // Apply filters once on page load to set the correct initial view based on defaults
+            applyFilters();
+        });
+
+
+        const btn = document.getElementById("notificationBtn");
+        const popup = document.getElementById("notificationPopup");
+
+        btn.addEventListener("click", () => {
+            popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
+        });
+
+        // Optional: Close popup when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!btn.contains(e.target) && !popup.contains(e.target)) {
+                popup.style.display = "none";
+            }
+        });
+
+
+
+        function updateReporterTaskProgress() {
+            const checkboxes = document.querySelectorAll('#reporterTaskList input[type="checkbox"]');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
+
+            const bar = document.getElementById('reporterTaskProgressBar');
+            const summary = document.getElementById('taskSummary');
+
+            bar.style.width = percent + '%';
+            bar.innerText = percent + '%';
+            summary.innerText = `${checked} of ${total} tasks completed`;
+        }
+
+        // Run once on load in case any boxes are pre-checked
+        document.addEventListener('DOMContentLoaded', updateReporterTaskProgress);
+
+
+
+    </script>
+</div>

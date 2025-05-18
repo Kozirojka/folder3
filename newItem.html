@@ -1494,11 +1494,10 @@
     <div class="horizontal-tabs">
       <button class="horizontal-tab active" onclick="showModule('current')">
         Threatment
+      </button>      <button class="horizontal-tab" onclick="showModule('future')">
+        Diagnostic <span class="badge bg-success">Done</span>
       </button>
-      <button class="horizontal-tab" onclick="showModule('future')">
-        Therapy
-      </button>
-      
+
       <div class="flex-grow-1"></div>
       <button class="horizontal-tab treatment-plan" onclick="showModule('treatment')">
         <i class="fas fa-clipboard-list me-2"></i> Treatment Plan
@@ -1519,9 +1518,6 @@
           <button class="vertical-tab" onclick="showContent('session-history', 'current')">
             Session history
           </button>
-          <button class="vertical-tab" onclick="showContent('problems-symptoms', 'current')">
-            Problems and symptoms
-          </button>
           <button class="vertical-tab" onclick="showContent('problems-statistic', 'current')">
             Statistics
           </button> <button class="vertical-tab end-module-tab" onclick="showContent('end-module', 'current')">
@@ -1540,13 +1536,14 @@
               </div>
             </div>
 
-            
-           
+
+
             <div class="card module-card shadow-sm mb-4" style="border-left: 4px solid #20c997;">
-            <div class="card-header module-header d-flex justify-content-between align-items-center bg-teal-subtle text-teal"
-              id="triggerHeader" style="background-color: #d2f4ea; color: #198754; cursor: pointer;"
-              data-bs-toggle="collapse" data-bs-target="#triggerTable" aria-expanded="false" 
-              aria-controls="triggerTable" role="button">
+              <div
+                class="card-header module-header d-flex justify-content-between align-items-center bg-teal-subtle text-teal"
+                id="triggerHeader" style="background-color: #d2f4ea; color: #198754; cursor: pointer;"
+                data-bs-toggle="collapse" data-bs-target="#triggerTable" aria-expanded="false"
+                aria-controls="triggerTable" role="button">
                 <h5 class="mb-0">
                   <span class="d-flex align-items-center">
                     <i class="fas fa-clipboard-list me-2"></i>Trigger Identification Worksheet
@@ -1554,56 +1551,57 @@
                     </button>
                   </span>
                 </h5>
-              <i class="fas fa-chevron-down rotate-icon transition" id="triggerTableIcon"></i>
-            </div>
-            <div id="triggerTable" class="collapse" aria-labelledby="triggerHeader">
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table table-striped table-hover mb-0">
-                    <thead class="table-light">
-                      <tr>
-                        <th>Potential Triggers</th>
-                        <th>Patient Responses</th>
-                        <th>How This Affects Me</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><strong>Speaking in front of the class</strong></td>
-                        <td>
-                          I felt proud after I finished my school
-                          presentation even though I was scared at first.
-                        </td>
-                        <td>Blushing, shaky voice</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Trying something new</strong></td>
-                        <td>
-                          When I tried a new sport, I was very nervous but
-                          stayed until the end of practice.
-                        </td>
-                        <td>Tummy aches, avoidance behavior</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Unexpected changes in routine</strong></td>
-                        <td>
-                          Last time when our family trip got canceled, I
-                          felt super upset but did my breathing exercise.
-                          <div class="text-left mt-3 mb-3">
-                            <img src="https://cdn.openart.ai/uploads/image_B6A-70Oa_1694791168553_1024.jpg"
-                              alt="Response illustration" class="img-fluid rounded shadow-sm"
-                              style="max-height: 200px;" />
-                            <p class="text-muted mt-2"><small>Child's drawing illustrating emotional response</small></p>
-                          </div>
-                        </td>
-                        <td>Crying, irritability</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <i class="fas fa-chevron-down rotate-icon transition" id="triggerTableIcon"></i>
+              </div>
+              <div id="triggerTable" class="collapse" aria-labelledby="triggerHeader">
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Potential Triggers</th>
+                          <th>Patient Responses</th>
+                          <th>How This Affects Me</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Speaking in front of the class</strong></td>
+                          <td>
+                            I felt proud after I finished my school
+                            presentation even though I was scared at first.
+                          </td>
+                          <td>Blushing, shaky voice</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Trying something new</strong></td>
+                          <td>
+                            When I tried a new sport, I was very nervous but
+                            stayed until the end of practice.
+                          </td>
+                          <td>Tummy aches, avoidance behavior</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Unexpected changes in routine</strong></td>
+                          <td>
+                            Last time when our family trip got canceled, I
+                            felt super upset but did my breathing exercise.
+                            <div class="text-left mt-3 mb-3">
+                              <img src="https://cdn.openart.ai/uploads/image_B6A-70Oa_1694791168553_1024.jpg"
+                                alt="Response illustration" class="img-fluid rounded shadow-sm"
+                                style="max-height: 200px;" />
+                              <p class="text-muted mt-2"><small>Child's drawing illustrating emotional response</small>
+                              </p>
+                            </div>
+                          </td>
+                          <td>Crying, irritability</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>            <!-- Improved Observations Section -->
+            </div> <!-- Improved Observations Section -->
             <div class="card module-card shadow-sm mb-4" style="border-left: 4px solid #0d6efd;">
               <div
                 class="card-header module-header d-flex justify-content-between align-items-center bg-primary-subtle text-primary">
@@ -1634,16 +1632,12 @@
               </div>
             </div>
 
-            <!-- Homework Section -->            
+            <!-- Homework Section -->
             <div class="card module-card psychoeducation-module shadow-sm mb-4" style="border-left: 4px solid #198754;">
               <div
                 class="card-header module-header d-flex justify-content-between align-items-center bg-success-subtle text-success"
-                id="psychoeducationHeader"
-                data-bs-toggle="collapse"
-                data-bs-target="#homeworkContent" 
-                aria-expanded="true" 
-                aria-controls="homeworkContent"
-                style="cursor: pointer;">
+                id="psychoeducationHeader" data-bs-toggle="collapse" data-bs-target="#homeworkContent"
+                aria-expanded="true" aria-controls="homeworkContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <div class="d-flex align-items-center text-success">
                     <i class="fas fa-book-reader me-2"></i>Patient workbook
@@ -1706,11 +1700,9 @@
                           <div class="text-center mt-3 mb-3">
                             <img
                               src="https://www.breatheazy.co.uk/wp-content/uploads/2023/09/Untitled-design-35-1080x675.png"
-                              alt="Attachment image" 
-                              class="img-fluid rounded shadow-sm"
-                              style="max-height: 180px;">
+                              alt="Attachment image" class="img-fluid rounded shadow-sm" style="max-height: 180px;">
 
-                            <p class="text-muted mt-2"><small>My mind in this moment</small></p>  
+                            <p class="text-muted mt-2"><small>My mind in this moment</small></p>
                           </div>
                         </div>
                       </div>
@@ -1718,16 +1710,13 @@
                   </div>
                 </div>
               </div>
-            </div>         
-            
+            </div>
+
             <div class="card module-card shadow-sm mb-4" style="border-left: 4px solid #0d6efd;">
-              <div class="card-header module-header d-flex justify-content-between align-items-center bg-primary-subtle text-primary"
-                id="diagramHeader"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseDiagram" 
-                aria-expanded="true" 
-                aria-controls="collapseDiagram"
-                style="cursor: pointer;">
+              <div
+                class="card-header module-header d-flex justify-content-between align-items-center bg-primary-subtle text-primary"
+                id="diagramHeader" data-bs-toggle="collapse" data-bs-target="#collapseDiagram" aria-expanded="true"
+                aria-controls="collapseDiagram" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <div class="text-decoration-none d-flex align-items-center text-primary">
                     <i class="fas fa-project-diagram me-2"></i><span>Cognitive Behavioral Triangle</span>
@@ -1805,8 +1794,8 @@
                         </button>
                       </div>
                       <ul class="list-group list-group-flush mb-2" id="behaviorList"></ul>
-                      <input class="form-control form-control-sm vertex__input d-none" type="text" placeholder="Behavior"
-                        id="behavior-input" onclick="vertexInputClick(event)"
+                      <input class="form-control form-control-sm vertex__input d-none" type="text"
+                        placeholder="Behavior" id="behavior-input" onclick="vertexInputClick(event)"
                         onkeydown="vertexInputKeyDown('behavior', event)" />
                     </div>
 
@@ -1832,7 +1821,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- End Buttons -->
             <div class="end-buttons">
               <button class="end-button" onclick="toggleEndSessionForm()">
@@ -2206,146 +2195,6 @@
             </div>
           </div>
         </div>
-        <div id="problems-symptoms" class="tab-content">
-          <h3 class="content-title">Problems and symptoms</h3>
-          <div class="card shadow-sm mb-4">
-            <div class="card-header d-flex justify-content-between align-items-center" id="headingTable">
-              <h5 class="mb-0">
-                <button class="btn btn-link text-decoration-none d-flex align-items-center" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">
-                  <span>🔎 Case details: Eating disorders (EDs)</span>
-                </button>
-              </h5>
-              <i class="fas fa-chevron-down rotate-icon transition rotate" id="toggleIcon"></i>
-            </div>
-
-            <div id="collapseTable" class="collapse show">
-              <div class="card-body">
-                <table class="table table-bordered table-hover">
-                  <thead class="table-light">
-                    <tr>
-                      <th scope="col">Category</th>
-                      <th scope="col">Content</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Target appeals</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          Weight loss, increased anxiety. The main goal is to
-                          stabilize eating behavior and improve
-                          psycho-emotional state. Involve the entire family in
-                          the therapeutic process.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Clinical symptoms</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          Recurrent episodes of compulsive overeating with
-                          loss of control, anxiety, weight loss. Additionally,
-                          increased self-criticism, avoidance of shared meals.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Somatic/biological background</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          The general health condition is stable, but
-                          significant weight loss has been recorded over the
-                          past 6 months. Preliminary data: no serious chronic
-                          diseases, regular menstrual cycle is disturbed.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Family context</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          Complete family: mother, father, older brother.
-                          Tense relationship between child and mother,
-                          authoritarian parenting style. Family is willing to
-                          participate in family therapy.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>School/educational situation</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          Grade 11, high academic performance. There is strong
-                          perfectionism, fear of failure. Relationships with
-                          teachers are normal, there are episodes of social
-                          isolation among peers.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Resources and support</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          The family is willing to participate in the
-                          therapeutic process. The girl has a friend who
-                          supports her. Hobbies: drawing, blogging. Strengths
-                          are noted - responsibility, empathy.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="card shadow-sm">
-            <div class="card-header d-flex justify-content-between align-items-center" id="headingTableHistory">
-              <h5 class="mb-0">
-                <button class="btn btn-link text-decoration-none d-flex align-items-center" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTableHistory" aria-expanded="false" aria-controls="collapseTableHistory">
-                  <span>🔎 History of behavior, social development, and events in
-                    the child's life</span>
-                  the child's life</span>
-                </button>
-              </h5>
-              <i class="fas fa-chevron-down rotate-icon transition rotate" id="toggleIconHistory"></i>
-            </div>
-
-            <div id="collapseTableHistory" class="collapse show">
-              <div class="card-body">
-                <table class="table table-bordered table-hover">
-                  <thead class="table-light">
-                    <tr>
-                      <th scope="col">Category</th>
-                      <th scope="col">Content</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Current state of the patient</td>
-                      <td class="editable-cell">
-                        <div class="cell-content">
-                          Present symptoms, behaviors, and overall
-                          psychological and physical well-being.
-                        </div>
-                        <i class="fas fa-pen edit-icon"></i>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!-- Adding new Interactive Diagram Card -->
-          
-        </div>
 
         <div id="problems-statistic" class="tab-content">
           <h3 class="content-title">Statistics</h3>
@@ -2477,17 +2326,732 @@
       <div class="content-area">
         <div class="vertical-tabs">
           <button class="vertical-tab active" onclick="showContent('future-plans', 'future')">
-            НАЗВА ТВОЄЇ ВКЛАДКИ
+            Diagnostic overview
           </button>
-          
+
+          <button class="vertical-tab" onclick="showContent('diagnostic-tasks', 'future')">
+            Tasks
+          </button>
+
+          <button class="vertical-tab" onclick="showContent('problem-symptoms', 'future')">
+            Problems and symptoms
+          </button>
+
         </div>
 
         <div id="future-plans" class="tab-content active">
-          <h3 class="content-title">БУДЕШ БАВИТИСЬ НЕЮ</h3>
-          <div class="card shadow-sm">
+          <h3 class="content-title">Diagnostic overview</h3>
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success-subtle">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 text-success"><i class="fas fa-check-circle me-2"></i>Diagnostic Assessment Complete
+                </h5>
+                <span class="badge bg-success">Completed</span>
+              </div>
+            </div>
             <div class="card-body">
-              
-              
+              <h5 class="card-title">Anxiety Disorder: Social Anxiety with School Refusal</h5>
+              <p class="card-text">
+                Based on the comprehensive assessment, 15-year-old male presents with significant anxiety symptoms
+                directly linked to bullying experiences. Primary symptoms include social avoidance, school refusal
+                behaviors, physical manifestations of anxiety (headaches, stomach pains), and sleep disturbances. The
+                onset appears to correlate with bullying incidents that began 8 months ago.
+              </p>
+              <p class="card-text">
+                Diagnostic criteria for Social Anxiety Disorder with specific school refusal components are met.
+                Symptoms are causing significant impairment in academic functioning (40% attendance rate) and social
+                development.
+              </p>
+
+              <div class="alert alert-primary mt-4">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-info-circle me-3 fs-4"></i>
+                  <div>
+                    <strong>Next Steps:</strong> Proceed to therapy planning with focus on cognitive-behavioral
+                    techniques, gradual exposure to school environment, and family involvement.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mt-2">
+                <div class="col-md-6">
+                  <div class="card h-100 bg-light">
+                    <div class="card-body">
+                      <h6 class="card-title"><i class="fas fa-clipboard-list text-primary me-2"></i>Diagnostic Tasks
+                      </h6>
+                      <p class="card-text text-muted">View completed assessment tasks and tools used for diagnosis.</p>
+                      <a href="#" class="btn btn-outline-primary btn-sm"
+                        onclick="showContent('diagnostic-tasks', 'future'); return false;">View Tasks</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100 bg-light">
+                    <div class="card-body">
+                      <h6 class="card-title"><i class="fas fa-exclamation-triangle text-warning me-2"></i>Problems &
+                        Symptoms</h6>
+                      <p class="card-text text-muted">Review detailed case information and symptom history.</p>
+                      <a href="#" class="btn btn-outline-primary btn-sm"
+                        onclick="showContent('problem-symptoms', 'future'); return false;">View Details</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Assessment completed on May 15, 2025</small>
+                <button class="btn btn-primary btn-sm" onclick="showModule('current')">
+                  <i class="fas fa-arrow-right me-1"></i> Proceed to Treatment
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div id="diagnostic-tasks" class="tab-content">
+          <h3 class="content-title">Diagnostic Tasks</h3><!-- Exercise 1: Anxiety Thermometer -->
+                  <div class="exercise-card mb-4">
+                    <div class="card border-start border-success border-3">
+                      <div class="card-header bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h6 class="mb-0"><i class="fas fa-thermometer-half text-danger me-2"></i>Exercise 1: Anxiety
+                            Thermometer</h6>
+                          <span class="badge bg-success">Completed May 11, 2025</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <p class="mb-3">Please rate your anxiety level (0-10) in these different situations:</p>
+
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="table-light">
+                              <tr>
+                                <th>Situation</th>
+                                <th class="text-center" style="width: 60%;">Anxiety Level (0-10)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Walking through school hallways</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-danger" role="progressbar" style="width: 80%;"
+                                        aria-valuenow="8" aria-valuemin="0" aria-valuemax="10">8</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">8/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Sitting in the cafeteria during lunch</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-danger" role="progressbar" style="width: 90%;"
+                                        aria-valuenow="9" aria-valuemin="0" aria-valuemax="10">9</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">9/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Participating in gym class</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;"
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="10">10</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">10/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Being called on by the teacher in class</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;"
+                                        aria-valuenow="7" aria-valuemin="0" aria-valuemax="10">7</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">7/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Walking to school in the morning</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;"
+                                        aria-valuenow="7" aria-valuemin="0" aria-valuemax="10">7</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">7/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Seeing particular students from basketball team</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;"
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="10">10</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">10/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>At home playing video games</td>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1" style="height: 25px;">
+                                      <div class="progress-bar bg-success" role="progressbar" style="width: 20%;"
+                                        aria-valuenow="2" aria-valuemin="0" aria-valuemax="10">2</div>
+                                    </div>
+                                    <span class="ms-2 fw-bold">2/10</span>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div class="mt-3 p-3 bg-light rounded">
+                          <h6 class="mb-2"><i class="fas fa-chart-line me-2 text-primary"></i>Therapist's Note:</h6>
+                          <p class="mb-0">Clear pattern of elevated anxiety in situations involving potential social
+                            evaluation and specific bullying-related triggers. Notably, anxiety levels reach maximum
+                            severity (10/10) in gym class and when encountering specific peers associated with bullying
+                            incidents. Safe spaces (gaming at home) show minimal anxiety, suggesting effective but
+                            potentially problematic avoidance patterns.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  <!-- Exercise 2: Thought Records -->
+                  <div class="exercise-card mb-4">
+                    <div class="card border-start border-success border-3">
+                      <div class="card-header bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h6 class="mb-0"><i class="fas fa-brain text-primary me-2"></i>Exercise 2: Thought Recording
+                          </h6>
+                          <span class="badge bg-success">Completed May 13, 2025</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <p class="mb-3">Please record situations that triggered anxiety and the thoughts that occurred:
+                        </p>
+
+                        <div class="accordion mb-3" id="thoughtAccordion">
+                          <!-- Situation 1 -->
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <div class="d-flex justify-content-between w-100 me-3">
+                                  <span><strong>Situation 1:</strong> Being called to present in History class</span>
+                                  <span class="badge bg-danger">Anxiety: 9/10</span>
+                                </div>
+                              </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                              data-bs-parent="#thoughtAccordion">
+                              <div class="accordion-body">
+                                <div class="form-group mb-3">
+                                  <label class="form-label"><strong>What was going through your mind?</strong></label>
+                                  <div class="form-control bg-light">
+                                    Everyone will stare at me and laugh. I'll forget what I'm supposed to say. My voice
+                                    will shake and crack. The bullies will record me and share it with everyone.
+                                  </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                  <label class="form-label"><strong>Physical sensations:</strong></label>
+                                  <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-secondary p-2">Racing heart</span>
+                                    <span class="badge bg-secondary p-2">Sweating</span>
+                                    <span class="badge bg-secondary p-2">Shaking hands</span>
+                                    <span class="badge bg-secondary p-2">Stomach pain</span>
+                                    <span class="badge bg-secondary p-2">Dry mouth</span>
+                                    <span class="badge bg-secondary p-2">Dizziness</span>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="form-label"><strong>What did you do?</strong></label>
+                                  <div class="form-control bg-light">
+                                    Asked to go to the restroom and stayed there until the presentations were over.
+                                    Later asked my doctor for a note to excuse me from class presentations.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Situation 2 -->
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <div class="d-flex justify-content-between w-100 me-3">
+                                  <span><strong>Situation 2:</strong> Seeing basketball team members in the
+                                    hallway</span>
+                                  <span class="badge bg-danger">Anxiety: 10/10</span>
+                                </div>
+                              </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                              data-bs-parent="#thoughtAccordion">
+                              <div class="accordion-body">
+                                <div class="form-group mb-3">
+                                  <label class="form-label"><strong>What was going through your mind?</strong></label>
+                                  <div class="form-control bg-light">
+                                    They're going to push me into the lockers again. Everyone will see me get
+                                    humiliated. They'll call me names and laugh. No one will help me. I can't defend
+                                    myself.
+                                  </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                  <label class="form-label"><strong>Physical sensations:</strong></label>
+                                  <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-secondary p-2">Panic feeling</span>
+                                    <span class="badge bg-secondary p-2">Chest tightness</span>
+                                    <span class="badge bg-secondary p-2">Trouble breathing</span>
+                                    <span class="badge bg-secondary p-2">Trembling</span>
+                                    <span class="badge bg-secondary p-2">Nausea</span>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="form-label"><strong>What did you do?</strong></label>
+                                  <div class="form-control bg-light">
+                                    Turned around and went the long way to class. Was late and got detention, but felt
+                                    it was better than facing them. Later had my mom email the school to get the
+                                    detention removed.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Situation 3 -->
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <div class="d-flex justify-content-between w-100 me-3">
+                                  <span><strong>Situation 3:</strong> Sunday night before school week</span>
+                                  <span class="badge bg-warning">Anxiety: 8/10</span>
+                                </div>
+                              </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                              data-bs-parent="#thoughtAccordion">
+                              <div class="accordion-body">
+                                <div class="form-group mb-3">
+                                  <label class="form-label"><strong>What was going through your mind?</strong></label>
+                                  <div class="form-control bg-light">
+                                    I can't handle another week of this. Everyone at school hates me. Tomorrow I'll have
+                                    gym class and those guys will be there. What if they posted something new about me
+                                    online? I'm going to fail my classes because I keep missing school.
+                                  </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                  <label class="form-label"><strong>Physical sensations:</strong></label>
+                                  <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-secondary p-2">Can't sleep</span>
+                                    <span class="badge bg-secondary p-2">Headache</span>
+                                    <span class="badge bg-secondary p-2">Stomach pain</span>
+                                    <span class="badge bg-secondary p-2">Restlessness</span>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="form-label"><strong>What did you do?</strong></label>
+                                  <div class="form-control bg-light">
+                                    Stayed up until 3 AM playing games to avoid thinking about school. Then told my mom
+                                    I was sick in the morning so I could stay home. This has become a pattern almost
+                                    every Monday.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-3 p-3 bg-light rounded">
+                          <h6 class="mb-2"><i class="fas fa-chart-line me-2 text-primary"></i>Therapist's Note:</h6>
+                          <p class="mb-0">Thought patterns show catastrophic thinking and anticipatory anxiety. Core
+                            beliefs appear to center around social humiliation, helplessness, and inability to cope.
+                            Avoidance behaviors are reinforced through immediate anxiety reduction, creating a
+                            problematic cycle. Physical symptoms indicate significant autonomic nervous system
+                            activation during anxiety episodes.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  <!-- Exercise 3: Fear Hierarchy -->
+                  <div class="exercise-card">
+                    <div class="card border-start border-success border-3">
+                      <div class="card-header bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h6 class="mb-0"><i class="fas fa-sort-amount-up text-success me-2"></i>Exercise 3: Fear &
+                            Avoidance Hierarchy</h6>
+                          <span class="badge bg-success">Completed May 14, 2025</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <p>Please rank these situations from least anxiety-provoking (1) to most anxiety-provoking (10):
+                        </p>
+
+                        <div class="fear-hierarchy mb-4">
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #f8d7da;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">10</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Giving a presentation in front of the whole class</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-danger">Extreme</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #f8d7da;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">9</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Being in gym class with the basketball team members</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-danger">Extreme</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #f8d7da;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">8</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Eating lunch in the cafeteria</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-danger">Extreme</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #fff3cd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">7</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Walking through crowded hallways between classes</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-warning text-dark">High</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #fff3cd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">6</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Being called on by a teacher during class</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-warning text-dark">High</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #fff3cd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">5</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Walking to school in the morning</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-warning text-dark">Moderate</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #d1e7dd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">4</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Working on a group project with unfamiliar classmates</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-success">Moderate</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #d1e7dd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">3</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Joining an online gaming group voice chat with strangers</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-success">Low</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #d1e7dd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">2</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Talking with the one close friend I still have</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-success">Low</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="hierarchy-item d-flex align-items-center p-2 mb-2 rounded"
+                            style="background-color: #d1e7dd;">
+                            <span class="hierarchy-rank me-3 fw-bold fs-5">1</span>
+                            <div class="hierarchy-content flex-grow-1">
+                              <div class="d-flex justify-content-between">
+                                <div>Being alone in my room gaming or coding</div>
+                                <div class="hierarchy-indicator">
+                                  <span class="badge bg-success">Minimal</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="current-avoidance p-3 bg-light rounded mb-3">
+                          <h6 class="mb-2"><i class="fas fa-ban text-danger me-2"></i>Current Avoidance Behaviors:</h6>
+                          <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-danger p-2">Missing school entirely (2-3 days/week)</span>
+                            <span class="badge bg-danger p-2">Skipping gym class (100% avoidance)</span>
+                            <span class="badge bg-danger p-2">Avoiding cafeteria at lunch (eats in counselor's
+                              office)</span>
+                            <span class="badge bg-danger p-2">Refusing to give presentations (takes grade
+                              penalties)</span>
+                            <span class="badge bg-warning text-dark p-2">Taking alternate routes to classes</span>
+                            <span class="badge bg-warning text-dark p-2">Using restroom during partner/group work</span>
+                          </div>
+                        </div>
+
+                        <div class="mt-3 p-3 bg-light rounded">
+                          <h6 class="mb-2"><i class="fas fa-chart-line me-2 text-primary"></i>Therapist's Note:</h6>
+                          <p class="mb-0">Fear hierarchy shows clear pattern of social and evaluative fears, with
+                            highest anxiety triggered by situations involving performance or presence of bullying peers.
+                            Current avoidance behaviors are severe and significantly impacting educational functioning.
+                            Hierarchy provides excellent baseline for developing graduated exposure therapy plan,
+                            starting with lower anxiety situations (3-4 range) and progressing gradually.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+
+        <div id="problem-symptoms" class="tab-content">
+          <h3 class="content-title">Problems and symptoms</h3>
+          <div class="card shadow-sm mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center" id="headingTable">
+              <h5 class="mb-0">
+                <button class="btn btn-link text-decoration-none d-flex align-items-center" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">
+                  <span>🔎 Case details: Anxiety Disorder</span>
+                </button>
+              </h5>
+              <i class="fas fa-chevron-down rotate-icon transition rotate" id="toggleIcon"></i>
+            </div>
+
+            <div id="collapseTable" class="collapse show">
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Content</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Target appeals</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Severe anxiety in social situations, school attendance issues,
+                          avoiding previously enjoyed activities. The main goal is to reduce
+                          anxiety symptoms, develop effective coping skills, and improve school
+                          attendance. Family involvement is necessary for support.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Clinical symptoms</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Persistent anxiety, panic attacks when facing social situations,
+                          sleep disturbances (difficulty falling asleep), physical symptoms
+                          (stomach pain, headaches) before school, irritability, avoidance
+                          of social interactions, and school refusal behaviors.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Somatic/biological background</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Overall physical health is good. No significant medical conditions.
+                          History of stress-related stomach aches and headaches. Normal developmental
+                          history. Sleep disruption reported in the last 3 months. No medication
+                          currently prescribed.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Family context</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Nuclear family with parents and younger sister (10). Parents report high
+                          stress levels due to work demands. Father tends to minimize emotional concerns.
+                          Mother is supportive but anxious herself. Family is willing to participate
+                          in therapy sessions as needed.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>School/educational situation</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Grade 9, previously good academic performance now declining. Reported
+                          bullying incidents in the past semester. 40% attendance rate in the last
+                          month. Teachers note he is quiet but capable when present. School counselor
+                          is concerned about social withdrawal and academic impact.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Resources and support</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          School counselor is involved and supportive. Has one close friend who
+                          maintains contact. Enjoys gaming and computer programming (potential
+                          therapeutic tools). Personal strengths include intelligence, creativity,
+                          problem-solving abilities, and sense of humor when comfortable.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center" id="headingTableHistory">
+              <h5 class="mb-0">
+                <button class="btn btn-link text-decoration-none d-flex align-items-center" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTableHistory" aria-expanded="false" aria-controls="collapseTableHistory">
+                  <span>🔎 History of behavior, social development, and significant events</span>
+                </button>
+              </h5>
+              <i class="fas fa-chevron-down rotate-icon transition rotate" id="toggleIconHistory"></i>
+            </div>
+
+            <div id="collapseTableHistory" class="collapse show">
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Content</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Early development</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Normal early development with no significant delays. Was described as a
+                          shy but happy child. Some separation anxiety noted when starting primary school
+                          but resolved within a month.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Social history</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Had a small but stable friend group through elementary school. Social difficulties
+                          began after transitioning to high school last year. Gradual withdrawal from
+                          social activities in the past 6 months.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Significant events</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Bullying incidents began 8 months ago after joining the school basketball team.
+                          Reports being mocked about his appearance and athletic abilities. One serious
+                          incident involved cyberbullying where embarrassing photos were shared online 3 months ago.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Behavioral changes</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Progressive increase in avoidance behaviors. Initially refused only basketball
+                          practice, then gym class, now refusing school entirely on most days. Spending
+                          increased time in his room gaming and coding. Sleep schedule has become irregular.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Previous interventions</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Met with school counselor weekly for the past 2 months with minimal improvement.
+                          School implemented an anti-bullying intervention with mixed results. Parents
+                          attempted various incentives for school attendance without success.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Current state</td>
+                      <td class="editable-cell">
+                        <div class="cell-content">
+                          Shows significant anxiety symptoms, especially regarding school attendance.
+                          Reports feeling "on edge" most of the time. Experiencing sleep disturbances,
+                          difficulty concentrating, and occasional panic symptoms when pressured to attend school.
+                          Expresses feelings of shame and worthlessness related to bullying experiences.
+                        </div>
+                        <i class="fas fa-pen edit-icon"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -2503,7 +3067,7 @@
         <button class="vertical-tab active" onclick="showContent('treatment-overview', 'treatment')">
           Overview
         </button>
-        
+
       </div>
 
       <!-- Treatment Plan Content -->
@@ -2558,7 +3122,7 @@
             <!-- Depression introduction module -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center"
-                id="depressionHeader" data-bs-toggle="collapse" data-bs-target="#depressionContent" 
+                id="depressionHeader" data-bs-toggle="collapse" data-bs-target="#depressionContent"
                 aria-expanded="false" aria-controls="depressionContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <span class="text-black d-flex align-items-center fs-5">
@@ -2732,8 +3296,8 @@
             <!-- Psychoeducation -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-success-subtle d-flex justify-content-between align-items-center"
-                  id="psychoeducationHeader" data-bs-toggle="collapse" data-bs-target="#psychoeducationContent"
-                  aria-expanded="false" aria-controls="psychoeducationContent" style="cursor: pointer;">
+                id="psychoeducationHeader" data-bs-toggle="collapse" data-bs-target="#psychoeducationContent"
+                aria-expanded="false" aria-controls="psychoeducationContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <span class="text-black d-flex align-items-center fs-5">
                     <span>Psychoeducation</span>
@@ -2757,8 +3321,8 @@
             <!-- Behavioral activation -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-warning-subtle d-flex justify-content-between align-items-center"
-                  id="behavioralHeader" data-bs-toggle="collapse" data-bs-target="#behavioralContent" 
-                  aria-expanded="false" aria-controls="behavioralContent" style="cursor: pointer;">
+                id="behavioralHeader" data-bs-toggle="collapse" data-bs-target="#behavioralContent"
+                aria-expanded="false" aria-controls="behavioralContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <span class="text-black d-flex align-items-center fs-5">
                     <span>Behavioral activation</span>
@@ -3161,8 +3725,8 @@
             <!-- Problem Solving -->
             <div class="card shadow-sm mb-4">
               <div class="card-header bg-light d-flex justify-content-between align-items-center"
-                  id="problemSolvingHeader" data-bs-toggle="collapse" data-bs-target="#problemSolvingContent"
-                  aria-expanded="false" aria-controls="problemSolvingContent" style="cursor: pointer;">
+                id="problemSolvingHeader" data-bs-toggle="collapse" data-bs-target="#problemSolvingContent"
+                aria-expanded="false" aria-controls="problemSolvingContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <span class="text-black d-flex align-items-center fs-5">
                     <span>Problem Solving</span>
@@ -3351,9 +3915,9 @@
             <span class="timeline-dot not-started"></span>
             <!-- Cognitive restructuring -->
             <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" 
-                  id="cognitiveHeader" data-bs-toggle="collapse" data-bs-target="#cognitiveContent" 
-                  aria-expanded="false" aria-controls="cognitiveContent" style="cursor: pointer;">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="cognitiveHeader"
+                data-bs-toggle="collapse" data-bs-target="#cognitiveContent" aria-expanded="false"
+                aria-controls="cognitiveContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <span class="text-black d-flex align-items-center fs-5">
                     <span>Cognitive restructuring</span>
@@ -3565,9 +4129,9 @@
             <span class="timeline-dot not-started"></span>
             <!-- Affect regulation -->
             <div class="card shadow-sm mb-4">
-              <div class="card-header bg-light d-flex justify-content-between align-items-center" 
-                  id="affectHeader" data-bs-toggle="collapse" data-bs-target="#affectContent" 
-                  aria-expanded="false" aria-controls="affectContent" style="cursor: pointer;">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center" id="affectHeader"
+                data-bs-toggle="collapse" data-bs-target="#affectContent" aria-expanded="false"
+                aria-controls="affectContent" style="cursor: pointer;">
                 <h5 class="mb-0">
                   <span class="text-black d-flex align-items-center fs-5">
                     <span>Affect regulation</span>
@@ -3825,13 +4389,13 @@
     </div>
 
 
-      <div id="treatment-goals" class="tab-content">
-        <h3 cla ss="content-title">Treatment Plan</h3>
-        <!-- Content for Treatment Goals tab -->
-      </div>
+    <div id="treatment-goals" class="tab-content">
+      <h3 cla ss="content-title">Treatment Plan</h3>
+      <!-- Content for Treatment Goals tab -->
+    </div>
 
-    </div>
-    </div>
+  </div>
+  </div>
   </div>
 
   <script>
@@ -3840,28 +4404,29 @@
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
-      });    }); function toggleTriggerTable() {
+      });
+    }); function toggleTriggerTable() {
       $('#triggerTable').collapse('toggle');
     }
 
     function toggleEndSessionForm() {
       const form = document.getElementById("endSessionForm");
       form.classList.toggle("active");
-      
+
       // If the form is now active (visible), scroll to center it
       if (form.classList.contains("active")) {
         // Wait a tiny bit for the form to be fully visible
         setTimeout(() => {
           // Get the form's position and dimensions
           const formRect = form.getBoundingClientRect();
-          
+
           // Get the viewport height
           const viewportHeight = window.innerHeight;
-          
+
           // Calculate the scroll adjustment to center the form
           // This takes the form's top position and adjusts it to center the form in the viewport
           const scrollAdjustment = formRect.top - (viewportHeight / 2) + (formRect.height / 2);
-          
+
           // Scroll by that amount (smoothly)
           window.scrollBy({
             top: scrollAdjustment,
@@ -3869,7 +4434,7 @@
           });
         }, 50); // Small timeout to ensure the form is rendered
       }
-      
+
       // Hide module form if it's open
       document.getElementById("endModuleForm").classList.remove("active");
     }
@@ -4362,71 +4927,71 @@
 
 
     const vertexData = {
-        thought: [
-          "I’m going to fail math test",
-          "Everyone else is smarter than me",
-        ],
-        emotion: ["Scared", "Nervous", "Sad"],
-        behavior: ["Hiding in my room", "Not wanting to go to school"],
-      };
+      thought: [
+        "I’m going to fail math test",
+        "Everyone else is smarter than me",
+      ],
+      emotion: ["Scared", "Nervous", "Sad"],
+      behavior: ["Hiding in my room", "Not wanting to go to school"],
+    };
 
-      function addVertexListItem(type, e) {
-        e.stopPropagation();
+    function addVertexListItem(type, e) {
+      e.stopPropagation();
+      const input = document.getElementById(type + "-input");
+      input.classList.remove("d-none");
+      input.focus();
+    }
+
+    function toggleVertexGlowEffect(type, e) {
+      e.stopPropagation();
+      const wrapperId = type + "-wrapper";
+      const wrapper = document.getElementById(wrapperId);
+      wrapper.classList.toggle("glow-effect");
+    }
+
+    function triangleContainerClick(event) {
+      document.querySelectorAll(".glow-effect").forEach((el) => {
+        el.classList.remove("glow-effect");
+      });
+    }
+
+    function renderVertexList(type) {
+      const listId = type + "List";
+      const ul = document.getElementById(listId);
+      ul.innerHTML = "";
+      vertexData[type].forEach((item) => {
+        const li = document.createElement("li");
+        li.className =
+          "list-group-item list-item-bg text-break text-white dark-border";
+        li.innerHTML = "&#x2022; " + item;
+        ul.appendChild(li);
+      });
+    }
+
+    function vertexInputClick(e) {
+      e.stopPropagation();
+    }
+
+    function vertexInputKeyDown(type, e) {
+      if (event.key === "Enter") {
         const input = document.getElementById(type + "-input");
-        input.classList.remove("d-none");
-        input.focus();
-      }
-
-      function toggleVertexGlowEffect(type, e) {
-        e.stopPropagation();
-        const wrapperId = type + "-wrapper";
-        const wrapper = document.getElementById(wrapperId);
-        wrapper.classList.toggle("glow-effect");
-      }
-
-      function triangleContainerClick(event) {
-        document.querySelectorAll(".glow-effect").forEach((el) => {
-          el.classList.remove("glow-effect");
-        });
-      }
-
-      function renderVertexList(type) {
-        const listId = type + "List";
-        const ul = document.getElementById(listId);
-        ul.innerHTML = "";
-        vertexData[type].forEach((item) => {
-          const li = document.createElement("li");
-          li.className =
-            "list-group-item list-item-bg text-break text-white dark-border";
-          li.innerHTML = "&#x2022; " + item;
-          ul.appendChild(li);
-        });
-      }
-
-      function vertexInputClick(e) {
-        e.stopPropagation();
-      }
-
-      function vertexInputKeyDown(type, e) {
-        if (event.key === "Enter") {
-          const input = document.getElementById(type + "-input");
-          const value = input.value.trim();
-          if (value !== "") {
-            vertexData[type].push(value);
-            renderVertexList(type);
-            input.value = "";
-            input.classList.add("d-none");
-          } else {
-            input.classList.add("d-none");
-          }
+        const value = input.value.trim();
+        if (value !== "") {
+          vertexData[type].push(value);
+          renderVertexList(type);
+          input.value = "";
+          input.classList.add("d-none");
+        } else {
+          input.classList.add("d-none");
         }
       }
+    }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        renderVertexList("thought");
-        renderVertexList("emotion");
-        renderVertexList("behavior");
-      });
+    document.addEventListener("DOMContentLoaded", function () {
+      renderVertexList("thought");
+      renderVertexList("emotion");
+      renderVertexList("behavior");
+    });
   </script>
 </body>
 
