@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>        .plaster-container {
+    <style>
+        .plaster-container {
             display: flex;
             flex-direction: column;
             flex-wrap: nowrap;
@@ -25,7 +26,9 @@
             background-color: #F5F5F5;
             border-radius: 12px;
             box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
-        }.plaster {
+        }
+
+        .plaster {
             width: 90%;
             height: 120px;
             background-color: #FFF3E0;
@@ -43,7 +46,9 @@
             flex-shrink: 0;
             border: 1px solid #FFE0B2;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }        .plaster::before,
+        }
+
+        .plaster::before,
         .plaster::after {
             content: '';
             position: absolute;
@@ -62,7 +67,9 @@
         .plaster::after {
             right: 0;
             transform: translateX(5px);
-        }        .plaster img {
+        }
+
+        .plaster img {
             width: 80%;
             height: 80%;
             object-fit: cover;
@@ -74,7 +81,8 @@
 
         /* Removed the image expansion on hover */
 
-        /* Problem styles */        .problem-container {
+        /* Problem styles */
+        .problem-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -82,7 +90,9 @@
             background-color: #F5F5F5;
             border-radius: 12px;
             box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
-        }        .problem-item {
+        }
+
+        .problem-item {
             padding: 12px 15px;
             background-color: #ffffff;
             border: 2px dashed #B0BEC5;
@@ -94,12 +104,16 @@
             position: relative;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }        .problem-item span {
+        }
+
+        .problem-item span {
             flex-shrink: 0;
             font-weight: 500;
             color: #455A64;
             font-size: 1.05rem;
-        }          /* Нові стилі для проблем з фото */
+        }
+
+        /* Нові стилі для проблем з фото */
         .problem-item {
             padding: 0;
             overflow: visible;
@@ -109,7 +123,9 @@
             transition: all 0.3s ease;
             margin-bottom: 10px;
             position: relative;
-        }.problem-image {
+        }
+
+        .problem-image {
             width: 80px;
             height: 80px;
             object-fit: cover;
@@ -119,7 +135,7 @@
             position: relative;
             transform-origin: left center;
         }
-        
+
         /* Ефект збільшення зображення проблеми при наведенні */
         .problem-image:hover {
             transform: scale(1.5);
@@ -127,7 +143,9 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border-radius: 4px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }          .problem-content {
+        }
+
+        .problem-content {
             display: flex;
             flex: 1;
             padding: 12px;
@@ -136,33 +154,39 @@
             flex-wrap: nowrap;
             position: relative;
             z-index: 5;
-        }.problem-title {
+        }
+
+        .problem-title {
             font-weight: 500;
             color: #455A64;
             font-size: 1.05rem;
             margin-right: 10px;
             text-align: left;
             flex-shrink: 0;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }.problem-item.filled {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-item.filled {
             border: 2px solid #66BB6A;
             background-color: #E8F5E9;
             box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
             transform: translateY(-2px);
         }
-        
+
         /* Maintain hover effect for filled items */
         .problem-item.filled .problem-image:hover {
             transform: scale(1.5);
             z-index: 100;
-        }.applied-plaster {
+        }
+
+        .applied-plaster {
             width: 50px;
             height: 35px;
             object-fit: cover;
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             border: 2px solid #fff;
         }
 
@@ -170,14 +194,19 @@
             transform: scale(1.2);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
             z-index: 5;
-        }        .applied-plasters-container {
+        }
+
+        .applied-plasters-container {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
             margin-left: 10px;
             align-items: center;
             justify-content: flex-start;
-        }/* Styles for full image modal window */        .image-modal {
+        }
+
+        /* Styles for full image modal window */
+        .image-modal {
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -187,7 +216,8 @@
             background-color: rgba(0, 0, 0, 0.85);
             display: none;
         }
-          .image-modal-content {
+
+        .image-modal-content {
             width: 500px;
             height: 400px;
             border-radius: 12px;
@@ -195,11 +225,12 @@
             border: 5px solid #FFF;
             transition: all 0.3s ease;
             animation: zoomIn 0.3s ease;
-            object-fit: contain; /* This ensures the image maintains its aspect ratio */
+            object-fit: contain;
+            /* This ensures the image maintains its aspect ratio */
             max-width: 100%;
             max-height: 100%;
         }
-        
+
         /* Visible modal with centered content */
         .image-modal.visible {
             display: flex !important;
@@ -215,12 +246,15 @@
             border-radius: 15px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
             animation: fadeIn 0.4s ease;
-            width: 520px; /* Fixed width container */
-            height: 420px; /* Fixed height container */
+            width: 520px;
+            /* Fixed width container */
+            height: 420px;
+            /* Fixed height container */
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* Ensures no overflow outside the container */
+            overflow: hidden;
+            /* Ensures no overflow outside the container */
         }
 
         .image-modal-title {
@@ -261,6 +295,7 @@
                 transform: scale(0.5);
                 opacity: 0;
             }
+
             to {
                 transform: scale(1);
                 opacity: 1;
@@ -271,6 +306,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -279,7 +315,9 @@
         /* Drag and drop styles */
         .dragging {
             opacity: 0.5;
-        }        /* Style for scrollbar */
+        }
+
+        /* Style for scrollbar */
         .plaster-container::-webkit-scrollbar {
             width: 8px;
         }
@@ -301,7 +339,9 @@
         /* Highlight effect for better visibility in vertical layout */
         .plaster {
             transition: all 0.3s ease;
-        }        .plaster:hover {
+        }
+
+        .plaster:hover {
             transform: rotate(0deg) scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             background-color: #FFF8DC;
@@ -309,7 +349,8 @@
             border: 2px solid #FFB74D;
         }
 
-        /* Styles for adding new plaster form */        .create-plaster-btn {
+        /* Styles for adding new plaster form */
+        .create-plaster-btn {
             width: 90%;
             height: 100px;
             background-color: #E3F2FD;
@@ -381,7 +422,9 @@
                 width: 90%;
                 max-width: 300px;
             }
-        }        .problem-reset {
+        }
+
+        .problem-reset {
             position: absolute;
             top: 5px;
             right: 5px;
@@ -398,7 +441,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             padding: 3px;
         }
-        
+
         .problem-reset:hover {
             color: #F44336;
             transform: scale(1.2);
@@ -430,65 +473,78 @@
 
                     <div id="contentSection" class="collapse show" aria-labelledby="headerSection">
                         <div class="card-body">
-                            <div class="row"> <!-- Problems (left) -->                                <div class="col-md-7">
-                                    <h4 class="mb-3" style="color: #455A64; font-weight: 600; border-bottom: 2px solid #CFD8DC; padding-bottom: 8px;">My feelings</h4>
+                            <div class="row"> <!-- Problems (left) -->
+                                <div class="col-md-7">
+                                    <h4 class="mb-3"
+                                        style="color: #455A64; font-weight: 600; border-bottom: 2px solid #CFD8DC; padding-bottom: 8px;">
+                                        My feelings</h4>
                                     <div class="problem-container">
                                         <div class="problem-item" data-problem-id="1">
-                                            <img src="https://www.ignant.com/wp-content/uploads/2018/09/ignant-art-lossapardo-010.jpg" class="problem-image" alt="Loneliness">
+                                            <img src="https://www.ignant.com/wp-content/uploads/2018/09/ignant-art-lossapardo-010.jpg"
+                                                class="problem-image" alt="Loneliness">
                                             <div class="problem-content">
                                                 <span class="problem-title">Loneliness</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="2">
-                                            <img src="https://www.nicabm.com/wp-content/uploads/2023/07/Shame-fingers-pointing1.png" class="problem-image" alt="Shame">
+                                            <img src="https://www.nicabm.com/wp-content/uploads/2023/07/Shame-fingers-pointing1.png"
+                                                class="problem-image" alt="Shame">
                                             <div class="problem-content">
                                                 <span class="problem-title">Shame</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="3">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCkzx178hw8FM6Zgbz7_Mq-ZzoQ5AtamVxgQ&s" class="problem-image" alt="Lack of support">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCkzx178hw8FM6Zgbz7_Mq-ZzoQ5AtamVxgQ&s"
+                                                class="problem-image" alt="Lack of support">
                                             <div class="problem-content">
                                                 <span class="problem-title">Lack of support from loved ones</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="4">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW8cIqNcb-qvDJ8LiTT_fE5r6hSL2_3eBtvw&s" class="problem-image" alt="Social isolation">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW8cIqNcb-qvDJ8LiTT_fE5r6hSL2_3eBtvw&s"
+                                                class="problem-image" alt="Social isolation">
                                             <div class="problem-content">
                                                 <span class="problem-title">Social isolation</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="5">
-                                            <img src="https://i.pinimg.com/736x/71/4a/54/714a54c6e19d3d7c17b6c860809d9726.jpg" class="problem-image" alt="Sleep disruption">
+                                            <img src="https://i.pinimg.com/736x/71/4a/54/714a54c6e19d3d7c17b6c860809d9726.jpg"
+                                                class="problem-image" alt="Sleep disruption">
                                             <div class="problem-content">
                                                 <span class="problem-title">Sleepness</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="6">
-                                            <img src="https://therapy-central.com/wp-content/uploads/2022/11/Negative-Thoughts.jpeg" class="problem-image" alt="Negative thoughts">
+                                            <img src="https://therapy-central.com/wp-content/uploads/2022/11/Negative-Thoughts.jpeg"
+                                                class="problem-image" alt="Negative thoughts">
                                             <div class="problem-content">
                                                 <span class="problem-title">Negative thoughts and attitudes</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="7">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7oSE1j1KStXYrednzUFrujySXmFuiTfhTQw&s" class="problem-image" alt="Anxiety">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7oSE1j1KStXYrednzUFrujySXmFuiTfhTQw&s"
+                                                class="problem-image" alt="Anxiety">
                                             <div class="problem-content">
                                                 <span class="problem-title">Excessive anxiety</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="8">
-                                            <img src="https://img.freepik.com/free-vector/flat-illustration-person-being-overwhelmed_23-2149330641.jpg?semt=ais_hybrid&w=740" class="problem-image" alt="Concentration">
+                                            <img src="https://img.freepik.com/free-vector/flat-illustration-person-being-overwhelmed_23-2149330641.jpg?semt=ais_hybrid&w=740"
+                                                class="problem-image" alt="Concentration">
                                             <div class="problem-content">
                                                 <span class="problem-title">Concentration problems</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="9">
-                                            <img src="https://i.pinimg.com/736x/2b/6f/12/2b6f129f173a8c3f0c2a762184a35af6.jpg" class="problem-image" alt="Sadness">
+                                            <img src="https://i.pinimg.com/736x/2b/6f/12/2b6f129f173a8c3f0c2a762184a35af6.jpg"
+                                                class="problem-image" alt="Sadness">
                                             <div class="problem-content">
                                                 <span class="problem-title">Sadness and depression</span>
                                             </div>
                                         </div>
                                         <div class="problem-item" data-problem-id="10">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKRzCM6rFmNNIWeNDFK3Zn0idunHGN5haAgA&s" class="problem-image" alt="Fear of weight gain">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKRzCM6rFmNNIWeNDFK3Zn0idunHGN5haAgA&s"
+                                                class="problem-image" alt="Fear of weight gain">
                                             <div class="problem-content">
                                                 <span class="problem-title">Fear of gaining weight</span>
                                             </div>
@@ -512,11 +568,13 @@
                                         </div>
                                     </div>
                                     <div class="plaster-container">
-                                        <div class="plaster" draggable="true" data-plaster-id="1" data-title="Art & Creativity">
+                                        <div class="plaster" draggable="true" data-plaster-id="1"
+                                            data-title="Art & Creativity">
                                             <img src="https://st3.depositphotos.com/2600593/13128/i/450/depositphotos_131280864-stock-photo-smiling-young-artist-girl-draw.jpg"
                                                 alt="Plaster 1">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="2" data-title="Family Cooking">
+                                        <div class="plaster" draggable="true" data-plaster-id="2"
+                                            data-title="Family Cooking">
                                             <img src="https://www.teambuildingwithtaste.com/wp-content/uploads/2015/09/Family-Cooking-Team-Building-With-Taste-300x200.jpg"
                                                 alt="Plaster 2">
                                         </div>
@@ -532,7 +590,8 @@
                                             <img src="https://www.kirkleeslocaloffer.org.uk/media/p0hba5cd/school-clip-art-85.jpg?width=500&height=239.9665551839465"
                                                 alt="Plaster 5">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="6" data-title="Physical Activity">
+                                        <div class="plaster" draggable="true" data-plaster-id="6"
+                                            data-title="Physical Activity">
                                             <img src="https://ehq-production-australia.imgix.net/92b358eafe864861f63ae3165a5df92b7b9089b5/original/1636590459/cf0cd9eb07edb66d435fbfbca32a5004_sport-equipment-Dollarphotoclub.jpg?auto=compress%2Cformat&w=500"
                                                 alt="Plaster 6">
                                         </div>
@@ -540,7 +599,8 @@
                                             <img src="https://faktypro.com.ua/uploads/journal/mifi-ta-realnist-pro-zdorovij-son.jpg"
                                                 alt="Plaster 7">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="8" data-title="Connection with nature">
+                                        <div class="plaster" draggable="true" data-plaster-id="8"
+                                            data-title="Connection with nature">
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvXKC8SPXLd7yJhCgTk4W2oUptoTbfjZchlA&s"
                                                 alt="Plaster 8">
                                         </div>
@@ -548,15 +608,18 @@
                                             <img src="https://news.virginia.edu/sites/default/files/article_image/science_of_reading.jpg"
                                                 alt="Plaster 9">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="10" data-title="Mother love">
+                                        <div class="plaster" draggable="true" data-plaster-id="10"
+                                            data-title="Mother love">
                                             <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
                                                 alt="Plaster 10">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="11" data-title="board games">
+                                        <div class="plaster" draggable="true" data-plaster-id="11"
+                                            data-title="board games">
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXv_UIB3Np2KTlYjBPFcO2Nf168wDbR3dDyg&s"
                                                 alt="Plaster 11">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="12" data-title="Night walking">
+                                        <div class="plaster" draggable="true" data-plaster-id="12"
+                                            data-title="Night walking">
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcbRzQku0w-czfpeQaf-DQQEZPgIf2YiTNLA&s"
                                                 alt="Plaster 12">
                                         </div>
@@ -564,11 +627,13 @@
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK6R_O7ai1PEAtXttzvHnkXQyyIeSWE0LTNw&s"
                                                 alt="Plaster 13">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="14" data-title="Playing Games">
+                                        <div class="plaster" draggable="true" data-plaster-id="14"
+                                            data-title="Playing Games">
                                             <img src="https://www.collegiate-ac.com/propeller/uploads/sites/2/2017/06/jeshoots-com-eCktzGjC-iU-unsplash-scaled.jpg"
                                                 alt="Plaster 14">
                                         </div>
-                                        <div class="plaster" draggable="true" data-plaster-id="15" data-title="delicious food">
+                                        <div class="plaster" draggable="true" data-plaster-id="15"
+                                            data-title="delicious food">
                                             <img src="https://lviv.media/static/content/thumbs/1200x630/a/5a/hd3z4d---c1200x630x50px50p-up--e3adb5554f5886ae6962dcc9fc1cb5aa.png"
                                                 alt="Plaster 15">
                                         </div>
@@ -610,12 +675,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-overlay" id="formOverlay"></div>                            <div class="mt-4">
-                                <div class="alert alert-info" style="border-radius: 12px; background-color: #E1F5FE; border-color: #4FC3F7; color: #0277BD;">
-                                    <i class="fas fa-info-circle me-2"></i> <strong>How to use:</strong> Drag the plasters from the right side onto the
+                            <div class="form-overlay" id="formOverlay"></div>
+                            <div class="mt-4">
+                                <div class="alert alert-info"
+                                    style="border-radius: 12px; background-color: #E1F5FE; border-color: #4FC3F7; color: #0277BD;">
+                                    <i class="fas fa-info-circle me-2"></i> <strong>How to use:</strong> Drag the
+                                    plasters from the right side onto the
                                     problems on the left to "cure" them. You can add multiple plasters to each problem.
                                 </div>
-                                <button class="btn btn-warning" id="resetBtn" style="border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+                                <button class="btn btn-warning" id="resetBtn"
+                                    style="border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: all 0.3s ease;">
                                     <i class="fas fa-redo me-2"></i> Reset exercise
                                 </button>
                             </div>
@@ -624,7 +693,7 @@
                 </div>
             </div>
         </div>
-    </div>    <!-- Модальне вікно для перегляду повного зображення -->
+    </div> <!-- Модальне вікно для перегляду повного зображення -->
     <div id="imageModal" class="image-modal">
         <span class="image-modal-close">&times;</span>
         <div class="image-modal-wrapper">
@@ -643,7 +712,8 @@
             const problemItems = document.querySelectorAll('.problem-item');
             const resetBtn = document.getElementById('resetBtn');
             // Add drag event listeners to plasters
-            plasters.forEach(plaster => {                plaster.addEventListener('dragstart', dragStart);
+            plasters.forEach(plaster => {
+                plaster.addEventListener('dragstart', dragStart);
                 plaster.addEventListener('dragend', dragEnd);
 
                 // Add click event for full image preview
@@ -651,28 +721,28 @@
                 if (plasterImg) {
                     // Make the image draggable false to allow parent dragging
                     plasterImg.setAttribute('draggable', 'false');
-                    
+
                     // Add a click handler for showing the image in modal
-                    plasterImg.addEventListener('mousedown', function(e) {
+                    plasterImg.addEventListener('mousedown', function (e) {
                         // If it's a left click, prepare for possible drag
                         if (e.button === 0) {
                             // If user drags more than a little, it's a drag operation
                             const startX = e.clientX;
                             const startY = e.clientY;
-                            
-                            const mouseUpHandler = function(upEvent) {
+
+                            const mouseUpHandler = function (upEvent) {
                                 const diffX = Math.abs(upEvent.clientX - startX);
                                 const diffY = Math.abs(upEvent.clientY - startY);
-                                
+
                                 // If movement is minimal, treat as a click
                                 if (diffX < 5 && diffY < 5) {
                                     showFullImage.call(plasterImg, upEvent);
                                 }
-                                
+
                                 // Remove the handlers
                                 document.removeEventListener('mouseup', mouseUpHandler);
                             };
-                            
+
                             // Listen for mouseup to detect click vs drag
                             document.addEventListener('mouseup', mouseUpHandler);
                         }
@@ -690,16 +760,17 @@
                 problem.addEventListener('dragleave', dragLeave);
                 problem.addEventListener('drop', drop);
             });            // Додаємо іконку скинути до кожної проблеми
-            problemItems.forEach(problem => {                const resetIcon = document.createElement('span');
+            problemItems.forEach(problem => {
+                const resetIcon = document.createElement('span');
                 resetIcon.className = 'problem-reset';
                 resetIcon.innerHTML = '<i class="fas fa-times"></i>';
                 resetIcon.title = 'Скинути пластирі';
-                
+
                 // Додаємо іконку до problem-content, а не до problem-item
                 const problemContent = problem.querySelector('.problem-content');
                 problemContent.appendChild(resetIcon);
-                
-                resetIcon.addEventListener('click', function(e) {
+
+                resetIcon.addEventListener('click', function (e) {
                     e.stopPropagation();
                     const container = problem.querySelector('.applied-plasters-container');
                     if (container) {
@@ -717,7 +788,7 @@
                     }
                     problem.classList.remove('filled');
                     problem.style.borderColor = '#ced4da';
-                    
+
                     // Hide the reset icon after clearing plasters
                     resetIcon.style.display = 'none';
                 });
@@ -893,7 +964,7 @@
                         plastersContainer.style.flexWrap = 'wrap';
                         plastersContainer.style.gap = '5px';
                         plastersContainer.style.marginLeft = '10px';
-                        
+
                         // Додаємо контейнер для прикріплених пластирів у div problem-content
                         const problemContent = this.querySelector('.problem-content');
                         problemContent.appendChild(plastersContainer);
@@ -901,11 +972,11 @@
 
                     if (img) {
                         // If this is a plaster with an image
-                        const imgSrc = img.getAttribute('src');                        const appliedImg = document.createElement('img');
+                        const imgSrc = img.getAttribute('src'); const appliedImg = document.createElement('img');
                         appliedImg.src = imgSrc;
                         appliedImg.classList.add('applied-plaster');
                         appliedImg.setAttribute('data-original-plaster', plasterId);
-                        
+
                         // Copy data-title and data-description from original plaster
                         if (plasterElem.hasAttribute('data-title')) {
                             appliedImg.setAttribute('data-title', plasterElem.getAttribute('data-title'));
@@ -939,7 +1010,7 @@
 
                         // Add the plaster to the plasters container
                         this.querySelector('.applied-plasters-container').appendChild(appliedText);
-                    }                    this.classList.add('filled');
+                    } this.classList.add('filled');
 
                     // Show the reset icon when a plaster is applied
                     const resetIcon = this.querySelector('.problem-reset');
@@ -987,11 +1058,11 @@
             function showFullImage(e) {
                 e.stopPropagation();
                 modal.classList.add('visible');
-                
+
                 // Ensure image displays properly
                 modalImg.style.display = "block";
                 modalImg.src = this.src;
-                
+
                 // Отримуємо батьківський елемент (пластир) для додаткової інформації
                 const plaster = this.closest('.plaster');
                 if (plaster) {
@@ -1014,18 +1085,20 @@
             });
 
             // Додати відслідковування кліків на прикріплені пластирі для перегляду
-            document.addEventListener('click', function (e) {                if (e.target.classList.contains('applied-plaster')) {                    if (e.target.tagName === 'IMG') {                        
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('applied-plaster')) {
+                    if (e.target.tagName === 'IMG') {
                         // Якщо це картинка
                         modal.classList.add('visible');
-                        
+
                         // Відображаємо зображення в обгортці для стилізації
                         modalImg.style.display = "block";
                         modalImg.src = e.target.src;
-                          // Встановлюємо заголовок для зображення
+                        // Встановлюємо заголовок для зображення
                         const modalTitle = document.getElementById('modalTitle');
                         const plasterID = e.target.getAttribute('data-original-plaster');
                         const originalPlaster = document.querySelector(`.plaster[data-plaster-id="${plasterID}"]`);
-                        
+
                         if (originalPlaster && originalPlaster.hasAttribute('data-title')) {
                             modalTitle.textContent = originalPlaster.getAttribute('data-title');
                         } else {

@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Module Tabs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -100,18 +99,28 @@
 
         .horizontal-tab:hover {
             color: #7c7bad;
-        }        .horizontal-tab.active {
+        }
+
+        .horizontal-tab.active {
             color: #7c7bad;
             border-bottom: 3px solid #7c7bad;
         }
-        
+
         /* Animation for tab click effect */
         @keyframes tab-click {
-            0% { transform: scale(1); }
-            50% { transform: scale(0.95); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .horizontal-tab.active-with-click-effect {
             animation: tab-click 0.3s ease;
         }
@@ -584,7 +593,9 @@
             transition: all 0.3s ease;
             position: relative;
             border: 2px solid transparent;
-        }        .module-option::before {
+        }
+
+        .module-option::before {
             content: "";
             position: absolute;
             bottom: -25px;
@@ -1039,11 +1050,11 @@
             box-shadow: 0 4px 8px rgba(124, 77, 255, 0.2);
             transform: translateY(-2px);
         }
-        
+
         .module-option.selected .module-icon {
             background: #ede7f6;
         }
-        
+
         .module-option.selected .fw-bold {
             color: #6a30ff !important;
         }
@@ -1511,7 +1522,9 @@
 
         .triangle-lines.invisible {
             opacity: 0;
-        }        /* Styled tables with rounded corners */
+        }
+
+        /* Styled tables with rounded corners */
         .notes-table {
             border-collapse: separate;
             border-spacing: 0;
@@ -1545,18 +1558,24 @@
 
         .notes-table tbody tr:last-child td:last-child {
             border-bottom-right-radius: 15px;
-        }        .notes-table tbody tr {
+        }
+
+        .notes-table tbody tr {
             transition: all 0.3s ease;
             position: relative;
             /* Add a permanent invisible left border to prevent shifting when hover indicator appears */
             border-left: 3px solid transparent;
-        }        .notes-table tbody tr:hover {
+        }
+
+        .notes-table tbody tr:hover {
             background-color: #f8f5ff;
             /* Use box-shadow instead of transform for highlighting without shifting */
             box-shadow: 0 0 5px rgba(124, 77, 255, 0.1);
             /* Use border-left instead of pseudo-element for indicator */
             border-left: 3px solid #7c4dff;
-        }        /* Enhancement for category cells on hover */
+        }
+
+        /* Enhancement for category cells on hover */
         .notes-table tbody tr:hover .category-cell {
             color: #7c4dff;
             font-weight: 600;
@@ -1711,6 +1730,448 @@
         .collapsed .collapse-icon {
             transform: rotate(-90deg);
         }
+
+        /* PLASTER AND PROBLMEMEMEMEEMEMMSSSSSSSSSS/////////////////////////////////////////////S////////////////////////// */
+
+        .plaster-container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            gap: 15px;
+            padding: 15px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scroll-behavior: smooth;
+            max-height: 500px;
+            width: 100%;
+            background-color: #F5F5F5;
+            border-radius: 12px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .plaster {
+            width: 90%;
+            height: 120px;
+            background-color: #FFF3E0;
+            border-radius: 15px;
+            padding: 10px;
+            cursor: grab;
+            position: relative;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transform: rotate(-2deg);
+            margin: 8px auto;
+            flex-shrink: 0;
+            border: 1px solid #FFE0B2;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .plaster::before,
+        .plaster::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 110%;
+            background-color: #FFE0B2;
+            top: -5%;
+            border-radius: 5px;
+        }
+
+        .plaster::before {
+            left: 0;
+            transform: translateX(-5px);
+        }
+
+        .plaster::after {
+            right: 0;
+            transform: translateX(5px);
+        }
+
+        .plaster img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #fff;
+            z-index: 5;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Removed the image expansion on hover */
+
+        /* Problem styles */
+        .problem-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
+            background-color: #F5F5F5;
+            border-radius: 12px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-item {
+            padding: 12px 15px;
+            background-color: #ffffff;
+            border: 2px dashed #B0BEC5;
+            border-radius: 10px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .problem-item span {
+            flex-shrink: 0;
+            font-weight: 500;
+            color: #455A64;
+            font-size: 1.05rem;
+        }
+
+        /* Нові стилі для проблем з фото */
+        .problem-item {
+            padding: 0;
+            overflow: visible;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .problem-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-right: 2px solid #E0E0E0;
+            align-self: stretch;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-origin: left center;
+        }
+
+        /* Ефект збільшення зображення проблеми при наведенні */
+        .problem-image:hover {
+            transform: scale(1.5);
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .problem-content {
+            display: flex;
+            flex: 1;
+            padding: 12px;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            position: relative;
+            z-index: 5;
+        }
+
+        .problem-title {
+            font-weight: 500;
+            color: #455A64;
+            font-size: 1.05rem;
+            margin-right: 10px;
+            text-align: left;
+            flex-shrink: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-item.filled {
+            border: 2px solid #66BB6A;
+            background-color: #E8F5E9;
+            box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Maintain hover effect for filled items */
+        .problem-item.filled .problem-image:hover {
+            transform: scale(1.5);
+            z-index: 100;
+        }
+
+        .applied-plaster {
+            width: 50px;
+            height: 35px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            border: 2px solid #fff;
+        }
+
+        .applied-plaster:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+            z-index: 5;
+        }
+
+        .applied-plasters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-left: 10px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Styles for full image modal window */
+        .image-modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: none;
+        }
+
+        .image-modal-content {
+            width: 500px;
+            height: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 5px solid #FFF;
+            transition: all 0.3s ease;
+            animation: zoomIn 0.3s ease;
+            object-fit: contain;
+            /* This ensures the image maintains its aspect ratio */
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Visible modal with centered content */
+        .image-modal.visible {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.4s ease;
+            width: 520px;
+            /* Fixed width container */
+            height: 420px;
+            /* Fixed height container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* Ensures no overflow outside the container */
+        }
+
+        .image-modal-title {
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 20px;
+            font-weight: bold;
+            width: auto;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            transition: all 0.2s ease;
+        }
+
+        .image-modal-close:hover {
+            color: #FF9800;
+            transform: scale(1.1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Drag and drop styles */
+        .dragging {
+            opacity: 0.5;
+        }
+
+        /* Style for scrollbar */
+        .plaster-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .plaster-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .plaster-container::-webkit-scrollbar-thumb {
+            background: #FFA726;
+            border-radius: 10px;
+        }
+
+        .plaster-container::-webkit-scrollbar-thumb:hover {
+            background: #FF9800;
+        }
+
+        /* Highlight effect for better visibility in vertical layout */
+        .plaster {
+            transition: all 0.3s ease;
+        }
+
+        .plaster:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            background-color: #FFF8DC;
+            z-index: 10;
+            border: 2px solid #FFB74D;
+        }
+
+        /* Styles for adding new plaster form */
+        .create-plaster-btn {
+            width: 90%;
+            height: 100px;
+            background-color: #E3F2FD;
+            border-radius: 15px;
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 8px auto;
+            flex-shrink: 0;
+            border: 2px dashed #2196F3;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .create-plaster-btn:hover {
+            background-color: #BBDEFB;
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .create-plaster-form {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+        }
+
+        .create-plaster-form.active {
+            display: block;
+        }
+
+        .form-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+        }
+
+        /* Style for mobile view */
+        @media (max-width: 768px) {
+            .plaster {
+                width: 95%;
+                height: 80px;
+            }
+
+            .plaster-container {
+                max-height: 350px;
+            }
+
+            .create-plaster-form {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 300px;
+            }
+        }
+
+        .problem-reset {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            color: #E57373;
+            display: none;
+            z-index: 10;
+            width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3px;
+        }
+
+        .problem-reset:hover {
+            color: #F44336;
+            transform: scale(1.2);
+            background-color: white;
+        }
+
+        .problem-item.filled .problem-reset {
+            display: flex;
+        }
     </style>
 </head>
 
@@ -1743,70 +2204,72 @@
                     </div>
                 </div>
             </div>
-        </div>        <div class="module-content active" id="future-module">            <script>
+        </div>
+        <div class="module-content active" id="future-module">
+            <script>
                 // No need for automatic activation here as it's handled in the main script
                 // To ensure compatibility, we'll just update our DOM manipulation functions
-                
+
                 // Add script to handle edit buttons functionality
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
                     // Handle edit button clicks
-                    document.querySelectorAll('.edit-btn').forEach(function(button) {
-                        button.addEventListener('click', function() {
+                    document.querySelectorAll('.edit-btn').forEach(function (button) {
+                        button.addEventListener('click', function () {
                             var cell = this.closest('.editable-cell');
                             var content = cell.querySelector('.cell-content');
                             var form = cell.querySelector('.edit-form');
                             var textarea = form.querySelector('.edit-textarea');
-                            
+
                             // Set textarea value to current content
                             textarea.value = content.textContent.trim();
-                            
+
                             // Show edit form, hide content
                             content.style.display = 'none';
                             this.style.display = 'none';
                             form.style.display = 'block';
-        
+
                             // Focus on textarea
                             textarea.focus();
                         });
                     });
-        
+
                     // Handle cancel button clicks
-                    document.querySelectorAll('.cancel-btn').forEach(function(button) {
-                        button.addEventListener('click', function() {
+                    document.querySelectorAll('.cancel-btn').forEach(function (button) {
+                        button.addEventListener('click', function () {
                             var cell = this.closest('.editable-cell');
                             var content = cell.querySelector('.cell-content');
                             var form = cell.querySelector('.edit-form');
                             var editBtn = cell.querySelector('.edit-btn');
-                            
+
                             // Hide form, show content and edit button
                             form.style.display = 'none';
                             content.style.display = 'block';
                             editBtn.style.display = 'block';
                         });
                     });
-        
+
                     // Handle save button clicks
-                    document.querySelectorAll('.save-btn').forEach(function(button) {
-                        button.addEventListener('click', function() {
+                    document.querySelectorAll('.save-btn').forEach(function (button) {
+                        button.addEventListener('click', function () {
                             var cell = this.closest('.editable-cell');
                             var content = cell.querySelector('.cell-content');
                             var form = cell.querySelector('.edit-form');
                             var textarea = form.querySelector('.edit-textarea');
                             var editBtn = cell.querySelector('.edit-btn');
-                            
+
                             // Update content with textarea value
                             content.textContent = textarea.value.trim();
-                            
+
                             // Hide form, show content and edit button
                             form.style.display = 'none';
                             content.style.display = 'block';
                             editBtn.style.display = 'block';
-                            
+
                             // Optional: Save data to localStorage
                             saveTableData();
                         });
                     });
-                    
+
                     // Function to save table data to localStorage
                     function saveTableData() {
                         const tableData = {};
@@ -1815,18 +2278,18 @@
                             const content = row.querySelector('.cell-content').textContent.trim();
                             tableData[category] = content;
                         });
-                        
+
                         // Save to localStorage with unique key for this table
                         const tableId = document.querySelector('.notes-table').closest('.card').id || 'notesTable';
                         localStorage.setItem(`table_${tableId}_data`, JSON.stringify(tableData));
                         console.log('Table data saved', tableData);
                     }
-                    
+
                     // Function to load table data from localStorage
                     function loadTableData() {
                         const tableId = document.querySelector('.notes-table').closest('.card').id || 'notesTable';
                         const savedData = localStorage.getItem(`table_${tableId}_data`);
-                        
+
                         if (savedData) {
                             const tableData = JSON.parse(savedData);
                             document.querySelectorAll('.notes-table tbody tr').forEach(row => {
@@ -1838,29 +2301,30 @@
                             console.log('Table data loaded', tableData);
                         }
                     }
-                    
+
                     // Apply a uniform style to all edit buttons for better visibility
                     document.querySelectorAll('.edit-btn').forEach(btn => {
                         btn.style.opacity = '0.6';
-                        btn.addEventListener('mouseenter', function() {
+                        btn.addEventListener('mouseenter', function () {
                             this.style.opacity = '1';
                         });
-                        btn.addEventListener('mouseleave', function() {
+                        btn.addEventListener('mouseleave', function () {
                             this.style.opacity = '0.6';
                         });
                     });
-                    
+
                     // Initialize textarea styling
                     document.querySelectorAll('.edit-textarea').forEach(textarea => {
                         textarea.style.minHeight = '80px';
                     });
-                    
+
                     // Try to load saved data
                     loadTableData();
                 });
             </script>
             <div class="content-area">
-                <div class="vertical-tabs">                    <button class="vertical-tab active" onclick="showContent('future-plans', 'future')">
+                <div class="vertical-tabs"> <button class="vertical-tab active"
+                        onclick="showContent('future-plans', 'future')">
                         Overview
                     </button>
                     <button class="vertical-tab" onclick="showContent('tasks', 'future')">
@@ -1902,16 +2366,21 @@
                                 treatment plan.
                             </p>
                         </div>
-                    </div>                    <div class="card shadow-sm mb-4" style="border-left: 4px solid #7c4dff;">
-                        <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f5f0ff; color: #7c4dff;">
+                    </div>
+                    <div class="card shadow-sm mb-4" style="border-left: 4px solid #7c4dff;">
+                        <div class="card-header d-flex justify-content-between align-items-center"
+                            style="background-color: #f5f0ff; color: #7c4dff;">
                             <h5 class="mb-0 text-white"><i class="fas fa-eye me-2"></i>Observations</h5>
-                            <button class="btn btn-sm" style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;" onclick="toggleObservationEdit()">
+                            <button class="btn btn-sm"
+                                style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;"
+                                onclick="toggleObservationEdit()">
                                 <i class="fas fa-edit me-1"></i> Edit
                             </button>
                         </div>
 
                         <div class="card-body">
-                            <div id="observationText" class="p-3 rounded" style="background-color: #f8f9fa; border-left: 2px solid #d1c4e9;">
+                            <div id="observationText" class="p-3 rounded"
+                                style="background-color: #f8f9fa; border-left: 2px solid #d1c4e9;">
                                 <i class="fas fa-quote-left text-muted me-2"></i>
                                 Client responds well to visual aids, struggles with verbal
                                 descriptions of emotions.
@@ -1921,10 +2390,14 @@
                                 <textarea class="form-control" style="border-color: #d1c4e9;"
                                     rows="3">Client responds well to visual aids, struggles with verbal descriptions of emotions.</textarea>
                                 <div class="mt-2 text-end">
-                                    <button class="btn btn-sm me-2" style="background-color: #f5f0ff; color: #a084e8; border: 1px solid #d1c4e9;" onclick="cancelObservation()">
+                                    <button class="btn btn-sm me-2"
+                                        style="background-color: #f5f0ff; color: #a084e8; border: 1px solid #d1c4e9;"
+                                        onclick="cancelObservation()">
                                         Cancel
                                     </button>
-                                    <button class="btn btn-sm" style="background-color: #7c4dff; color: #ffffff; border: 1px solid #7c4dff;" onclick="saveObservation()">
+                                    <button class="btn btn-sm"
+                                        style="background-color: #7c4dff; color: #ffffff; border: 1px solid #7c4dff;"
+                                        onclick="saveObservation()">
                                         <i class="fas fa-save me-1"></i> Save
                                     </button>
                                 </div>
@@ -1934,7 +2407,8 @@
                     <div class="border rounded p-3 mb-4" style="background: #f8f5ff; border-left: 4px solid #a084e8;">
                         <h5 class="mb-3" style="color: #7c4dff;"><i class="bi bi-list-ol me-2"></i>Key Steps for This
                             Consultation</h5>
-                        <form id="consultation-steps-form">                            <div class="mb-3">
+                        <form id="consultation-steps-form">
+                            <div class="mb-3">
                                 <label for="weighClient" class="form-label fw-bold">1. Weigh the client <span
                                         style="color: #d32f2f;">*</span></label>
                                 <input type="text" class="form-control" id="weighClient" name="weighClient"
@@ -1955,21 +2429,26 @@
                                     3. Ensure family involvement and reduce blame
                                 </label>
                             </div>
-                        </form>                    
-                    </div>                    <div class="mb-4">
+                        </form>
+                    </div>
+                    <div class="mb-4">
                         <div class="d-flex justify-content-start mb-3">
-                            <button class="btn" style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="showContent('notes', 'future')">
+                            <button class="btn"
+                                style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
+                                onclick="showContent('notes', 'future')">
                                 <i class="bi bi-journal-text me-2"></i>Go to Notes
                             </button>
                         </div>
 
                         <div class="d-flex justify-content-start">
-                            <button class="btn" style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="showContent('tasks', 'future')">
+                            <button class="btn"
+                                style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
+                                onclick="showContent('tasks', 'future')">
                                 <i class="bi bi-clipboard-check me-2"></i>Go to Exercises
                             </button>
                         </div>
                     </div>
-                    
+
                     <style>
                         .btn:hover {
                             transform: translateY(-2px);
@@ -2014,7 +2493,7 @@
                             </div>
                             <hr class="my-3" />
                             <div class="row g-2">
-                                <div class="col-12 col-md-6">                                    <button type="button"
+                                <div class="col-12 col-md-6"> <button type="button"
                                         class="btn w-100 d-flex align-items-center justify-content-center gap-2"
                                         style="background: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;"
                                         onclick="assignSecondDoctor()">
@@ -2045,13 +2524,17 @@
                                 Complete</button>
                         </div>
                     </div>
-                </div>                <div id="tasks" class="tab-content">
+                </div>
+                <div id="tasks" class="tab-content">
                     <div id="tasksReturnNavigation" style="display: none;" class="mb-4">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="text-muted">
-                                <i class="fas fa-info-circle me-2"></i>You accessed this section from the End Consultation Form
+                                <i class="fas fa-info-circle me-2"></i>You accessed this section from the End
+                                Consultation Form
                             </div>
-                            <button class="btn" style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="returnToPreviousContent()">
+                            <button class="btn"
+                                style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
+                                onclick="returnToPreviousContent()">
                                 <i class="fas fa-arrow-left me-2"></i>Return to End Consultation Form
                             </button>
                         </div>
@@ -2078,7 +2561,8 @@
                                             <p><strong>Tip:</strong> Try to focus on specific events and how they made
                                                 you feel, rather than
                                                 general statements.</p>
-                                        </div>                                        <form class="story-form p-3 rounded bg-white shadow-sm">
+                                        </div>
+                                        <form class="story-form p-3 rounded bg-white shadow-sm">
                                             <div class="row g-3">
                                                 <div class="col-12">
                                                     <label for="startWith" class="form-label">It all started
@@ -2340,56 +2824,299 @@
                                 <h2 class="accordion-header" id="exercise3Header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#exercise3" aria-expanded="false" aria-controls="exercise3">
-                                        <i class="bi bi-book me-2"></i>Exercise 3: Cuts and plasters
+                                        <i class="bi bi-book me-2"></i>Exercise 3: Feelings and plasters
                                     </button>
                                 </h2>
                                 <div id="exercise3" class="accordion-collapse collapse"
                                     aria-labelledby="exercise3Header" data-bs-parent="#diagnosticExercisesAccordion">
-                                    <div class="accordion-body">
-                                        <div class="alert alert-info p-3 mb-3">
-                                            <p class="mb-1">
-                                            <p>Use this tool to help your patient explore emotional triggers related to
-                                                their eating behaviors and mental health.
-                                                Ask them to drag any of the <strong>plasters</strong> onto the issues
-                                                they find emotionally difficult or sensitive.</p>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-10 mx-auto">
 
-                                            <p>This interactive activity is designed to uncover patterns of distress by
-                                                visually mapping triggers such as food-related situations,
-                                                body image concerns, family dynamics, or social stressors.</p>
+                                                    <div class="card-body">
+                                                        <div class="row"> <!-- Problems (left) -->
+                                                            <div class="col-md-7">
+                                                                <h4 class="mb-3"
+                                                                    style="color: #455A64; font-weight: 600; border-bottom: 2px solid #CFD8DC; padding-bottom: 8px;">
+                                                                    My feelings</h4>
+                                                                <div class="problem-container">
+                                                                    <div class="problem-item" data-problem-id="1">
+                                                                        <img src="https://www.ignant.com/wp-content/uploads/2018/09/ignant-art-lossapardo-010.jpg"
+                                                                            class="problem-image" alt="Loneliness">
+                                                                        <div class="problem-content">
+                                                                            <span
+                                                                                class="problem-title">Loneliness</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="2">
+                                                                        <img src="https://www.nicabm.com/wp-content/uploads/2023/07/Shame-fingers-pointing1.png"
+                                                                            class="problem-image" alt="Shame">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Shame</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="3">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCkzx178hw8FM6Zgbz7_Mq-ZzoQ5AtamVxgQ&s"
+                                                                            class="problem-image" alt="Lack of support">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Lack of support
+                                                                                from loved ones</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="4">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW8cIqNcb-qvDJ8LiTT_fE5r6hSL2_3eBtvw&s"
+                                                                            class="problem-image"
+                                                                            alt="Social isolation">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Social
+                                                                                isolation</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="5">
+                                                                        <img src="https://i.pinimg.com/736x/71/4a/54/714a54c6e19d3d7c17b6c860809d9726.jpg"
+                                                                            class="problem-image"
+                                                                            alt="Sleep disruption">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Sleepness</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="6">
+                                                                        <img src="https://therapy-central.com/wp-content/uploads/2022/11/Negative-Thoughts.jpeg"
+                                                                            class="problem-image"
+                                                                            alt="Negative thoughts">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Negative
+                                                                                thoughts and attitudes</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="7">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7oSE1j1KStXYrednzUFrujySXmFuiTfhTQw&s"
+                                                                            class="problem-image" alt="Anxiety">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Excessive
+                                                                                anxiety</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="8">
+                                                                        <img src="https://img.freepik.com/free-vector/flat-illustration-person-being-overwhelmed_23-2149330641.jpg?semt=ais_hybrid&w=740"
+                                                                            class="problem-image" alt="Concentration">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Concentration
+                                                                                problems</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="9">
+                                                                        <img src="https://i.pinimg.com/736x/2b/6f/12/2b6f129f173a8c3f0c2a762184a35af6.jpg"
+                                                                            class="problem-image" alt="Sadness">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Sadness and
+                                                                                depression</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="problem-item" data-problem-id="10">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKRzCM6rFmNNIWeNDFK3Zn0idunHGN5haAgA&s"
+                                                                            class="problem-image"
+                                                                            alt="Fear of weight gain">
+                                                                        <div class="problem-content">
+                                                                            <span class="problem-title">Fear of gaining
+                                                                                weight</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- Plasters (right) -->
+                                                            <div class="col-md-5">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <h4 class="mb-0">Plasters</h4>
+                                                                    <div class="navigation-buttons">
+                                                                        <button
+                                                                            class="btn btn-sm btn-outline-success me-1"
+                                                                            id="addPlasterBtn" title="Add new plaster">
+                                                                            <i class="fas fa-plus"></i>
+                                                                        </button>
+                                                                        <button
+                                                                            class="btn btn-sm btn-outline-primary me-1"
+                                                                            id="scrollUpBtn">
+                                                                            <i class="fas fa-chevron-up"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-sm btn-outline-primary"
+                                                                            id="scrollDownBtn">
+                                                                            <i class="fas fa-chevron-down"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="plaster-container">
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="1"
+                                                                        data-title="Art & Creativity">
+                                                                        <img src="https://st3.depositphotos.com/2600593/13128/i/450/depositphotos_131280864-stock-photo-smiling-young-artist-girl-draw.jpg"
+                                                                            alt="Plaster 1">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="2" data-title="Family Cooking">
+                                                                        <img src="https://www.teambuildingwithtaste.com/wp-content/uploads/2015/09/Family-Cooking-Team-Building-With-Taste-300x200.jpg"
+                                                                            alt="Plaster 2">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="3" data-title="Your pet">
+                                                                        <img src="https://media.gettyimages.com/id/151350785/photo/dog-and-cat.jpg?s=612x612&w=0&k=20&c=3mD8uquUJrO2E9BlmLQid-gdjE5yZFZNInZuZb3RrQs="
+                                                                            alt="Plaster 3">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="4" data-title="House">
+                                                                        <img src="https://i.pinimg.com/736x/df/0d/eb/df0deba5183cbf585e1703c0e75f0f3f.jpg"
+                                                                            alt="Plaster 4">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="5" data-title="School">
+                                                                        <img src="https://www.kirkleeslocaloffer.org.uk/media/p0hba5cd/school-clip-art-85.jpg?width=500&height=239.9665551839465"
+                                                                            alt="Plaster 5">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="6"
+                                                                        data-title="Physical Activity">
+                                                                        <img src="https://ehq-production-australia.imgix.net/92b358eafe864861f63ae3165a5df92b7b9089b5/original/1636590459/cf0cd9eb07edb66d435fbfbca32a5004_sport-equipment-Dollarphotoclub.jpg?auto=compress%2Cformat&w=500"
+                                                                            alt="Plaster 6">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="7" data-title="Sleep">
+                                                                        <img src="https://faktypro.com.ua/uploads/journal/mifi-ta-realnist-pro-zdorovij-son.jpg"
+                                                                            alt="Plaster 7">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="8"
+                                                                        data-title="Connection with nature">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvXKC8SPXLd7yJhCgTk4W2oUptoTbfjZchlA&s"
+                                                                            alt="Plaster 8">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="9" data-title="Reading">
+                                                                        <img src="https://news.virginia.edu/sites/default/files/article_image/science_of_reading.jpg"
+                                                                            alt="Plaster 9">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="10" data-title="Mother love">
+                                                                        <img src="https://i.pinimg.com/736x/3b/a7/ce/3ba7ce57f083e1cbccb3ed5c60ca1966.jpg"
+                                                                            alt="Plaster 10">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="11" data-title="board games">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXv_UIB3Np2KTlYjBPFcO2Nf168wDbR3dDyg&s"
+                                                                            alt="Plaster 11">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="12" data-title="Night walking">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcbRzQku0w-czfpeQaf-DQQEZPgIf2YiTNLA&s"
+                                                                            alt="Plaster 12">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="13" data-title="Forest">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK6R_O7ai1PEAtXttzvHnkXQyyIeSWE0LTNw&s"
+                                                                            alt="Plaster 13">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="14" data-title="Playing Games">
+                                                                        <img src="https://www.collegiate-ac.com/propeller/uploads/sites/2/2017/06/jeshoots-com-eCktzGjC-iU-unsplash-scaled.jpg"
+                                                                            alt="Plaster 14">
+                                                                    </div>
+                                                                    <div class="plaster" draggable="true"
+                                                                        data-plaster-id="15"
+                                                                        data-title="delicious food">
+                                                                        <img src="https://lviv.media/static/content/thumbs/1200x630/a/5a/hd3z4d---c1200x630x50px50p-up--e3adb5554f5886ae6962dcc9fc1cb5aa.png"
+                                                                            alt="Plaster 15">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Form for creating a new plaster -->
+                                                        <div class="create-plaster-form-container position-fixed"
+                                                            style="display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 90%; max-width: 400px;">
+                                                            <div class="card shadow">
+                                                                <div
+                                                                    class="card-header bg-primary-subtle d-flex justify-content-between align-items-center">
+                                                                    <h5 class="mb-0">Create a new plaster</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        id="closeCreateFormBtn"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <form id="createPlasterForm">
+                                                                        <div class="mb-3">
+                                                                            <label for="plasterTitle"
+                                                                                class="form-label">Plaster name</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="plasterTitle"
+                                                                                placeholder="Enter name" required>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="plasterDescription"
+                                                                                class="form-label">Plaster
+                                                                                description</label>
+                                                                            <textarea class="form-control"
+                                                                                id="plasterDescription"
+                                                                                placeholder="Enter description"
+                                                                                rows="3"></textarea>
+                                                                            <small class="text-muted">Describe your
+                                                                                "plaster" for solving the
+                                                                                problem</small>
+                                                                        </div>
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                id="cancelPlasterBtn">Cancel</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary"
+                                                                                id="savePlasterBtn">Save</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-overlay" id="formOverlay"></div>
+                                                        <div class="mt-4">
+                                                            <div class="alert alert-info"
+                                                                style="border-radius: 12px; background-color: #E1F5FE; border-color: #4FC3F7; color: #0277BD;">
+                                                                <i class="fas fa-info-circle me-2"></i> <strong>How to
+                                                                    use:</strong> Drag the
+                                                                plasters from the right side onto the
+                                                                problems on the left to "cure" them. You can add
+                                                                multiple plasters to each problem.
+                                                            </div>
+                                                            <button class="btn btn-warning" id="resetBtn"
+                                                                style="border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+                                                                <i class="fas fa-redo me-2"></i> Reset exercise
+                                                            </button>
+                                                        </div>
+                                                    </div>
 
-                                            <p><strong>Clinical Tip:</strong> If the patient does not identify with the
-                                                preset options, you can click the <strong>“+”</strong> button to create
-                                                a custom plaster that reflects their specific experience.</p>
-                                            </p>
+                                            </div>
                                         </div>
-                                        <!-- Форма для вправи 2, змініть під ваш сценарій -->                                        <form class="p-3 rounded bg-white shadow-sm">
-                                            <div class="mb-3">
-                                                <label for="exercise2Input1" class="form-label">Field 1 for exercise 2</label>
-                                                <input type="text" class="form-control" id="exercise2Input1"
-                                                    placeholder="Enter something...">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="exercise2Input2" class="form-label">Field 2 for exercise 2</label>
-                                                <input type="text" class="form-control" id="exercise2Input2"
-                                                    placeholder="Enter something else...">
-                                            </div>
-                                            <div class="d-flex justify-content-end mt-4">
-                                                <button type="button" class="btn btn-primary px-4 py-2 shadow-sm">
-                                                    <i class="bi bi-save me-2"></i>Save Results
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    </div> <!-- Модальне вікно для перегляду повного зображення -->
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div>                </div>                <div id="notes" class="tab-content">
+                    </div>
+                </div>
+
+                <div id="imageModal" class="image-modal">
+                                        <span class="image-modal-close">&times;</span>
+                                        <div class="image-modal-wrapper">
+                                            <img class="image-modal-content" id="modalImage">
+                                            <div class="image-modal-title" id="modalTitle">Плаcтер</div>
+                                        </div>
+                                    </div>
+
+                <div id="notes" class="tab-content">
                     <div id="returnNavigation" style="display: none;" class="mb-4">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="text-muted">
-                                <i class="fas fa-info-circle me-2"></i>You accessed this section from the End Consultation Form
+                                <i class="fas fa-info-circle me-2"></i>You accessed this section from the End
+                                Consultation Form
                             </div>
-                            <button class="btn" style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="returnToPreviousContent()">
+                            <button class="btn"
+                                style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
+                                onclick="returnToPreviousContent()">
                                 <i class="fas fa-arrow-left me-2"></i>Return to End Consultation Form
                             </button>
                         </div>
@@ -2420,8 +3147,10 @@
                                                 <td class="category-cell">Target appeals</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        Weight loss, increased anxiety. The main goal is to stabilize eating
-                                                        behavior and improve psycho-emotional state. Involve the entire family in the
+                                                        Weight loss, increased anxiety. The main goal is to stabilize
+                                                        eating
+                                                        behavior and improve psycho-emotional state. Involve the entire
+                                                        family in the
                                                         therapeutic process.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2430,8 +3159,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2440,8 +3171,10 @@
                                                 <td class="category-cell">Clinical symptoms</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        Recurrent episodes of compulsive overeating with loss of control,
-                                                        anxiety, weight loss. Additionally, increased self-criticism, avoidance of shared
+                                                        Recurrent episodes of compulsive overeating with loss of
+                                                        control,
+                                                        anxiety, weight loss. Additionally, increased self-criticism,
+                                                        avoidance of shared
                                                         meals.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2450,8 +3183,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2460,8 +3195,10 @@
                                                 <td class="category-cell">Somatic/biological background</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        The general health condition is stable, but significant weight loss
-                                                        has been recorded over the past 6 months. Preliminary data: no serious
+                                                        The general health condition is stable, but significant weight
+                                                        loss
+                                                        has been recorded over the past 6 months. Preliminary data: no
+                                                        serious
                                                         chronic diseases, regular menstrual cycle is disturbed.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2470,8 +3207,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2480,8 +3219,10 @@
                                                 <td class="category-cell">Family context</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        Complete family: mother, father, older brother. Tense relationship
-                                                        between child and mother, authoritarian parenting style. Family is willing to
+                                                        Complete family: mother, father, older brother. Tense
+                                                        relationship
+                                                        between child and mother, authoritarian parenting style. Family
+                                                        is willing to
                                                         participate in family therapy.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2490,8 +3231,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2500,8 +3243,10 @@
                                                 <td class="category-cell">School/educational situation</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        Grade 11, high academic performance. There is strong perfectionism,
-                                                        fear of failure. Relationships with teachers are normal, there are episodes of social
+                                                        Grade 11, high academic performance. There is strong
+                                                        perfectionism,
+                                                        fear of failure. Relationships with teachers are normal, there
+                                                        are episodes of social
                                                         isolation among peers.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2510,8 +3255,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2520,8 +3267,10 @@
                                                 <td class="category-cell">Resources and support</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        The family is willing to participate in the therapeutic process. The
-                                                        girl has a friend who supports her. Hobbies: drawing, blogging. Strengths are
+                                                        The family is willing to participate in the therapeutic process.
+                                                        The
+                                                        girl has a friend who supports her. Hobbies: drawing, blogging.
+                                                        Strengths are
                                                         noted - responsibility, empathy.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2530,8 +3279,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2542,7 +3293,7 @@
                             </div>
                         </div>
                     </div>
-                      <!-- Styled Card for History -->
+                    <!-- Styled Card for History -->
                     <div class="card shadow-sm mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center"
                             data-bs-toggle="collapse" data-bs-target="#collapseHistory">
@@ -2555,11 +3306,13 @@
 
                         <div class="collapse" id="collapseHistory" data-parent="#caseModules">
                             <div class="card-body p-4">
-                                <div class="table-responsive">                                    <table class="table table-hover notes-table">
+                                <div class="table-responsive">
+                                    <table class="table table-hover notes-table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Period</th>
-                                                <th scope="col">Biological, Psychological, Social component Events/Facts</th>
+                                                <th scope="col">Biological, Psychological, Social component Events/Facts
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -2567,8 +3320,10 @@
                                                 <td class="category-cell">Target appeals</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        Weight loss, increased anxiety. The main goal is to stabilize eating
-                                                        behavior and improve psycho-emotional state. Involve the entire family in the
+                                                        Weight loss, increased anxiety. The main goal is to stabilize
+                                                        eating
+                                                        behavior and improve psycho-emotional state. Involve the entire
+                                                        family in the
                                                         therapeutic process.
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
@@ -2577,8 +3332,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2587,7 +3344,7 @@
                                                 <td class="category-cell">Remote events</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        
+
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
                                                         <i class="bi bi-pencil-square"></i>
@@ -2595,8 +3352,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2605,7 +3364,7 @@
                                                 <td class="category-cell">Recent Life Events</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        
+
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
                                                         <i class="bi bi-pencil-square"></i>
@@ -2613,8 +3372,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2623,7 +3384,7 @@
                                                 <td class="category-cell">Current state of the patient</td>
                                                 <td class="editable-cell">
                                                     <div class="cell-content">
-                                                        
+
                                                     </div>
                                                     <button class="edit-btn" title="Edit this field">
                                                         <i class="bi bi-pencil-square"></i>
@@ -2631,8 +3392,10 @@
                                                     <div class="edit-form" style="display: none;">
                                                         <textarea class="form-control edit-textarea"></textarea>
                                                         <div class="d-flex justify-content-end mt-2">
-                                                            <button class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
-                                                            <button class="btn btn-sm btn-primary save-btn">Save</button>
+                                                            <button
+                                                                class="btn btn-sm btn-secondary me-2 cancel-btn">Cancel</button>
+                                                            <button
+                                                                class="btn btn-sm btn-primary save-btn">Save</button>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2643,80 +3406,96 @@
                             </div>
                         </div>
                     </div>
-                </div>                <div id="future-actions" class="tab-content">
+                </div>
+                <div id="future-actions" class="tab-content">
                     <h3 class="content-title">Actions</h3>
-                        <div class="card-body p-4">
-                            <div class="row g-3">                                <div class="col-12">
-                                    <button class="btn w-100 d-flex align-items-center" style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
-                                        <i class="fas fa-users me-3" style="font-size: 1.5rem;"></i>
-                                        <div>
-                                            <div class="fw-bold">Order Family Consultation</div>
-                                            <small class="text-muted">Schedule a consultation for the whole family</small>
-                                        </div>
-                                    </button>
-                                </div>
-                                
-                                <div class="col-12">
-                                    <button class="btn w-100 d-flex align-items-center" style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
-                                        <i class="fas fa-user-friends me-3" style="font-size: 1.5rem;"></i>
-                                        <div>
-                                            <div class="fw-bold">Book Consultation with Parents</div>
-                                            <small class="text-muted">Schedule a separate meeting with the patient's parents</small>
-                                        </div>
-                                    </button>
-                                </div>
-                                
-                                <div class="col-12">
-                                    <button class="btn w-100 d-flex align-items-center" style="background-color: #e3f2fd; color: #2196f3; border: 1px solid #90caf9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
-                                        <i class="fas fa-user-md me-3" style="font-size: 1.5rem;"></i>
-                                        <div>
-                                            <div class="fw-bold">Book Consultation with Additional Doctor</div>
-                                            <small class="text-muted">Refer to a specialist of another profile</small>
-                                        </div>
-                                    </button>
-                                </div>
-                                
-                                <div class="col-12">
-                                    <button class="btn w-100 d-flex align-items-center" style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
-                                        <i class="fas fa-vial me-3" style="font-size: 1.5rem;"></i>
-                                        <div>
-                                            <div class="fw-bold">Send for Tests</div>
-                                            <small class="text-muted">Create a referral for additional examinations</small>
-                                        </div>
-                                    </button>
-                                </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <button class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                                    <i class="fas fa-users me-3" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <div class="fw-bold">Order Family Consultation</div>
+                                        <small class="text-muted">Schedule a consultation for the whole family</small>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                                    <i class="fas fa-user-friends me-3" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <div class="fw-bold">Book Consultation with Parents</div>
+                                        <small class="text-muted">Schedule a separate meeting with the patient's
+                                            parents</small>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #e3f2fd; color: #2196f3; border: 1px solid #90caf9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                                    <i class="fas fa-user-md me-3" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <div class="fw-bold">Book Consultation with Additional Doctor</div>
+                                        <small class="text-muted">Refer to a specialist of another profile</small>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                                    <i class="fas fa-vial me-3" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <div class="fw-bold">Send for Tests</div>
+                                        <small class="text-muted">Create a referral for additional examinations</small>
+                                    </div>
+                                </button>
                             </div>
                         </div>
+                    </div>
                 </div>
 
                 <div id="end-module" class="tab-content">
                     <h3 class="content-title">End consultation form </h3>
 
 
-                    
+
                     <div class="card card-body shadow-sm">
 
-                        
-                        <form id="endModuleForm">                            <div class="card mb-4 border-0 shadow-sm">
+
+                        <form id="endModuleForm">
+                            <div class="card mb-4 border-0 shadow-sm">
                                 <div class="card-header" style="background-color: #f0f0ff;">
-                                    <h5 class="mb-0" style="color: #ffffff;"><i class="fas fa-paperclip me-2"></i>Attached Materials</h5>
+                                    <h5 class="mb-0" style="color: #ffffff;"><i
+                                            class="fas fa-paperclip me-2"></i>Attached Materials</h5>
                                 </div>
                                 <div class="card-body">
-                                    <p class="text-muted mb-3">The following materials are attached to this diagnostic session:</p>
-                                      <div class="d-flex justify-content-start mb-3">
-                                        <button class="btn d-flex align-items-center" style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="showContentWithReturnPath('notes', 'future', 'end-module')">
+                                    <p class="text-muted mb-3">The following materials are attached to this diagnostic
+                                        session:</p>
+                                    <div class="d-flex justify-content-start mb-3">
+                                        <button class="btn d-flex align-items-center"
+                                            style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
+                                            onclick="showContentWithReturnPath('notes', 'future', 'end-module')">
                                             <i class="bi bi-journal-text me-2"></i>
                                             <div class="text-start">
                                                 <div>Patient Information</div>
                                                 <small class="text-muted">Clinical notes and patient history</small>
                                             </div>
                                         </button>
-                                    </div>                                    <div class="d-flex justify-content-start">
-                                        <button class="btn d-flex align-items-center" style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="showContentWithReturnPath('tasks', 'future', 'end-module')">
+                                    </div>
+                                    <div class="d-flex justify-content-start">
+                                        <button class="btn d-flex align-items-center"
+                                            style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;"
+                                            onclick="showContentWithReturnPath('tasks', 'future', 'end-module')">
                                             <i class="bi bi-clipboard-check me-2"></i>
                                             <div class="text-start">
                                                 <div>Completed Exercises</div>
-                                                <small class="text-muted">Diagnostic activities conducted during the session</small>
+                                                <small class="text-muted">Diagnostic activities conducted during the
+                                                    session</small>
                                             </div>
                                         </button>
                                     </div>
@@ -2770,11 +3549,11 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex gap-2">                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-check me-2"></i>Complete diagnistic and go to creating treatment plan
+                            <div class="d-flex gap-2"> <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-check me-2"></i>Complete diagnistic and go to creating treatment
+                                    plan
                                 </button>
-                                <button type="button" class="btn btn-outline-secondary"
-                                    onclick="returnToPreviousTab()">
+                                <button type="button" class="btn btn-outline-secondary" onclick="returnToPreviousTab()">
                                     Cancel
                                 </button>
                             </div>
@@ -2784,48 +3563,49 @@
 
             </div>
         </div>
-    </div>    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             // Знайти вкладку "Diagnostic"
-            var diagnosticTab = Array.from(document.querySelectorAll('.horizontal-tab')).find(function(tab) {
+            var diagnosticTab = Array.from(document.querySelectorAll('.horizontal-tab')).find(function (tab) {
                 return tab.textContent.trim() === 'Diagnostic';
             });
-            
+
             if (diagnosticTab) {
                 // Додати клас active, щоб вона була активна
                 diagnosticTab.classList.add('active');
-                
+
                 // Додати анімацію кліку
                 diagnosticTab.classList.add('active-with-click-effect');
-                
+
                 // Видалити клас анімації після її завершення
-                setTimeout(function() {
+                setTimeout(function () {
                     diagnosticTab.classList.remove('active-with-click-effect');
                 }, 300);
-                
+
                 // Додати ефект натискання (візуальний зворотний зв'язок)
                 diagnosticTab.style.transform = 'scale(0.95)';
                 diagnosticTab.style.transition = 'transform 0.1s ease';
-                
+
                 // Повернути до нормального розміру
-                setTimeout(function() {
+                setTimeout(function () {
                     diagnosticTab.style.transform = '';
                 }, 150);
-                
+
                 // Додатково переконатися, що відповідний модуль активний
                 var futureModule = document.getElementById('future-module');
                 if (futureModule) {
                     futureModule.classList.add('active');
                 }
-                
+
                 // Переконатися, що інші модулі не активні
                 var otherModules = document.querySelectorAll('.module-content:not(#future-module)');
-                otherModules.forEach(function(module) {
+                otherModules.forEach(function (module) {
                     module.classList.remove('active');
                 });
             }
         });
-        
+
         function assignSecondDoctor() {
             alert('The function to assign a meeting with another doctor is not yet implemented. Please contact the administrator.');
         }
@@ -2834,80 +3614,75 @@
         }
     </script>
 
-    <!-- Bootstrap 5 CSS and JS (bundle includes Popper) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Initialize edit functionality -->
     <script>
         // Ініціалізація функціональності редагування таблиці вручну
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // Обробка кнопок редагування
-            document.querySelectorAll('.edit-btn').forEach(function(button) {
-                button.addEventListener('click', function() {
+            document.querySelectorAll('.edit-btn').forEach(function (button) {
+                button.addEventListener('click', function () {
                     var cell = this.closest('.editable-cell');
                     var content = cell.querySelector('.cell-content');
                     var form = cell.querySelector('.edit-form');
                     var textarea = form.querySelector('.edit-textarea');
-                    
+
                     // Встановлення поточного значення
                     textarea.value = content.textContent.trim();
-                    
+
                     // Відображення форми редагування
                     content.style.display = 'none';
                     this.style.display = 'none';
                     form.style.display = 'block';
-                    
+
                     // Фокус на текстовій області
                     textarea.focus();
                 });
             });
-            
+
             // Обробка кнопок скасування
-            document.querySelectorAll('.cancel-btn').forEach(function(button) {
-                button.addEventListener('click', function() {
+            document.querySelectorAll('.cancel-btn').forEach(function (button) {
+                button.addEventListener('click', function () {
                     var cell = this.closest('.editable-cell');
                     var content = cell.querySelector('.cell-content');
                     var form = cell.querySelector('.edit-form');
                     var editBtn = cell.querySelector('.edit-btn');
-                    
+
                     // Приховання форми, відображення вмісту
                     form.style.display = 'none';
                     content.style.display = 'block';
                     editBtn.style.display = 'block';
                 });
             });
-            
+
             // Обробка кнопок збереження
-            document.querySelectorAll('.save-btn').forEach(function(button) {
-                button.addEventListener('click', function() {
+            document.querySelectorAll('.save-btn').forEach(function (button) {
+                button.addEventListener('click', function () {
                     var cell = this.closest('.editable-cell');
                     var content = cell.querySelector('.cell-content');
                     var form = cell.querySelector('.edit-form');
                     var textarea = form.querySelector('.edit-textarea');
                     var editBtn = cell.querySelector('.edit-btn');
-                    
+
                     // Оновлення вмісту
                     content.textContent = textarea.value.trim();
-                    
+
                     // Приховання форми, відображення вмісту
                     form.style.display = 'none';
                     content.style.display = 'block';
                     editBtn.style.display = 'block';
                 });
             });
-            
+
             // Стилізація кнопок редагування
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.style.opacity = '0.6';
-                btn.addEventListener('mouseenter', function() {
+                btn.addEventListener('mouseenter', function () {
                     this.style.opacity = '1';
                 });
-                btn.addEventListener('mouseleave', function() {
+                btn.addEventListener('mouseleave', function () {
                     this.style.opacity = '0.6';
                 });
             });
-            
+
             console.log('Edit functionality initialized successfully!');
         });
     </script>
@@ -2927,13 +3702,17 @@
             <div id="treatment-overview" class="tab-content active">
                 <h3 class="content-title">Treatment Plan Overview</h3>
                 <div class="card shadow-sm mb-4">
-                     <div class="d-flex flex-column align-items-center justify-content-center h-100" style="min-height: 200px;">
+                    <div class="d-flex flex-column align-items-center justify-content-center h-100"
+                        style="min-height: 200px;">
                         <div class="text-center"
                             style="max-width: 500px; background: #f3eafe; border: 1px solid #c7b6f7; border-radius: 1rem; padding: 2rem 1rem;">
-                            <h4 class="mb-2" style="color: #7c4dff;"><i class="bi bi-exclamation-circle me-2"></i>Treatment Plan
+                            <h4 class="mb-2" style="color: #7c4dff;"><i
+                                    class="bi bi-exclamation-circle me-2"></i>Treatment Plan
                             </h4>
-                            <div style="color: #a084e8; font-size: 1.1rem;">No treatment plan has been created yet.</div>
-                            <div class="mt-2" style="color: #b39ddb;">Please add or select a treatment plan for this patient.
+                            <div style="color: #a084e8; font-size: 1.1rem;">No treatment plan has been created yet.
+                            </div>
+                            <div class="mt-2" style="color: #b39ddb;">Please add or select a treatment plan for this
+                                patient.
                             </div>
                         </div>
                     </div>
@@ -2998,14 +3777,14 @@
             form.classList.toggle("active");
             // Hide session form if it's open
             document.getElementById("endSessionForm").classList.remove("active");
-        }        function selectModule(element) {
+        } function selectModule(element) {
             // Remove selected class from all options
             document.querySelectorAll(".module-option").forEach((option) => {
                 option.classList.remove("selected");
             });
             // Add selected class to clicked option
             element.classList.add("selected");
-            
+
             // Можна також додати якусь візуальну індикацію чи звуковий ефект
             console.log("Обрано модуль:", element.querySelector(".fw-bold").textContent);
         }
@@ -3033,7 +3812,8 @@
             const text = document.getElementById("observationText");
             const edit = document.getElementById("observationEdit");
             text.style.display = "block";
-            edit.style.display = "none";        }        function showModule(moduleId) {
+            edit.style.display = "none";
+        } function showModule(moduleId) {
             // Hide all modules
             document.querySelectorAll(".module-content").forEach((content) => {
                 content.classList.remove("active");
@@ -3046,7 +3826,7 @@
                 tab.classList.remove("active");
                 tab.classList.remove("active-with-click-effect"); // Видалити ефект кліку з усіх вкладок
             });
-            
+
             // If event is available (clicked directly), use event.currentTarget
             // Otherwise find the tab by the moduleId
             var targetTab;
@@ -3054,19 +3834,19 @@
                 targetTab = event.currentTarget;
             } else {
                 // Find the tab by its text or by the module it loads
-                targetTab = Array.from(document.querySelectorAll('.horizontal-tab')).find(function(tab) {
+                targetTab = Array.from(document.querySelectorAll('.horizontal-tab')).find(function (tab) {
                     // Check if onclick attribute contains the moduleId we're looking for
-                    return tab.getAttribute('onclick') && 
-                           tab.getAttribute('onclick').includes("showModule('" + moduleId + "'");
+                    return tab.getAttribute('onclick') &&
+                        tab.getAttribute('onclick').includes("showModule('" + moduleId + "'");
                 });
             }
-            
+
             if (targetTab) {
                 targetTab.classList.add("active");
                 // Add click effect animation
                 targetTab.classList.add("active-with-click-effect");
                 // Remove animation class after it completes
-                setTimeout(function() {
+                setTimeout(function () {
                     targetTab.classList.remove("active-with-click-effect");
                 }, 300);
             }
@@ -3082,7 +3862,7 @@
                 document.getElementById('future-plans').classList.add('active');
                 document.querySelector("#future-module .vertical-tab").classList.add('active');
             }
-        }        function showContent(contentId, moduleId) {
+        } function showContent(contentId, moduleId) {
             // Store the previous active tab before switching to end-module
             // This will help us return to the previous tab when clicking cancel
             if (contentId === 'end-module') {
@@ -3092,7 +3872,7 @@
                     localStorage.setItem('previousActiveTab', activeTab.id);
                 }
             }
-            
+
             // Hide all content within the current module
             document
                 .querySelectorAll(`#${moduleId}-module .tab-content`)
@@ -3108,13 +3888,13 @@
                 .forEach((tab) => {
                     tab.classList.remove("active");
                 });
-            
+
             // Find and activate the corresponding tab
             const tab = document.querySelector(`#${moduleId}-module .vertical-tab[onclick="showContent('${contentId}', '${moduleId}')"]`);
             if (tab) {
                 tab.classList.add("active");
             }
-              // Hide any return navigation that might be visible
+            // Hide any return navigation that might be visible
             const returnNavElement = document.getElementById('returnNavigation');
             if (returnNavElement) {
                 returnNavElement.style.display = 'none';
@@ -3124,14 +3904,14 @@
                 tasksReturnNavElement.style.display = 'none';
             }
         }
-          function showContentWithReturnPath(contentId, moduleId, returnContentId) {
+        function showContentWithReturnPath(contentId, moduleId, returnContentId) {
             // Set the navigation element to track where we came from
             localStorage.setItem('returnContentId', returnContentId);
             localStorage.setItem('returnModuleId', moduleId);
-            
+
             // Switch to the requested content
             showContent(contentId, moduleId);
-            
+
             // Show appropriate return navigation
             if (contentId === 'notes') {
                 const returnNavElement = document.getElementById('returnNavigation');
@@ -3144,26 +3924,26 @@
                     returnNavElement.style.display = 'block';
                 }
             }
-        }        function returnToPreviousContent() {
+        } function returnToPreviousContent() {
             const returnContentId = localStorage.getItem('returnContentId');
             const returnModuleId = localStorage.getItem('returnModuleId');
-            
+
             if (returnContentId && returnModuleId) {
                 showContent(returnContentId, returnModuleId);
-                
+
                 // Clear stored return path
                 localStorage.removeItem('returnContentId');
                 localStorage.removeItem('returnModuleId');
             }
         }
-        
+
         function returnToPreviousTab() {
             const previousTabId = localStorage.getItem('previousActiveTab');
-            
+
             if (previousTabId) {
                 // Return to the tab that was active before opening End consultation form
                 showContent(previousTabId, 'future');
-                
+
                 // Clear stored previous tab
                 localStorage.removeItem('previousActiveTab');
             } else {
@@ -3632,37 +4412,37 @@
                     input.classList.add("d-none");
                 }
             }
-        }        document.addEventListener("DOMContentLoaded", function () {
+        } document.addEventListener("DOMContentLoaded", function () {
             renderVertexList("thought");
             renderVertexList("emotion");
             renderVertexList("behavior");
-            
+
             // Initialize the table cell editing functionality
             initTableEditing();
-            
+
             // Add animation to card collapsing
             initCardCollapseAnimation();
         });
-        
+
         // Function to handle card collapse animation
         function initCardCollapseAnimation() {
             // Get all collapsible card headers
             const cardHeaders = document.querySelectorAll('.card-header[data-bs-toggle="collapse"]');
-            
+
             cardHeaders.forEach(header => {
                 // Get the collapse target
                 const collapseTarget = document.querySelector(header.getAttribute('data-bs-target'));
-                
+
                 // Add event listener for when collapse is shown
-                collapseTarget.addEventListener('show.bs.collapse', function() {
+                collapseTarget.addEventListener('show.bs.collapse', function () {
                     header.classList.remove('collapsed');
                 });
-                
+
                 // Add event listener for when collapse is hidden
-                collapseTarget.addEventListener('hide.bs.collapse', function() {
+                collapseTarget.addEventListener('hide.bs.collapse', function () {
                     header.classList.add('collapsed');
                 });
-                
+
                 // Set initial state
                 if (!collapseTarget.classList.contains('show')) {
                     header.classList.add('collapsed');
@@ -3671,24 +4451,24 @@
         }        // Function to handle the table cell editing
         function initTableEditing() {
             console.log('Initializing table editing functionality');
-            
+
             // Add click event listeners to all edit buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     const cell = this.closest('.editable-cell');
                     const content = cell.querySelector('.cell-content');
                     const form = cell.querySelector('.edit-form');
                     const textarea = form.querySelector('.edit-textarea');
-                    
+
                     console.log('Edit button clicked', cell);
-                    
+
                     // Copy content to textarea and show edit form with animation
                     textarea.value = content.textContent.trim();
                     content.style.display = 'none';
                     this.style.display = 'none';
-                    
+
                     // Show form with fade-in effect
                     form.style.opacity = '0';
                     form.style.display = 'block';
@@ -3698,22 +4478,22 @@
                     }, 10);
                 });
             });
-            
+
             // Add click event listeners to all cancel buttons
             document.querySelectorAll('.cancel-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     const cell = this.closest('.editable-cell');
                     const content = cell.querySelector('.cell-content');
                     const form = cell.querySelector('.edit-form');
                     const editBtn = cell.querySelector('.edit-btn');
-                    
+
                     console.log('Cancel button clicked', cell);
-                    
+
                     // Hide form with fade-out effect and show content
                     form.style.opacity = '0';
-                    
+
                     setTimeout(() => {
                         form.style.display = 'none';
                         content.style.display = 'block';
@@ -3721,10 +4501,10 @@
                     }, 300);
                 });
             });
-            
+
             // Add click event listeners to all save buttons
             document.querySelectorAll('.save-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     const cell = this.closest('.editable-cell');
@@ -3732,37 +4512,37 @@
                     const form = cell.querySelector('.edit-form');
                     const textarea = form.querySelector('.edit-textarea');
                     const editBtn = cell.querySelector('.edit-btn');
-                    
+
                     console.log('Save button clicked', cell);
-                    
+
                     // Update content with textarea value
                     const newText = textarea.value.trim();
-                    
+
                     // Fade out form
                     form.style.opacity = '0';
-                    
+
                     setTimeout(() => {
                         // Update content and show with animation
                         content.textContent = newText;
                         form.style.display = 'none';
-                        
+
                         // Show updated content with highlight effect
                         content.style.backgroundColor = '#f3eafe';
                         content.style.display = 'block';
                         editBtn.style.display = 'block';
-                        
+
                         // Reset background color after a moment
                         setTimeout(() => {
                             content.style.transition = 'background-color 1s ease';
                             content.style.backgroundColor = 'transparent';
                         }, 300);
-                        
+
                         // Save data to localStorage if needed
                         saveTableData();
                     }, 300);
                 });
             });
-            
+
             // Function to save table data to localStorage
             function saveTableData() {
                 const tableData = {};
@@ -3771,18 +4551,18 @@
                     const content = row.querySelector('.cell-content').textContent.trim();
                     tableData[category] = content;
                 });
-                
+
                 // Save to localStorage with unique key for this table
                 const tableId = document.querySelector('.notes-table').closest('.card').id || 'notesTable';
                 localStorage.setItem(`table_${tableId}_data`, JSON.stringify(tableData));
                 console.log('Table data saved', tableData);
             }
-            
+
             // Function to load table data from localStorage (if needed in the future)
             function loadTableData() {
                 const tableId = document.querySelector('.notes-table').closest('.card').id || 'notesTable';
                 const savedData = localStorage.getItem(`table_${tableId}_data`);
-                
+
                 if (savedData) {
                     const tableData = JSON.parse(savedData);
                     document.querySelectorAll('.notes-table tbody tr').forEach(row => {
@@ -3794,26 +4574,506 @@
                     console.log('Table data loaded', tableData);
                 }
             }
-            
+
             // Apply a uniform style to all edit buttons for better visibility
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.style.opacity = '0.6';
-                btn.addEventListener('mouseenter', function() {
+                btn.addEventListener('mouseenter', function () {
                     this.style.opacity = '1';
                 });
-                btn.addEventListener('mouseleave', function() {
+                btn.addEventListener('mouseleave', function () {
                     this.style.opacity = '0.6';
                 });
             });
-            
+
             // Initialize textarea styling
             document.querySelectorAll('.edit-textarea').forEach(textarea => {
                 textarea.style.minHeight = '80px';
             });
-            
+
             // Try to load saved data
             // loadTableData();
         }
+
+
+        // CODE FOR PLASTER AND STICKER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all plasters and problem items
+            let plasters = document.querySelectorAll('.plaster');
+            const problemItems = document.querySelectorAll('.problem-item');
+            const resetBtn = document.getElementById('resetBtn');
+            // Add drag event listeners to plasters
+            plasters.forEach(plaster => {
+                plaster.addEventListener('dragstart', dragStart);
+                plaster.addEventListener('dragend', dragEnd);
+
+                // Add click event for full image preview
+                const plasterImg = plaster.querySelector('img');
+                if (plasterImg) {
+                    // Make the image draggable false to allow parent dragging
+                    plasterImg.setAttribute('draggable', 'false');
+
+                    // Add a click handler for showing the image in modal
+                    plasterImg.addEventListener('mousedown', function (e) {
+                        // If it's a left click, prepare for possible drag
+                        if (e.button === 0) {
+                            // If user drags more than a little, it's a drag operation
+                            const startX = e.clientX;
+                            const startY = e.clientY;
+
+                            const mouseUpHandler = function (upEvent) {
+                                const diffX = Math.abs(upEvent.clientX - startX);
+                                const diffY = Math.abs(upEvent.clientY - startY);
+
+                                // If movement is minimal, treat as a click
+                                if (diffX < 5 && diffY < 5) {
+                                    showFullImage.call(plasterImg, upEvent);
+                                }
+
+                                // Remove the handlers
+                                document.removeEventListener('mouseup', mouseUpHandler);
+                            };
+
+                            // Listen for mouseup to detect click vs drag
+                            document.addEventListener('mouseup', mouseUpHandler);
+                        }
+                    });
+                }
+
+                // Make a clone of the plaster to restore it later
+                plaster.originalHTML = plaster.innerHTML;
+            });
+
+            // Add drop event listeners to problem items
+            problemItems.forEach(problem => {
+                problem.addEventListener('dragover', dragOver);
+                problem.addEventListener('dragenter', dragEnter);
+                problem.addEventListener('dragleave', dragLeave);
+                problem.addEventListener('drop', drop);
+            });            // Додаємо іконку скинути до кожної проблеми
+            problemItems.forEach(problem => {
+                const resetIcon = document.createElement('span');
+                resetIcon.className = 'problem-reset';
+                resetIcon.innerHTML = '<i class="fas fa-times"></i>';
+                resetIcon.title = 'Скинути пластирі';
+
+                // Додаємо іконку до problem-content, а не до problem-item
+                const problemContent = problem.querySelector('.problem-content');
+                problemContent.appendChild(resetIcon);
+
+                resetIcon.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const container = problem.querySelector('.applied-plasters-container');
+                    if (container) {
+                        // Відновлюємо оригінальні пластирі
+                        container.querySelectorAll('[data-original-plaster]').forEach(child => {
+                            const id = child.getAttribute('data-original-plaster');
+                            const original = document.querySelector(`.plaster[data-plaster-id="${id}"]`);
+                            if (original) {
+                                original.style.opacity = '1';
+                                original.setAttribute('draggable', 'true');
+                                original.style.cursor = 'grab';
+                            }
+                        });
+                        container.remove();
+                    }
+                    problem.classList.remove('filled');
+                    problem.style.borderColor = '#ced4da';
+
+                    // Hide the reset icon after clearing plasters
+                    resetIcon.style.display = 'none';
+                });
+            });
+            // Reset button functionality
+            resetBtn.addEventListener('click', resetExercise);
+            // Scroll buttons functionality
+            const scrollUpBtn = document.getElementById('scrollUpBtn');
+            const scrollDownBtn = document.getElementById('scrollDownBtn');
+            const plasterContainer = document.querySelector('.plaster-container');
+
+            scrollUpBtn.addEventListener('click', () => {
+                plasterContainer.scrollBy({ top: -150, behavior: 'smooth' });
+            });
+
+            scrollDownBtn.addEventListener('click', () => {
+                plasterContainer.scrollBy({ top: 150, behavior: 'smooth' });
+            });
+            // Functionality for adding a new plaster
+            const addPlasterBtn = document.getElementById('addPlasterBtn');
+            const createPlasterForm = document.querySelector('.create-plaster-form-container');
+            const formOverlay = document.getElementById('formOverlay');
+            const closeCreateFormBtn = document.getElementById('closeCreateFormBtn');
+            const cancelPlasterBtn = document.getElementById('cancelPlasterBtn');
+            const createPlasterFormEl = document.getElementById('createPlasterForm');
+
+            // Show form when "+" button is clicked
+            addPlasterBtn.addEventListener('click', () => {
+                createPlasterForm.style.display = 'block';
+                formOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Block page scrolling
+            });
+
+            // Form closing functions
+            function closeCreateForm() {
+                createPlasterForm.style.display = 'none';
+                formOverlay.style.display = 'none';
+                document.body.style.overflow = ''; // Allow page scrolling
+                createPlasterFormEl.reset(); // Clear the form
+            }
+
+            closeCreateFormBtn.addEventListener('click', closeCreateForm);
+            cancelPlasterBtn.addEventListener('click', closeCreateForm);
+            formOverlay.addEventListener('click', closeCreateForm);            // Save new plaster
+            createPlasterFormEl.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const title = document.getElementById('plasterTitle').value.trim();
+                const description = document.getElementById('plasterDescription').value.trim();
+
+                if (!title) {
+                    alert('Please enter a plaster name');
+                    return;
+                }
+
+                // Create a new unique ID for the plaster
+                const newId = getNextPlasterId();
+
+                // Create a new plaster element
+                createNewPlaster(newId, title, description);
+
+                // Close the form
+                closeCreateForm();
+            });
+
+            // Function to get the next plaster ID
+            function getNextPlasterId() {
+                let maxId = 0;
+                plasters.forEach(plaster => {
+                    const id = parseInt(plaster.getAttribute('data-plaster-id'));
+                    if (id > maxId) {
+                        maxId = id;
+                    }
+                });
+                return maxId + 1;
+            }              // Function to create a new plaster
+            function createNewPlaster(id, title, description) {
+                // Create a new div element for the plaster
+                const newPlaster = document.createElement('div');
+                newPlaster.className = 'plaster';
+                newPlaster.setAttribute('draggable', 'true');
+                newPlaster.setAttribute('data-plaster-id', id);
+                newPlaster.setAttribute('data-title', title);
+                newPlaster.setAttribute('data-description', description || '');
+
+                // Create text content
+                const textContent = document.createElement('div');
+                textContent.className = 'plaster-text';
+                textContent.innerText = title;
+                textContent.style.width = '80%';
+                textContent.style.height = '80%';
+                textContent.style.display = 'flex';
+                textContent.style.justifyContent = 'center';
+                textContent.style.alignItems = 'center';
+                textContent.style.fontWeight = 'bold';
+                textContent.style.textAlign = 'center';
+                textContent.style.color = '#333';
+                textContent.style.fontSize = '16px';
+                textContent.style.padding = '8px';
+                textContent.style.borderRadius = '8px';
+                textContent.style.backgroundColor = '#fff';
+                textContent.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                textContent.style.zIndex = '5';
+                textContent.style.wordBreak = 'break-word';
+                textContent.style.overflow = 'hidden';
+
+                // Add text to the plaster
+                newPlaster.appendChild(textContent);
+
+                // Add the new plaster to the container
+                plasterContainer.appendChild(newPlaster);
+
+                // Add event handlers to the new plaster
+                newPlaster.addEventListener('dragstart', dragStart);
+                newPlaster.addEventListener('dragend', dragEnd);
+
+                // Add event for clicking on text
+                newPlaster.addEventListener('click', showPlasterDetails);
+
+                // Save the original HTML
+                newPlaster.originalHTML = newPlaster.innerHTML;
+
+                // Scroll to the new plaster
+                plasterContainer.scrollTo({
+                    top: plasterContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+
+                // Update the list of plasters
+                plasters = document.querySelectorAll('.plaster');
+            }
+
+            // Drag Functions
+            function dragStart() {
+                this.classList.add('dragging');
+                // Store the plaster's ID for drop handling
+                event.dataTransfer.setData('text/plain', this.getAttribute('data-plaster-id'));
+            }
+
+            function dragEnd() {
+                this.classList.remove('dragging');
+            }
+
+            function dragOver(e) {
+                e.preventDefault();
+            }
+
+            function dragEnter(e) {
+                e.preventDefault();
+                this.style.borderColor = '#198754';
+            }
+
+            function dragLeave() {
+                if (!this.classList.contains('filled')) {
+                    this.style.borderColor = '#ced4da';
+                }
+            } function drop(e) {
+                e.preventDefault();
+
+                // Now we allow adding multiple plasters to one problem
+
+                const plasterId = e.dataTransfer.getData('text/plain');
+                const plasterElem = document.querySelector(`.plaster[data-plaster-id="${plasterId}"]`);
+
+                if (plasterElem) {
+                    // Check if this is a plaster with an image or text
+                    const img = plasterElem.querySelector('img');
+                    const textContent = plasterElem.querySelector('.plaster-text');                    // Add a wrapper for the plaster if this is the first plaster
+                    if (!this.querySelector('.applied-plasters-container')) {
+                        const plastersContainer = document.createElement('div');
+                        plastersContainer.classList.add('applied-plasters-container');
+                        plastersContainer.style.display = 'flex';
+                        plastersContainer.style.flexWrap = 'wrap';
+                        plastersContainer.style.gap = '5px';
+                        plastersContainer.style.marginLeft = '10px';
+
+                        // Додаємо контейнер для прикріплених пластирів у div problem-content
+                        const problemContent = this.querySelector('.problem-content');
+                        problemContent.appendChild(plastersContainer);
+                    }
+
+                    if (img) {
+                        // If this is a plaster with an image
+                        const imgSrc = img.getAttribute('src'); const appliedImg = document.createElement('img');
+                        appliedImg.src = imgSrc;
+                        appliedImg.classList.add('applied-plaster');
+                        appliedImg.setAttribute('data-original-plaster', plasterId);
+
+                        // Copy data-title and data-description from original plaster
+                        if (plasterElem.hasAttribute('data-title')) {
+                            appliedImg.setAttribute('data-title', plasterElem.getAttribute('data-title'));
+                        }
+                        if (plasterElem.hasAttribute('data-description')) {
+                            appliedImg.setAttribute('data-description', plasterElem.getAttribute('data-description'));
+                        }
+
+                        // Add the plaster to the plasters container
+                        this.querySelector('.applied-plasters-container').appendChild(appliedImg);
+                    } else if (textContent) {
+                        // If this is a text plaster
+                        const appliedText = document.createElement('div');
+                        appliedText.innerText = textContent.innerText;
+                        appliedText.classList.add('applied-plaster', 'applied-text-plaster');
+                        appliedText.setAttribute('data-original-plaster', plasterId);
+                        appliedText.setAttribute('data-title', plasterElem.getAttribute('data-title') || '');
+                        appliedText.setAttribute('data-description', plasterElem.getAttribute('data-description') || '');
+                        appliedText.style.width = '60px';
+                        appliedText.style.height = '35px';
+                        appliedText.style.display = 'flex';
+                        appliedText.style.justifyContent = 'center';
+                        appliedText.style.alignItems = 'center';
+                        appliedText.style.backgroundColor = '#fff8dc';
+                        appliedText.style.border = '1px solid #ddd';
+                        appliedText.style.borderRadius = '5px';
+                        appliedText.style.fontSize = '10px';
+                        appliedText.style.fontWeight = 'bold';
+                        appliedText.style.overflow = 'hidden';
+                        appliedText.style.cursor = 'pointer';
+
+                        // Add the plaster to the plasters container
+                        this.querySelector('.applied-plasters-container').appendChild(appliedText);
+                    } this.classList.add('filled');
+
+                    // Show the reset icon when a plaster is applied
+                    const resetIcon = this.querySelector('.problem-reset');
+                    if (resetIcon) {
+                        resetIcon.style.display = 'flex';
+                    }
+
+                    // No longer disable the original plaster so it can be used multiple times
+                    // Just play a success sound (optional)
+                    playSuccessSound();
+                }
+            }
+            // Reset the exercise
+            function resetExercise() {
+                // Remove applied plasters from problems
+                problemItems.forEach(problem => {
+                    problem.classList.remove('filled');
+                    problem.style.borderColor = '#ced4da';
+
+                    // Видаляємо контейнер з усіма пластирями
+                    const plastersContainer = problem.querySelector('.applied-plasters-container');
+                    if (plastersContainer) {
+                        problem.removeChild(plastersContainer);
+                    }
+                });
+
+                // Reset all plasters
+                plasters.forEach(plaster => {
+                    plaster.style.opacity = '1';
+                    plaster.setAttribute('draggable', 'true');
+                    plaster.style.cursor = 'grab';
+                });
+            }
+            // Optional: Success sound
+            function playSuccessSound() {
+                // You can add a sound effect here if needed
+                // const audio = new Audio('path/to/success-sound.mp3');
+                // audio.play();
+            }
+
+            // Модальне вікно для зображень
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.querySelector('.image-modal-close');            // Функція для показу повного зображення
+            function showFullImage(e) {
+                e.stopPropagation();
+                modal.classList.add('visible');
+
+                // Ensure image displays properly
+                modalImg.style.display = "block";
+                modalImg.src = this.src;
+
+                // Отримуємо батьківський елемент (пластир) для додаткової інформації
+                const plaster = this.closest('.plaster');
+                if (plaster) {
+                    const plasterId = plaster.getAttribute('data-plaster-id');
+                    const plasterTitle = plaster.getAttribute('data-title') || `Плаcтер ${plasterId}`;
+                    document.getElementById('modalTitle').textContent = plasterTitle;
+                } else {
+                    // Fallback to alt attribute if no title found
+                    document.getElementById('modalTitle').textContent = this.alt || 'Плаcтер';
+                }
+            }// Закрити модальне вікно при кліку на хрестик
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('visible');
+            });
+            // Закрити модальне вікно при кліку за межами зображення
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('visible');
+                }
+            });
+
+            // Додати відслідковування кліків на прикріплені пластирі для перегляду
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('applied-plaster')) {
+                    if (e.target.tagName === 'IMG') {
+                        // Якщо це картинка
+                        modal.classList.add('visible');
+
+                        // Відображаємо зображення в обгортці для стилізації
+                        modalImg.style.display = "block";
+                        modalImg.src = e.target.src;
+                        // Встановлюємо заголовок для зображення
+                        const modalTitle = document.getElementById('modalTitle');
+                        const plasterID = e.target.getAttribute('data-original-plaster');
+                        const originalPlaster = document.querySelector(`.plaster[data-plaster-id="${plasterID}"]`);
+
+                        if (originalPlaster && originalPlaster.hasAttribute('data-title')) {
+                            modalTitle.textContent = originalPlaster.getAttribute('data-title');
+                        } else {
+                            modalTitle.textContent = `Плаcтер ${plasterID}`;
+                        }
+
+                        // Сховати текстовий контейнер, якщо він є
+                        const textContainer = modal.querySelector('.modal-text-content');
+                        if (textContainer) {
+                            textContainer.style.display = "none";
+                        }
+                    } else if (e.target.classList.contains('applied-text-plaster')) {
+                        // Якщо це текстовий пластир
+                        const title = e.target.getAttribute('data-title') || '';
+                        const description = e.target.getAttribute('data-description') || '';
+
+                        modal.style.display = "block";
+                        modalImg.style.display = "none";
+
+                        // Створюємо або оновлюємо текстовий контейнер
+                        let textContainer = modal.querySelector('.modal-text-content');
+                        if (!textContainer) {
+                            textContainer = document.createElement('div');
+                            textContainer.className = 'modal-text-content';
+                            textContainer.style.backgroundColor = "white";
+                            textContainer.style.padding = "20px";
+                            textContainer.style.borderRadius = "8px";
+                            textContainer.style.maxWidth = "80%";
+                            textContainer.style.margin = "10% auto";
+                            textContainer.style.maxHeight = "70vh";
+                            textContainer.style.overflow = "auto";
+                            modal.appendChild(textContainer);
+                        } else {
+                            textContainer.style.display = "block";
+                        }
+
+                        // Заповнюємо текстовий контейнер
+                        textContainer.innerHTML = `
+                            <h3 class="mb-3">${title}</h3>
+                            ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
+                        `;
+                    }
+                }
+            });
+
+            // Функція для показу деталей пластиря
+            function showPlasterDetails(e) {
+                e.stopPropagation();
+                const title = this.getAttribute('data-title') || '';
+                const description = this.getAttribute('data-description') || '';
+
+                // Підготуємо вміст для модального вікна
+                modal.style.display = "block";
+
+                // Зміна стилів модального вікна для відображення тексту
+                modalImg.style.display = "none";
+
+                // Створюємо контейнер для тексту, якщо його ще немає
+                let textContainer = modal.querySelector('.modal-text-content');
+                if (!textContainer) {
+                    textContainer = document.createElement('div');
+                    textContainer.className = 'modal-text-content';
+                    textContainer.style.backgroundColor = "white";
+                    textContainer.style.padding = "20px";
+                    textContainer.style.borderRadius = "8px";
+                    textContainer.style.maxWidth = "80%";
+                    textContainer.style.margin = "10% auto";
+                    textContainer.style.maxHeight = "70vh";
+                    textContainer.style.overflow = "auto";
+                    modal.appendChild(textContainer);
+                } else {
+                    textContainer.style.display = "block";
+                }
+
+                // Заповнюємо контейнер даними
+                textContainer.innerHTML = `
+                    <h3 class="mb-3">${title}</h3>
+                    ${description ? `<p>${description}</p>` : '<p><em>Опис відсутній</em></p>'}
+                `;
+            }
+
+            // Модальне вікно для зображень
+        });
     </script>
 </body>
 
