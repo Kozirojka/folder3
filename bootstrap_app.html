@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>
-        .plaster-container {
+    <style>        .plaster-container {
             display: flex;
             flex-direction: column;
             flex-wrap: nowrap;
@@ -23,34 +22,36 @@
             scroll-behavior: smooth;
             max-height: 500px;
             width: 100%;
-        }
-
-        .plaster {
+            background-color: #F5F5F5;
+            border-radius: 12px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }.plaster {
             width: 90%;
             height: 120px;
-            background-color: #FFEFD5;
+            background-color: #FFF3E0;
             border-radius: 15px;
             padding: 10px;
             cursor: grab;
             position: relative;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             transform: rotate(-2deg);
-            margin: 5px auto;
+            margin: 8px auto;
             flex-shrink: 0;
-        }
-
-        .plaster::before,
+            border: 1px solid #FFE0B2;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }        .plaster::before,
         .plaster::after {
             content: '';
             position: absolute;
             width: 25px;
             height: 110%;
-            background-color: #FFE4B5;
+            background-color: #FFE0B2;
             top: -5%;
+            border-radius: 5px;
         }
 
         .plaster::before {
@@ -61,66 +62,63 @@
         .plaster::after {
             right: 0;
             transform: translateX(5px);
-        }
-
-        .plaster img {
-            width: 60%;
-            height: 60%;
+        }        .plaster img {
+            width: 80%;
+            height: 80%;
             object-fit: cover;
             border-radius: 12px;
-            border: 2px solid #fff;
+            border: 3px solid #fff;
             z-index: 5;
-            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
         }
 
-        /* Image expands when hovered */
-        .plaster:hover img {
-            width: 95%;
-            height: 95%;
-            transform: scale(1.1);
-        }
+        /* Removed the image expansion on hover */
 
-        /* Problem styles */
-        .problem-container {
+        /* Problem styles */        .problem-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
             padding: 15px;
-        }
-
-        .problem-item {
-            padding: 10px;
-            background-color: #f8f9fa;
-            border: 2px dashed #ced4da;
-            border-radius: 5px;
+            background-color: #F5F5F5;
+            border-radius: 12px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }        .problem-item {
+            padding: 12px 15px;
+            background-color: #ffffff;
+            border: 2px dashed #B0BEC5;
+            border-radius: 10px;
             min-height: 60px;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            position: relative; /* додаємо для позиціонування кнопки скидання */
-        }
-
-        .problem-item span {
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }        .problem-item span {
             flex-shrink: 0;
-        }
-
-        .problem-item.filled {
-            border: 2px solid #198754;
-            background-color: #d1e7dd;
-        }
-
-        .applied-plaster {
+            font-weight: 500;
+            color: #455A64;
+            font-size: 1.05rem;
+        }.problem-item.filled {
+            border: 2px solid #66BB6A;
+            background-color: #E8F5E9;
+            box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
+            transform: translateY(-2px);
+        }        .applied-plaster {
             width: 50px;
             height: 35px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            border: 2px solid #fff;
         }
 
         .applied-plaster:hover {
-            transform: scale(1.1);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: scale(1.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+            z-index: 5;
         }
 
         .applied-plasters-container {
@@ -164,9 +162,7 @@
         /* Drag and drop styles */
         .dragging {
             opacity: 0.5;
-        }
-
-        /* Style for scrollbar */
+        }        /* Style for scrollbar */
         .plaster-container::-webkit-scrollbar {
             width: 8px;
         }
@@ -177,49 +173,48 @@
         }
 
         .plaster-container::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #FFA726;
             border-radius: 10px;
         }
 
         .plaster-container::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #FF9800;
         }
 
         /* Highlight effect for better visibility in vertical layout */
         .plaster {
             transition: all 0.3s ease;
-        }
-
-        .plaster:hover {
+        }        .plaster:hover {
             transform: rotate(0deg) scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             background-color: #FFF8DC;
             z-index: 10;
+            border: 2px solid #FFB74D;
         }
 
-        /* Styles for adding new plaster form */
-        .create-plaster-btn {
+        /* Styles for adding new plaster form */        .create-plaster-btn {
             width: 90%;
             height: 100px;
-            background-color: #e9f5ff;
+            background-color: #E3F2FD;
             border-radius: 15px;
             padding: 10px;
             cursor: pointer;
             position: relative;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin: 5px auto;
+            margin: 8px auto;
             flex-shrink: 0;
-            border: 2px dashed #007bff;
-            transition: all 0.3s ease;
+            border: 2px dashed #2196F3;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .create-plaster-btn:hover {
-            background-color: #d0e8ff;
-            transform: scale(1.02);
+            background-color: #BBDEFB;
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
         }
 
         .create-plaster-form {
@@ -269,21 +264,29 @@
                 width: 90%;
                 max-width: 300px;
             }
-        }
-
-        /* Reset icon for individual problem */
-        .problem-reset {
+        }        .problem-reset {
             position: absolute;
             top: 5px;
             right: 5px;
             cursor: pointer;
-            color: #dc3545;
+            color: #E57373;
             display: none;
             z-index: 10;
+            width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .problem-reset:hover {
+            color: #F44336;
+            transform: scale(1.2);
         }
 
         .problem-item.filled:hover .problem-reset {
-            display: block;
+            display: flex;
         }
     </style>
 </head>
@@ -307,9 +310,8 @@
 
                     <div id="contentSection" class="collapse show" aria-labelledby="headerSection">
                         <div class="card-body">
-                            <div class="row"> <!-- Problems (left) -->
-                                <div class="col-md-7">
-                                    <h4 class="mb-3">My feelings</h4>
+                            <div class="row"> <!-- Problems (left) -->                                <div class="col-md-7">
+                                    <h4 class="mb-3" style="color: #455A64; font-weight: 600; border-bottom: 2px solid #CFD8DC; padding-bottom: 8px;">My feelings</h4>
                                     <div class="problem-container">
                                         <div class="problem-item" data-problem-id="1">
                                             <span>Low self-esteem</span>
@@ -458,15 +460,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-overlay" id="formOverlay"></div>
-                            <!-- Instructions and reset button -->
-                            <div class="mt-4">
-                                <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> Drag the plasters from the right side onto the
-                                    problems on the left to "cure" them.
+                            <div class="form-overlay" id="formOverlay"></div>                            <div class="mt-4">
+                                <div class="alert alert-info" style="border-radius: 12px; background-color: #E1F5FE; border-color: #4FC3F7; color: #0277BD;">
+                                    <i class="fas fa-info-circle me-2"></i> <strong>How to use:</strong> Drag the plasters from the right side onto the
+                                    problems on the left to "cure" them. You can add multiple plasters to each problem.
                                 </div>
-                                <button class="btn btn-warning" id="resetBtn">
-                                    <i class="fas fa-redo"></i> Reset exercise
+                                <button class="btn btn-warning" id="resetBtn" style="border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+                                    <i class="fas fa-redo me-2"></i> Reset exercise
                                 </button>
                             </div>
                         </div>
@@ -510,15 +510,13 @@
                 problem.addEventListener('dragenter', dragEnter);
                 problem.addEventListener('dragleave', dragLeave);
                 problem.addEventListener('drop', drop);
-            });
-            // Додаємо іконку скинути до кожної проблеми
+            });            // Додаємо іконку скинути до кожної проблеми
             problemItems.forEach(problem => {
                 const resetIcon = document.createElement('span');
                 resetIcon.className = 'problem-reset';
                 resetIcon.innerHTML = '<i class="fas fa-times"></i>';
                 resetIcon.title = 'Скинути пластирі';
-                problem.appendChild(resetIcon);
-                resetIcon.addEventListener('click', function(e) {
+                problem.appendChild(resetIcon);resetIcon.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const container = problem.querySelector('.applied-plasters-container');
                     if (container) {
@@ -536,6 +534,9 @@
                     }
                     problem.classList.remove('filled');
                     problem.style.borderColor = '#ced4da';
+                    
+                    // Hide the reset icon after clearing plasters
+                    resetIcon.style.display = 'none';
                 });
             });
             // Reset button functionality
@@ -747,16 +748,16 @@
 
                         // Add the plaster to the plasters container
                         this.querySelector('.applied-plasters-container').appendChild(appliedText);
+                    }                    this.classList.add('filled');
+
+                    // Show the reset icon when a plaster is applied
+                    const resetIcon = this.querySelector('.problem-reset');
+                    if (resetIcon) {
+                        resetIcon.style.display = 'flex';
                     }
 
-                    this.classList.add('filled');
-
-                    // Disable the original plaster
-                    plasterElem.style.opacity = '0.5';
-                    plasterElem.setAttribute('draggable', 'false');
-                    plasterElem.style.cursor = 'not-allowed';
-
-                    // Play a success sound (optional)
+                    // No longer disable the original plaster so it can be used multiple times
+                    // Just play a success sound (optional)
                     playSuccessSound();
                 }
             }
