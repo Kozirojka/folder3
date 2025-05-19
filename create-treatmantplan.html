@@ -367,11 +367,10 @@
                             <i class="fas fa-save me-1"></i> Save My Plan
                         </button>
                     </div>
-                </div>
-                    <div class="module-container" id="treatmentPlanContainer">
+                </div>                    <div class="module-container" id="treatmentPlanContainer">
                         <div class="drag-hint">
                             <i class="fas fa-arrow-left mb-2" style="font-size: 1.5rem;"></i>
-                            <p>Drag modules from the list on the left to create a treatment plan</p>
+                            <p>Drag fun activities from the left to build your personal plan!</p>
                         </div>
                     </div>
                 </div>
@@ -498,7 +497,435 @@
             { id: 1013, title: "Family Mealtime Games", description: "Fun conversation cards and games to make mealtimes more relaxed", category: "Nutrition" },
             { id: 1014, title: "Media Detective Badge", description: "Learn to spot edited images and unrealistic body standards", category: "Body Image" },
             { id: 1015, title: "Energy Balance Mobile", description: "Create a hanging mobile showing food gives energy for activities we enjoy", category: "Psychoeducation" }
-        ];document.addEventListener('DOMContentLoaded', function () {            // Initialize Sortable.js for dragging modules in the plan container
+        ];
+        
+        // Detailed exercise instructions for each exercise
+        const exerciseDetails = {
+            // CBT Module (1) Exercise Details
+            101: {
+                materials: ["Colorful notebook or journal", "Colored pencils or markers", "Food stickers (optional)"],
+                steps: [
+                    "Find a quiet space where you feel comfortable",
+                    "Draw a food you ate today or use a picture from a magazine",
+                    "Draw a cloud or bubble around it and write how you felt before eating it",
+                    "Draw another bubble and write how you felt after eating it",
+                    "Use different colors for different feelings",
+                    "Try to do this for 3-5 foods over the week"
+                ],
+                tip: "There are no right or wrong feelings! All feelings are important to notice."
+            },
+            102: {
+                materials: ["Food magazine pictures or drawings", "Paper", "Scissors", "Glue", "Markers for drawing bubbles"],
+                steps: [
+                    "Cut out 3-5 pictures of different foods from magazines",
+                    "Paste each one on a separate paper",
+                    "Draw thought bubbles around each food",
+                    "Inside the bubbles, write the thoughts that come to mind when you see this food",
+                    "Try to notice if the thoughts are helpful or unhelpful",
+                    "If you find unhelpful thoughts, try to add a new bubble with a more friendly thought"
+                ],
+                tip: "Remember that foods aren't 'good' or 'bad' - they're just different kinds of fuel for your amazing body!"
+            },
+            103: {
+                materials: ["Large poster board or paper", "Old photos of happy food memories (if available)", "Magazines", "Scissors", "Glue", "Markers"],
+                steps: [
+                    "Think about happy memories involving food: family meals, birthday cakes, picnics, cooking with someone special",
+                    "Find pictures that remind you of these happy times",
+                    "Cut out and arrange them on your poster",
+                    "Add words, decorations, or drawings that describe these good memories",
+                    "Display your collage somewhere you can see it regularly"
+                ],
+                tip: "Food is more than just nutrition - it can connect us to happy memories and people we love!"
+            },
+            
+            // Mindful Eating Module (2) Exercise Details
+            201: {
+                materials: ["A small snack you enjoy (like a piece of fruit or a cookie)", "A quiet place to sit", "A timer"],
+                steps: [
+                    "Choose a small snack and sit in a comfortable, quiet place",
+                    "Look at your snack and notice its colors, shape, and size",
+                    "Close your eyes and smell your snack - what does it remind you of?",
+                    "Take one small bite, but don't chew yet - just notice how it feels on your tongue",
+                    "Chew slowly and notice all the flavors and textures",
+                    "Try to make the snack last for at least 5 minutes!"
+                ],
+                tip: "Eating slowly and mindfully can help you enjoy your food more and notice when you're feeling full."
+            },
+            202: {
+                materials: ["Poster paper", "Markers or crayons", "Stickers for decoration"],
+                steps: [
+                    "Draw a large outline of a body on your poster",
+                    "In one color, mark where you feel hunger in your body (maybe your tummy growls or feels empty)",
+                    "In another color, mark where you feel fullness (maybe your tummy feels comfortable)",
+                    "Create a key showing what different feelings mean (growling, butterflies, comfortable, too full)",
+                    "Over the next few days, check in with your body before and after eating to notice these signals"
+                ],
+                tip: "Your body is really smart and sends you signals about hunger and fullness. With practice, these signals get easier to notice!"
+            },
+            203: {
+                materials: ["Paper and markers", "Emoji stickers", "Small notebook to carry with you"],
+                steps: [
+                    "Draw a number line from 1-10 on a piece of paper",
+                    "Add emojis to show different hunger/fullness levels (1=very hungry, 5=just right, 10=too full)",
+                    "Decorate your scale to make it fun and personal",
+                    "For the next few days, check in before meals, during meals, and after meals",
+                    "Mark where you are on your hunger/fullness scale each time"
+                ],
+                tip: "Aim to start eating around 3 (hungry but not starving) and stop around 7 (satisfied but not uncomfortable)."
+            },
+            
+            // Nutrition Module (3) Exercise Details
+            301: {
+                materials: ["Colorful paper", "Markers or crayons", "Food magazines (optional)", "Scissors and glue (optional)"],
+                steps: [
+                    "Draw a big rainbow on your paper with seven arcs (red, orange, yellow, green, blue, indigo, violet)",
+                    "For each color, list or draw foods that match (red strawberries, orange carrots, etc.)",
+                    "Try to think of at least 3 foods for each color",
+                    "Make a plan to try eating foods from at least 3 different colors each day",
+                    "You can use this as a weekly meal planner too!"
+                ],
+                tip: "Eating a rainbow of foods helps your body get all the different nutrients it needs to grow strong!"
+            },
+            302: {
+                materials: ["Calendar sheet or paper to make a schedule", "Colored markers", "Stickers", "Glitter or other decorations"],
+                steps: [
+                    "Create a pretty schedule showing breakfast, lunch, dinner and snacks",
+                    "Decorate it with colors, stickers or anything that makes it special for you",
+                    "Add regular meal and snack times that work for your day",
+                    "Leave space to write in what you ate or how you felt",
+                    "Put it somewhere you can see it every day"
+                ],
+                tip: "Regular meals and snacks help keep your energy steady throughout the day and help your body trust that food will be available."
+            },
+            303: {
+                materials: ["Large paper to draw a ladder", "Markers or crayons", "List of foods that feel challenging"],
+                steps: [
+                    "Draw a colorful ladder with at least 10 steps",
+                    "On the bottom step, write a food that feels a little challenging but doable",
+                    "Work your way up, putting slightly more challenging foods on each step",
+                    "At the top, put a food that feels very challenging right now",
+                    "Decorate your ladder with encouraging words and stars",
+                    "With your therapist or parent, make a plan to try the food on step 1"
+                ],
+                tip: "Taking small steps with challenging foods helps build confidence. You don't need to climb the whole ladder at once!"
+            },
+            
+            // Body Image Module (4) Exercise Details
+            401: {
+                materials: ["Notebook or journal", "Decorative supplies (stickers, glitter, etc.)", "Colored pens or markers"],
+                steps: [
+                    "Decorate the cover of your journal with things that make you happy",
+                    "Each day, write or draw one thing your amazing body helped you do",
+                    "These could be simple things like 'My legs helped me play with my friend' or 'My arms helped me hug my mom'",
+                    "Try to find at least one new thing each day",
+                    "When you're having a hard day, read through your journal to remember how amazing your body is"
+                ],
+                tip: "Your body does thousands of incredible things for you every day, most of which have nothing to do with how it looks!"
+            },
+            402: {
+                materials: ["Colorful sticky notes", "Markers or pens", "A mirror you use regularly"],
+                steps: [
+                    "Write 5-10 kind messages to yourself on sticky notes",
+                    "These might be things like 'You are kind,' 'Your smile lights up the room,' or 'You're a great friend'",
+                    "Decorate the notes with hearts, stars, or other happy symbols",
+                    "Place these notes around the edges of your mirror",
+                    "Read them out loud each morning when you look in the mirror",
+                    "Change them or add new ones each week"
+                ],
+                tip: "The words we say to ourselves matter! Speaking kindly to yourself helps build a healthy relationship with your body."
+            },
+            403: {
+                materials: ["Magazines or access to social media (with adult supervision)", "Paper and markers", "Scissors and glue (optional)"],
+                steps: [
+                    "With an adult, look through magazines or social media",
+                    "Find pictures that might be edited or changed to look 'perfect'",
+                    "Discuss how these images might be different from real life",
+                    "Make a list of clues that an image might be edited (unnaturally smooth skin, impossible proportions, etc.)",
+                    "Create a 'Reality Check' poster showing the difference between edited and real images"
+                ],
+                tip: "Most images in magazines and social media are heavily edited and don't show real bodies. Your real body is perfect just the way it is!"
+            },
+            
+            // Psychoeducation Module (5) Exercise Details
+            501: {
+                materials: ["Story book provided by therapist", "Paper and art supplies", "Feelings chart"],
+                steps: [
+                    "Read the story with your therapist or a trusted adult",
+                    "Talk about the different characters and how they feel about food",
+                    "Discuss which character you relate to most and why",
+                    "Draw a picture of your favorite part of the story",
+                    "With help, identify 2-3 new things you learned about emotions and eating"
+                ],
+                tip: "Understanding how feelings and food are connected can help you make sense of your own experiences."
+            },
+            502: {
+                materials: ["Large poster paper", "Magazines for cutting out pictures", "Markers", "Scissors and glue"],
+                steps: [
+                    "Draw the outline of a body in the center of your poster",
+                    "Create different sections around it for what bodies need: Food, Water, Rest, Movement, Love",
+                    "Cut out or draw pictures to represent each need",
+                    "Discuss with your therapist why each need is important",
+                    "Display your chart somewhere you can see it regularly"
+                ],
+                tip: "All bodies have the same basic needs, though how we meet those needs might look different for each person."
+            },
+            503: {
+                materials: ["Paper divided into two columns", "Drawing supplies", "Heart and tummy stickers (optional)"],
+                steps: [
+                    "Label one column 'Tummy Feelings' and the other 'Heart Feelings'",
+                    "In the 'Tummy Feelings' column, draw or write physical hunger signals (growling tummy, low energy, etc.)",
+                    "In the 'Heart Feelings' column, draw or write emotional triggers that might feel like hunger (sadness, boredom, etc.)",
+                    "Discuss with your therapist how to tell the difference",
+                    "Create a plan for what to do when you notice 'Heart Feelings'"
+                ],
+                tip: "Sometimes our hearts and tummies send similar signals. Learning to tell them apart helps us respond in the most helpful way."
+            },
+            
+            // Anxiety Management Module (6) Exercise Details
+            601: {
+                materials: ["Colorful paper", "Markers, stickers or other decorations", "Star stickers (optional)"],
+                steps: [
+                    "Create a decorated list with your name at the top",
+                    "Write down foods that feel scary or difficult right now",
+                    "For each food, rate how scary it feels from 1-5 stars",
+                    "Pick one 1-star food to work on first with your therapist",
+                    "Remember this list is private - only share with people you trust"
+                ],
+                tip: "Making a list helps take worries out of your head. And many foods that seem scary now won't always feel that way!"
+            },
+            602: {
+                materials: ["Calendar or paper to make a calendar", "Markers", "Sticker stars or other reward symbols"],
+                steps: [
+                    "Create a special calendar for the next month",
+                    "With help from your therapist, choose one small food challenge per week",
+                    "Write the challenge on the calendar",
+                    "Decide on a special reward for trying each challenge (not food rewards)",
+                    "Add stars or stickers to mark each attempt, whether it was easy or hard"
+                ],
+                tip: "Celebrating every attempt (not just 'perfect' ones) helps build confidence with challenging foods."
+            },
+            603: {
+                materials: ["Toy foods or pictures of food", "Stuffed animals, dolls, or willing family members"],
+                steps: [
+                    "Set up a pretend mealtime with toys, dolls, or family members",
+                    "Practice eating together in a relaxed way",
+                    "Try using some helpful phrases: 'This is just food,' 'I can take my time,' 'I'm safe'",
+                    "Practice some deep breathing if you notice worry feelings",
+                    "Start with easier foods and work up to more challenging ones"
+                ],
+                tip: "Practicing meals in a safe, pretend way can make real meals with friends feel less scary."
+            },
+            
+            // Body Acceptance Module (7) Exercise Details
+            701: {
+                materials: ["Large poster paper", "Magazines for cutting out diverse bodies", "Markers", "Scissors and glue"],
+                steps: [
+                    "Title your poster 'Bodies Are Amazing!'",
+                    "Find pictures of people with different body types doing cool things",
+                    "Cut out and paste these pictures on your poster",
+                    "Around each picture, write what amazing thing the body is doing (dancing, thinking, hugging, etc.)",
+                    "Add colorful decorations and positive words",
+                    "Hang your poster somewhere you can see it often"
+                ],
+                tip: "Bodies come in ALL shapes and sizes. Each one is amazing because of what it can DO, not how it looks."
+            },
+            702: {
+                materials: ["Index cards or small paper squares", "Markers or colored pencils", "Container to hold cards"],
+                steps: [
+                    "Decorate a container (box or jar) to hold your cards",
+                    "On each card, write or draw something special about you that has nothing to do with your body",
+                    "These might include: being a good friend, being creative, being brave, loving animals, etc.",
+                    "Make at least 10 cards, adding more whenever you think of new qualities",
+                    "When you're having a hard body image day, pull out cards to remind yourself of all you are"
+                ],
+                tip: "Your value and worth come from WHO you are, not what your body looks like."
+            },
+            703: {
+                materials: ["Special paper", "Envelope", "Decorative supplies", "Pen or markers"],
+                steps: [
+                    "Imagine yourself 5 or 10 years in the future",
+                    "Write or draw a letter from your future self to your current self",
+                    "Include what amazing things you're doing in the future",
+                    "Write about what truly matters to you in life",
+                    "Include encouraging words for your current self",
+                    "Keep this letter somewhere special to read when things feel hard"
+                ],
+                tip: "Your journey isn't just about food or body image - it's about becoming the person you want to be and living a full, meaningful life."
+            },
+            
+            // Library Exercise Details
+            1001: {
+                materials: ["Emotion coloring pages", "Crayons or markers", "Feelings chart"],
+                steps: [
+                    "Choose a coloring page with different faces showing emotions",
+                    "For each emotion, pick a color that matches how that feeling feels to you",
+                    "As you color, talk about when you've felt this emotion",
+                    "Notice where in your body you feel each emotion (butterflies in tummy, heaviness in chest, etc.)",
+                    "Create your own feelings color chart to use when emotions are hard to name"
+                ],
+                tip: "There are no 'right' or 'wrong' emotions - all feelings are important messengers telling us something."
+            },
+            1002: {
+                materials: ["Art journal or sketchbook", "Variety of art supplies", "Photographs of meals (optional)"],
+                steps: [
+                    "Create a special journal just for exploring food and feelings",
+                    "Before meals, draw how you're feeling using colors and shapes",
+                    "After meals, make another drawing showing how your feelings might have changed",
+                    "You can also paste photos of food and draw feelings around them",
+                    "There's no right or wrong way to create your journal - it's just for you!"
+                ],
+                tip: "Art helps express feelings that might be hard to put into words, especially feelings about food."
+            },
+            1003: {
+                materials: ["Pictures of friendly animals (turtle, bunny, elephant, etc.)", "Comfortable place to sit or lie down"],
+                steps: [
+                    "Choose an animal breathing style: Bunny breaths (quick sniffs, long exhale), Turtle breaths (slow and steady), Elephant breaths (arm as trunk, deep inhales and loud exhales)",
+                    "Find a quiet, comfortable spot",
+                    "Practice your animal breathing for 1 minute",
+                    "Notice how your body feels more relaxed",
+                    "Use this special breathing whenever food or body thoughts make you feel anxious"
+                ],
+                tip: "Breathing like different animals makes calming breaths fun and easy to remember when you need them."
+            },
+            1004: {
+                materials: ["None required - just your senses!"],
+                steps: [
+                    "This game helps when worries feel big, especially around mealtimes",
+                    "Name 5 things you can SEE around you",
+                    "Name 4 things you can TOUCH or FEEL",
+                    "Name 3 things you can HEAR",
+                    "Name 2 things you can SMELL",
+                    "Name 1 thing you can TASTE",
+                    "Notice how this helps bring you back to the present moment"
+                ],
+                tip: "Using all your senses helps your brain move from worry mode to the here and now."
+            },
+            1005: {
+                materials: ["Large rainbow-shaped paper", "Markers or crayons", "Food magazines (optional)", "Glue and scissors (optional)"],
+                steps: [
+                    "Draw a large rainbow with 7 color bands",
+                    "For each color, list foods you enjoy that match that color",
+                    "Red could include strawberries, watermelon, red peppers",
+                    "Continue for orange, yellow, green, blue, indigo and violet",
+                    "If you can't think of foods for some colors, that's okay!",
+                    "Decorate your chart and hang it somewhere you'll see it often"
+                ],
+                tip: "Colorful foods provide different nutrients that help your body grow strong and healthy."
+            },
+            1006: {
+                materials: ["Paper badge template", "Safety pin or string", "Stickers (food shapes are ideal)", "Markers"],
+                steps: [
+                    "Create a badge with your name and 'Food Explorer' title",
+                    "With your therapist or parent, make a list of new foods to try",
+                    "Each time you try even a tiny taste of a new food, add a sticker to your badge",
+                    "Write down what you noticed about the food - not whether you liked it, but what you observed about color, texture, smell, etc.",
+                    "Celebrate your bravery in exploring, not whether you liked the food"
+                ],
+                tip: "It can take 10-15 tries to know if you like a food. Explorers just observe without judgment!"
+            },
+            1007: {
+                materials: ["Large poster board", "Pictures from magazines or printed from internet", "Markers", "Glue"],
+                steps: [
+                    "Draw an outline of a person in the center of your poster",
+                    "All around it, write or draw all the amazing things bodies can do",
+                    "Examples: dancing, hugging, singing, thinking, dreaming, healing cuts, growing",
+                    "If you want, add photos of people using their bodies in amazing ways",
+                    "Title your poster 'Bodies Have Super Powers!'"
+                ],
+                tip: "Your body is amazing because of what it can DO, not how it looks."
+            },
+            1008: {
+                materials: ["Colorful sticky notes", "Markers or pens", "Mirror in your room"],
+                steps: [
+                    "Write at least 10 kind messages on sticky notes",
+                    "Examples: 'I am enough just as I am,' 'My body deserves respect and care,' 'I am more than how I look'",
+                    "Decorate each note with hearts, stars, or happy faces",
+                    "Place these notes around your mirror, on your door, or anywhere you'll see them",
+                    "Read them out loud when you see them",
+                    "Replace with new ones each week"
+                ],
+                tip: "The way we talk to ourselves shapes how we feel. Kind words help build a friendly relationship with your body."
+            },
+            1009: {
+                materials: ["Puppets (can be simple sock puppets)", "Story script provided by therapist"],
+                steps: [
+                    "Choose which puppets will play which characters in the story",
+                    "With your therapist or parent, act out the story about how bodies need different foods",
+                    "Take turns being different characters",
+                    "After the story, talk about what you learned",
+                    "Maybe create your own story with the puppets"
+                ],
+                tip: "Stories and puppets make it easier to talk about and understand complicated topics like eating and body needs."
+            },
+            1010: {
+                materials: ["Box with lid (shoebox works well)", "Decorating supplies", "Paper and pen"],
+                steps: [
+                    "Decorate a special box with colors, stickers, magazine cutouts - whatever feels good to you",
+                    "When you have a worry about food or your body, write it down on a piece of paper",
+                    "Put the worry in the box",
+                    "At a special time each day, open the box with a trusted adult",
+                    "Talk about one worry at a time, then decide if it can be thrown away or needs more discussion"
+                ],
+                tip: "Putting worries in a box gives you control over when you think about them, rather than letting them interrupt your whole day."
+            },
+            1011: {
+                materials: ["Paper divided into sections", "Markers or crayons", "Weather stickers (optional)"],
+                steps: [
+                    "Draw different weather patterns to represent emotions (sunny=happy, rainy=sad, stormy=angry, foggy=confused)",
+                    "Each day, or several times a day, draw your current emotional 'weather'",
+                    "Notice how your emotional weather changes throughout the day",
+                    "Talk about what causes weather changes in your emotions",
+                    "Remember that all weather passes - no storm lasts forever"
+                ],
+                tip: "Just like weather changes, our emotions change too. This is normal and okay!"
+            },
+            1012: {
+                materials: ["Clear plastic bottle with lid", "Warm water", "Glitter glue or loose glitter", "Food coloring (optional)"],
+                steps: [
+                    "Fill the bottle almost full with warm water",
+                    "Add 1-2 tablespoons of glitter glue or loose glitter",
+                    "Add a few drops of food coloring if desired",
+                    "Secure the lid tightly (an adult may need to hot glue it)",
+                    "When feeling overwhelmed, shake the jar and watch the glitter swirl and slowly settle",
+                    "Practice deep breathing while watching the glitter settle"
+                ],
+                tip: "When we're upset, our thoughts are like the swirling glitter. As we calm down, our thoughts settle and become clearer."
+            },
+            1013: {
+                materials: ["Index cards or small pieces of paper", "Container to hold cards", "Markers for decorating"],
+                steps: [
+                    "With family members, create conversation starter cards for mealtimes",
+                    "Write fun, interesting questions like 'If you could have any superpower, what would it be?' or 'What made you laugh today?'",
+                    "Decorate a special container to hold the cards",
+                    "During meals, take turns picking a card and having everyone answer",
+                    "Focus on the conversation rather than the food"
+                ],
+                tip: "Fun conversations help make mealtimes more relaxed and enjoyable for everyone."
+            },
+            1014: {
+                materials: ["Teen magazines or printed social media images", "Paper and markers", "Magnifying glass (optional for fun)"],
+                steps: [
+                    "With an adult, look through magazines or social media images",
+                    "Circle or note signs of photo editing (impossibly smooth skin, no pores, strange proportions)",
+                    "Create a 'Spot the Fake' guide with clues to identify edited images",
+                    "Discuss how seeing edited images makes you feel",
+                    "Make a list of reminders that real bodies don't look like edited images"
+                ],
+                tip: "Almost EVERY image in magazines and social media is heavily edited. Real bodies have texture, pores, bumps, and unique features!"
+            },
+            1015: {
+                materials: ["String or yarn", "Cardboard pieces cut into shapes", "Markers", "Hole punch"],
+                steps: [
+                    "Cut cardboard into shapes: foods on one side, activities on the other",
+                    "Draw or write different foods on some shapes (fruits, vegetables, grains, proteins, etc.)",
+                    "On other shapes, draw activities you enjoy (dancing, reading, playing, thinking, etc.)",
+                    "Punch holes in the shapes and tie string through them",
+                    "Hang your shapes to create a mobile showing how food gives energy for activities",
+                    "Hang where you can see it regularly"
+                ],
+                tip: "Food is fuel for all the activities you love! Different foods provide different types of energy."
+            }
+        };document.addEventListener('DOMContentLoaded', function () {            // Initialize Sortable.js for dragging modules in the plan container
             const treatmentPlanContainer = document.getElementById('treatmentPlanContainer');
             new Sortable(treatmentPlanContainer, {
                 animation: 150,
@@ -687,48 +1114,82 @@
                     } else {
                         // This is a predefined exercise
                         exercise = moduleExercises[moduleId].find(ex => ex.id == exerciseId);
-                    }
-
-                    if (exercise) {
+                    }                if (exercise) {
+                        // Get detailed instructions for this exercise
+                        let exerciseDetail = null;
+                        if (exerciseId in exerciseDetails) {
+                            // This is a predefined exercise with detailed instructions
+                            exerciseDetail = exerciseDetails[exerciseId];
+                        }
+                        
                         const modal = new bootstrap.Modal(document.getElementById('exerciseModal'));
                         document.getElementById('exerciseModalTitle').textContent = exercise.title;
-                        document.getElementById('exerciseModalBody').innerHTML = `
-                            <p class="lead"><strong>${exercise.description}</strong></p>
-                            
-                            <div class="card mt-3 border-primary">
-                                <div class="card-header bg-primary text-white">How to Use This Exercise</div>
-                                <div class="card-body">
-                                    <p>This exercise is designed to help you explore your relationship with food and body image in a creative and supportive way.</p>
-                                    
-                                    <h6 class="mt-3 mb-2 text-primary">Materials Needed:</h6>
-                                    <ul>
-                                        <li>Journal or drawing paper</li>
-                                        <li>Colored pencils or markers</li>
-                                        <li>Stickers (optional)</li>
-                                    </ul>
-                                    
-                                    <h6 class="mt-3 mb-2 text-primary">Steps:</h6>
-                                    <ol>
-                                        <li>Find a quiet, comfortable space where you feel safe.</li>
-                                        <li>Start with a few deep breaths to help you feel centered.</li>
-                                        <li>Follow the specific instructions for this exercise.</li>
-                                        <li>There's no "right way" to do this - this is your personal journey!</li>
-                                        <li>Share your experience with your therapist at your next session.</li>
-                                    </ol>
-                                    
-                                    <div class="alert alert-info mt-3">
-                                        <i class="fas fa-heart me-2"></i> Remember: Small steps are still progress. Be kind to yourself!
+                        
+                        let modalContent = `<p class="lead"><strong>${exercise.description}</strong></p>`;
+                        
+                        if (exerciseDetail) {
+                            // Show specific instructions for this exercise
+                            modalContent += `
+                                <div class="card mt-3" style="border-color: #ffb7dc;">
+                                    <div class="card-header" style="background-color: #ffb7dc; color: white;">How to Use This Exercise</div>
+                                    <div class="card-body">
+                                        <p>This exercise is designed to help you explore your relationship with food and body image in a creative and supportive way.</p>
+                                        
+                                        <h6 class="mt-3 mb-2" style="color: #ff5bab;">Materials Needed:</h6>
+                                        <ul>
+                                            ${exerciseDetail.materials.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                        
+                                        <h6 class="mt-3 mb-2" style="color: #ff5bab;">Steps:</h6>
+                                        <ol>
+                                            ${exerciseDetail.steps.map(item => `<li>${item}</li>`).join('')}
+                                        </ol>
+                                        
+                                        <div class="alert mt-3" style="background-color: #ffebf6; border-color: #ffb7dc;">
+                                            <i class="fas fa-heart me-2" style="color: #ff5bab;"></i> <strong>Helpful Tip:</strong> ${exerciseDetail.tip}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            
+                                </div>`;
+                        } else {
+                            // Show generic instructions for custom exercises
+                            modalContent += `
+                                <div class="card mt-3" style="border-color: #ffb7dc;">
+                                    <div class="card-header" style="background-color: #ffb7dc; color: white;">How to Use This Exercise</div>
+                                    <div class="card-body">
+                                        <p>This exercise is designed to help you explore your relationship with food and body image in a creative and supportive way.</p>
+                                        
+                                        <h6 class="mt-3 mb-2" style="color: #ff5bab;">Materials Needed:</h6>
+                                        <ul>
+                                            <li>Journal or drawing paper</li>
+                                            <li>Colored pencils or markers</li>
+                                            <li>Stickers (optional)</li>
+                                        </ul>
+                                        
+                                        <h6 class="mt-3 mb-2" style="color: #ff5bab;">Steps:</h6>
+                                        <ol>
+                                            <li>Find a quiet, comfortable space where you feel safe.</li>
+                                            <li>Start with a few deep breaths to help you feel centered.</li>
+                                            <li>Follow the specific instructions for this exercise.</li>
+                                            <li>There's no "right way" to do this - this is your personal journey!</li>
+                                            <li>Share your experience with your therapist at your next session.</li>
+                                        </ol>
+                                        
+                                        <div class="alert mt-3" style="background-color: #ffebf6; border-color: #ffb7dc;">
+                                            <i class="fas fa-heart me-2" style="color: #ff5bab;"></i> <strong>Helpful Tip:</strong> Remember: Small steps are still progress. Be kind to yourself!
+                                        </div>
+                                    </div>
+                                </div>`;
+                        }
+                        
+                        modalContent += `
                             <div class="form-check mt-3">
                                 <input class="form-check-input" type="checkbox" id="exercise${exerciseId}Complete">
                                 <label class="form-check-label" for="exercise${exerciseId}Complete">
                                     Mark as completed
                                 </label>
-                            </div>
-                        `;
+                            </div>`;
+                        
+                        document.getElementById('exerciseModalBody').innerHTML = modalContent;
                         modal.show();
                     }
                 }
@@ -802,50 +1263,87 @@
                 viewBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
-                    // Show exercise details in modal
+                      // Show exercise details in modal
                     const exerciseTitleEl = exerciseItem.querySelector('.exercise-title');
                     const exerciseTitle = exerciseTitleEl ? exerciseTitleEl.textContent : title;
                     const exerciseDescription = isCustom ? description : 
                         moduleExercises[moduleInPlan.getAttribute('data-module-id')].find(ex => ex.id == exerciseId)?.description || description;
                     
+                    // Get detailed instructions for this exercise
+                    let exerciseDetail = null;
+                    if (!isCustom && exerciseId in exerciseDetails) {
+                        // This is a predefined exercise with detailed instructions
+                        exerciseDetail = exerciseDetails[exerciseId];
+                    }
+                    
                     const modal = new bootstrap.Modal(document.getElementById('exerciseModal'));
                     document.getElementById('exerciseModalTitle').textContent = exerciseTitle;
-                    document.getElementById('exerciseModalBody').innerHTML = `
-                        <p><strong>Description:</strong> ${exerciseDescription}</p>
-                        <div class="card mt-3 border-primary">
-                            <div class="card-header bg-primary text-white">How to Use This Exercise</div>
-                            <div class="card-body">
-                                <p>This exercise is designed to help you explore your relationship with food and body image in a creative and supportive way.</p>
-                                
-                                <h6 class="mt-3 mb-2 text-primary">Materials Needed:</h6>
-                                <ul>
-                                    <li>Journal or drawing paper</li>
-                                    <li>Colored pencils or markers</li>
-                                    <li>Stickers (optional)</li>
-                                </ul>
-                                
-                                <h6 class="mt-3 mb-2 text-primary">Steps:</h6>
-                                <ol>
-                                    <li>Find a quiet, comfortable space where you feel safe.</li>
-                                    <li>Start with a few deep breaths to help you feel centered.</li>
-                                    <li>Follow the specific instructions for this exercise.</li>
-                                    <li>There's no "right way" to do this - this is your personal journey!</li>
-                                    <li>Share your experience with your therapist at your next session.</li>
-                                </ol>
-                                
-                                <div class="alert alert-info mt-3">
-                                    <i class="fas fa-heart me-2"></i> Remember: Small steps are still progress. Be kind to yourself!
+                    
+                    let modalContent = `<p><strong>Description:</strong> ${exerciseDescription}</p>`;
+                    
+                    if (exerciseDetail) {
+                        // Show specific instructions for this exercise
+                        modalContent += `
+                            <div class="card mt-3" style="border-color: #ffb7dc;">
+                                <div class="card-header" style="background-color: #ffb7dc; color: white;">How to Use This Exercise</div>
+                                <div class="card-body">
+                                    <p>This exercise is designed to help you explore your relationship with food and body image in a creative and supportive way.</p>
+                                    
+                                    <h6 class="mt-3 mb-2" style="color: #ff5bab;">Materials Needed:</h6>
+                                    <ul>
+                                        ${exerciseDetail.materials.map(item => `<li>${item}</li>`).join('')}
+                                    </ul>
+                                    
+                                    <h6 class="mt-3 mb-2" style="color: #ff5bab;">Steps:</h6>
+                                    <ol>
+                                        ${exerciseDetail.steps.map(item => `<li>${item}</li>`).join('')}
+                                    </ol>
+                                    
+                                    <div class="alert mt-3" style="background-color: #ffebf6; border-color: #ffb7dc;">
+                                        <i class="fas fa-heart me-2" style="color: #ff5bab;"></i> <strong>Helpful Tip:</strong> ${exerciseDetail.tip}
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>`;
+                    } else {
+                        // Show generic instructions for custom exercises
+                        modalContent += `
+                            <div class="card mt-3" style="border-color: #ffb7dc;">
+                                <div class="card-header" style="background-color: #ffb7dc; color: white;">How to Use This Exercise</div>
+                                <div class="card-body">
+                                    <p>This exercise is designed to help you explore your relationship with food and body image in a creative and supportive way.</p>
+                                    
+                                    <h6 class="mt-3 mb-2" style="color: #ff5bab;">Materials Needed:</h6>
+                                    <ul>
+                                        <li>Journal or drawing paper</li>
+                                        <li>Colored pencils or markers</li>
+                                        <li>Stickers (optional)</li>
+                                    </ul>
+                                    
+                                    <h6 class="mt-3 mb-2" style="color: #ff5bab;">Steps:</h6>
+                                    <ol>
+                                        <li>Find a quiet, comfortable space where you feel safe.</li>
+                                        <li>Start with a few deep breaths to help you feel centered.</li>
+                                        <li>Follow the specific instructions for this exercise.</li>
+                                        <li>There's no "right way" to do this - this is your personal journey!</li>
+                                        <li>Share your experience with your therapist at your next session.</li>
+                                    </ol>
+                                    
+                                    <div class="alert mt-3" style="background-color: #ffebf6; border-color: #ffb7dc;">
+                                        <i class="fas fa-heart me-2" style="color: #ff5bab;"></i> <strong>Helpful Tip:</strong> Remember: Small steps are still progress. Be kind to yourself!
+                                    </div>
+                                </div>
+                            </div>`;
+                    }
+                    
+                    modalContent += `
                         <div class="form-check mt-3">
                             <input class="form-check-input" type="checkbox" id="exercise${exerciseId}Complete">
                             <label class="form-check-label" for="exercise${exerciseId}Complete">
                                 Mark as completed
                             </label>
-                        </div>
-                    `;
+                        </div>`;
+                    
+                    document.getElementById('exerciseModalBody').innerHTML = modalContent;
                     modal.show();
                 });
                 
