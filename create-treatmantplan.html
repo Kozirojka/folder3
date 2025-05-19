@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatment Plan Constructor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Style for navigation bar */
+        .site-header {
+            background-color: #9d8cdb;
+            color: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .treatment-constructor-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .module-library {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(150, 50, 200, 0.3);
+            /* Більш інтенсивна фіолетова тінь */
+            padding: 20px;
+            height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .treatment-plan {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(150, 50, 200, 0.3);
+            /* Більш інтенсивна фіолетова тінь */
+            padding: 20px;
+            height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .module-item {
+            background-color: #f7f2ff;
+            /* Світліший фіолетовий фон */
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 4px solid #9d8cdb;
+            /* М'якший відтінок фіолетового */
+        }
+
+        .module-item:hover {
+            background-color: #ebe3fc;
+            /* М'якший світлий фіолетовий при наведенні */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(157, 140, 219, 0.3);
+            /* М'якша фіолетова тінь */
+        }
+
+        .module-item h5 {
+            margin: 0;
+            color: #7c4dff;
+            /* М'якший фіолетовий для заголовків */
+        }
+
+        .module-item p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .module-container {
+            min-height: 100px;
+            padding: 15px;
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .drop-active {
+            border-color: #b388ff;
+            /* Яскравіший середньо-фіолетовий для активної області */
+            background-color: #f0e5ff;
+        }
+
+        .module-in-plan {
+            background-color: #f4f0fd;
+            /* Світліший пастельний фіолетовий фон */
+            border: 1px solid #d7ceee;
+            /* М'якші границі світло-фіолетові */
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .module-in-plan .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: grab;
+            /* Change to grab cursor to indicate draggability */
+        }
+
+        .module-in-plan .module-title {
+            font-weight: 600;
+            color: #8e78c9;
+            /* М'якший відтінок фіолетового для заголовків */
+            margin: 0;
+        }
+
+        .module-in-plan .module-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .exercise-list {
+            padding-top: 10px;
+            margin-top: 10px;
+            border-top: 1px solid #e0e0e0;
+            display: none;
+        }
+
+        .exercise-item {
+            background-color: white;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #b3a7d9;
+            /* М'якший середньо-фіолетовий для лівої границі */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exercise-title {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .expanded .exercise-list {
+            display: block;
+        }
+
+        .btn-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 14px;
+        }
+
+        .patient-info {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(150, 50, 200, 0.3);
+            /* Більш інтенсивна фіолетова тінь */
+        }
+
+        .plan-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #f0ebfc;
+            /* Світліший пастельний фіолетовий фон */
+            color: #8e78c9;
+            /* М'якший фіолетовий текст */
+            border-radius: 12px;
+            padding: 3px 10px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .module-search {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .module-search input {
+            padding-left: 35px;
+        }
+
+        .module-search i {
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            color: #6c757d;
+        }
+
+        .module-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .category-pill {
+            background-color: #f8f5ff;
+            /* Світліший пастельний фіолетовий фон */
+            border: 1px solid #d7ceee;
+            /* М'якші границі світло-фіолетові */
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-pill:hover,
+        .category-pill.active {
+            background-color: #8e78c9;
+            /* М'якший відтінок фіолетового для активної/наведення */
+            color: white;
+            border-color: #8e78c9;
+        }
+
+        .reorder-handle {
+            cursor: grab;
+            color: #b3a7d9;
+            /* М'якший середньо-фіолетовий для іконки */
+            margin-right: 10px;
+        }
+
+        .module-header .module-meta {
+            font-size: 0.85rem;
+            color: #b3a7d9;
+            /* М'якший середньо-фіолетовий для метаданих */
+        }        .drag-hint {
+            color: #b3a7d9;
+            /* М'якший середньо-фіолетовий для підказок */
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+        }
+        
+        .exercise-item-library {
+            cursor: pointer;
+            transition: all 0.2s;
+            border-color: #d7ceee !important;
+        }
+        
+        .exercise-item-library:hover {
+            background-color: #f8f5ff;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(157, 140, 219, 0.2);
+        }
+        
+        .exercise-item-library.selected {
+            border-color: #9d8cdb !important;
+            border-width: 2px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="treatment-constructor-container">
+            <h2><i class="fas fa-clipboard-list me-2"></i>Treatment Plan Constructor</h2>
+        </div>
+    </header>    <div class="treatment-constructor-container mb-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="module-library">
+                    <h5 class="mb-3"><i class="fas fa-th-large me-2"></i>Module Library</h5>
+
+                    <div class="module-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" id="moduleSearch" placeholder="Search modules...">
+                    </div>
+
+                    <div class="module-categories"> <span class="category-pill active" data-category="all">All</span>
+                        <span class="category-pill" data-category="cbt">CBT</span>
+                        <span class="category-pill" data-category="mindfulness">Mindfulness</span>
+                        <span class="category-pill" data-category="nutrition">Nutrition</span>
+                        <span class="category-pill" data-category="body-image">Body Image</span>
+                        <span class="category-pill" data-category="psychoeducation">Psychoeducation</span>
+                    </div>
+                    <div id="moduleList">
+                        <div class="module-item" draggable="true" data-module-id="1" data-category="cbt">
+                            <h5>Cognitive Restructuring of Food Thoughts</h5>
+                            <p>Recognizing and changing negative thoughts about food and eating</p>
+                            <div class="mt-2">
+                                <span class="tag">CBT</span>
+                                <span class="tag">Eating Disorders</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item" draggable="true" data-module-id="2" data-category="mindfulness">
+                            <h5>Mindful Eating</h5>
+                            <p>Exercises to develop mindfulness during meals</p>
+                            <div class="mt-2">
+                                <span class="tag">Mindfulness</span>
+                                <span class="tag">Nutrition</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item" draggable="true" data-module-id="3" data-category="nutrition">
+                            <h5>Balanced Nutrition</h5>
+                            <p>Developing a healthy eating plan and restoring normal patterns</p>
+                            <div class="mt-2">
+                                <span class="tag">Nutrition</span>
+                                <span class="tag">Recovery</span>
+                            </div>
+                        </div>
+                        <div class="module-item" draggable="true" data-module-id="4" data-category="body-image">
+                            <h5>Positive Body Image</h5>
+                            <p>Exercises to improve perception of your body and self-esteem</p>
+                            <div class="mt-2">
+                                <span class="tag">Body Image</span>
+                                <span class="tag">Self-esteem</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item" draggable="true" data-module-id="5" data-category="psychoeducation">
+                            <h5>Understanding Eating Disorders</h5>
+                            <p>Information about the causes and mechanisms of eating disorders</p>
+                            <div class="mt-2">
+                                <span class="tag">Psychoeducation</span>
+                                <span class="tag">Eating Disorder</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item" draggable="true" data-module-id="6" data-category="cbt">
+                            <h5>Food Anxiety Management Techniques</h5>
+                            <p>Methods for reducing anxiety during meals and in social situations</p>
+                            <div class="mt-2">
+                                <span class="tag">CBT</span>
+                                <span class="tag">Anxiety</span>
+                                <span class="tag">Nutrition</span>
+                            </div>
+                        </div>
+                        <div class="module-item" draggable="true" data-module-id="7" data-category="body-image">
+                            <h5>Body Acceptance</h5>
+                            <p>Techniques for developing a positive attitude toward your body</p>
+                            <div class="mt-2">
+                                <span class="tag">Body Image</span>
+                                <span class="tag">Self-acceptance</span>
+                            </div>
+                        </div>                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                
+                <div class="treatment-plan">
+                    <div class="plan-controls">
+                    <h4><i class="fas fa-clipboard me-2"></i>Treatment Plan</h4>
+                    <div> 
+                        <button class="btn btn-outline-secondary me-2" id="clearPlan">
+                            <i class="fas fa-trash-alt me-1"></i> Clear
+                        </button>
+                        <button class="btn btn-purple" id="savePlan"
+                            style="background-color: #9d8cdb; color: white; border-color: #9d8cdb;">
+                            <i class="fas fa-save me-1"></i> Save Plan
+                        </button>
+                    </div>
+                </div>
+                    <div class="module-container" id="treatmentPlanContainer">
+                        <div class="drag-hint">
+                            <i class="fas fa-arrow-left mb-2" style="font-size: 1.5rem;"></i>
+                            <p>Drag modules from the list on the left to create a treatment plan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    </div> <!-- Modal window for detailed exercise view -->
+    <div class="modal fade" id="exerciseModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #f4f0fd; border-bottom: 1px solid #d7ceee;">
+                    <h5 class="modal-title" id="exerciseModalTitle" style="color: #8e78c9;">Exercise Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="exerciseModalBody">
+                    <!-- Exercise content will be added dynamically -->
+                </div>
+                <div class="modal-footer" style="background-color: #f8f5ff; border-top: 1px solid #d7ceee;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- Modal window for adding exercise from library or custom -->
+    <div class="modal fade" id="addExerciseModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #f4f0fd; border-bottom: 1px solid #d7ceee;">
+                    <h5 class="modal-title" style="color: #8e78c9;">Add Exercise</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-3" id="exerciseTabOptions" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="library-tab" data-bs-toggle="tab" data-bs-target="#library-tab-pane" 
+                                type="button" role="tab" aria-controls="library-tab-pane" aria-selected="true">Library Exercises</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="custom-tab" data-bs-toggle="tab" data-bs-target="#custom-tab-pane" 
+                                type="button" role="tab" aria-controls="custom-tab-pane" aria-selected="false">Custom Exercise</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content" id="exerciseTabContent">
+                        <input type="hidden" id="addExerciseModuleId">
+                        
+                        <!-- Library Exercise Tab -->
+                        <div class="tab-pane fade show active" id="library-tab-pane" role="tabpanel" aria-labelledby="library-tab" tabindex="0">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="libraryExerciseSearch" placeholder="Search exercises...">
+                            </div>
+                            <div id="libraryExerciseList" style="max-height: 300px; overflow-y: auto;">
+                                <!-- Exercise list will be added dynamically -->
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Exercise Tab -->
+                        <div class="tab-pane fade" id="custom-tab-pane" role="tabpanel" aria-labelledby="custom-tab" tabindex="0">
+                            <form id="customExerciseForm">
+                                <div class="mb-3">
+                                    <label for="customExerciseTitle" class="form-label">Exercise Title:</label>
+                                    <input type="text" class="form-control" id="customExerciseTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customExerciseDescription" class="form-label">Description:</label>
+                                    <textarea class="form-control" id="customExerciseDescription" rows="3" required></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #f8f5ff; border-top: 1px solid #d7ceee;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-purple" id="saveExercise" style="background-color: #9d8cdb; color: white; border-color: #9d8cdb;">
+                        <i class="fas fa-save me-1"></i> Add Exercise
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>        // Exercise data for each module
+        const moduleExercises = {
+            1: [
+                { id: 101, title: "Food Thoughts Journal", description: "Record and analyze negative thoughts related to food and eating" },
+                { id: 102, title: "Identifying Food Beliefs", description: "Identify dysfunctional beliefs about eating and appearance" },
+                { id: 103, title: "Pros and Cons Technique", description: "Analyze evidence for and against negative thoughts about food and body" }
+            ], 2: [
+                { id: 201, title: "Mindful Meal", description: "Practice full presence during meals" },
+                { id: 202, title: "Listening to Body Signals", description: "Learn to recognize natural hunger and fullness cues" },
+                { id: 203, title: "Hunger/Fullness Scale", description: "Track hunger and fullness levels throughout the day" }
+            ],
+            3: [
+                { id: 301, title: "Creating a Balanced Menu", description: "Create a balanced nutrition plan with adequate nutrients" },
+                { id: 302, title: "Meal Regularity", description: "Establish a healthy eating schedule" },
+                { id: 303, title: "Overcoming Fear of 'Forbidden' Foods", description: "Gradually include various foods without feeling anxiety" }
+            ], 4: [
+                { id: 401, title: "Body Acceptance", description: "Exercises for developing a positive attitude toward your body" },
+                { id: 402, title: "Positive Affirmations", description: "Daily positive statements to improve body image" },
+                { id: 403, title: "Avoiding Comparisons", description: "Techniques for overcoming constant comparison with others" }
+            ],
+            5: [
+                { id: 501, title: "Understanding Eating Disorders", description: "Basic information about the nature and causes of eating disorders" },
+                { id: 502, title: "Physiological Consequences", description: "Understanding the impact of eating disorders on physical health" },
+                { id: 503, title: "Emotional Hunger vs. Physical Hunger", description: "Learn to distinguish between emotional and physical hunger" }
+            ], 6: [
+                { id: 601, title: "Food Anxiety Hierarchy", description: "Create a list of foods/situations that trigger anxiety" },
+                { id: 602, title: "Gradual Introduction to 'Challenging' Foods", description: "Plan for gradually introducing foods that cause anxiety" },
+                { id: 603, title: "Managing Anxiety in Social Situations", description: "Strategies to reduce anxiety while eating in company" }
+            ],
+            7: [
+                { id: 701, title: "Positive Body Image", description: "Exercises for developing a healthy perception of your body" },
+                { id: 702, title: "Body Neutrality", description: "Practice a neutral attitude toward your body" },
+                { id: 703, title: "Values Beyond Appearance", description: "Develop self-esteem not related to physical appearance" }
+            ]
+        };
+        
+        // Global library of exercises for all modules
+        const exerciseLibrary = [
+            { id: 1001, title: "Thought Record", description: "Document and analyze thoughts, feelings, and behaviors", category: "CBT" },
+            { id: 1002, title: "Food-Mood Diary", description: "Track the connection between eating and emotions", category: "CBT" },
+            { id: 1003, title: "Body Scan Meditation", description: "Guided meditation focusing on different parts of the body", category: "Mindfulness" },
+            { id: 1004, title: "Breathing Exercises", description: "Techniques to calm the mind and reduce anxiety", category: "Mindfulness" },
+            { id: 1005, title: "Meal Planning", description: "Create a balanced weekly meal plan", category: "Nutrition" },
+            { id: 1006, title: "Grocery Shopping Guide", description: "Tips for mindful grocery shopping", category: "Nutrition" },
+            { id: 1007, title: "Mirror Exercise", description: "Practice looking at yourself in the mirror with compassion", category: "Body Image" },
+            { id: 1008, title: "Body Appreciation List", description: "Write down things your body allows you to do", category: "Body Image" },
+            { id: 1009, title: "Psychoeducation Reading", description: "Articles about eating disorders and their treatment", category: "Psychoeducation" },
+            { id: 1010, title: "Relapse Prevention Plan", description: "Identify triggers and create a plan to prevent relapse", category: "Psychoeducation" }
+        ];document.addEventListener('DOMContentLoaded', function () {            // Initialize Sortable.js for dragging modules in the plan container
+            const treatmentPlanContainer = document.getElementById('treatmentPlanContainer');
+            new Sortable(treatmentPlanContainer, {
+                animation: 150,
+                handle: '.module-header',
+                ghostClass: 'sortable-ghost',
+                chosenClass: 'sortable-chosen',
+                dragClass: 'sortable-drag',
+                onStart: function (evt) {
+                    document.body.style.cursor = 'grabbing'; // Change cursor during drag
+                },
+                onEnd: function (evt) {
+                    document.body.style.cursor = 'auto'; // Reset cursor
+                    updatePlanNumbers();
+                }
+            });
+
+            // Initialize dragging modules from the library
+            const moduleItems = document.querySelectorAll('.module-item');
+            moduleItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+
+            // Set up the container for dragging
+            treatmentPlanContainer.addEventListener('dragover', handleDragOver);
+            treatmentPlanContainer.addEventListener('dragenter', handleDragEnter);
+            treatmentPlanContainer.addEventListener('dragleave', handleDragLeave);
+            treatmentPlanContainer.addEventListener('drop', handleDrop);
+
+            // Module search
+            const moduleSearch = document.getElementById('moduleSearch');
+            moduleSearch.addEventListener('input', filterModules);
+
+            // Category filtering
+            const categoryPills = document.querySelectorAll('.category-pill');
+            categoryPills.forEach(pill => {
+                pill.addEventListener('click', function () {
+                    categoryPills.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    filterModules();
+                });
+            });
+            // Clear plan
+            document.getElementById('clearPlan').addEventListener('click', function () {
+                if (confirm('Are you sure you want to clear the plan? All added modules will be removed.')) {
+                    treatmentPlanContainer.innerHTML = `
+                        <div class="drag-hint">
+                            <i class="fas fa-arrow-left mb-2" style="font-size: 1.5rem;"></i>
+                            <p>Drag modules from the list on the left to create a treatment plan</p>
+                        </div>
+                    `;
+                }
+            });
+            // Save plan
+            document.getElementById('savePlan').addEventListener('click', function () {
+                const patientName = document.getElementById('patientName').value;
+                const diagnosis = document.getElementById('diagnosis').value;
+
+                if (!patientName) {
+                    alert('Please enter the patient\'s name before saving the plan.');
+                    return;
+                }
+
+                if (!diagnosis) {
+                    alert('Please select a diagnosis before saving the plan.');
+                    return;
+                }
+
+                const modules = treatmentPlanContainer.querySelectorAll('.module-in-plan');
+                if (modules.length === 0) {
+                    alert('Please add at least one module to the treatment plan.');
+                    return;
+                }
+                // Here you can implement the logic for saving the plan
+                // For example, creating a JSON object with plan data and sending to server
+                const treatmentPlan = {
+                    patientName: patientName,
+                    diagnosis: diagnosis,
+                    createdAt: new Date().toISOString(),
+                    modules: Array.from(modules).map((module, index) => {
+                        const moduleId = module.getAttribute('data-module-id');
+                        const moduleTitle = module.querySelector('.module-title').textContent;                        // Get selected exercises
+                        const exerciseItems = module.querySelectorAll('.exercise-item');
+                        const exercises = Array.from(exerciseItems).map(item => {
+                            const id = item.getAttribute('data-exercise-id');
+                            const title = item.querySelector('.exercise-title').textContent;
+                            const isCustom = id.startsWith('custom-');
+                            
+                            // For custom exercises, include the description
+                            let description = '';
+                            if (isCustom) {
+                                description = item.getAttribute('data-description') || '';
+                            }
+                            
+                            return {
+                                id: id,
+                                title: title,
+                                isCustom: isCustom,
+                                description: description
+                            };
+                        });
+
+                        return {
+                            position: index + 1,
+                            id: moduleId,
+                            title: moduleTitle,
+                            exercises: exercises
+                        };
+                    })
+                };
+
+                console.log('Treatment plan saved:', treatmentPlan);
+                alert('Treatment plan successfully saved!');
+
+                // In a real application, there would be code to send data to the server
+                // fetch('/api/treatment-plans', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify(treatmentPlan),
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     console.log('Success:', data);
+                //     alert('Treatment plan successfully saved!');
+                // })
+                // .catch((error) => {
+                //     console.error('Error:', error);
+                //     alert('Error saving the plan.');
+                // });
+            });            // Event delegation for dynamically created elements
+            document.addEventListener('click', function (e) {                // Expand/collapse module
+                if (e.target.closest('.btn-toggle-exercises')) {
+                    const moduleInPlan = e.target.closest('.module-in-plan');
+                    moduleInPlan.classList.toggle('expanded');
+                }
+
+                // Remove module from the plan
+                if (e.target.closest('.btn-remove-module')) {
+                    const moduleInPlan = e.target.closest('.module-in-plan');
+                    moduleInPlan.remove();
+                    updatePlanNumbers();
+
+                    // Check if the plan is empty
+                    if (treatmentPlanContainer.children.length === 0) {
+                        treatmentPlanContainer.innerHTML = `
+                            <div class="drag-hint">
+                                <i class="fas fa-arrow-left mb-2" style="font-size: 1.5rem;"></i>
+                                <p>Drag modules from the list on the left to create a treatment plan</p>
+                            </div>
+                        `;
+                    }
+                }
+                  // Open the add exercise modal
+                if (e.target.closest('.add-custom-exercise')) {
+                    const moduleInPlan = e.target.closest('.module-in-plan');
+                    const moduleId = moduleInPlan.getAttribute('data-module-id');
+                    
+                    // Reset the form
+                    document.getElementById('customExerciseForm').reset();
+                    document.getElementById('addExerciseModuleId').value = moduleId;
+                    
+                    // Load exercise library items
+                    loadExerciseLibrary();
+                    
+                    // Open the modal
+                    const modal = new bootstrap.Modal(document.getElementById('addExerciseModal'));
+                    modal.show();
+                }
+                
+                // Opening modal window with exercise details
+                if (e.target.closest('.exercise-item')) {
+                    const exerciseItem = e.target.closest('.exercise-item');
+                    const exerciseId = exerciseItem.getAttribute('data-exercise-id');
+                    const moduleId = exerciseItem.closest('.module-in-plan').getAttribute('data-module-id');
+
+                    // Find exercise data - either from predefined exercises or custom exercises
+                    let exercise;
+                    
+                    if (exerciseId.startsWith('custom-')) {
+                        // This is a custom exercise, get data from the DOM
+                        const title = exerciseItem.querySelector('.exercise-title').textContent;
+                        const description = exerciseItem.getAttribute('data-description');
+                        exercise = { id: exerciseId, title: title, description: description };
+                    } else {
+                        // This is a predefined exercise
+                        exercise = moduleExercises[moduleId].find(ex => ex.id == exerciseId);
+                    }
+
+                    if (exercise) {
+                        const modal = new bootstrap.Modal(document.getElementById('exerciseModal'));
+                        document.getElementById('exerciseModalTitle').textContent = exercise.title;
+                        document.getElementById('exerciseModalBody').innerHTML = `
+                            <p><strong>Description:</strong> ${exercise.description}</p>
+                            <div class="card mt-3">
+                                <div class="card-header">Instructions</div>
+                                <div class="card-body">
+                                    <p>Detailed instructions for performing the exercise will be displayed here.</p>
+                                    <ol>
+                                        <li>Step 1: Prepare for the exercise.</li>
+                                        <li>Step 2: Perform the main part of the exercise.</li>
+                                        <li>Step 3: Record your observations and feelings.</li>
+                                        <li>Step 4: Analyze the results.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="exercise${exerciseId}Complete">
+                                <label class="form-check-label" for="exercise${exerciseId}Complete">
+                                    Mark as completed
+                                </label>
+                            </div>
+                        `;
+                        modal.show();
+                    }
+                }
+            });
+              // Save exercise button click handler
+            document.getElementById('saveExercise').addEventListener('click', function() {
+                const moduleId = document.getElementById('addExerciseModuleId').value;
+                const activeTab = document.querySelector('#exerciseTabOptions .nav-link.active').id;
+                
+                // Find the module
+                const moduleInPlan = document.querySelector(`.module-in-plan[data-module-id="${moduleId}"]`);
+                if (!moduleInPlan) return;
+                
+                if (activeTab === 'library-tab') {
+                    // Add library exercise
+                    const selectedExercise = document.querySelector('#libraryExerciseList .exercise-item-library.selected');
+                    if (!selectedExercise) {
+                        alert('Please select an exercise from the library.');
+                        return;
+                    }
+                    
+                    const exerciseId = selectedExercise.getAttribute('data-exercise-id');
+                    const exercise = exerciseLibrary.find(ex => ex.id == exerciseId);
+                    
+                    if (exercise) {
+                        addExerciseToModule(moduleInPlan, exercise.id, exercise.title, exercise.description, false);
+                    }
+                } else {
+                    // Add custom exercise
+                    const form = document.getElementById('customExerciseForm');
+                    
+                    // Check form validity
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+                    
+                    const title = document.getElementById('customExerciseTitle').value;
+                    const description = document.getElementById('customExerciseDescription').value;
+                    
+                    // Create a unique ID for the custom exercise
+                    const customId = 'custom-' + Date.now();
+                    
+                    addExerciseToModule(moduleInPlan, customId, title, description, true);
+                }
+                
+                // Close the modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addExerciseModal'));
+                modal.hide();
+            });
+            
+            // Function to add an exercise to a module
+            function addExerciseToModule(moduleInPlan, exerciseId, title, description, isCustom) {
+                // Add the exercise to the module
+                const exerciseList = moduleInPlan.querySelector('.exercise-list');
+                const exerciseItem = document.createElement('div');
+                exerciseItem.className = 'exercise-item';
+                exerciseItem.setAttribute('data-exercise-id', exerciseId);
+                if (isCustom) {
+                    exerciseItem.setAttribute('data-description', description);
+                }
+                exerciseItem.innerHTML = `
+                    <h6 class="exercise-title">${title}</h6>
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                `;
+                exerciseList.appendChild(exerciseItem);
+                
+                // Ensure the module is expanded to show the new exercise
+                moduleInPlan.classList.add('expanded');
+            }
+            
+            // Search exercise library
+            document.getElementById('libraryExerciseSearch').addEventListener('input', function() {
+                filterExerciseLibrary(this.value.toLowerCase());
+            });
+            
+            // Load exercise library into the modal
+            function loadExerciseLibrary() {
+                const libraryContainer = document.getElementById('libraryExerciseList');
+                libraryContainer.innerHTML = '';
+                
+                exerciseLibrary.forEach(exercise => {
+                    const exerciseItem = document.createElement('div');
+                    exerciseItem.className = 'exercise-item-library p-2 mb-2 rounded border';
+                    exerciseItem.setAttribute('data-exercise-id', exercise.id);
+                    exerciseItem.setAttribute('data-category', exercise.category);
+                    exerciseItem.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">${exercise.title}</h6>
+                            <span class="badge bg-primary">${exercise.category}</span>
+                        </div>
+                        <p class="mb-0 small text-muted">${exercise.description}</p>
+                    `;
+                    
+                    // Select exercise on click
+                    exerciseItem.addEventListener('click', function() {
+                        const allItems = document.querySelectorAll('.exercise-item-library');
+                        allItems.forEach(item => item.classList.remove('selected', 'bg-light'));
+                        this.classList.add('selected', 'bg-light');
+                    });
+                    
+                    libraryContainer.appendChild(exerciseItem);
+                });
+                
+                // Reset search
+                document.getElementById('libraryExerciseSearch').value = '';
+            }
+            
+            // Filter exercise library based on search
+            function filterExerciseLibrary(searchTerm) {
+                const exercises = document.querySelectorAll('.exercise-item-library');
+                
+                exercises.forEach(item => {
+                    const title = item.querySelector('h6').textContent.toLowerCase();
+                    const description = item.querySelector('p').textContent.toLowerCase();
+                    const category = item.getAttribute('data-category').toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm) || category.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Functions for handling dragging
+            function handleDragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.getAttribute('data-module-id'));
+                e.target.classList.add('dragging');
+            }
+
+            function handleDragEnd(e) {
+                e.target.classList.remove('dragging');
+            }
+
+            function handleDragOver(e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+                return false;
+            }
+
+            function handleDragEnter(e) {
+                this.classList.add('drop-active');
+            }
+
+            function handleDragLeave(e) {
+                this.classList.remove('drop-active');
+            }
+            function handleDrop(e) {
+                e.preventDefault();
+                this.classList.remove('drop-active');
+
+                const moduleId = e.dataTransfer.getData('text/plain');
+                const moduleItem = document.querySelector(`.module-item[data-module-id="${moduleId}"]`);
+
+                if (moduleItem) {
+                    // Remove the hint if this is the first module
+                    const hintElement = treatmentPlanContainer.querySelector('.drag-hint');
+                    if (hintElement) {
+                        hintElement.remove();
+                    }
+
+                    const moduleTitle = moduleItem.querySelector('h5').textContent;
+                    const moduleCategory = moduleItem.getAttribute('data-category');
+
+                    // Create module in the plan
+                    const moduleInPlan = document.createElement('div');
+                    moduleInPlan.className = 'module-in-plan';
+                    moduleInPlan.setAttribute('data-module-id', moduleId);
+
+                    const moduleNumber = treatmentPlanContainer.children.length + 1;
+
+                    moduleInPlan.innerHTML = `                        <div class="module-header">
+                            <div>
+                                <i class="fas fa-grip-lines reorder-handle"></i>
+                                <span class="module-number me-2">${moduleNumber}.</span>
+                                <span class="module-title">${moduleTitle}</span>
+                                <div class="module-meta mt-1">
+                                    <span class="tag">${getCategoryName(moduleCategory)}</span>
+                                </div>
+                            </div>                            <div class="module-controls">
+                                <button class="btn btn-outline-secondary btn-sm btn-toggle-exercises" title="Show/hide exercises">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm btn-remove-module" title="Remove module">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="exercise-list">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="mb-0">Module exercises:</h6>
+                                <button class="btn btn-outline-primary btn-sm add-custom-exercise" title="Add custom exercise">
+                                    <i class="fas fa-plus me-1"></i> Add Exercise
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    // Add exercises to the module
+                    const exerciseList = moduleInPlan.querySelector('.exercise-list');
+                    if (moduleId in moduleExercises) {
+                        moduleExercises[moduleId].forEach(exercise => {
+                            const exerciseItem = document.createElement('div');
+                            exerciseItem.className = 'exercise-item';
+                            exerciseItem.setAttribute('data-exercise-id', exercise.id);
+                            exerciseItem.innerHTML = `
+                                <h6 class="exercise-title">${exercise.title}</h6>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            `;
+                            exerciseList.appendChild(exerciseItem);
+                        });
+                    }
+
+                    treatmentPlanContainer.appendChild(moduleInPlan);
+                }
+
+                return false;
+            }
+            // Function to update module numbers in the plan
+            function updatePlanNumbers() {
+                const modules = treatmentPlanContainer.querySelectorAll('.module-in-plan');
+                modules.forEach((module, index) => {
+                    const numberElement = module.querySelector('.module-number');
+                    if (numberElement) {
+                        numberElement.textContent = `${index + 1}.`;
+                    }
+                });
+            }
+
+            // Function for filtering modules
+            function filterModules() {
+                const searchTerm = moduleSearch.value.toLowerCase();
+                const activeCategory = document.querySelector('.category-pill.active').getAttribute('data-category');
+
+                moduleItems.forEach(item => {
+                    const moduleTitle = item.querySelector('h5').textContent.toLowerCase();
+                    const moduleDescription = item.querySelector('p').textContent.toLowerCase();
+                    const moduleCategory = item.getAttribute('data-category');
+
+                    const matchesSearch = moduleTitle.includes(searchTerm) || moduleDescription.includes(searchTerm);
+                    const matchesCategory = activeCategory === 'all' || moduleCategory === activeCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+            // Function to get category name
+            function getCategoryName(category) {
+                const categories = {
+                    'cbt': 'CBT',
+                    'mindfulness': 'Mindfulness',
+                    'nutrition': 'Nutrition',
+                    'body-image': 'Body Image',
+                    'psychoeducation': 'Psychoeducation'
+                };
+
+                return categories[category] || category;
+            }
+        });
+    </script>
+</body>
+
+</html>

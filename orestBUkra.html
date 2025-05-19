@@ -1,0 +1,2736 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapeutic Tasks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Horizontal Tabs */
+        .horizontal-tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            padding: 0 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .horizontal-tab {
+            padding: 20px 30px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 5px;
+        }
+
+        .horizontal-tab:hover {
+            color: #7c7bad;
+        }
+
+        .horizontal-tab.active {
+            color: #7c7bad;
+            border-bottom: 3px solid #7c7bad;
+        }
+
+        .module-content {
+            display: none;
+            width: 100%;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        /* Vertical Tabs */
+        .vertical-tabs {
+            width: 250px;
+            min-width: 250px;
+            padding: 20px 0;
+            border-right: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .vertical-tab {
+            display: block;
+            width: 100%;
+            padding: 15px 25px;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #555;
+            transition: all 0.3s ease;
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .vertical-tab:hover {
+            color: #7c7bad;
+        }
+
+        .vertical-tab.active {
+            color: #7c7bad;
+            border-left: 3px solid #7c7bad;
+            background: rgba(124, 123, 173, 0.05);
+            border: 1px solid #7c7bad;
+            border-left: 3px solid #7c7bad;
+            border-radius: 4px;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            min-height: 500px;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Content */
+        .tab-content {
+            display: none;
+            padding: 30px;
+            flex-grow: 1;
+            width: calc(100% - 250px);
+            overflow-x: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content-title {
+            color: #7c7bad;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Task Card Styles */
+        .task-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .task-body {
+            padding: 15px;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .task-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #7c7bad;
+            border-radius: 4px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .task-checkbox:checked {
+            background-color: #7c7bad;
+            border-color: #7c7bad;
+        }
+
+        .task-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 3px solid #7c7bad;
+            background-color: rgba(124, 123, 173, 0.05);
+            padding: 10px 12px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .task-image {
+            max-width: 200px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .comment-btn {
+            color: #7c7bad;
+            border: 1px solid #7c7bad;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            background: none;
+            transition: all 0.2s;
+        }
+
+        .comment-btn:hover {
+            background-color: #7c7bad;
+            color: white;
+        }
+
+        .comment-form {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        /* Photo upload styles */
+        .photo-preview-area {
+            margin-top: 10px;
+        }
+
+        .photo-preview {
+            display: block;
+            max-width: 200px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        /* General form styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            display: block;
+            color: #333;
+        }
+
+        .form-control {
+            margin-top: 4px;
+        }
+
+        /* Styles for disabled form elements in completed tasks */
+        .task-card.completed .form-control,
+        .task-card.completed .form-check-input {
+            background-color: #f8f9fa;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .task-card.completed label {
+            opacity: 0.7;
+        }
+
+        .form-check-inline {
+            margin-right: 10px;
+        }
+
+        /* Days of week checks spacing */
+        .days-container {
+            margin-top: 10px;
+        }
+
+        /* Completed task style */
+        .task-card.completed {
+            border-left: 3px solid #28a745;
+            background-color: #f8f9fa;
+        }
+
+        .task-card.completed .task-title {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* Hide photo actions in completed tasks */
+        .task-card.completed .photo-actions .btn-add-photo {
+            display: none;
+        }
+
+        .task-card.completed .photo-actions .btn-clear-photo {
+            display: none !important;
+        }
+
+        /* Hide reward badges in completed tasks */
+        .task-card.completed .reward-preview {
+            display: none;
+        }
+
+        /* Reward Badge Styles */
+        .reward-preview {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .reward-preview-title {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .reward-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #fff;
+        }
+        
+        .reward-badge i {
+            margin-right: 5px;
+        }
+
+        /* Different badge color styles */
+        .heart-badge {
+            background: linear-gradient(135deg, #ff9a9e, #e66465);
+            color: #fff;
+        }
+
+        .star-badge {
+            background: linear-gradient(135deg, #ffda6a, #ffb52e);
+            color: #6b4500;
+        }
+
+        .trophy-badge {
+            background: linear-gradient(135deg, #84fab0, #4bbd5a);
+            color: #145a1f;
+        }
+
+        .ribbon-badge {
+            background: linear-gradient(135deg, #90e0ef, #00b4d8);
+            color: #023e8a;
+        }
+
+        .medal-badge {
+            background: linear-gradient(135deg, #c77dff, #7b2cbf);
+            color: #fff;
+        }
+
+        /* Modified button for photo upload to match comment button */
+        .btn-add-photo {
+            color: #7c7bad;
+            border: 1px solid #7c7bad;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            background: none;
+            transition: all 0.2s;
+        }
+
+        .btn-add-photo:hover {
+            background-color: #7c7bad;
+            color: white;
+        }
+
+        .btn-clear-photo {
+            color: #dc3545;
+            border: 1px solid #dc3545;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            background: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-clear-photo:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .flex-grow-1 {
+            flex-grow: 1;
+        }
+
+        /* Emotion Training Card Styles */
+        .emotion-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .emotion-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .emotion-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .emotion-content {
+            padding: 15px;
+        }
+
+        .emotion-name {
+            font-weight: 600;
+            color: #7c7bad;
+            margin-bottom: 10px;
+        }
+
+        .emotion-memory {
+            margin-top: 10px;
+        }
+
+        .emotion-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .emotion-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .emotion-item {
+            flex: 0 0 calc(33.333% - 20px);
+            margin: 0 10px 20px;
+        }
+
+        @media (max-width: 992px) {
+            .emotion-item {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .emotion-item {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+
+        /* Card collapse styling */
+        .card-header {
+            cursor: pointer;
+            padding: 15px;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0,0,0,.125);
+        }
+
+        .card-header .collapse-icon {
+            transition: transform 0.3s;
+        }
+
+        .card-header[aria-expanded="true"] .collapse-icon {
+            transform: rotate(180deg);
+        }
+
+        .emotion-drawing-container {
+            margin-top: 15px;
+            border: 1px dashed #7c7bad;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fafafa;
+        }
+
+        #drawingCanvas {
+            background-color: white;
+            border-radius: 4px;
+            cursor: crosshair;
+            border: 1px solid #ddd;
+            width: 100%;
+            height: 200px;
+        }
+
+        .drawing-tools {
+            display: flex;
+            margin-top: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .color-picker {
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .drawing-btn {
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        
+        /* Parent consultation styles */
+        .resource-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .resource-header {
+            background-color: #7c7bad;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+        
+        .resource-body {
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .strategy-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .strategy-item:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-footer {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Rotate icon for collapsible cards */
+        .rotate-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .rotate-icon.rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+
+<div class="container-fluid">
+    
+    <div class="horizontal-tabs">
+        <button class="horizontal-tab active" onclick="showModule('treatment')">
+            Treatment
+        </button>
+        <button class="horizontal-tab" onclick="showModule('diagnostic')">
+            Diagnostic
+        </button>
+        <div class="flex-grow-1"></div>
+    </div>
+
+    
+    <div class="module-content active" id="treatment-module">
+        <div class="content-area">
+            
+            <div class="vertical-tabs">
+               
+                <button class="vertical-tab" onclick="showContent('session-info', 'treatment', event)">
+                    Current session
+                </button>
+                 <button class="vertical-tab active" onclick="showContent('current-tasks', 'treatment', event)">
+                    Tasks
+                </button>
+                <button class="vertical-tab" onclick="showContent('session-history', 'treatment', event)">
+                    Session history
+                </button>
+                <button class="vertical-tab" onclick="showContent('problems-statistic', 'treatment', event)">
+                    Statistics
+                </button>
+                <button class="vertical-tab end-module-tab" onclick="showContent('end-module', 'treatment', event)">
+                    <i class="fas fa-door-closed"></i>End module
+                </button>
+            </div>
+
+            
+            <div id="current-tasks" class="tab-content active">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="content-title mb-0">Tasks</h3>
+                    <i class="fas fa-question-circle text-muted" style="font-size: 14px; cursor: help;" data-bs-toggle="tooltip" data-bs-placement="top" title="This is task that patient should complete during the session"></i>
+                </div>
+
+                <div class="tasks-section">
+                    
+                    
+                    <div class="task-card" id="task-1" data-activity="morningRoutine">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="1">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-sun me-2"></i>Morning Routine
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="1">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Create and follow a simple morning routine (e.g., wake up, make the bed, wash up, do light exercises, have breakfast).
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="morningRoutinePlan">My morning routine plan:</label>
+                                        <textarea class="form-control" id="morningRoutinePlan" rows="2" placeholder="Describe the steps of the morning routine"></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Mark completed days this week:</label>
+                                        <div class="days-container d-flex flex-wrap">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_mon">
+                                                <label class="form-check-label" for="mr_mon">Mon</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_tue">
+                                                <label class="form-check-label" for="mr_tue">Tue</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_wed">
+                                                <label class="form-check-label" for="mr_wed">Wed</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_thu">
+                                                <label class="form-check-label" for="mr_thu">Thu</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_fri">
+                                                <label class="form-check-label" for="mr_fri">Fri</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_sat">
+                                                <label class="form-check-label" for="mr_sat">Sat</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mr_sun">
+                                                <label class="form-check-label" for="mr_sun">Sun</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="photo-container" style="display: none;">
+                                        <img src="#" class="task-image" alt="Task photo" loading="lazy">
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-1" style="display: none">
+                                        <form class="task-comment-form" data-task-id="1">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-3 photo-actions">
+                                        <input type="file" class="form-control photo-input" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn-add-photo"><i class="bi bi-camera me-2"></i>Add Photo</button>
+                                        <div class="photo-preview-area" style="display: none;">
+                                            <img class="photo-preview" src="#" alt="Photo preview" style="display: none;" loading="lazy">
+                                            <button type="button" class="btn-clear-photo" style="display: none;"><i class="bi bi-x-circle me-2"></i>Clear Photo</button>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge medal-badge">
+                                            <i class="bi bi-award"></i> Early Bird
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="task-card" id="task-2" data-activity="myTime">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="2">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-person-heart me-2"></i>Time for Myself
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="2">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Dedicate 15-30 minutes each day to an activity that brings you pleasure or helps you relax (hobby, music, reading, drawing).
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="myTimeActivity">What I do during "my time":</label>
+                                        <input type="text" class="form-control" id="myTimeActivity" placeholder="Describe your activity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="myTimeNotes">My feelings or notes:</label>
+                                        <textarea class="form-control" id="myTimeNotes" rows="2" placeholder="Write down your thoughts or feelings"></textarea>
+                                    </div>
+
+                                    <div class="photo-container" style="display: none;">
+                                        <img src="#" class="task-image" alt="Task photo" loading="lazy">
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-2" style="display: none">
+                                        <form class="task-comment-form" data-task-id="2">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-3 photo-actions">
+                                        <input type="file" class="form-control photo-input" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn-add-photo"><i class="bi bi-camera me-2"></i>Add Photo</button>
+                                        <div class="photo-preview-area" style="display: none;">
+                                            <img class="photo-preview" src="#" alt="Photo preview" style="display: none;" loading="lazy">
+                                            <button type="button" class="btn-clear-photo" style="display: none;"><i class="bi bi-x-circle me-2"></i>Clear Photo</button>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge heart-badge">
+                                            <i class="bi bi-heart-fill"></i> Self Care
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="task-card" id="task-3" data-activity="socialInteraction">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="3">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-people me-2"></i>Social Interaction
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="3">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Plan and spend time with someone you enjoy (friend, family member). This can be a conversation, playing a game together, or a walk.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="socialInteractionPlan">Who and when I plan to spend time with:</label>
+                                        <input type="text" class="form-control" id="socialInteractionPlan" placeholder="E.g., video call with a friend on Wednesday">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="socialInteractionOutcome">How did it go?</label>
+                                        <textarea class="form-control" id="socialInteractionOutcome" rows="2" placeholder="Briefly describe your impressions of the meeting"></textarea>
+                                    </div>
+
+                                    <div class="photo-container" style="display: none;">
+                                        <img src="#" class="task-image" alt="Task photo" loading="lazy">
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-3" style="display: none">
+                                        <form class="task-comment-form" data-task-id="3">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-3 photo-actions">
+                                        <input type="file" class="form-control photo-input" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn-add-photo"><i class="bi bi-camera me-2"></i>Add Photo</button>
+                                        <div class="photo-preview-area" style="display: none;">
+                                            <img class="photo-preview" src="#" alt="Photo preview" style="display: none;" loading="lazy">
+                                            <button type="button" class="btn-clear-photo" style="display: none;"><i class="bi bi-x-circle me-2"></i>Clear Photo</button>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge star-badge">
+                                            <i class="bi bi-star-fill"></i> Social Star
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="task-card" id="task-4" data-activity="physicalActivity">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="4">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-walk me-2"></i>Physical Activity
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="4">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Engage in any physical activity for 20-30 minutes (walk, dance, sports games) alone or with parents/friends.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="physicalActivityType">Type of activity:</label>
+                                        <input type="text" class="form-control" id="physicalActivityType" placeholder="E.g., walk in the park">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="physicalActivityWhen">When:</label>
+                                        <input type="text" class="form-control" id="physicalActivityWhen" placeholder="E.g., today at 4:00 PM">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="physicalActivityFeeling">How did you feel after?</label>
+                                        <textarea class="form-control" id="physicalActivityFeeling" rows="2" placeholder="Describe your feelings"></textarea>
+                                    </div>
+
+                                    <div class="photo-container" style="display: none;">
+                                        <img src="#" class="task-image" alt="Task photo" loading="lazy">
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-4" style="display: none">
+                                        <form class="task-comment-form" data-task-id="4">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-3 photo-actions">
+                                        <input type="file" class="form-control photo-input" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn-add-photo"><i class="bi bi-camera me-2"></i>Add Photo</button>
+                                        <div class="photo-preview-area" style="display: none;">
+                                            <img class="photo-preview" src="#" alt="Photo preview" style="display: none;" loading="lazy">
+                                            <button type="button" class="btn-clear-photo" style="display: none;"><i class="bi bi-x-circle me-2"></i>Clear Photo</button>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge trophy-badge">
+                                            <i class="bi bi-trophy-fill"></i> Active Champion
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="task-card" id="task-5" data-activity="pleasantEvents">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="5">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-check-circle me-2"></i>Planning Pleasant Events
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="5">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Together with parents, make a list of pleasant things you could do soon (go to the cinema, cook a favorite meal, visit an interesting place). Plan one of these events.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="pleasantEventsList">Our list of pleasant events:</label>
+                                        <textarea class="form-control" id="pleasantEventsList" rows="3" placeholder="Write down ideas"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="plannedEvent">Planned event (what and when):</label>
+                                        <input type="text" class="form-control" id="plannedEvent" placeholder="E.g., going to a pizzeria on Saturday">
+                                    </div>
+
+                                    <div class="photo-container" style="display: none;">
+                                        <img src="#" class="task-image" alt="Task photo" loading="lazy">
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-5" style="display: none">
+                                        <form class="task-comment-form" data-task-id="5">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-3 photo-actions">
+                                        <input type="file" class="form-control photo-input" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn-add-photo"><i class="bi bi-camera me-2"></i>Add Photo</button>
+                                        <div class="photo-preview-area" style="display: none;">
+                                            <img class="photo-preview" src="#" alt="Photo preview" style="display: none;" loading="lazy">
+                                            <button type="button" class="btn-clear-photo" style="display: none;"><i class="bi bi-x-circle me-2"></i>Clear Photo</button>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge ribbon-badge">
+                                            <i class="bi bi-award-fill"></i> Planner
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div id="session-info" class="tab-content">
+                <h3 class="content-title">Current Session - Emotion training</h3>
+                <div class="session-block">
+                    <div class="d-flex align-items-center mb-3">
+                        <div>
+                            <span class="text-muted"><i class="fas fa-clock me-1"></i> 14:00 - 15:00</span>
+                            <span class="badge bg-primary ms-2">In Progress</span>
+                        </div>
+                    </div>
+                    
+                     <div class="card module-card shadow-sm mb-4" style="border-left: 4px solid #198754;">
+                        <div class="card-header module-header d-flex justify-content-between align-items-center bg-success-subtle text-success" id="parentGuideHeader" data-bs-toggle="collapse" data-bs-target="#parentGuideContent" aria-expanded="true" aria-controls="parentGuideContent" style="cursor: pointer;">
+                            <h5 class="mb-0">
+                                <div class="d-flex align-items-center text-success">
+                                    <i class="fas fa-book-reader me-2"></i>Parent Guide: Helping Your Child Identify Emotions
+                                </div>
+                            </h5>
+                            <i class="fas fa-chevron-down rotate-icon"></i>
+                        </div>
+
+                        <div id="parentGuideContent" class="collapse show" aria-labelledby="parentGuideHeader">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Recognizing Emotional Cues</h5>
+                                        <div class="mb-4">
+                                            <p>Children often express emotions differently than adults. Look for these signs:</p>
+                                            <ul class="list-group mb-3">
+                                                <li class="list-group-item d-flex">
+                                                    <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                                    <div>
+                                                        <strong>Body language</strong>: Hunched shoulders, fidgeting, facial expressions
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex">
+                                                    <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                                    <div>
+                                                        <strong>Behavioral changes</strong>: Sleep disturbances, appetite changes, withdrawal
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex">
+                                                    <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                                    <div>
+                                                        <strong>Verbal expressions</strong>: What they say (or don't say) about feelings
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <h5 class="mb-3"><i class="fas fa-comments me-2"></i>Daily Emotion Check-ins</h5>
+                                        <p>Try these conversation starters:</p>
+                                        <ul>
+                                            <li>"What was the best part of your day? The hardest part?"</li>
+                                            <li>"I noticed you seemed [emotion] when [situation]. How were you feeling?"</li>
+                                            <li>"On a scale of 1-10, how was your day? What made it that number?"</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3"><i class="fas fa-home me-2"></i>Creating an Emotion-Friendly Home</h5>
+                                        <div class="card border-success mb-3">
+                                            <div class="card-header bg-success bg-opacity-10 border-success">
+                                                <strong>Do's</strong>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="mb-0">
+                                                    <li>Validate all emotions ("It's okay to feel angry")</li>
+                                                    <li>Label your own feelings ("I'm feeling frustrated right now")</li>
+                                                    <li>Use media (movies, books) to discuss characters' emotions</li>
+                                                    <li>Create a "feelings vocabulary" with visual cues</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="card border-danger">
+                                            <div class="card-header bg-danger bg-opacity-10 border-danger">
+                                                <strong>Don'ts</strong>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="mb-0">
+                                                    <li>Dismiss feelings ("You shouldn't feel that way")</li>
+                                                    <li>Rush to fix problems before acknowledging emotions</li>
+                                                    <li>Force children to talk when they're not ready</li>
+                                                    <li>Overreact to emotional displays</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="card mb-4">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center" id="emotionTrainingHeader" data-bs-toggle="collapse" data-bs-target="#emotionTrainingContent" aria-expanded="true" aria-controls="emotionTrainingContent" style="cursor: pointer;">
+                            <h5 class="mb-0">
+                                <i class="bi bi-emoji-smile me-2"></i>Emotion Recognition
+                            </h5>
+                            <i class="fas fa-chevron-down rotate-icon"></i>
+                        </div>
+                        
+                        <div id="emotionTrainingContent" class="collapse show" aria-labelledby="emotionTrainingHeader">
+                            <div class="card-body">
+                                
+                                <div class="alert alert-info mb-4">
+                                    <h5><i class="fas fa-info-circle me-2"></i>Information for Parents</h5>
+                                    <p><strong>Why Emotion Training Matters:</strong> Children with depression often have difficulty identifying and expressing their emotions. This exercise helps develop emotional intelligence, which is crucial for mental health.</p>
+                                    <p><strong>How you can help:</strong> Сhoose your child's favourite characters. Encourage your child to complete these exercises without judgment. Share your own emotional experiences to normalize discussing feelings. Practice identifying emotions in everyday situations (movies, books, interactions).</p>
+                                    <p><strong>Tip:</strong> Follow up with questions like "How did your body feel when you experienced this emotion?" to build awareness of physical sensations associated with emotions.</p>
+                                </div>
+                                
+                                <div class="emotion-container">
+                                    
+                                    <div class="emotion-item">
+                                        <div class="emotion-card">
+                                            <img src="https://i.insider.com/579f9175d7c3dbe72f8b47f8?width=800&amp;format=jpeg&amp;auto=webp" class="emotion-img" alt="Happiness" loading="lazy">
+                                            <div class="emotion-content">
+                                                <div class="form-group">
+                                                    <label for="emotion1">What emotion is shown?</label>
+                                                    <select class="form-control emotion-name" id="emotion1">
+                                                        <option value="">Select emotion...</option>
+                                                        <option value="happiness">Happiness</option>
+                                                        <option value="sadness">Sadness</option>
+                                                        <option value="anger">Anger</option>
+                                                        <option value="fear">Fear</option>
+                                                        <option value="surprise">Surprise</option>
+                                                        <option value="disgust">Boredom</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group emotion-memory">
+                                                    <label for="memory1">When did you feel this way?</label>
+                                                    <textarea class="form-control" id="memory1" rows="2" placeholder="Describe a situation when you felt this emotion..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="emotion-item">
+                                        <div class="emotion-card">
+                                            <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2020/11/crying-rocket-guardians-of-the-galaxy.jpg" class="emotion-img" alt="Sadness" loading="lazy">
+                                            <div class="emotion-content">
+                                                <div class="form-group">
+                                                    <label for="emotion2">What emotion is shown?</label>
+                                                    <select class="form-control emotion-name" id="emotion2">
+                                                        <option value="">Select emotion...</option>
+                                                        <option value="happiness">Happiness</option>
+                                                        <option value="sadness">Sadness</option>
+                                                        <option value="anger">Anger</option>
+                                                        <option value="fear">Fear</option>
+                                                        <option value="surprise">Surprise</option>
+                                                        <option value="disgust">Boredom</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group emotion-memory">
+                                                    <label for="memory2">When did you feel this way?</label>
+                                                    <textarea class="form-control" id="memory2" rows="2" placeholder="Describe a situation when you felt this emotion..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="emotion-item">
+                                        <div class="emotion-card">
+                                            <img src="https://i0.wp.com/anakin.me/wp-content/uploads/2022/03/anakin-rage.jpg?fit=1280%2C720&amp;ssl=1" class="emotion-img" alt="Anger" loading="lazy">
+                                            <div class="emotion-content">
+                                                <div class="form-group">
+                                                    <label for="emotion3">What emotion is shown?</label>
+                                                    <select class="form-control emotion-name" id="emotion3">
+                                                        <option value="">Select emotion...</option>
+                                                        <option value="happiness">Happiness</option>
+                                                        <option value="sadness">Sadness</option>
+                                                        <option value="anger">Anger</option>
+                                                        <option value="fear">Fear</option>
+                                                        <option value="surprise">Surprise</option>
+                                                        <option value="disgust">Boredom</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group emotion-memory">
+                                                    <label for="memory3">When did you feel this way?</label>
+                                                    <textarea class="form-control" id="memory3" rows="2" placeholder="Describe a situation when you felt this emotion..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="emotion-item">
+                                        <div class="emotion-card">
+                                            <img src="https://wallpapersok.com/images/hd/scared-sulley-and-mike-0afr6gedfhxfaf30.jpg" class="emotion-img" alt="Fear" loading="lazy">
+                                            <div class="emotion-content">
+                                                <div class="form-group">
+                                                    <label for="emotion4">What emotion is shown?</label>
+                                                    <select class="form-control emotion-name" id="emotion4">
+                                                        <option value="">Select emotion...</option>
+                                                        <option value="happiness">Happiness</option>
+                                                        <option value="sadness">Sadness</option>
+                                                        <option value="anger">Anger</option>
+                                                        <option value="fear">Fear</option>
+                                                        <option value="surprise">Surprise</option>
+                                                        <option value="disgust">Boredom</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group emotion-memory">
+                                                    <label for="memory4">When did you feel this way?</label>
+                                                    <textarea class="form-control" id="memory4" rows="2" placeholder="Describe a situation when you felt this emotion..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="emotion-item">
+                                        <div class="emotion-card">
+                                            <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/08/miles-morales-tied-to-a-punching-bag-with-the-prowler-s-fist-next-to-his-head-in-spider-man-across-the-spider-verse.jpg?q=70&amp;fit=contain&amp;w=825&amp;h=440&amp;dpr=1" class="emotion-img" alt="Surprise" loading="lazy">
+                                            <div class="emotion-content">
+                                                <div class="form-group">
+                                                    <label for="emotion5">What emotion is shown?</label>
+                                                    <select class="form-control emotion-name" id="emotion5">
+                                                        <option value="">Select emotion...</option>
+                                                        <option value="happiness">Happiness</option>
+                                                        <option value="sadness">Sadness</option>
+                                                        <option value="anger">Anger</option>
+                                                        <option value="fear">Fear</option>
+                                                        <option value="surprise">Surprise</option>
+                                                        <option value="disgust">Boredom</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group emotion-memory">
+                                                    <label for="memory5">When did you feel this way?</label>
+                                                    <textarea class="form-control" id="memory5" rows="2" placeholder="Describe a situation when you felt this emotion..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="emotion-item">
+                                        <div class="emotion-card">
+                                            <img src="https://preview.redd.it/pov-me-trying-not-to-be-bored-but-failing-miserably-v0-p5nx2124gkvc1.jpeg?auto=webp&amp;s=f3e3baa426283fd1becec8652f1fb718963bde79" class="emotion-img" alt="Boredom" loading="lazy">
+                                            <div class="emotion-content">
+                                                <div class="form-group">
+                                                    <label for="emotion6">What emotion is shown?</label>
+                                                    <select class="form-control emotion-name" id="emotion6">
+                                                        <option value="">Select emotion...</option>
+                                                        <option value="happiness">Happiness</option>
+                                                        <option value="sadness">Sadness</option>
+                                                        <option value="anger">Anger</option>
+                                                        <option value="fear">Fear</option>
+                                                        <option value="surprise">Surprise</option>
+                                                        <option value="disgust">Boredom</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group emotion-memory">
+                                                    <label for="memory6">When did you feel this way?</label>
+                                                    <textarea class="form-control" id="memory6" rows="2" placeholder="Describe a situation when you felt this emotion..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-sm mb-4" style="border-left: 4px solid #7c4dff;">
+                        <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f5f0ff; color: #7c4dff;">
+                            <h5 class="mb-0 text-primary"><i class="fas fa-eye me-2"></i>Observations</h5>
+                            <button class="btn btn-sm" style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;" onclick="toggleObservationEdit()">
+                                <i class="fas fa-edit me-1"></i> Edit
+                            </button>
+                        </div>
+                
+                        <div class="card-body">
+                            <div id="observationText" class="p-3 rounded" style="background-color: #f8f9fa; border-left: 2px solid #d1c4e9;">
+                                <i class="fas fa-quote-left text-muted me-2"></i>
+                                Client responds well to visual aids, struggles with verbal descriptions of emotions. Shows improved engagement when using character-based examples rather than abstract concepts.
+                                <i class="fas fa-quote-right text-muted ms-2"></i>
+                            </div>
+                            <div id="observationEdit" style="display: none" class="mt-3">
+                                <textarea class="form-control" style="border-color: #d1c4e9;" rows="4">Client responds well to visual aids, struggles with verbal descriptions of emotions. Shows improved engagement when using character-based examples rather than abstract concepts.</textarea>
+                                <div class="mt-2 text-end">
+                                    <button class="btn btn-sm me-2" style="background-color: #f5f0ff; color: #a084e8; border: 1px solid #d1c4e9;" onclick="cancelObservation()">
+                                        Cancel
+                                    </button>
+                                    <button class="btn btn-sm" style="background-color: #7c4dff; color: #ffffff; border: 1px solid #7c4dff;" onclick="saveObservation()">
+                                        <i class="fas fa-save me-1"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                </div>
+                            </div>
+                
+                            <div id="session-history" class="tab-content">
+                                <h3 class="content-title">Session History</h3>
+                                
+                                <div class="row g-4">
+                                    
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card shadow-sm h-100 session-card" onclick="showSessionDetails('session1')">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="session-date bg-purple-subtle rounded-circle p-3 me-3">
+                                                        <strong>05</strong>
+                                                        <div class="small">May</div>
+                                                    </div>
+                                                    <div>
+                                                        <h5 class="card-title mb-1">
+                                                            Initial Assessment &amp; Emotional Skills
+                                                        </h5>
+                                                        <p class="text-muted small mb-0">14:00 - 15:30</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mb-3" style="height: 6px">
+                                                    <div class="progress-bar bg-success" style="width: 90%"></div>
+                                                </div>
+                                                <p class="card-text">
+                                                    Completed initial assessment using standardized tools. Introduced concept of emotional intelligence and basic skills for identifying feelings. Child showed good engagement with visual materials.
+                                                </p>
+                                            </div>
+                                            <div class="card-footer bg-light">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="badge bg-success text-white">Completed</span>
+                                                    <span class="text-muted small">Efficiency: 90%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card shadow-sm h-100 session-card" onclick="showSessionDetails('session2')">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="session-date bg-purple-subtle rounded-circle p-3 me-3">
+                                                        <strong>12</strong>
+                                                        <div class="small">May</div>
+                                                    </div>
+                                                    <div>
+                                                        <h5 class="card-title mb-1">
+                                                            Family Session: Parent Involvement
+                                                        </h5>
+                                                        <p class="text-muted small mb-0">16:00 - 17:00</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mb-3" style="height: 6px">
+                                                    <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                </div>
+                                                <p class="card-text">
+                                                    Conducted joint session with parents to establish family-based support strategies. Provided education on depression symptoms in children and adolescents. Discussed home environment and communication patterns.
+                                                </p>
+                                            </div>
+                                            <div class="card-footer bg-light">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="badge bg-success text-white">Completed</span>
+                                                    <span class="text-muted small">Efficiency: 85%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card shadow-sm h-100 session-card" onclick="showSessionDetails('session3')">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="session-date bg-purple-subtle rounded-circle p-3 me-3">
+                                                        <strong>17</strong>
+                                                        <div class="small">May</div>
+                                                    </div>
+                                                    <div>
+                                                        <h5 class="card-title mb-1">
+                                                            Behavioral Activation Techniques
+                                                        </h5>
+                                                        <p class="text-muted small mb-0">15:30 - 16:30</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mb-3" style="height: 6px">
+                                                    <div class="progress-bar bg-success" style="width: 80%"></div>
+                                                </div>
+                                                <p class="card-text">
+                                                    Introduced behavioral activation as a key intervention for depression. Created personalized schedule of pleasant activities and established daily routine structure. Practiced activity planning with patient.
+                                                </p>
+                                            </div>
+                                            <div class="card-footer bg-light">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="badge bg-success text-white">Completed</span>
+                                                    <span class="text-muted small">Efficiency: 80%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div id="problems-statistic" class="tab-content">
+                                <h3 class="content-title">Statistics</h3>
+                                <p>Statistics content would go here...</p>
+                            </div>
+                
+                            <div id="end-module" class="tab-content">
+                                <h3 class="content-title">End Module</h3>
+                                <p>End module content would go here...</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    
+                    <div class="module-content" id="diagnostic-module">
+                        <div class="content-area">
+                            
+                            <div class="vertical-tabs">
+                                <button class="vertical-tab active" onclick="showContent('diagnostic-current-session', 'diagnostic', event)">
+                                    Overview
+                                </button>
+                                <button class="vertical-tab" onclick="showContent('diagnostic-tasks', 'diagnostic', event)">
+                                    Tasks
+                                </button>
+                                <button class="vertical-tab" onclick="showContent('diagnostic-problems', 'diagnostic', event)">
+                                    Problems and Symptoms
+                                </button>
+                            </div>
+                
+                            
+                            <div id="diagnostic-current-session" class="tab-content active">
+                    <h3 class="content-title">Diagnostic overview</h3>
+                
+                    <div class="d-flex align-items-center mb-3">
+                        <div>
+                            <span class="text-muted"><i class="fas fa-clock me-1"></i> 14:00 - 15:00</span>
+                            <span class="badge bg-primary ms-2">In Progress</span>
+                        </div>
+                    </div>
+                
+                    <div class="card shadow-sm mb-4" style="border-left: 6px solid #7c4dff;">
+                        <div class="card-body">
+                            <h4 class="mb-3" style="color: #7c4dff;"><i class="bi bi-bullseye me-2"></i>Goal of Diagnostic</h4>
+                            <p class="mb-3" style="font-size: 1.1rem; color: #4a6fa5;">To assess the current state of depression, establish rapport with the adolescent and family, and develop an initial understanding of mood patterns and triggers.</p>
+                        </div>
+                    </div>
+                
+                    <div class="card shadow-sm mb-4" style="border-left: 4px solid #7c4dff;">
+                        <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f5f0ff; color: #7c4dff;">
+                            <h5 class="mb-0 text-primary"><i class="fas fa-eye me-2"></i>Observations</h5>
+                            <button class="btn btn-sm" style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;" onclick="toggleObservationEdit()">
+                                <i class="fas fa-edit me-1"></i> Edit
+                            </button>
+                        </div>
+                
+                        <div class="card-body">
+                            <div id="observationText" class="p-3 rounded" style="background-color: #f8f9fa; border-left: 2px solid #d1c4e9;">
+                                <i class="fas fa-quote-left text-muted me-2"></i>
+                                Patient appears withdrawn with minimal eye contact. Speech is slow and quiet. Reports feeling "tired all the time" and has lost interest in previously enjoyed activities. Parent reports significant decline in academic performance and social withdrawal over past 3 months.
+                                <i class="fas fa-quote-right text-muted ms-2"></i>
+                            </div>
+                            <div id="observationEdit" style="display: none" class="mt-3">
+                                <textarea class="form-control" style="border-color: #d1c4e9;" rows="4">Patient appears withdrawn with minimal eye contact. Speech is slow and quiet. Reports feeling "tired all the time" and has lost interest in previously enjoyed activities. Parent reports significant decline in academic performance and social withdrawal over past 3 months.</textarea>
+                                <div class="mt-2 text-end">
+                                    <button class="btn btn-sm me-2" style="background-color: #f5f0ff; color: #a084e8; border: 1px solid #d1c4e9;" onclick="cancelObservation()">
+                                        Cancel
+                                    </button>
+                                    <button class="btn btn-sm" style="background-color: #7c4dff; color: #ffffff; border: 1px solid #7c4dff;" onclick="saveObservation()">
+                                        <i class="fas fa-save me-1"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="border rounded p-3 mb-4" style="background: #f8f5ff; border-left: 4px solid #a084e8;">
+                    <h5 class="mb-3" style="color: #7c4dff;"><i class="bi bi-list-ol me-2"></i>Assessment Progress</h5>
+                    <form id="consultation-steps-form">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="assessmentStep1" name="assessmentStep1" checked="" style="background-color: #7c4dff; border-color: #7c4dff;">
+                            <label class="form-check-label" for="assessmentStep1">
+                                1. Initial depression screening completed
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="assessmentStep2" name="assessmentStep2" checked="" style="background-color: #7c4dff; border-color: #7c4dff;">
+                            <label class="form-check-label" for="assessmentStep2">
+                                2. Family history assessment
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="assessmentStep3" name="assessmentStep3" style="background-color: #7c4dff; border-color: #7c4dff;">
+                            <label class="form-check-label" for="assessmentStep3">
+                                3. School functioning evaluation
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="assessmentStep4" name="assessmentStep4" style="background-color: #7c4dff; border-color: #7c4dff;">
+                            <label class="form-check-label" for="assessmentStep4">
+                                4. Suicide risk assessment
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-start">
+                        <button class="btn" style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 10px 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.2s ease;" onclick="showContent('diagnostic-tasks', 'diagnostic')">
+                            <i class="bi bi-clipboard-check me-2"></i>Go to Tasks
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="diagnostic-tasks" class="tab-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="content-title mb-0">Tasks</h3>
+                    <i class="fas fa-question-circle text-muted" style="font-size: 14px; cursor: help;" data-bs-toggle="tooltip" data-bs-placement="top" title="These tasks help diagnose the patient's condition"></i>
+                </div>
+
+                <div class="tasks-section">
+                    
+                    <div class="task-card" id="diagnostic-task-1" data-activity="emotionDiary">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="d1">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-journal-text me-2"></i>Emotion Diary
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="d1">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Record your emotions at different times of the day, noting the situation, intensity (1-10), and any thoughts that accompanied the emotion.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label>Today's Date:</label>
+                                        <input type="date" class="form-control" id="emotionDiaryDate">
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            Morning
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Emotion:</label>
+                                                        <select class="form-control" id="morningEmotion">
+                                                            <option value="">Select...</option>
+                                                            <option value="happy">Happy</option>
+                                                            <option value="sad">Sad</option>
+                                                            <option value="angry">Angry</option>
+                                                            <option value="anxious">Anxious</option>
+                                                            <option value="fearful">Fearful</option>
+                                                            <option value="disgusted">Disgusted</option>
+                                                            <option value="surprised">Surprised</option>
+                                                            <option value="neutral">Neutral</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Intensity (1-10):</label>
+                                                        <select class="form-control" id="morningIntensity">
+                                                            <option value="">Select...</option>
+                                                            <option value="1">1 - Very mild</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5 - Moderate</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10 - Extremely intense</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <label>Situation/Trigger:</label>
+                                                <input type="text" class="form-control" id="morningSituation" placeholder="What was happening when you felt this way?">
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <label>Thoughts:</label>
+                                                <textarea class="form-control" id="morningThoughts" rows="2" placeholder="What thoughts were going through your mind?"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            Afternoon
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Emotion:</label>
+                                                        <select class="form-control" id="afternoonEmotion">
+                                                            <option value="">Select...</option>
+                                                            <option value="happy">Happy</option>
+                                                            <option value="sad">Sad</option>
+                                                            <option value="angry">Angry</option>
+                                                            <option value="anxious">Anxious</option>
+                                                            <option value="fearful">Fearful</option>
+                                                            <option value="disgusted">Disgusted</option>
+                                                            <option value="surprised">Surprised</option>
+                                                            <option value="neutral">Neutral</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Intensity (1-10):</label>
+                                                        <select class="form-control" id="afternoonIntensity">
+                                                            <option value="">Select...</option>
+                                                            <option value="1">1 - Very mild</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5 - Moderate</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10 - Extremely intense</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <label>Situation/Trigger:</label>
+                                                <input type="text" class="form-control" id="afternoonSituation" placeholder="What was happening when you felt this way?">
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <label>Thoughts:</label>
+                                                <textarea class="form-control" id="afternoonThoughts" rows="2" placeholder="What thoughts were going through your mind?"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            Evening
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Emotion:</label>
+                                                        <select class="form-control" id="eveningEmotion">
+                                                            <option value="">Select...</option>
+                                                            <option value="happy">Happy</option>
+                                                            <option value="sad">Sad</option>
+                                                            <option value="angry">Angry</option>
+                                                            <option value="anxious">Anxious</option>
+                                                            <option value="fearful">Fearful</option>
+                                                            <option value="disgusted">Disgusted</option>
+                                                            <option value="surprised">Surprised</option>
+                                                            <option value="neutral">Neutral</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Intensity (1-10):</label>
+                                                        <select class="form-control" id="eveningIntensity">
+                                                            <option value="">Select...</option>
+                                                            <option value="1">1 - Very mild</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5 - Moderate</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10 - Extremely intense</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <label>Situation/Trigger:</label>
+                                                <input type="text" class="form-control" id="eveningSituation" placeholder="What was happening when you felt this way?">
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <label>Thoughts:</label>
+                                                <textarea class="form-control" id="eveningThoughts" rows="2" placeholder="What thoughts were going through your mind?"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge heart-badge">
+                                            <i class="bi bi-heart-fill"></i> Emotion Explorer
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-d1" style="display: none">
+                                        <form class="task-comment-form" data-task-id="d1">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="task-card" id="diagnostic-task-2" data-activity="physicalsensations">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="d2">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-body-text me-2"></i>Physical Sensations Tracker
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="d2">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Note any physical sensations that accompanied your strongest emotions today. This helps identify how your body responds to different emotional states.
+                                    </p>
+
+                                    <div class="form-group mb-3">
+                                        <label for="sensationEmotion">Strongest emotion experienced today:</label>
+                                        <select class="form-control" id="sensationEmotion">
+                                            <option value="">Select...</option>
+                                            <option value="happy">Happy</option>
+                                            <option value="sad">Sad</option>
+                                            <option value="angry">Angry</option>
+                                            <option value="anxious">Anxious</option>
+                                            <option value="fearful">Fearful</option>
+                                            <option value="disgusted">Disgusted</option>
+                                            <option value="surprised">Surprised</option>
+                                            <option value="neutral">Neutral</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label>Where in your body did you feel this emotion? (Check all that apply)</label>
+                                        <div class="row mt-2">
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="head">
+                                                    <label class="form-check-label" for="head">Head</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="face">
+                                                    <label class="form-check-label" for="face">Face</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="neck">
+                                                    <label class="form-check-label" for="neck">Neck</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="chest">
+                                                    <label class="form-check-label" for="chest">Chest</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="stomach">
+                                                    <label class="form-check-label" for="stomach">Stomach</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="back">
+                                                    <label class="form-check-label" for="back">Back</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="arms">
+                                                    <label class="form-check-label" for="arms">Arms/Hands</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="legs">
+                                                    <label class="form-check-label" for="legs">Legs/Feet</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="allover">
+                                                    <label class="form-check-label" for="allover">All over</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="nowhere">
+                                                    <label class="form-check-label" for="nowhere">Nowhere specific</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label>What physical sensations did you experience? (Check all that apply)</label>
+                                        <div class="row mt-2">
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="heartrate">
+                                                    <label class="form-check-label" for="heartrate">Rapid heartbeat</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="breathing">
+                                                    <label class="form-check-label" for="breathing">Shortness of breath</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="sweating">
+                                                    <label class="form-check-label" for="sweating">Sweating</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="trembling">
+                                                    <label class="form-check-label" for="trembling">Trembling/Shaking</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="tension">
+                                                    <label class="form-check-label" for="tension">Muscle tension</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="nausea">
+                                                    <label class="form-check-label" for="nausea">Nausea/stomach ache</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="headache">
+                                                    <label class="form-check-label" for="headache">Headache</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="lightheaded">
+                                                    <label class="form-check-label" for="lightheaded">Lightheaded/dizzy</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="warmth">
+                                                    <label class="form-check-label" for="warmth">Warmth/heat</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="coldness">
+                                                    <label class="form-check-label" for="coldness">Coldness/chills</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="numbness">
+                                                    <label class="form-check-label" for="numbness">Numbness/tingling</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="sensationDescription">Describe these physical sensations in your own words:</label>
+                                        <textarea class="form-control" id="sensationDescription" rows="3" placeholder="Describe how your body felt when experiencing this emotion..."></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group mt-3">
+                                        <label for="sensationIntensity">How intense were these physical sensations? (1-10)</label>
+                                        <select class="form-control" id="sensationIntensity">
+                                            <option value="">Select...</option>
+                                            <option value="1">1 - Barely noticeable</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5 - Moderate</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10 - Extremely intense</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge ribbon-badge">
+                                            <i class="bi bi-trophy-fill"></i> Body Awareness
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-d2" style="display: none">
+                                        <form class="task-comment-form" data-task-id="d2">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="task-card" id="diagnostic-task-3" data-activity="thoughtrecord">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="d3">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-lightbulb me-2"></i>Thought Record
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="d3">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Identify a difficult moment from today and explore the thoughts that occurred during the situation. This helps recognize thought patterns that might contribute to your emotional state.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="situationDescription">Situation:</label>
+                                        <textarea class="form-control" id="situationDescription" rows="2" placeholder="Describe a situation that triggered difficult emotions"></textarea>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="thoughtEmotion">Primary emotion felt:</label>
+                                                <select class="form-control" id="thoughtEmotion">
+                                                    <option value="">Select...</option>
+                                                    <option value="sad">Sad</option>
+                                                    <option value="anxious">Anxious</option>
+                                                    <option value="angry">Angry</option>
+                                                    <option value="guilty">Guilty</option>
+                                                    <option value="ashamed">Ashamed</option>
+                                                    <option value="fearful">Fearful</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="emotionIntensity">Emotion intensity (1-10):</label>
+                                                <select class="form-control" id="emotionIntensity">
+                                                    <option value="">Select...</option>
+                                                    <option value="1">1 - Very mild</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5 - Moderate</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10 - Extremely intense</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mt-3">
+                                        <label for="automaticThoughts">Automatic thoughts:</label>
+                                        <textarea class="form-control" id="automaticThoughts" rows="3" placeholder="What thoughts automatically came to mind?"></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group mt-3">
+                                        <label>Did you notice any of these thinking patterns? (Check all that apply)</label>
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="allOrNothing">
+                                                    <label class="form-check-label" for="allOrNothing">All-or-nothing thinking</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="overgeneralizing">
+                                                    <label class="form-check-label" for="overgeneralizing">Overgeneralizing</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="filteringOut">
+                                                    <label class="form-check-label" for="filteringOut">Filtering out positives</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="mindReading">
+                                                    <label class="form-check-label" for="mindReading">Mind reading</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="catastrophizing">
+                                                    <label class="form-check-label" for="catastrophizing">Catastrophizing</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="shouldStatements">
+                                                    <label class="form-check-label" for="shouldStatements">Should statements</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="personalization">
+                                                    <label class="form-check-label" for="personalization">Personalization</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="emotionalReasoning">
+                                                    <label class="form-check-label" for="emotionalReasoning">Emotional reasoning</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mt-3">
+                                        <label for="alternativeThoughts">More balanced thoughts:</label>
+                                        <textarea class="form-control" id="alternativeThoughts" rows="3" placeholder="What might be a more balanced or helpful way to think about this situation?"></textarea>
+                                    </div>
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge star-badge">
+                                            <i class="bi bi-star-fill"></i> Thought Detective
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="comment-form" id="comment-form-d3" style="display: none">
+                                        <form class="task-comment-form" data-task-id="d3">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="task-card" id="diagnostic-task-4" data-activity="symptomTracking">
+                        <div class="task-body p-3">
+                            <div class="d-flex">
+                                <input type="checkbox" class="task-checkbox" data-task-id="d4">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="task-header">
+                                        <h5 class="task-title">
+                                            <i class="bi bi-graph-up me-2"></i>Symptom Tracking
+                                        </h5>
+                                        <button class="comment-btn add-comment-btn" data-task-id="d4">
+                                            <i class="bi bi-chat-left-text"></i> Add Comment
+                                        </button>
+                                    </div>
+                                    <p class="task-description">
+                                        Rate the intensity of common depression symptoms experienced over the past week. This helps track changes in your condition and identify areas for focus in treatment.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label>Today's Date:</label>
+                                        <input type="date" class="form-control" id="symptomTrackingDate">
+                                    </div>
+                                    
+                                    <div class="table-responsive mt-3">
+                                        <table class="table table-bordered">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Symptom</th>
+                                                    <th>None (0)</th>
+                                                    <th>Mild (1)</th>
+                                                    <th>Moderate (2)</th>
+                                                    <th>Severe (3)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Feeling sad or down</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sadness" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sadness" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sadness" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sadness" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Loss of interest in activities</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="interest" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="interest" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="interest" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="interest" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tiredness or lack of energy</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="energy" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="energy" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="energy" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="energy" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Poor appetite or overeating</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="appetite" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="appetite" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="appetite" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="appetite" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trouble sleeping or sleeping too much</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sleep" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sleep" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sleep" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="sleep" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Feeling bad about yourself</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="selfworth" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="selfworth" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="selfworth" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="selfworth" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trouble concentrating</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="concentration" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="concentration" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="concentration" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="concentration" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Moving or speaking slowly OR restlessness</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="psychomotor" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="psychomotor" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="psychomotor" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="psychomotor" value="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Thoughts that you would be better off dead</td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="suicidal" value="0"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="suicidal" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="suicidal" value="2"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="suicidal" value="3"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="form-group mt-3">
+                                        <label for="symptomNotes">Additional notes:</label>
+                                        <textarea class="form-control" id="symptomNotes" rows="3" placeholder="Any additional details about your symptoms or what might be influencing them?"></textarea>
+                                    </div>
+                                    
+                                    <div class="reward-preview">
+                                        <div class="reward-preview-title">Possible reward:</div>
+                                        <div class="reward-badge medal-badge">
+                                            <i class="bi bi-stars"></i> Progress Tracker
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-form" id="comment-form-d4" style="display: none">
+                                        <form class="task-comment-form" data-task-id="d4">
+                                            <div class="mb-2">
+                                                <label class="form-label small">Doctor's comment:</label>
+                                                <textarea class="form-control" rows="2" placeholder="Add your professional observations..."></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="comment-btn me-2 cancel-comment-btn">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="comment-btn">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="diagnostic-problems" class="tab-content">
+                <h3 class="content-title">Problems and Symptoms</h3>
+                <div class="card mb-4">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center" id="differentialDiagnosisHeader" data-bs-toggle="collapse" data-bs-target="#differentialDiagnosisContent" aria-expanded="true" aria-controls="differentialDiagnosisContent" style="cursor: pointer;">
+                            <h5 class="mb-0">
+                                <i class="bi bi-check2-circle me-2"></i>Differential Diagnosis
+                            </h5>
+                            <i class="fas fa-chevron-down rotate-icon"></i>
+                        </div>
+                        
+                        <div id="differentialDiagnosisContent" class="collapse show" aria-labelledby="differentialDiagnosisHeader">
+                            <div class="card-body">
+                                <div class="table-responsive mb-4">
+                                    <table class="table table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Potential Diagnosis</th>
+                                                <th>Supporting Evidence</th>
+                                                <th>Contradicting Evidence</th>
+                                                <th>Probability</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Major Depressive Disorder</td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>Persistent low mood</li>
+                                                        <li>Anhedonia</li>
+                                                        <li>Sleep disturbance</li>
+                                                        <li>Concentration difficulties</li>
+                                                        <li>PHQ-9 score of 14</li>
+                                                    </ul>
+                                                </td>
+                                                <td>None significant</td>
+                                                <td><div class="progress" style="height: 20px;">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">High</div>
+                                                </div></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Adjustment Disorder with Depressed Mood</td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>Recent school change (6 months ago)</li>
+                                                        <li>Symptoms emerged after change</li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>Symptom severity exceeds typical adjustment disorder</li>
+                                                        <li>Duration longer than expected</li>
+                                                    </ul>
+                                                </td>
+                                                <td><div class="progress" style="height: 20px;">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Moderate</div>
+                                                </div></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ADHD (attention deficit)</td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>Concentration difficulties</li>
+                                                        <li>Academic performance decline</li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>No pre-existing attention issues</li>
+                                                        <li>Concentration problems emerged with mood symptoms</li>
+                                                        <li>No hyperactivity/impulsivity</li>
+                                                    </ul>
+                                                </td>
+                                                <td><div class="progress" style="height: 20px;">
+                                                    <div class="progress-bar bg-info" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Low</div>
+                                                </div></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Social Anxiety Disorder</td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>Social withdrawal</li>
+                                                        <li>Discomfort in peer situations</li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <ul class="mb-0">
+                                                        <li>Previously socially engaged</li>
+                                                        <li>Social withdrawal appears secondary to mood</li>
+                                                        <li>No specific fear of evaluation</li>
+                                                    </ul>
+                                                </td>
+                                                <td><div class="progress" style="height: 20px;">
+                                                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Low</div>
+                                                </div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="form-group mt-3">
+                                    <label for="differentialNotes"><strong>Diagnostic Considerations:</strong></label>
+                                    <textarea class="form-control" id="differentialNotes" rows="3">Clinical presentation most consistent with Major Depressive Disorder, moderate severity. Attention difficulties appear secondary to depression rather than primary ADHD.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to switch between modules (horizontal tabs)
+    function showModule(moduleId) {
+        // Hide all modules
+        document.querySelectorAll(".module-content").forEach((content) => {
+            content.classList.remove("active");
+        });
+        
+        // Show selected module
+        document.getElementById(moduleId + "-module").classList.add("active");
+        
+        // Update horizontal tab styling
+        document.querySelectorAll(".horizontal-tab").forEach((tab) => {
+            tab.classList.remove("active");
+        });
+        event.currentTarget.classList.add("active");
+    }
+
+    // Function to show content based on tab selection
+    function showContent(contentId, moduleId, event) {
+        // Hide all content within the current module
+        document
+            .querySelectorAll(`#${moduleId}-module .tab-content`)
+            .forEach((content) => {
+                content.classList.remove("active");
+            });
+        
+        // Show selected content
+        document.getElementById(contentId).classList.add("active");
+
+        // Update vertical tab styling within the current module
+        document
+            .querySelectorAll(`#${moduleId}-module .vertical-tab`)
+            .forEach((tab) => {
+                tab.classList.remove("active");
+            });
+        
+        // Make sure we have the event object before using it
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add("active");
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        if (typeof bootstrap !== 'undefined') {
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        }
+
+        // Task completion functionality
+        const taskCheckboxes = document.querySelectorAll('.task-checkbox');
+        taskCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const taskCard = this.closest('.task-card');
+                
+                if (this.checked) {
+                    if (taskCard) {
+                        taskCard.classList.add('completed');
+                        
+                        // Disable all form inputs within the task card
+                        taskCard.querySelectorAll('input:not(.task-checkbox), textarea, select').forEach(input => {
+                            input.disabled = true;
+                        });
+                    }
+                } else {
+                    if (taskCard) {
+                        taskCard.classList.remove('completed');
+                        
+                        // Re-enable all form inputs within the task card
+                        taskCard.querySelectorAll('input:not(.task-checkbox), textarea, select').forEach(input => {
+                            input.disabled = false;
+                        });
+                    }
+                }
+            });
+        });
+
+        // Comment functionality
+        const addCommentBtns = document.querySelectorAll('.add-comment-btn');
+        const cancelCommentBtns = document.querySelectorAll('.cancel-comment-btn');
+
+        addCommentBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const taskId = this.getAttribute('data-task-id');
+                if (taskId) {
+                    const commentForm = document.getElementById(`comment-form-${taskId}`);
+                    if (commentForm) {
+                        commentForm.style.display = 'block';
+                    }
+                }
+            });
+        });
+
+        cancelCommentBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const form = this.closest('form');
+                if (form) {
+                    const taskId = form.getAttribute('data-task-id');
+                    if (taskId) {
+                        const commentForm = document.getElementById(`comment-form-${taskId}`);
+                        if (commentForm) {
+                            commentForm.style.display = 'none';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Photo upload functionality
+        const addPhotoBtns = document.querySelectorAll('.btn-add-photo');
+        const photoInputs = document.querySelectorAll('.photo-input');
+        const clearPhotoBtns = document.querySelectorAll('.btn-clear-photo');
+
+        addPhotoBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const taskCard = this.closest('.task-card');
+                // Check if task is completed - if so, don't allow photo upload
+                if (taskCard && taskCard.classList.contains('completed')) {
+                    return; // Exit if task is completed
+                }
+                
+                if (taskCard) {
+                    const photoInput = taskCard.querySelector('.photo-input');
+                    if (photoInput) {
+                        photoInput.click();
+                    }
+                }
+            });
+        });
+
+        photoInputs.forEach(input => {
+            input.addEventListener('change', function(event) {
+                const taskCard = this.closest('.task-card');
+                // Check if task is completed - if so, don't process the photo
+                if (taskCard && taskCard.classList.contains('completed')) {
+                    return; // Exit if task is completed
+                }
+                
+                const file = event.target.files && event.target.files[0];
+                if (file) {
+                    const photoPreview = taskCard.querySelector('.photo-preview');
+                    const photoPreviewArea = taskCard.querySelector('.photo-preview-area');
+                    const clearPhotoBtn = taskCard.querySelector('.btn-clear-photo');
+                    const photoContainer = taskCard.querySelector('.photo-container');
+                    const taskImage = taskCard.querySelector('.task-image');
+                    
+                    if (photoPreview && photoPreviewArea && clearPhotoBtn) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            if (e.target && typeof e.target.result === 'string') {
+                                // Update preview
+                                photoPreview.src = e.target.result;
+                                photoPreview.style.display = 'block';
+                                photoPreviewArea.style.display = 'block';
+                                clearPhotoBtn.style.display = 'inline-block';
+                                
+                                // Also update main photo if exists
+                                if (photoContainer && taskImage) {
+                                    taskImage.src = e.target.result;
+                                    photoContainer.style.display = 'block';
+                                }
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+        });
+
+        clearPhotoBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const taskCard = this.closest('.task-card');
+                // Check if task is completed - if so, don't allow clearing photo
+                if (taskCard && taskCard.classList.contains('completed')) {
+                    return; // Exit if task is completed
+                }
+                
+                if (taskCard) {
+                    const photoPreview = taskCard.querySelector('.photo-preview');
+                    const photoPreviewArea = taskCard.querySelector('.photo-preview-area');
+                    const photoInput = taskCard.querySelector('.photo-input');
+                    const photoContainer = taskCard.querySelector('.photo-container');
+                    
+                    if (photoPreview) photoPreview.src = '';
+                    if (photoPreview) photoPreview.style.display = 'none';
+                    if (photoPreviewArea) photoPreviewArea.style.display = 'none';
+                    if (this) this.style.display = 'none';
+                    if (photoInput) photoInput.value = '';
+                    
+                    // Also hide main photo container
+                    if (photoContainer) {
+                        photoContainer.style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Initialize the state of completed tasks
+        document.querySelectorAll('.task-card').forEach(card => {
+            const checkbox = card.querySelector('.task-checkbox');
+            if (checkbox && checkbox.checked) {
+                // Mark the task as completed and disable all inputs
+                card.classList.add('completed');
+                card.querySelectorAll('input:not(.task-checkbox), textarea, select').forEach(input => {
+                    input.disabled = true;
+                });
+            }
+        });
+
+        // Collapsible card functionality
+        const cardHeaders = document.querySelectorAll('.card-header[data-bs-toggle="collapse"]');
+        cardHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const icon = this.querySelector('.rotate-icon');
+                if (icon) {
+                    icon.classList.toggle('rotate');
+                }
+            });
+        });
+
+        // Add 'shown.bs.collapse' and 'hidden.bs.collapse' event listeners for each collapse
+        document.querySelectorAll('.collapse').forEach(collapseEl => {
+            collapseEl.addEventListener('shown.bs.collapse', function() {
+                const cardHeader = document.querySelector(`[data-bs-target="#${this.id}"]`);
+                if (cardHeader) {
+                    const icon = cardHeader.querySelector('.rotate-icon');
+                    if (icon) {
+                        icon.classList.add('rotate');
+                    }
+                }
+            });
+            
+            collapseEl.addEventListener('hidden.bs.collapse', function() {
+                const cardHeader = document.querySelector(`[data-bs-target="#${this.id}"]`);
+                if (cardHeader) {
+                    const icon = cardHeader.querySelector('.rotate-icon');
+                    if (icon) {
+                        icon.classList.remove('rotate');
+                    }
+                }
+            });
+        });
+    });
+
+    // Functions for the Observations card
+    function toggleObservationEdit(event) {
+        // Stop the event from bubbling up to parent elements
+        if (event) {
+            event.stopPropagation();
+        }
+        
+        const observationText = document.getElementById('observationText');
+        const observationEdit = document.getElementById('observationEdit');
+        
+        if (observationText && observationEdit) {
+            observationText.style.display = 'none';
+            observationEdit.style.display = 'block';
+        }
+    };
+    
+    function cancelObservation(event) {
+        // Stop the event from bubbling up to parent elements
+        if (event) {
+            event.stopPropagation();
+        }
+        
+        const observationText = document.getElementById('observationText');
+        const observationEdit = document.getElementById('observationEdit');
+        
+        if (observationText && observationEdit) {
+            observationText.style.display = 'block';
+            observationEdit.style.display = 'none';
+        }
+    };
+    
+    function saveObservation(event) {
+        // Stop the event from bubbling up to parent elements
+        if (event) {
+            event.stopPropagation();
+        }
+        
+        const observationText = document.getElementById('observationText');
+        const observationEdit = document.getElementById('observationEdit');
+        const textarea = observationEdit ? observationEdit.querySelector('textarea') : null;
+        
+        if (observationText && observationEdit && textarea) {
+            // Get the quote icons
+            const quoteLeftIcon = observationText.querySelector('.fa-quote-left');
+            const quoteRightIcon = observationText.querySelector('.fa-quote-right');
+            
+            // Clear existing content, but keep the structure with quote icons
+            while (observationText.firstChild) {
+                observationText.removeChild(observationText.firstChild);
+            }
+            
+            // Add the updated content with the icons
+            if (quoteLeftIcon) {
+                observationText.appendChild(quoteLeftIcon.cloneNode(true));
+            } else {
+                const newLeftIcon = document.createElement('i');
+                newLeftIcon.className = 'fas fa-quote-left text-muted me-2';
+                observationText.appendChild(newLeftIcon);
+            }
+            
+            // Add the text
+            observationText.appendChild(document.createTextNode(' ' + textarea.value + ' '));
+            
+            if (quoteRightIcon) {
+                observationText.appendChild(quoteRightIcon.cloneNode(true));
+            } else {
+                const newRightIcon = document.createElement('i');
+                newRightIcon.className = 'fas fa-quote-right text-muted ms-2';
+                observationText.appendChild(newRightIcon);
+            }
+            
+            // Hide the edit form and show the text
+            observationText.style.display = 'block';
+            observationEdit.style.display = 'none';
+        }
+    };
+
+    // Canvas Drawing Functionality
+    const canvas = document.getElementById('drawingCanvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let brushSize = 5;
+        
+        // Initialize canvas with white background
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Set initial brush
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = brushSize;
+
+        // Drawing event listeners
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch support
+        canvas.addEventListener('touchstart', handleTouchStart);
+        canvas.addEventListener('touchmove', handleTouchMove);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        function handleTouchMove(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            // Get canvas position relative to the viewport
+            const rect = canvas.getBoundingClientRect();
+            // Convert client coordinates to canvas coordinates
+            lastX = e.clientX - rect.left;
+            lastY = e.clientY - rect.top;
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            lastX = x;
+            lastY = y;
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        // Color picker
+        const colorPicker = document.getElementById('colorPicker');
+        if (colorPicker) {
+            colorPicker.addEventListener('input', function() {
+                ctx.strokeStyle = this.value;
+            });
+        }
+
+        // Brush size buttons
+        const increaseBrush = document.getElementById('increaseBrush');
+        if (increaseBrush) {
+            increaseBrush.addEventListener('click', function() {
+                brushSize = Math.min(brushSize + 2, 30);
+                ctx.lineWidth = brushSize;
+            });
+        }
+
+        const decreaseBrush = document.getElementById('decreaseBrush');
+        if (decreaseBrush) {
+            decreaseBrush.addEventListener('click', function() {
+                brushSize = Math.max(brushSize - 2, 1);
+                ctx.lineWidth = brushSize;
+            });
+        }
+
+        // Clear canvas
+        const clearCanvas = document.getElementById('clearCanvas');
+        if (clearCanvas) {
+            clearCanvas.addEventListener('click', function() {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            });
+        }
+
+        // Save drawing functionality
+        const saveDrawing = document.getElementById('saveDrawing');
+        if (saveDrawing) {
+            saveDrawing.addEventListener('click', function() {
+                try {
+                    // Create a temporary link
+                    const link = document.createElement('a');
+                    link.download = 'my-emotion-drawing.png';
+                    link.href = canvas.toDataURL('image/png');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } catch (e) {
+                    console.error('Error saving drawing:', e);
+                    alert('Could not save the drawing. Please try again.');
+                }
+            });
+        }
+    }
+</script>

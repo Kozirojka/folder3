@@ -2353,13 +2353,9 @@
                             <span class="text-muted"><i class="fas fa-clock me-1"></i> 14:00 - 15:00</span>
                             <span class="badge bg-primary ms-2">After consultation</span>
                         </div>
-                    </div>
-
-
-
-                    <div class="card shadow-sm mb-4" style="border-left: 6px solid #7c4dff;">
+                    </div>                    <div class="card shadow-sm mb-4" style="border-left: 6px solid #9d8cdb;">
                         <div class="card-body">
-                            <h4 class="mb-3" style="color: #7c4dff;"><i class="bi bi-bullseye me-2"></i>Goal of
+                            <h4 class="mb-3" style="color: #8e78c9;"><i class="bi bi-bullseye me-2"></i>Goal of
                                 Consultation</h4>
                             <p class="mb-3" style="font-size: 1.1rem; color: #4a6fa5;">To assess the current state of
                                 eating disorder, establish rapport with the patient and family, and develop an initial
@@ -2367,45 +2363,42 @@
                             </p>
                         </div>
                     </div>
-                    <div class="card shadow-sm mb-4" style="border-left: 4px solid #7c4dff;">
+                    <div class="card shadow-sm mb-4" style="border-left: 4px solid #9d8cdb;">
                         <div class="card-header d-flex justify-content-between align-items-center"
-                            style="background-color: #f5f0ff; color: #7c4dff;">
+                            style="background-color: #f8f5ff; color: #8e78c9;">
                             <h5 class="mb-0 text-white"><i class="fas fa-eye me-2"></i>Observations</h5>
                             <button class="btn btn-sm"
-                                style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;"
+                                style="background-color: #f0ebfc; color: #8e78c9; border: 1px solid #d7ceee;"
                                 onclick="toggleObservationEdit()">
                                 <i class="fas fa-edit me-1"></i> Edit
                             </button>
-                        </div>
-
-                        <div class="card-body">
+                        </div>                        <div class="card-body">
                             <div id="observationText" class="p-3 rounded"
-                                style="background-color: #f8f9fa; border-left: 2px solid #d1c4e9;">
+                                style="background-color: #f8f9fa; border-left: 2px solid #d7ceee;">
                                 <i class="fas fa-quote-left text-muted me-2"></i>
                                 Client responds well to visual aids, struggles with verbal
                                 descriptions of emotions.
                                 <i class="fas fa-quote-right text-muted ms-2"></i>
                             </div>
                             <div id="observationEdit" style="display: none" class="mt-3">
-                                <textarea class="form-control" style="border-color: #d1c4e9;"
+                                <textarea class="form-control" style="border-color: #d7ceee;"
                                     rows="3">Client responds well to visual aids, struggles with verbal descriptions of emotions.</textarea>
                                 <div class="mt-2 text-end">
                                     <button class="btn btn-sm me-2"
-                                        style="background-color: #f5f0ff; color: #a084e8; border: 1px solid #d1c4e9;"
+                                        style="background-color: #f8f5ff; color: #9d8cdb; border: 1px solid #d7ceee;"
                                         onclick="cancelObservation()">
                                         Cancel
                                     </button>
                                     <button class="btn btn-sm"
-                                        style="background-color: #7c4dff; color: #ffffff; border: 1px solid #7c4dff;"
+                                        style="background-color: #9d8cdb; color: #ffffff; border: 1px solid #9d8cdb;"
                                         onclick="saveObservation()">
                                         <i class="fas fa-save me-1"></i> Save
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="border rounded p-3 mb-4" style="background: #f8f5ff; border-left: 4px solid #a084e8;">
-                        <h5 class="mb-3" style="color: #7c4dff;"><i class="bi bi-list-ol me-2"></i>Key Steps for This
+                    </div>                    <div class="border rounded p-3 mb-4" style="background: #f8f5ff; border-left: 4px solid #b3a7d9;">
+                        <h5 class="mb-3" style="color: #8e78c9;"><i class="bi bi-list-ol me-2"></i>Key Steps for This
                             Consultation</h5>
                         <form id="consultation-steps-form">
                             <div class="mb-3">
@@ -2417,42 +2410,48 @@
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" id="discussCulture"
                                     name="discussCulture" checked
-                                    style="background-color: #7c4dff; border-color: #7c4dff;">
+                                    style="background-color: #9d8cdb; border-color: #9d8cdb;">
                                 <label class="form-check-label" for="discussCulture">
                                     2. Discuss eating culture with the family
                                 </label>
                             </div>
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" id="engageFamily" name="engageFamily"
-                                    checked style="background-color: #7c4dff; border-color: #7c4dff;">
+                                    checked style="background-color: #9d8cdb; border-color: #9d8cdb;">
                                 <label class="form-check-label" for="engageFamily">
                                     3. Ensure family involvement and reduce blame
                                 </label>
                             </div>
                         </form>
                     </div>
-                    
-
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                        <div class="card h-100 bg-light">
-                            <div class="card-body">
-                            <h6 class="card-title"><i class="fas fa-clipboard-list text-primary me-2"></i>Diagnostic Tasks
-                            </h6>
-                            <p class="card-text text-muted">View completed assessment tasks.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm"
-                                onclick="showContent('tasks', 'future')">Go to Exercises</a>
+                        <div class="row g-3 mt-2">
+                        <div class="col-md-6">                           
+                             <div class="card h-100 bg-light">                                
+                                <div class="card-body d-flex flex-column">
+                                <h6 class="card-title"><i class="fas fa-clipboard-list text-primary me-2"></i>Diagnostic Tasks
+                                </h6>
+                                <p class="card-text text-muted">View completed assessment tasks.</p>
+                                <div class="mt-auto">
+                                    <a href="#" class="btn btn-outline-primary btn-md"
+                                        onclick="showContent('tasks', 'future')">
+                                        Go to Exercises
+                                    </a>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
                         <div class="col-md-6">
                         <div class="card h-100 bg-light">
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column">
                             <h6 class="card-title"><i class="fas fa-exclamation-triangle text-warning me-2"></i>Problems &
                                 Symptoms</h6>
                             <p class="card-text text-muted">Review detailed case information and symptom history.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm"
-                                onclick="showContent('notes', 'future')">Go to Notes</a>
+                            <div class="mt-auto">
+                                <a href="#" class="btn btn-outline-primary btn-md"
+                                    onclick="showContent('notes', 'future')">
+                                     Go to Notes
+                                </a>
+                            </div>
                             </div>
                         </div>
                         </div>
@@ -2469,9 +2468,8 @@
                         <button class="end-button" onclick="toggleEndSessionForm()">
                             <i class="fas fa-flag-checkered me-2"></i>End session
                         </button>
-                    </div>
-                    <div id="endSessionForm" class="feedback-form mt-3">
-                        <h5 style="color: #7c4dff;">End the session</h5>
+                    </div>                    <div id="endSessionForm" class="feedback-form mt-3">
+                        <h5 style="color: #8e78c9;">End the session</h5>
                         <div class="mb-3">
                             <label class="form-label">Your observation and conclutions:</label>
                             <textarea class="form-control" rows="3"
@@ -2486,25 +2484,23 @@
                                 <option>Satisfactory</option>
                                 <option>Need some improvment</option>
                             </select>
-                        </div>
-
-                        <div class="next-modules">
-                            <h6 style="color: #a084e8;">Next diagnostic session:</h6>
+                        </div>                        <div class="next-modules">
+                            <h6 style="color: #b3a7d9;">Next diagnostic session:</h6>
 
                             <div class="module-option" onclick="selectModule(this)">
-                                <div class="module-icon" style="background: #ede7f6; border-radius: 8px; padding: 8px;">
-                                    <i class="fas fa-users" style="color: #7c4dff;"></i>
+                                <div class="module-icon" style="background: #f0ebfc; border-radius: 8px; padding: 8px;">
+                                    <i class="fas fa-users" style="color: #8e78c9;"></i>
                                 </div>
                                 <div>
-                                    <div class="fw-bold" style="color: #7c4dff;">Reframing thoughts</div>
-                                    <small style="color: #a084e8;">Change mind of child about stress and anxiety</small>
+                                    <div class="fw-bold" style="color: #8e78c9;">Reframing thoughts</div>
+                                    <small style="color: #b3a7d9;">Change mind of child about stress and anxiety</small>
                                 </div>
                             </div>
                             <hr class="my-3" />
                             <div class="row g-2">
                                 <div class="col-12 col-md-6"> <button type="button"
                                         class="btn w-100 d-flex align-items-center justify-content-center gap-2"
-                                        style="background: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;"
+                                        style="background: #f0ebfc; color: #8e78c9; border: 1px solid #d7ceee;"
                                         onclick="assignSecondDoctor()">
                                         <i class="fas fa-user-md"></i>
                                         <span>Schedule a meeting with another doctor</span>
@@ -2513,23 +2509,21 @@
                                 <div class="col-12 col-md-6">
                                     <button type="button"
                                         class="btn w-100 d-flex align-items-center justify-content-center gap-2"
-                                        style="background: #ede7f6; color: #a084e8; border: 1px solid #d1c4e9;"
+                                        style="background: #f0ebfc; color: #b3a7d9; border: 1px solid #d7ceee;"
                                         onclick="createFamilyConsultation()">
                                         <i class="fas fa-users-cog"></i>
                                         <span>Create family consultation</span>
                                     </button>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="d-flex justify-content-end gap-2 mt-3">
+                        </div>                        <div class="d-flex justify-content-end gap-2 mt-3">
                             <button class="end-button"
-                                style="background: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9;"
+                                style="background: #f0ebfc; color: #8e78c9; border: 1px solid #d7ceee;"
                                 onclick="toggleEndSessionForm()">
                                 Cancel
                             </button>
                             <button class="end-button"
-                                style="background: #7c4dff; color: #fff; border: 1px solid #7c4dff;">Save and
+                                style="background: #9d8cdb; color: #fff; border: 1px solid #9d8cdb;">Save and
                                 Complete</button>
                         </div>
                     </div>
@@ -3419,51 +3413,41 @@
                 <div id="future-actions" class="tab-content">
                     <h3 class="content-title">Actions</h3>
                     <div class="card-body p-4">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <button class="btn w-100 d-flex align-items-center"
-                                    style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                        <div class="row g-3">                            <div class="col-12">
+                                <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #ede7f6; color: #7c4dff; border: 1px solid #d1c4e9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left; text-decoration: none;">
                                     <i class="fas fa-users me-3" style="font-size: 1.5rem;"></i>
                                     <div>
                                         <div class="fw-bold">Order Family Consultation</div>
                                         <small class="text-muted">Schedule a consultation for the whole family</small>
                                     </div>
-                                </button>
+                                </a>
                             </div>
 
                             <div class="col-12">
-                                <button class="btn w-100 d-flex align-items-center"
-                                    style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                                <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #e8eaf6; color: #3f51b5; border: 1px solid #9fa8da; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left; text-decoration: none;">
                                     <i class="fas fa-user-friends me-3" style="font-size: 1.5rem;"></i>
                                     <div>
                                         <div class="fw-bold">Book Consultation with Parents</div>
                                         <small class="text-muted">Schedule a separate meeting with the patient's
                                             parents</small>
                                     </div>
-                                </button>
+                                </a>
                             </div>
 
                             <div class="col-12">
-                                <button class="btn w-100 d-flex align-items-center"
-                                    style="background-color: #e3f2fd; color: #2196f3; border: 1px solid #90caf9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
+                                <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn w-100 d-flex align-items-center"
+                                    style="background-color: #e3f2fd; color: #2196f3; border: 1px solid #90caf9; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left; text-decoration: none;">
                                     <i class="fas fa-user-md me-3" style="font-size: 1.5rem;"></i>
                                     <div>
                                         <div class="fw-bold">Book Consultation with Additional Doctor</div>
                                         <small class="text-muted">Refer to a specialist of another profile</small>
                                     </div>
-                                </button>
+                                </a>
                             </div>
 
-                            <div class="col-12">
-                                <button class="btn w-100 d-flex align-items-center"
-                                    style="background-color: #f3e5f5; color: #9c27b0; border: 1px solid #ce93d8; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left;">
-                                    <i class="fas fa-vial me-3" style="font-size: 1.5rem;"></i>
-                                    <div>
-                                        <div class="fw-bold">Send for Tests</div>
-                                        <small class="text-muted">Create a referral for additional examinations</small>
-                                    </div>
-                                </button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -3556,12 +3540,12 @@
                                         Ready for next module
                                     </label>
                                 </div>
-                            </div>
-
-                            <div class="d-flex gap-2"> <button type="submit" class="btn btn-danger">
+                            </div>                            
+                            <div class="d-flex gap-2">
+                                <a href="https://odoo.proxy.abtollc.com/create-treatment-plan" class="btn btn-danger">
                                     <i class="fas fa-check me-2"></i>Complete diagnistic and go to creating treatment
                                     plan
-                                </button>
+                                </a>
                                 <button type="button" class="btn btn-outline-secondary" onclick="returnToPreviousTab()">
                                     Cancel
                                 </button>
