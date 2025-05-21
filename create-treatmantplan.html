@@ -80,13 +80,11 @@
             margin-bottom: 15px;
             position: relative;
         }
-
+        
         .module-in-plan .module-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: grab;
-            /* Change to grab cursor to indicate draggability */
         }
 
         .module-in-plan .module-title {
@@ -197,10 +195,7 @@
             background-color: #7C7BAD;
             color: white;
             border-color: #7C7BAD;
-        }
-
-        .reorder-handle {
-            cursor: grab;
+        }        .reorder-handle {
             color: #7C7BAD;
             margin-right: 10px;
         }
@@ -900,22 +895,8 @@
                 ],
                 tip: "Food is fuel for all the activities you love! Different foods provide different types of energy."
             }
-        };document.addEventListener('DOMContentLoaded', function () {            // Initialize Sortable.js for dragging modules in the plan container
+        };document.addEventListener('DOMContentLoaded', function () {            // No longer using Sortable.js for reordering - we'll use arrow buttons instead
             const treatmentPlanContainer = document.getElementById('treatmentPlanContainer');
-            new Sortable(treatmentPlanContainer, {
-                animation: 150,
-                handle: '.module-header',
-                ghostClass: 'sortable-ghost',
-                chosenClass: 'sortable-chosen',
-                dragClass: 'sortable-drag',
-                onStart: function (evt) {
-                    document.body.style.cursor = 'grabbing'; // Change cursor during drag
-                },
-                onEnd: function (evt) {
-                    document.body.style.cursor = 'auto'; // Reset cursor
-                    updatePlanNumbers();
-                }
-            });
 
             // Initialize dragging modules from the library
             const moduleItems = document.querySelectorAll('.module-item');
@@ -1053,6 +1034,28 @@
                                 <p>Drag modules from the list on the left to create a treatment plan</p>
                             </div>
                         `;
+                    }
+                }
+                
+                // Move module up
+                if (e.target.closest('.btn-move-up')) {
+                    const moduleInPlan = e.target.closest('.module-in-plan');
+                    const previousModule = moduleInPlan.previousElementSibling;
+                    
+                    if (previousModule && previousModule.classList.contains('module-in-plan')) {
+                        treatmentPlanContainer.insertBefore(moduleInPlan, previousModule);
+                        updatePlanNumbers();
+                    }
+                }
+                
+                // Move module down
+                if (e.target.closest('.btn-move-down')) {
+                    const moduleInPlan = e.target.closest('.module-in-plan');
+                    const nextModule = moduleInPlan.nextElementSibling;
+                    
+                    if (nextModule && nextModule.classList.contains('module-in-plan')) {
+                        treatmentPlanContainer.insertBefore(nextModule, moduleInPlan);
+                        updatePlanNumbers();
                     }
                 }
                   // Open the add exercise modal
@@ -1428,17 +1431,20 @@
                     moduleInPlan.className = 'module-in-plan';
                     moduleInPlan.setAttribute('data-module-id', moduleId);
 
-                    const moduleNumber = treatmentPlanContainer.children.length + 1;
-
-                    moduleInPlan.innerHTML = `                        <div class="module-header">
+                    const moduleNumber = treatmentPlanContainer.children.length + 1;                    moduleInPlan.innerHTML = `                        <div class="module-header">
                             <div>
-                                <i class="fas fa-grip-lines reorder-handle"></i>
+                                <i class="fas fa-grip-lines"></i>
                                 <span class="module-number me-2">${moduleNumber}.</span>
                                 <span class="module-title">${moduleTitle}</span>
                                 <div class="module-meta mt-1">
                                     <span class="tag">${getCategoryName(moduleCategory)}</span>
-                                </div>
-                            </div>                            <div class="module-controls">
+                                </div></div>                            <div class="module-controls">
+                                <button class="btn btn-outline-primary btn-sm btn-move-up me-1" title="Move up">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm btn-move-down me-1" title="Move down">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
                                 <button class="btn btn-outline-secondary btn-sm btn-toggle-exercises" title="Show/hide exercises">
                                     <i class="fas fa-chevron-down"></i>
                                 </button>

@@ -1,0 +1,683 @@
+<style>
+      /* Новий рядок для Treatment Progress і Contacts */
+      .bottom-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Рівні колонки */
+        gap: 1.5rem;
+        grid-column: span 2;
+        /* Займає всю ширину */
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-auto-rows: minmax(200px, auto);
+        gap: 1.5rem;
+      }
+
+      .dashboard-card {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        background: white;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .dashboard-card-header {
+        padding: 1rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .dashboard-card-body {
+        padding: 1rem;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .card-patients .dashboard-card-body,
+      .card-tasks .dashboard-card-body,
+      .card-calendar .dashboard-card-body {
+        max-height: 380px;
+      }
+
+      .card-patients {
+        background: #5a82ab;
+        color: #white;
+      }
+
+      .card-calendar {
+        background: #aba6c5;
+      }
+
+      .card-doctors {
+        background: #4873ac;
+        color: white;
+      }
+
+      .card-tasks {
+        background: #6096b0;
+        color: white;
+      }
+
+      .card-treatment {
+        background: #777696;
+        color: white;
+      }
+
+      .patient-card-header-2 {
+        position: relative;
+        overflow: visible;
+        padding: 0px 0px 0px 12px;
+        justify-content: space-between;
+        display: flex;
+        height: 10px;
+      }
+
+      .patient-age {
+        bottom: 100%;
+        display: inline-block;
+        font-size: 15px;
+        color: #888;
+        margin-left: 4px;
+        position: relative;
+        cursor: help;
+      }
+
+      .patient-age:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .clickable-row {
+        cursor: pointer;
+      }
+
+      .medication-link {
+        color: #2958ae;
+        text-decoration: underline;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s ease;
+      }
+
+      .medication-link:hover {
+        color: #143161;
+        text-decoration: none;
+      }
+
+      .medication-link i {
+        margin-left: 5px;
+        font-size: 14px;
+      }
+
+      .align-middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+
+      /* Patient cards styles */
+      .patient-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        background-color: white;
+        overflow: hidden;
+      }
+
+      .patient-card-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 15px;
+      }
+
+      .patient-card-body {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 15px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .patient-name {
+        font-weight: bold;
+        font-size: 16.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .patient-date {
+        font-size: 17px;
+      }
+
+      .patient-condition {
+        font-weight: bold;
+        font-size: 17px;
+        text-align: right;
+      }
+
+      .patient-description {
+        font-size: 16px;
+        color: #555;
+        text-align: right;
+      }
+
+      .consultation-icon {
+        display: inline-block;
+        margin-left: 8px;
+        position: relative;
+        cursor: help;
+      }
+
+      .consultation-icon i {
+        font-size: 16px;
+      }
+
+      .tooltip-text {
+        visibility: hidden;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 10px;
+        position: absolute;
+        z-index: 1000;
+        top: 50%;
+        left: 100%;
+        margin-left: 10px;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: normal;
+      }
+
+      .consultation-icon:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Search bar styles */
+      .search-container {
+        border-color: #2958ae;
+        padding: 0.8rem;
+        background-color: #2958ae;
+      }
+
+      .patient-search {
+        width: 100%;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 20px;
+        background-color: white;
+        color: #333;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .patient-search:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        background-color: white;
+      }
+
+      .patient-search::placeholder {
+        color: #888;
+        font-style: italic;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+      }
+
+      .search-wrapper {
+        color: white !important;
+        margin-top: 30px;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Appointment clickable styles */
+      .list-group-item a.appointment-link {
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+      }
+
+      .list-group-item a.appointment-link:hover {
+        background-color: rgba(41, 88, 174, 0.05);
+        border-left: 3px solid #2958ae;
+      }
+      .list-group-item a.appointment-link:active {
+        background-color: rgba(41, 88, 174, 0.1);
+      }
+
+      /* Specialist icon styles */
+      .specialist-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #eaecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        color: #143161;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+      }
+
+      .specialist-icon i {
+        font-size: 18px;
+      }
+
+      .specialist-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .specialist-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .specialist-message-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #e1ebf7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2958ae;
+        margin-left: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .specialist-message-icon:hover {
+        background-color: #2958ae;
+        color: white;
+        transform: scale(1.1);
+      }
+      .contact {
+        background-color: #585b71;
+      }
+    </style>
+
+<div class="container o_container_fluid py-5">
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+            <div class="dashboard-card-header card-patients">
+                <h3 class="mb-0">My Patients</h3>
+                <div class="search-wrapper">
+                    <input type="text" class="patient-search" id="patientSearch" placeholder="Search patients by name, condition, or age..." autocomplete="off">
+                    <i class="fa fa-search search-icon"></i>
+                </div>
+            </div>
+           
+            <div class="dashboard-card-body">
+                <div class="patient-card">
+                    <div class="patient-card-header">
+                        <div class="patient-name">
+                            <a href="https://odoo.proxy.abtollc.com/psychotherapist-new-page-2" class="clickable-row medication-link">Albert Rudenko</a>
+                            <span class="consultation-icon">
+                                <i class="fa fa-user"></i>
+                                <span class="tooltip-text">Personal consultation</span>
+                            </span>
+                        </div>
+                        <div class="patient-condition">Condition: Moderate Anxiety</div>
+                    </div>
+
+                    <div class="patient-card-header-2">
+                        <span class="patient-age">Age 15
+                        </span>
+                    </div>
+
+                    <div class="patient-card-body">
+                        <div class="patient-date">Therapy</div>
+                        <div class="patient-description">Advanced Emotion Mapping</div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="patient-card">
+                    <div class="patient-card-header">
+                        <div class="patient-name">
+                            <a href="https://odoo.proxy.abtollc.com/diagnostic-session-36" class="clickable-row medication-link">Anastasia Melnyk</a>
+                            <span class="consultation-icon">
+                                <i class="fa fa-users"></i>
+                                <span class="tooltip-text">Group consultation with parents</span>
+                            </span>
+                        </div>
+                        <div class="patient-condition">Condition: Eating disorders</div>
+                    </div>
+
+                    <div class="patient-card-header-2">
+                        <span class="patient-age">Age 14
+                        </span>
+                    </div>
+                    <div class="patient-card-body">
+                        <div class="patient-date">Diagnostics</div>
+                        <div class="patient-description">Trauma recovery from accident</div>
+
+                    </div>
+                </div>
+
+                <div class="patient-card">
+                    <div class="patient-card-header">
+                        <div class="patient-name">
+                            <a href="https://odoo.proxy.abtollc.com/psychotherapist-child-17" class="clickable-row medication-link">Orest Burak</a>
+                            <span class="consultation-icon">
+                                <i class="fa fa-user-plus"></i>
+                                <span class="tooltip-text">Mixed consultation</span>
+                            </span>
+                        </div>
+                        <div class="patient-condition">Condition: Depression</div>
+                    </div>
+
+
+                    <div class="patient-card-header-2">
+                        <span class="patient-age">Age 15
+                        </span>
+                    </div>
+
+                    <div class="patient-card-body">
+                        <div class="patient-date">Therapy</div>
+                        <div class="patient-description">Lack of motivation and fatigue</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-card-header card-calendar d-flex justify-content-center align-items-center">
+                <h3 class="mb-0">Today's Appointments</h3>
+            </div>
+
+
+            <div class="dashboard-card-body">                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-0">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/calendar/calendar.event/50" class="appointment-link">
+                            <strong>10:00 AM – Albert Rudenko</strong>
+                            <p class="mb-1 small text-muted">Medication review and side effect assessment</p>
+                            <small class="text-success fw-bold">Confirmed</small>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item text-center text-muted">
+                        <em>01:00 PM – Lunch Break</em>
+                    </li>
+                    <li class="list-group-item p-0">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/calendar/calendar.event/51" class="appointment-link">
+                            <strong>03:30 PM – Anastasia Melnyk</strong>
+                            <p class="mb-1 small text-muted">Medication consultation and prescription</p>
+                            <small class="text-danger fw-bold">Emergency</small>
+                        </a>
+                    </li>
+                    <li class="list-group-item p-0">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/calendar/calendar.event/52" class="appointment-link">
+                            <strong>05:00 PM – Alice Koval</strong>
+                            <p class="mb-1 small text-muted">Medication consultation and prescription</p>
+                            <small class="text-warning fw-bold">Pending</small>
+                        </a>
+                    </li>
+                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary" role="button">
+                        View All
+                    </a>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="dashboard-card-header card-tasks">
+            <h3 class="mb-0">Daily Tasks</h3>
+        </div>
+        <div class="dashboard-card-body">
+            <div class="mb-3">
+                <div class="progress" style="height: 20px;">
+                    <div id="taskProgressBar" class="progress-bar bg-info" role="progressbar" style="width: 0%">
+                        0%
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group text-start" id="taskList">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input class="form-check-input me-2" type="checkbox" onchange="updateTaskProgress(event)">
+                        Review notes from yesterday's session with Albert
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" class="btn btn-m btn-secondary contact">Contact</a>
+                        <a href="/odoo/to-do/8" class="btn btn-m btn-primary">Details</a>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input class="form-check-input me-2" type="checkbox" onchange="updateTaskProgress(event)">
+                        Prepare therapy materials for Orest
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/contacts/7" class="btn btn-m btn-secondary contact">Contact</a>
+                        <a href="/odoo/to-do/9" class="btn btn-m btn-primary">Details</a>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input class="form-check-input me-2" type="checkbox" onchange="updateTaskProgress(event)">
+                        Update observation for Anastasia Melnuk
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/contacts/35" class="btn btn-m btn-secondary contact">Contact</a>
+                        <a href="/odoo/to-do/10" class="btn btn-m btn-primary">Details</a>
+                    </div>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input class="form-check-input me-2" type="checkbox" onchange="updateTaskProgress(event)">
+                        Make family consultation for Anastasia Melnuk
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/contacts/32" class="btn btn-m btn-secondary contact">Contact</a>
+                        <a href="/odoo/to-do/12" class="btn btn-m btn-primary">Details</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bottom-row">
+        <div class="dashboard-card">
+            <div class="dashboard-card-header card-treatment">
+                <h3 class="mb-0" style="color: white !important">Treatment Progress</h3>
+            </div>
+            <div class="dashboard-card-body p-0">
+                <table class="table table-sm m-0">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Concern</th>
+                            <th>Stage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>Albert Rudenko</td>
+                            <td>Anxiety</td>
+                            <td><span class="badge bg-success">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td>Anastasia Melnyk</td>
+                            <td>Eating disorders</td>
+                            <td><span class="badge bg-success">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td>Orest Burak</td>
+                            <td>Behavioral disorders</td>
+                            <td><span class="badge bg-success">In Progress</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dashboard-card">
+            <div class="dashboard-card-header card-doctors">
+                <h3 class="mb-0">Clinical Team</h3>
+            </div>
+            <div class="dashboard-card-body">
+                <ul class="list-group">                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="specialist-container" style="text-decoration: none; color: inherit;">
+                            
+                            <div class="specialist-info">
+                                <span>Dr. Adam Storm <small class="text-muted">• Psychiatrist</small></span>
+                            </div>
+                        </a>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="btn btn-m btn-primary" title="Message Dr. Adam Storm">
+                            Send message
+                        </a>
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/4" class="specialist-container" style="text-decoration: none; color: inherit;">
+                            
+                            <div class="specialist-info">
+                                <span>Dr. Anna Grey <small class="text-muted">• Psychotherapist</small></span>
+                            </div>
+                        </a>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/4" class="btn btn-m btn-primary" title="Message Dr. Anna Grey">
+                            Send message
+                        </a>
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/5" class="specialist-container" style="text-decoration: none; color: inherit;">
+                            
+                            <div class="specialist-info">
+                                <span>Dr. David West <small class="text-muted">• Psychotherapist</small></span>
+                            </div>
+                        </a>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/5" class="btn btn-m btn-primary" title="Message Dr. David West">
+                            Send message
+                        </a>
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/6" class="specialist-container" style="text-decoration: none; color: inherit;">
+                           
+                            <div class="specialist-info">
+                                <span>Dr. Julia Lane <small class="text-muted">• Psychiatrist</small></span>
+                            </div>
+                        </a>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/6" class="btn btn-m btn-primary" title="Message Dr. Julia Lane">
+                            Send message
+                        </a>
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/8" class="specialist-container" style="text-decoration: none; color: inherit;">
+                            
+                            <div class="specialist-info">
+                                <span>Eva Wolf <small class="text-muted">• Case Manager</small></span>
+                            </div>
+                        </a>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/8" class="btn btn-m btn-primary" title="Message Eva Wolf">
+                            Send message
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="text-start d-none" id="page-guide">
+    <p>This tab is tailored for psychotherapists and provides a detailed overview of therapy-related tasks,
+        sessions, and
+        patient progress.
+    </p>
+    <p><b>Key Sections:</b></p>
+
+    <p><b>My Patients Table:</b></p>
+    Displays a list of patients assigned to the psychotherapist.
+
+    <p>Click on <b>a patient’s name</b> to open their individual treatment page, where therapy modules are
+        structured
+        according to the
+        treatment protocol.</p>
+
+    <p><b>Treatment Progress Table:</b></p>
+    <p>Tracks each patient’s progress throughout the course of their therapy. This includes session outcomes,
+        completed steps,
+        and status updates.</p>
+
+    <p><b>Today’s Sessions Table:</b></p>
+    <p>Lists all sessions scheduled for the current day, helping the therapist manage their time and prepare
+        accordingly.</p>
+
+    <p><b>Daily Tasks Table:</b></p>
+    <p>Shows tasks assigned for the day.</p>
+
+    <p>The <b>"Contacts"</b> button redirects to the patient’s profile page.</p>
+
+    <p>The <b>"Details"</b> button opens a section with review notes from yesterday’s sessions, allowing for
+        reflection
+        and continuity
+        of care.</p>
+
+    <p><b>Clinical Team:</b></p>
+    <p>Lists key contacts relevant to patient support, including assigned doctors and the case manager, along with
+        their
+        contact information. <br>Clicking on a <b>clinician's name</b> opens their personal profile, which includes
+        details, contact information, areas of expertise, and availability.</p>
+</div>
+
+
+<script>
+    function updateTaskProgress(e) {
+        e.stopPropagation();
+        const checkboxes = document.querySelectorAll('#taskList input[type="checkbox"]');
+        const completed = [...checkboxes].filter(cb => cb.checked).length;
+        const total = checkboxes.length;
+        const percent = Math.round((completed / total) * 100) * 2;
+
+        const bar = document.getElementById('taskProgressBar');
+        const bar1 = document.getElementById('taskProgressBar1');
+        bar.style.width = percent + '%';
+        bar.textContent = percent + '%';
+        bar1.style.width = percent + '%';
+        bar1.textContent = percent + '%';
+    }
+
+    document.addEventListener("DOMContentLoaded", updateTaskProgress);
+</script>
