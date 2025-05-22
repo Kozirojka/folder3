@@ -312,15 +312,40 @@
         margin-left: 10px;
         cursor: pointer;
         transition: all 0.2s ease;
-      }
-
-      .specialist-message-icon:hover {
+      }      .specialist-message-icon:hover {
         background-color: #2958ae;
         color: white;
         transform: scale(1.1);
       }
       .contact {
         background-color: #585b71;
+      }
+      
+      /* Message icon styles */
+      .message-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #4873ac;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .message-icon:hover {
+        background-color: #5a87c5;
+        transform: scale(1.1);
+      }
+      
+      .message-icon i {
+        font-size: 18px;
+      }
+      
+      .message-icon-link {
+        text-decoration: none;
       }
     </style>
 
@@ -554,15 +579,18 @@
                 <h3 class="mb-0">Clinical Team</h3>
             </div>
             <div class="dashboard-card-body">
-                <ul class="list-group">                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <ul class="list-group">                      
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="specialist-container" style="text-decoration: none; color: inherit;">
                             
                             <div class="specialist-info">
                                 <span>Dr. Adam Storm <small class="text-muted">• Psychiatrist</small></span>
                             </div>
                         </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="btn btn-m btn-primary" title="Message Dr. Adam Storm">
-                            Send message
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="message-icon-link" title="Message Dr. Adam Storm">
+                            <div class="message-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
                         </a>
                     </li>
                     
@@ -573,8 +601,10 @@
                                 <span>Dr. Anna Grey <small class="text-muted">• Psychotherapist</small></span>
                             </div>
                         </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/4" class="btn btn-m btn-primary" title="Message Dr. Anna Grey">
-                            Send message
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/4" class="message-icon-link" title="Message Dr. Anna Grey">
+                            <div class="message-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
                         </a>
                     </li>
                     
@@ -585,8 +615,10 @@
                                 <span>Dr. David West <small class="text-muted">• Psychotherapist</small></span>
                             </div>
                         </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/5" class="btn btn-m btn-primary" title="Message Dr. David West">
-                            Send message
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/5" class="message-icon-link" title="Message Dr. David West">
+                            <div class="message-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
                         </a>
                     </li>
                     
@@ -597,8 +629,10 @@
                                 <span>Dr. Julia Lane <small class="text-muted">• Psychiatrist</small></span>
                             </div>
                         </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/6" class="btn btn-m btn-primary" title="Message Dr. Julia Lane">
-                            Send message
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/6" class="message-icon-link" title="Message Dr. Julia Lane">
+                            <div class="message-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
                         </a>
                     </li>
                     
@@ -609,8 +643,10 @@
                                 <span>Eva Wolf <small class="text-muted">• Case Manager</small></span>
                             </div>
                         </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/8" class="btn btn-m btn-primary" title="Message Eva Wolf">
-                            Send message
+                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/8" class="message-icon-link" title="Message Eva Wolf">
+                            <div class="message-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
                         </a>
                     </li>
                 </ul>

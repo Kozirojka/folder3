@@ -1499,11 +1499,9 @@
         margin-bottom: 0;
         width: 100%;
         box-shadow: 0 2px 10px rgba(160, 132, 232, 0.1);
-      }
-
-      .notes-table thead th {
-        background-color: #f3eafe;
-        color: #6a3eaf;
+      }      .notes-table thead th {
+        background-color: #9384a3; /* Match our main color #9384a3 */
+        color: #ffffff;
         font-weight: 600;
         padding: 15px 20px;
         border: none;
@@ -1545,15 +1543,13 @@
       .notes-table tbody tr:hover .category-cell {
         color: #7c4dff;
         font-weight: 600;
-      }
-
-      .category-cell {
+      }      .category-cell {
         font-weight: 500;
-        color: #6a3eaf;
-        background-color: #fafafa;
+        color: #ffffff;
+        background-color: #9384a3; /* Primary color for category cells */
         padding: 15px 20px;
         border: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #a797b6;
         width: 25%;
         transition: all 0.3s ease;
       }
@@ -1563,34 +1559,46 @@
         padding: 15px 20px;
         border: none;
         border-bottom: 1px solid #eee;
+        background-color: #f8f5ff; /* Light purple background for content cells */
         transition: all 0.3s ease;
         width: 75%;
-      }
-
-      .cell-content {
+      }.cell-content {
         min-height: 40px;
         padding: 5px 0;
         line-height: 1.5;
+        margin-right: 45px; /* Add space for the edit button */
       }
 
       .edit-btn {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        color: #a084e8;
-        opacity: 0;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background-color: #f3eafe;
+        border: 1px solid #d1c4e9;
+        color: #7c4dff;
+        opacity: 0.85;
         transition: all 0.3s ease;
         cursor: pointer;
-        padding: 5px;
-        border-radius: 4px;
+        padding: 8px;
+        border-radius: 6px;
         z-index: 2;
+        box-shadow: 0 2px 4px rgba(124, 77, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .edit-btn i {
+        font-size: 16px;
       }
 
       .edit-btn:hover {
-        background-color: #f3eafe;
-        transform: scale(1.1);
+        background-color: #7c4dff;
+        color: white;
+        transform: translateY(-50%) scale(1.1);
+        opacity: 1;
+        box-shadow: 0 3px 6px rgba(124, 77, 255, 0.25);
       }
 
       .editable-cell:hover .edit-btn {
@@ -2151,7 +2159,7 @@
 
         <div class="flex-grow-1"></div>
         <button class="horizontal-tab treatment-plan" onclick="showModule('treatment')">
-          <i class="fas fa-clipboard-list me-2"></i> Session history
+          <i class="fas fa-clipboard-list me-2"></i> Treatment Plan
         </button>
       </div>
 
@@ -2164,14 +2172,11 @@
               border-radius: 1rem;
               padding: 2rem 1rem;
             ">
-            <h4 class="mb-2" style="color: #7c4dff">
-              <i class="bi bi-exclamation-circle me-2"></i>Session history
-            </h4>
             <div style="color: #a084e8; font-size: 1.1rem">
-              No treatment plan has been created yet.
+              The treatment module will appear here after the end of the diagnostic module.
             </div>
             <div class="mt-2" style="color: #b39ddb">
-              Please add or select a treatment plan for this patient.
+              Please end diagnostic module to proceed with treatment.
             </div>
           </div>
         </div>
@@ -2332,9 +2337,6 @@
                   border-radius: 1rem;
                   padding: 2rem 1rem;
                 ">
-                <h4 class="mb-2" style="color: #7c4dff">
-                  <i class="bi bi-exclamation-circle me-2"></i>Treatment Plan
-                </h4>
                 <div style="color: #a084e8; font-size: 1.1rem">
                   Session history will appear here after the first session.
                 </div>
@@ -3531,7 +3533,7 @@
                 </div>
                 <div class="d-flex gap-2">
                   <a href="https://odoo.proxy.abtollc.com/create-treatment-plan" class="btn btn-danger">
-                    <i class="fas fa-check me-2"></i>Complete diagnistic and go to
+                    <i class="fas fa-check me-2"></i>Complete diagnostic and go to
                     creating treatment plan
                   </a>
                   <button type="button" class="btn btn-outline-secondary" onclick="returnToPreviousTab()">
@@ -3658,16 +3660,17 @@
             content.style.display = "block";
             editBtn.style.display = "block";
           });
-        });
-
-        // Стилізація кнопок редагування
+        });        // Стилізація кнопок редагування для підвищення видимості
         document.querySelectorAll(".edit-btn").forEach((btn) => {
-          btn.style.opacity = "0.6";
+          // Не приховувати кнопки, початкова видимість вище
+          btn.style.opacity = "0.85";
           btn.addEventListener("mouseenter", function () {
             this.style.opacity = "1";
+            this.style.transform = "translateY(-50%) scale(1.1)";
           });
           btn.addEventListener("mouseleave", function () {
-            this.style.opacity = "0.6";
+            this.style.opacity = "0.85";
+            this.style.transform = "translateY(-50%)";
           });
         });
 
