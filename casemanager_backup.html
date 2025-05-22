@@ -128,52 +128,6 @@
         background-color: #c4503c !important;
         color: white !important;
     }
-
-    .search-container {
-        border-color: #931984;
-        padding: 0.8rem;
-        background-color: #9d5daa;
-      }
-
-      .patient-search {
-        width: 100%;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 20px;
-        background-color: white;
-        color: #333;
-        font-size: 14px;
-        transition: all 0.3s ease;
-      }
-
-      .patient-search:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-        background-color: white;
-      }
-
-      .patient-search::placeholder {
-        color: #888;
-        font-style: italic;
-      }
-
-      .search-icon {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #888;
-      }
-
-      .search-wrapper {
-        color: white !important;
-        margin-top: 30px;
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-
-
 </style>
 
 <div class="container my-5">
@@ -264,16 +218,10 @@
                     </tbody>
                 </table>
             </div>
-        </div>          
+        </div>
+
         <div class="dashboard-card full-row">
-            <div style="background-color: #6096b0; border-radius: 16px 16px 0 0;">
-                <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">🩺 In Treatment Patients</div>
-                <div style="padding: 10px 15px 15px; position: relative;">
-                    <input type="text" class="patient-search" id="patientSearch" placeholder="Search patients" autocomplete="off" style="width: 100%; padding: 8px 32px 8px 12px; border: none; border-radius: 20px;">
-                    <i class="fa fa-search search-icon" style="position: absolute; right: 25px; top: 50%; transform: translateY(-50%); color: #777;"></i>
-                </div>
-            </div>
-                
+            <div class="dashboard-card-header card-treatment" style="color: white !important;">🩺 In Treatment Patients</div>
             <div class="dashboard-card-body">
 
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
@@ -285,7 +233,11 @@
                             <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="all">All Statuses</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Attending">Attending</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Missed Appointment">Missed Appointment</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Upcoming appointment">Upcoming appointment</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Taking Medicine">Taking Medicine</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Missed Taking Medicine">Missed Taking Medicine</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Improvement">Improvement</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Stable">Stable</button></li>
+                            <li><button class="dropdown-item filter-option" data-filter-group="status" data-filter-value="Deterioration">Deterioration</button></li>
                         </ul>
                     </div>
 
@@ -297,7 +249,6 @@
                             <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="all">All Phases</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Therapy">Therapy</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Medication">Medication</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Therapy & Medication">Therapy & Medication</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="phase" data-filter-value="Observation">Observation</button></li>
                         </ul>
                     </div>
@@ -311,8 +262,6 @@
                             <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Emily Carter">Dr. Adam Storm</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Raj Patel">Dr. David West</button></li>
                             <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Lin Zhao">Dr. Julia Lane</button></li>
-                            <li><button class="dropdown-item filter-option" data-filter-group="doctor" data-filter-value="Dr. Lin Zhao">Dr. Krystyna Ross</button></li>
-
                         </ul>
                     </div>
 
@@ -327,112 +276,30 @@
                     <table class="table table-sm table-hover align-middle mb-0" id="treatmentPatientsTable">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">Status of appointment</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Treatment Phase</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Age</th>
                                 <th scope="col">Assigned Doctor</th>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>                            
-                            <tr data-phase="Therapy & Medication" data-status="Missed Appointment" data-doctor="Dr. Adam Storm">
+                        <tbody>
+                            <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
                                         <div>Missed Appointment</div>
                                     </div>
                                 </td>
-                                <td>Therapy & Medication</td>
+                                <td>Therapy</td>
                                 <td>Albert Rudenko</td>
                                 <td>15</td>
-                                <td>Dr. Krystyna Ross</td>
-                                <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" class="btn btn-primary btn-m">Details</a>
+                                <td>Dr. Adam Storm</td>
+                                <td><a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" class="btn btn-primary btn-m">Details</a>
                                 </td>
-                                <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary btn-m">Book appointment</a>
-                                </td>
-                            </tr>    
-
-                            <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Krystyna Ross">
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
-                                        <div>Missed Appointment</div>
-                                    </div>
-                                </td>
-                                <td>Therapy</td>
-                                <td>Orest Burak</td>
-                                <td>15</td>
-                                <td>Dr. Krystyna Ross</td>
-                                <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/17" class="btn btn-primary btn-m">Details</a>
-                                </td>
-                                <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary btn-m">Book appointment</a>
-                                </td>
-                            </tr>  
-                            
-                            <tr data-phase="Medication" data-status="Missed Appointment" data-doctor="Dr. David West">
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
-                                        <div>Missed Appointment</div>
-                                    </div>
-                                </td>
-                                <td>Medication</td>
-                                <td>Anastasia Melnyk</td>
-                                <td>14</td>
-                                <td>Dr. David West</td>
-                                <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/36" class="btn btn-primary btn-m">Details</a>
-                                </td>
-                                <td>
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary btn-m">Book appointment</a>
-                                </td>
-                            </tr>        
-
-                            <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. David West">
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Attending"></div>
-                                        <div>Attending</div>
-                                    </div>
-                                </td>
-                                <td>Therapy</td>
-                                <td>Walter Moroz</td>
-                                <td>10</td>
-                                <td>Dr. David West</td>
-                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
-                            </tr>              
-
-                            <tr data-phase="Observation" data-status="Missed Appointment" data-doctor="Dr. Julia Lane">
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
-                                        <div>Missed Appointment</div>
-                                    </div>
-                                </td>
-                                <td>Observation</td>
-                                <td>Lev Kozak</td>
-                                <td>15</td>
-                                <td>Dr. Julia Lane</td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Details</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
-                            </tr>  
-
-
-
-                            <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Julia Lane">
+                            </tr>
+                            <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Lin Zhao">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
@@ -444,19 +311,16 @@
                                 <td>14</td>
                                 <td>Dr. Julia Lane</td>
                                 <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Details</button>
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/22" class="btn btn-primary btn-m">
+                                        Details
+                                    </a>
                                 </td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
-                            </tr>    
-                            
-
-                            <tr data-phase="Medication" data-status="Missed Appointment" data-doctor="Dr. David West">
+                            </tr>
+                            <tr data-phase="Medication" data-status="Missed Taking Medicine" data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
-                                        <div>Missed Appointment</div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Taking Medicine"></div>
+                                        <div>Missed Taking Medicine</div>
                                     </div>
                                 </td>
                                 <td>Medication</td>
@@ -464,34 +328,64 @@
                                 <td>10</td>
                                 <td>Dr. David West</td>
                                 <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Details</button>
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/contacts/21" class="btn btn-primary btn-m">
+                                        Details
+                                    </a>
                                 </td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
-                            </tr>                            
-                                                     
-                            <tr data-phase="Observation" data-status="Missed Appointment" data-doctor="Dr. Adam Storm">
+                            </tr>
+                            <tr data-phase="Observation" data-status="Deterioration" data-doctor="Dr. Lin Zhao">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Appointment"></div>
-                                        <div>Missed Appointment</div>
+                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Deterioration"></div>
+                                        <div>Deterioration</div>
+                                    </div>
+                                </td>
+                                <td>Observation</td>
+                                <td>Lev Kozak</td>
+                                <td>13</td>
+                                <td>Dr. David West</td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
+                            </tr>
+                            <tr data-phase="Observation" data-status="Deterioration" data-doctor="Dr. Emily Carter">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Deterioration"></div>
+                                        <div>Deterioration</div>
                                     </div>
                                 </td>
                                 <td>Observation</td>
                                 <td>Anton Melnyk</td>
                                 <td>12</td>
                                 <td>Dr. Adam Storm</td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
+                            </tr>
+                            <tr data-phase="Medication" data-status="Missed Taking Medicine" data-doctor="Dr. Raj Patel">
                                 <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Details</button>
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle bg-danger d-inline-block me-2" style="width: 16px; height: 16px;" title="Missed Taking Medicine"></div>
+                                        <div>Missed Taking Medicine</div>
+                                    </div>
                                 </td>
+                                <td>Medication</td>
+                                <td>Anastasia Melnyk</td>
+                                <td>14</td>
+                                <td>Dr. David West</td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
+                            </tr>
+                            <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. Raj Patel">
                                 <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Attending"></div>
+                                        <div>Attending</div>
+                                    </div>
                                 </td>
-                            </tr>                            
-                                                
-                                          
-                            <tr data-phase="Therapy" data-status="Upcoming appointment" data-doctor="Dr. David West">
+                                <td>Therapy</td>
+                                <td>Walter Moroz</td>
+                                <td>17</td>
+                                <td>Dr. David Westl</td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
+                            </tr>
+                            <tr data-phase="Therapy" data-status="Upcoming appointment" data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle bg-warning d-inline-block me-2" style="width: 16px; height: 16px;" title="Upcoming appointment"></div>
@@ -503,12 +397,8 @@
                                 <td>17</td>
                                 <td>Dr. David West</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
-                            </tr>   
-
-                            <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. Adam Storm">
+                            </tr>
+                            <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Attending"></div>
@@ -520,16 +410,12 @@
                                 <td>16</td>
                                 <td>Dr. Adam Storm</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
                             </tr>
-
-                            <tr data-phase="Medication" data-status="Missed Appointmente" data-doctor="Dr. Emily Carter">
+                            <tr data-phase="Medication" data-status="Taking Medicine" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Taking Medicine"></div>
-                                        <div>Missed Appointment</div>
+                                        <div>Taking Medicine</div>
                                     </div>
                                 </td>
                                 <td>Medication</td>
@@ -537,16 +423,25 @@
                                 <td>12</td>
                                 <td>Dr. Adam Storm</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
                             </tr>
-                            
+                            <tr data-phase="Medication" data-status="Taking Medicine" data-doctor="Dr. Lin Zhao">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle bg-success d-inline-block me-2" style="width: 16px; height: 16px;" title="Taking Medicine"></div>
+                                        <div>Taking Medicine</div>
+                                    </div>
+                                </td>
+                                <td>Medication</td>
+                                <td>Albert Rudenko</td>
+                                <td>18</td>
+                                <td>Dr. Julia Lane</td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
+                            </tr>
                             <tr data-phase="Observation" data-status="Stable" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle bg-warning d-inline-block me-2" style="width: 16px; height: 16px;" title="Stable"></div>
-                                        <div>Upcoming appointment</div>
+                                        <div>Stable</div>
                                     </div>
                                 </td>
                                 <td>Observation</td>
@@ -554,12 +449,7 @@
                                 <td>11</td>
                                 <td>Dr. Adam Storm</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
                             </tr>
-
-
                             <tr data-phase="Observation" data-status="Improvement" data-doctor="Dr. Raj Patel">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -572,24 +462,28 @@
                                 <td>16</td>
                                 <td>Dr. David West</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
-                                <td>
-                                    <button class="btn btn-primary btn-m" disabled="">Book appointment</button>
-                                </td>
                             </tr>
-                             
+                            <tr data-phase="Observation" data-status="Stable" data-doctor="Dr. Raj Patel" class="patient-row-stable">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle bg-warning d-inline-block me-2" style="width: 16px; height: 16px;" title="Stable"></div>
+                                        <div>Stable</div>
+                                    </div>
+                                </td>
+                                <td>Observation</td>
+                                <td>Albert Rudenko</td>
+                                <td>15</td>
+                                <td>Dr. David West</td>
+                                <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>        <div class="dashboard-card full-row">
-            <div style="background-color: #6096b0; border-radius: 16px 16px 0 0;">
-                <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">
-                    🆕 New Patients request
-                </div>
-                <div style="padding: 10px 15px 15px; position: relative;">
-                    <input type="text" class="patient-search" id="newPatientSearch" placeholder="Search new patients request" autocomplete="off" style="width: 100%; padding: 8px 32px 8px 12px; border: none; border-radius: 20px;">
-                    <i class="fa fa-search search-icon" style="position: absolute; right: 25px; top: 50%; transform: translateY(-50%); color: #777;"></i>
-                </div>
+        </div>
+        <div class="dashboard-card full-row">
+            <div class="dashboard-card-header card-patients" style="background-color: #6096b0; color: white;">
+                🆕 New Patients
             </div>
             <div class="dashboard-card-body">
                 <table class="table table-hover" id="newPatientsTable">
@@ -838,10 +732,9 @@
                 </div>
             </div>
         </div>
-
         <div class="dashboard-card col-span-2">
             <div class="dashboard-card-header card-patients" style="background-color: #5a82ab; color: white;">
-                🧑‍⚕️ Doctors / Specialists
+                🧑‍⚕️ Doctors
             </div>
             <div class="dashboard-card-body">
                 <input type="text" class="form-control mb-3" id="doctorSearch" placeholder="Search for a doctor...">
@@ -871,6 +764,41 @@
                 </ul>
             </div>
         </div>
+
+        <div class="dashboard-card col-span-2">
+            <div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header card-calendar">📅 Appointments</div>
+                    <div class="dashboard-card-body">
+                        <p>Schedule an appointment:</p>
+                        <div class="mb-2">
+                            <label class="form-label">Select Date:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Choose Doctor:</label>
+                            <select class="form-control">
+                                <option>Dr.Anna Grey</option>
+                                <option>Dr.Julia Lane</option>
+                                <option>Dr.Adam Storm</option>
+                                <option>Dr.David West</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Choose Patient:</label>
+                            <select class="form-control">
+                                <option>Albert Rudenko</option>
+                                <option>Ivan Koval</option>
+                                <option>Anastasia Melnyk</option>
+                            </select>
+                        </div>
+                        <a href="https://odoo.proxy.abtollc.com/odoo/calendar" class="btn btn-primary w-100 mt-2">Book
+                            Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -1071,10 +999,11 @@
                     const rowPhase = row.dataset.phase;
                     const rowDoctor = row.dataset.doctor;
 
-                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null;                    const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
-                    const phaseMatch = (currentFilters.phase === 'all' || 
-                                      currentFilters.phase === rowPhase || 
-                                      (currentFilters.phase === 'Therapy & Medication' && rowPhase === 'Therapy & Medication'));
+                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null;
+
+
+                    const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
+                    const phaseMatch = (currentFilters.phase === 'all' || currentFilters.phase === rowPhase);
                     const doctorMatch = (currentFilters.doctor === 'all' || currentFilters.doctor === rowDoctor);
 
                     const checkboxAllows = (showAllChecked || !isGreen); // Row is allowed if checkbox is checked OR if the row is not green
