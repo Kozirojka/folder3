@@ -120,12 +120,10 @@
     .dropdown-menu {
         min-width: 200px;
     }
-
     .in-progress {
         background-color: #7bbb6a !important;
         color: white !important;
     }
-
     .urgent {
         background-color: #c4503c !important;
         color: white !important;
@@ -135,9 +133,9 @@
         border-color: #931984;
         padding: 0.8rem;
         background-color: #9d5daa;
-    }
+      }
 
-    .patient-search {
+      .patient-search {
         width: 100%;
         padding: 8px 12px;
         border: none;
@@ -146,34 +144,36 @@
         color: #333;
         font-size: 14px;
         transition: all 0.3s ease;
-    }
+      }
 
-    .patient-search:focus {
+      .patient-search:focus {
         outline: none;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
         background-color: white;
-    }
+      }
 
-    .patient-search::placeholder {
+      .patient-search::placeholder {
         color: #888;
         font-style: italic;
-    }
+      }
 
-    .search-icon {
+      .search-icon {
         position: absolute;
         right: 12px;
         top: 50%;
         transform: translateY(-50%);
         color: #888;
-    }
+      }
 
-    .search-wrapper {
+      .search-wrapper {
         color: white !important;
         margin-top: 30px;
         position: relative;
         display: flex;
         align-items: center;
-    }
+      }
+
+
 </style>
 
 <div class="container my-5">
@@ -264,17 +264,16 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>          
         <div class="dashboard-card full-row">
             <div style="background-color: #6096b0; border-radius: 16px 16px 0 0;">
-                <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">🩺 In
-                    Treatment Patients</div>
+                <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">🩺 In Treatment Patients</div>
                 <div style="padding: 10px 15px 15px; position: relative;">
                     <input type="text" class="patient-search" id="patientSearch" placeholder="Search patients" autocomplete="off" style="width: 100%; padding: 8px 32px 8px 12px; border: none; border-radius: 20px;">
                     <i class="fa fa-search search-icon" style="position: absolute; right: 25px; top: 50%; transform: translateY(-50%); color: #777;"></i>
                 </div>
             </div>
-
+                
             <div class="dashboard-card-body">
 
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
@@ -337,7 +336,7 @@
                                 <th scope="col">Book appointment</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>                            
                             <tr data-phase="Therapy &amp; Medication" data-status="Missed Appointment" data-doctor="Dr. Adam Storm">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -359,7 +358,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr>     
 
                             <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Krystyna Ross">
                                 <td>
@@ -382,8 +381,8 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
-
+                            </tr>  
+                            
                             <tr data-phase="Medication" data-status="Missed Appointment" data-doctor="Dr. David West">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -405,7 +404,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr>        
 
                             <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. David West">
                                 <td>
@@ -426,7 +425,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr>              
 
                             <tr data-phase="Observation" data-status="Missed Appointment" data-doctor="Dr. Julia Lane">
                                 <td>
@@ -449,7 +448,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr>  
 
 
 
@@ -468,14 +467,14 @@
                                     <button class="btn btn-primary btn-m" disabled="">Details</button>
                                 </td>
                                 <td class="text-center">
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
-                                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
-                                            <i class="fa fa-calendar" style="color: white;"></i>
-                                        </div>
-                                    </a>
-                                </td>
-                            </tr>
-
+    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
+        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
+            <i class="fa fa-calendar" style="color: white;"></i>
+        </div>
+    </a>
+</td>
+                            </tr>    
+                            
 
                             <tr data-phase="Medication" data-status="Missed Appointment" data-doctor="Dr. David West">
                                 <td>
@@ -498,8 +497,8 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
-
+                            </tr>                            
+                                                     
                             <tr data-phase="Observation" data-status="Missed Appointment" data-doctor="Dr. Adam Storm">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -514,16 +513,16 @@
                                 <td>
                                     <button class="btn btn-primary btn-m" disabled="">Details</button>
                                 </td>
-                                <td class="text-center">
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
-                                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
-                                            <i class="fa fa-calendar" style="color: white;"></i>
-                                        </div>
-                                    </a>
-                                </td>
-                            </tr>
-
-
+                               <td class="text-center">
+    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
+        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
+            <i class="fa fa-calendar" style="color: white;"></i>
+        </div>
+    </a>
+</td>
+                            </tr>                            
+                                                
+                                          
                             <tr data-phase="Therapy" data-status="Upcoming appointment" data-doctor="Dr. David West">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -543,12 +542,12 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr>   
 
+                            
 
-
-
-
+                            
+                            
                             <tr data-phase="Observation" data-status="Upcoming appointment" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -562,12 +561,12 @@
                                 <td>Dr. Adam Storm</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                                 <td class="text-center">
-                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
-                                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
-                                            <i class="fa fa-calendar" style="color: white;"></i>
-                                        </div>
-                                    </a>
-                                </td>
+    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
+        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
+            <i class="fa fa-calendar" style="color: white;"></i>
+        </div>
+    </a>
+</td>
                             </tr>
 
 
@@ -591,12 +590,12 @@
                                     </a>
                                 </td>
                             </tr>
-
+                             
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </div>        
         <div class="dashboard-card full-row">
             <div style="background-color: #6096b0; border-radius: 16px 16px 0 0;">
                 <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">
@@ -852,8 +851,10 @@
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save Checklist</button>
                     </div>
                 </div>
-            </div>        </div>
-        <div class="dashboard-card" style="grid-column: span 2;">
+            </div>
+        </div>
+
+        <div class="dashboard-card col-span-2">
             <div class="dashboard-card-header card-patients" style="background-color: #5a82ab; color: white;">
                 🧑‍⚕️ Doctors / Specialists
             </div>
@@ -863,6 +864,7 @@
                     <li class="list-group-item">
                         <h6>Dr.Anna Grey</h6>
                         <p>Psychotherapist</p>
+                        <p><strong>Contact:</strong> +380 67 111 2233</p>
                         <p>
                             <strong>Assigned Patients:</strong>
                             <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#assignedPatientsModalOlga">
@@ -873,77 +875,13 @@
                     <li class="list-group-item">
                         <h6>Dr.David West</h6>
                         <p>Psychiatrist</p>
+                        <p><strong>Contact:</strong> +380 67 555 3321</p>
                         <p>
                             <strong>Assigned Patients:</strong>
                             <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#assignedPatientsModalMaria">
                                 3
                             </button>
                         </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="dashboard-card" style="grid-column: span 2;">
-            <div class="dashboard-card-header card-doctors" style="background-color: #5a82ab; color: white;">
-                <h3 class="mb-0">Clinical Team</h3>
-            </div>
-            <div class="dashboard-card-body">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="specialist-container" style="text-decoration: none; color: inherit;">
-                            
-                            <div class="specialist-info">
-                                <span>Dr. Adam Storm <small class="text-muted">• Psychiatrist</small></span>
-                            </div>
-                        </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/3" class="message-icon-link" title="Message Dr. Adam Storm">
-                            <div class="message-icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/4" class="specialist-container" style="text-decoration: none; color: inherit;">
-                            
-                            <div class="specialist-info">
-                                <span>Dr. Anna Grey <small class="text-muted">• Psychotherapist</small></span>
-                            </div>
-                        </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/4" class="message-icon-link" title="Message Dr. Anna Grey">
-                            <div class="message-icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/5" class="specialist-container" style="text-decoration: none; color: inherit;">
-                            
-                            <div class="specialist-info">
-                                <span>Dr. David West <small class="text-muted">• Psychotherapist</small></span>
-                            </div>
-                        </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/5" class="message-icon-link" title="Message Dr. David West">
-                            <div class="message-icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/6" class="specialist-container" style="text-decoration: none; color: inherit;">
-                        
-                            <div class="specialist-info">
-                                <span>Dr. Julia Lane <small class="text-muted">• Psychiatrist</small></span>
-                            </div>
-                        </a>
-                        <a href="https://odoo.proxy.abtollc.com/odoo/employees/6" class="message-icon-link" title="Message Dr. Julia Lane">
-                            <div class="message-icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -1038,8 +976,7 @@
 
         <p><b>Daily Tasks:</b></p>
         <p>This table displays daily responsibilities and actions that need to be completed by the Case Manager.
-            Click the <b>"Details"</b> button to open the To-Do interface, where you can add and track specific tasks
-            related to each day.</p>
+            Click the <b>"Details"</b> button to open the To-Do interface, where you can add and track specific tasks related to each day.</p>
         <p><b>Patients in Treatment:</b></p>
         <p>View a list of patients currently undergoing treatment. To see more information about a specific patient,
             click the <b>"Details"</b> button.</p>
@@ -1149,10 +1086,10 @@
                     const rowPhase = row.dataset.phase;
                     const rowDoctor = row.dataset.doctor;
 
-                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null; const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
-                    const phaseMatch = (currentFilters.phase === 'all' ||
-                        currentFilters.phase === rowPhase ||
-                        (currentFilters.phase === 'Therapy & Medication' && rowPhase === 'Therapy & Medication'));
+                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null;                    const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
+                    const phaseMatch = (currentFilters.phase === 'all' || 
+                                      currentFilters.phase === rowPhase || 
+                                      (currentFilters.phase === 'Therapy & Medication' && rowPhase === 'Therapy & Medication'));
                     const doctorMatch = (currentFilters.doctor === 'all' || currentFilters.doctor === rowDoctor);
 
                     const checkboxAllows = (showAllChecked || !isGreen); // Row is allowed if checkbox is checked OR if the row is not green

@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treatment Plan Constructor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -245,9 +241,9 @@
             border-color: #7C7BAD;
         }
     </style>
-</head>
 
-<body>
+
+
     
      
      <div class="treatment-constructor-container mb-5">
@@ -335,7 +331,7 @@
                     <h4><i class="fas fa-clipboard me-2"></i>My Treatment Plan</h4>                    <div>                        <button class="btn btn-outline-secondary me-2" id="clearPlan">
                             <i class="fas fa-trash-alt me-1"></i> Start Over
                         </button>
-                        <button class="btn btn-purple" id="savePlan">
+                        <button class="btn btn-purple">
                             <i class="fas fa-save me-1"></i> Save My Plan
                         </button>
                     </div>
@@ -347,21 +343,21 @@
                     </div>
                 </div>
             </div>
-        </div>    </div> <!-- Modal window for detailed exercise view -->
+        </div>    </div> 
     <div class="modal fade" id="exerciseModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">            <div class="modal-content">                <div class="modal-header" style="background-color: #f4f3f9; border-bottom: 1px solid #d4d3e7;">
                     <h5 class="modal-title" id="exerciseModalTitle" style="color: #5e5c88;">Exercise Title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="exerciseModalBody">
-                    <!-- Exercise content will be added dynamically -->
+                    
                 </div>                <div class="modal-footer" style="background-color: #f4f3f9; border-top: 1px solid #d4d3e7;">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-      <!-- Modal window for adding exercise from library or custom -->
+      
     <div class="modal fade" id="addExerciseModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">            <div class="modal-content">                <div class="modal-header" style="background-color: #f4f3f9; border-bottom: 1px solid #d4d3e7;">
                     <h5 class="modal-title" style="color: #5e5c88;">Add Exercise</h5>
@@ -370,38 +366,36 @@
                 <div class="modal-body">
                     <ul class="nav nav-tabs mb-3" id="exerciseTabOptions" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="library-tab" data-bs-toggle="tab" data-bs-target="#library-tab-pane" 
-                                type="button" role="tab" aria-controls="library-tab-pane" aria-selected="true">Library Exercises</button>
+                            <button class="nav-link active" id="library-tab" data-bs-toggle="tab" data-bs-target="#library-tab-pane" type="button" role="tab" aria-controls="library-tab-pane" aria-selected="true">Library Exercises</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="custom-tab" data-bs-toggle="tab" data-bs-target="#custom-tab-pane" 
-                                type="button" role="tab" aria-controls="custom-tab-pane" aria-selected="false">Custom Exercise</button>
+                            <button class="nav-link" id="custom-tab" data-bs-toggle="tab" data-bs-target="#custom-tab-pane" type="button" role="tab" aria-controls="custom-tab-pane" aria-selected="false">Custom Exercise</button>
                         </li>
                     </ul>
                     
                     <div class="tab-content" id="exerciseTabContent">
                         <input type="hidden" id="addExerciseModuleId">
                         
-                        <!-- Library Exercise Tab -->
+                        
                         <div class="tab-pane fade show active" id="library-tab-pane" role="tabpanel" aria-labelledby="library-tab" tabindex="0">
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="libraryExerciseSearch" placeholder="Search exercises...">
                             </div>
                             <div id="libraryExerciseList" style="max-height: 300px; overflow-y: auto;">
-                                <!-- Exercise list will be added dynamically -->
+                                
                             </div>
                         </div>
                         
-                        <!-- Custom Exercise Tab -->
+                        
                         <div class="tab-pane fade" id="custom-tab-pane" role="tabpanel" aria-labelledby="custom-tab" tabindex="0">
                             <form id="customExerciseForm">
                                 <div class="mb-3">
                                     <label for="customExerciseTitle" class="form-label">Exercise Title:</label>
-                                    <input type="text" class="form-control" id="customExerciseTitle" required>
+                                    <input type="text" class="form-control" id="customExerciseTitle" required="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="customExerciseDescription" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="customExerciseDescription" rows="3" required></textarea>
+                                    <textarea class="form-control" id="customExerciseDescription" rows="3" required=""></textarea>
                                 </div>
                             </form>
                         </div>
@@ -935,85 +929,8 @@
                     `;
                 }
             });
-            // Save plan
-            document.getElementById('savePlan').addEventListener('click', function () {
-                const patientName = document.getElementById('patientName').value;
-                const diagnosis = document.getElementById('diagnosis').value;
 
-                if (!patientName) {
-                    alert('Please enter the patient\'s name before saving the plan.');
-                    return;
-                }
 
-                if (!diagnosis) {
-                    alert('Please select a diagnosis before saving the plan.');
-                    return;
-                }
-
-                const modules = treatmentPlanContainer.querySelectorAll('.module-in-plan');
-                if (modules.length === 0) {
-                    alert('Please add at least one module to the treatment plan.');
-                    return;
-                }
-                // Here you can implement the logic for saving the plan
-                // For example, creating a JSON object with plan data and sending to server
-                const treatmentPlan = {
-                    patientName: patientName,
-                    diagnosis: diagnosis,
-                    createdAt: new Date().toISOString(),
-                    modules: Array.from(modules).map((module, index) => {
-                        const moduleId = module.getAttribute('data-module-id');
-                        const moduleTitle = module.querySelector('.module-title').textContent;                        // Get selected exercises
-                        const exerciseItems = module.querySelectorAll('.exercise-item');
-                        const exercises = Array.from(exerciseItems).map(item => {
-                            const id = item.getAttribute('data-exercise-id');
-                            const title = item.querySelector('.exercise-title').textContent;
-                            const isCustom = id.startsWith('custom-');
-                            
-                            // For custom exercises, include the description
-                            let description = '';
-                            if (isCustom) {
-                                description = item.getAttribute('data-description') || '';
-                            }
-                            
-                            return {
-                                id: id,
-                                title: title,
-                                isCustom: isCustom,
-                                description: description
-                            };
-                        });
-
-                        return {
-                            position: index + 1,
-                            id: moduleId,
-                            title: moduleTitle,
-                            exercises: exercises
-                        };
-                    })
-                };
-
-                console.log('Treatment plan saved:', treatmentPlan);
-                alert('Treatment plan successfully saved!');
-
-                // In a real application, there would be code to send data to the server
-                // fetch('/api/treatment-plans', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify(treatmentPlan),
-                // })
-                // .then(response => response.json())
-                // .then(data => {
-                //     console.log('Success:', data);
-                //     alert('Treatment plan successfully saved!');
-                // })
-                // .catch((error) => {
-                //     console.error('Error:', error);
-                //     alert('Error saving the plan.');
-                // });
-            });            // Event delegation for dynamically created elements
             document.addEventListener('click', function (e) {                // Expand/collapse module
                 if (e.target.closest('.btn-toggle-exercises')) {
                     const moduleInPlan = e.target.closest('.module-in-plan');
@@ -1530,6 +1447,3 @@
             }
         });
     </script>
-</body>
-
-</html>
