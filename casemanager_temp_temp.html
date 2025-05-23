@@ -120,10 +120,12 @@
     .dropdown-menu {
         min-width: 200px;
     }
+
     .in-progress {
         background-color: #7bbb6a !important;
         color: white !important;
     }
+
     .urgent {
         background-color: #c4503c !important;
         color: white !important;
@@ -133,9 +135,9 @@
         border-color: #931984;
         padding: 0.8rem;
         background-color: #9d5daa;
-      }
+    }
 
-      .patient-search {
+    .patient-search {
         width: 100%;
         padding: 8px 12px;
         border: none;
@@ -144,36 +146,34 @@
         color: #333;
         font-size: 14px;
         transition: all 0.3s ease;
-      }
+    }
 
-      .patient-search:focus {
+    .patient-search:focus {
         outline: none;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
         background-color: white;
-      }
+    }
 
-      .patient-search::placeholder {
+    .patient-search::placeholder {
         color: #888;
         font-style: italic;
-      }
+    }
 
-      .search-icon {
+    .search-icon {
         position: absolute;
         right: 12px;
         top: 50%;
         transform: translateY(-50%);
         color: #888;
-      }
+    }
 
-      .search-wrapper {
+    .search-wrapper {
         color: white !important;
         margin-top: 30px;
         position: relative;
         display: flex;
         align-items: center;
-      }
-
-
+    }
 </style>
 
 <div class="container my-5">
@@ -264,16 +264,17 @@
                     </tbody>
                 </table>
             </div>
-        </div>          
+        </div>
         <div class="dashboard-card full-row">
             <div style="background-color: #6096b0; border-radius: 16px 16px 0 0;">
-                <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">🩺 In Treatment Patients</div>
+                <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">🩺 In
+                    Treatment Patients</div>
                 <div style="padding: 10px 15px 15px; position: relative;">
                     <input type="text" class="patient-search" id="patientSearch" placeholder="Search patients" autocomplete="off" style="width: 100%; padding: 8px 32px 8px 12px; border: none; border-radius: 20px;">
                     <i class="fa fa-search search-icon" style="position: absolute; right: 25px; top: 50%; transform: translateY(-50%); color: #777;"></i>
                 </div>
             </div>
-                
+
             <div class="dashboard-card-body">
 
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
@@ -332,11 +333,11 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Age</th>
                                 <th scope="col">Assigned Doctor</th>
-                                <th scope="col"></th>
+                                <th scope="col">Details</th>
                                 <th scope="col">Book appointment</th>
                             </tr>
                         </thead>
-                        <tbody>                            
+                        <tbody>
                             <tr data-phase="Therapy &amp; Medication" data-status="Missed Appointment" data-doctor="Dr. Adam Storm">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -351,6 +352,7 @@
                                 <td>
                                     <a href="https://odoo.proxy.abtollc.com/odoo/contacts/33" class="btn btn-primary btn-m">Details</a>
                                 </td>
+
                                 <td class="text-center">
                                     <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment">
                                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px;">
@@ -358,7 +360,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>     
+                            </tr>
 
                             <tr data-phase="Therapy" data-status="Missed Appointment" data-doctor="Dr. Krystyna Ross">
                                 <td>
@@ -381,8 +383,8 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>  
-                            
+                            </tr>
+
                             <tr data-phase="Medication" data-status="Missed Appointment" data-doctor="Dr. David West">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -404,7 +406,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>        
+                            </tr>
 
                             <tr data-phase="Therapy" data-status="Attending" data-doctor="Dr. David West">
                                 <td>
@@ -425,7 +427,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>              
+                            </tr>
 
                             <tr data-phase="Observation" data-status="Missed Appointment" data-doctor="Dr. Julia Lane">
                                 <td>
@@ -448,7 +450,7 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>  
+                            </tr>
 
 
 
@@ -467,14 +469,14 @@
                                     <button class="btn btn-primary btn-m" disabled="">Details</button>
                                 </td>
                                 <td class="text-center">
-    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
-        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
-            <i class="fa fa-calendar" style="color: white;"></i>
-        </div>
-    </a>
-</td>
-                            </tr>    
-                            
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
+                                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
+                                            <i class="fa fa-calendar" style="color: white;"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+
 
                             <tr data-phase="Medication" data-status="Missed Appointment" data-doctor="Dr. David West">
                                 <td>
@@ -497,8 +499,8 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>                            
-                                                     
+                            </tr>
+
                             <tr data-phase="Observation" data-status="Missed Appointment" data-doctor="Dr. Adam Storm">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -513,16 +515,16 @@
                                 <td>
                                     <button class="btn btn-primary btn-m" disabled="">Details</button>
                                 </td>
-                               <td class="text-center">
-    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
-        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
-            <i class="fa fa-calendar" style="color: white;"></i>
-        </div>
-    </a>
-</td>
-                            </tr>                            
-                                                
-                                          
+                                <td class="text-center">
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
+                                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
+                                            <i class="fa fa-calendar" style="color: white;"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+
+
                             <tr data-phase="Therapy" data-status="Upcoming appointment" data-doctor="Dr. David West">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -542,12 +544,12 @@
                                         </div>
                                     </a>
                                 </td>
-                            </tr>   
+                            </tr>
 
-                            
 
-                            
-                            
+
+
+
                             <tr data-phase="Observation" data-status="Upcoming appointment" data-doctor="Dr. Emily Carter">
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -561,12 +563,12 @@
                                 <td>Dr. Adam Storm</td>
                                 <td><button class="btn btn-primary btn-m" disabled="">Details</button></td>
                                 <td class="text-center">
-    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
-        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
-            <i class="fa fa-calendar" style="color: white;"></i>
-        </div>
-    </a>
-</td>
+                                    <a href="https://odoo.proxy.abtollc.com/odoo/calendar" title="Book appointment" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">
+                                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="background-color: #714B67; width: 32px; height: 32px; opacity: 0.6;">
+                                            <i class="fa fa-calendar" style="color: white;"></i>
+                                        </div>
+                                    </a>
+                                </td>
                             </tr>
 
 
@@ -590,16 +592,16 @@
                                     </a>
                                 </td>
                             </tr>
-                             
+
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>        
+        </div>
         <div class="dashboard-card full-row">
             <div style="background-color: #6096b0; border-radius: 16px 16px 0 0;">
                 <div class="dashboard-card-header" style="color: white; margin-bottom: 0; background: none;">
-                    🆕 New Patients request
+                    🆕 New Patient's Request
                 </div>
                 <div style="padding: 10px 15px 15px; position: relative;">
                     <input type="text" class="patient-search" id="newPatientSearch" placeholder="Search new patients request" autocomplete="off" style="width: 100%; padding: 8px 32px 8px 12px; border: none; border-radius: 20px;">
@@ -853,8 +855,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="dashboard-card col-span-2">
+        <div class="dashboard-card" style="grid-column: span 2;">
             <div class="dashboard-card-header card-patients" style="background-color: #5a82ab; color: white;">
                 🧑‍⚕️ Doctors / Specialists
             </div>
@@ -864,7 +865,6 @@
                     <li class="list-group-item">
                         <h6>Dr.Anna Grey</h6>
                         <p>Psychotherapist</p>
-                        <p><strong>Contact:</strong> +380 67 111 2233</p>
                         <p>
                             <strong>Assigned Patients:</strong>
                             <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#assignedPatientsModalOlga">
@@ -875,7 +875,6 @@
                     <li class="list-group-item">
                         <h6>Dr.David West</h6>
                         <p>Psychiatrist</p>
-                        <p><strong>Contact:</strong> +380 67 555 3321</p>
                         <p>
                             <strong>Assigned Patients:</strong>
                             <button class="btn btn-outline-primary btn-m" data-bs-toggle="modal" data-bs-target="#assignedPatientsModalMaria">
@@ -884,6 +883,193 @@
                         </p>
                     </li>
                 </ul>
+            </div>
+        </div>        
+        <div class="dashboard-card" style="grid-column: span 2;">
+            <div class="dashboard-card-header card-doctors" style="background-color: #5a82ab; color: white;">
+                <h4 class="mb-0">📅 Book appointment</h4>
+            </div>
+            <div class="dashboard-card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="patientSearchBooking" class="form-label">People</label>                        <div class="input-group" style="position: relative;">
+                            <input type="text" class="form-control" id="patientSearchBooking" placeholder="Search for a patient...">
+                            <button class="btn btn-outline-primary" type="button" id="patientSearchBtn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div id="patientDropdown" style="display: none; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px; position: absolute; top: 100%; left: 0; right: 0; z-index: 1000; background-color: white; width: 100%; margin-top: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">                                <ul class="list-group">
+                                    
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Albert Rudenko</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Kate Rudenko (parent)" data-name="Kate Rudenko">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Alice Koval</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Karina Koval (parent)" data-name="Karina Koval">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Anastasia Melnyk</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Iryna Melnyk (parent)" data-name="Iryna Melnyk">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Anton Melnyk</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Iryna Melnyk (parent)" data-name="Iryna Melnyk">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Ivan Koval</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Karina Koval (parent)" data-name="Karina Koval">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Lev Kozak</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Angela Kozak (parent)" data-name="Angela Kozak">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Maria Kozak</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Angela Kozak (parent)" data-name="Angela Kozak">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Nestor Moroz</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Viktor Moroz (parent)" data-name="Viktor Moroz">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Orest Burak</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Anton Burak (parent)" data-name="Anton Burak">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Peter Rudenko</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Kate Rudenko (parent)" data-name="Kate Rudenko">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Walter Moroz</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Viktor Moroz (parent)" data-name="Viktor Moroz">
+                                            <i class="fa fa-user-plus text-primary"></i>
+                                        </button>
+                                    </li>
+
+                                    
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Angela Kozak</span>
+                                        <div>
+                                            <button class="btn btn-link btn-sm p-0 related-person me-2" title="Book for Lev Kozak (child)" data-name="Lev Kozak">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                            <button class="btn btn-link btn-sm p-0 related-person" title="Book for Maria Kozak (child)" data-name="Maria Kozak">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Anton Burak</span>
+                                        <button class="btn btn-link btn-sm p-0 related-person" title="Book for Orest Burak (child)" data-name="Orest Burak">
+                                            <i class="fa fa-child text-info"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Iryna Melnyk</span>
+                                        <div>
+                                            <button class="btn btn-link btn-sm p-0 related-person me-2" title="Book for Anastasia Melnyk (child)" data-name="Anastasia Melnyk">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                            <button class="btn btn-link btn-sm p-0 related-person" title="Book for Anton Melnyk (child)" data-name="Anton Melnyk">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Karina Koval</span>
+                                        <div>
+                                            <button class="btn btn-link btn-sm p-0 related-person me-2" title="Book for Alice Koval (child)" data-name="Alice Koval">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                            <button class="btn btn-link btn-sm p-0 related-person" title="Book for Ivan Koval (child)" data-name="Ivan Koval">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Kate Rudenko</span>
+                                        <div>
+                                            <button class="btn btn-link btn-sm p-0 related-person me-2" title="Book for Albert Rudenko (child)" data-name="Albert Rudenko">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                            <button class="btn btn-link btn-sm p-0 related-person" title="Book for Peter Rudenko (child)" data-name="Peter Rudenko">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item patient-item d-flex justify-content-between align-items-center">
+                                        <span>Viktor Moroz</span>
+                                        <div>
+                                            <button class="btn btn-link btn-sm p-0 related-person me-2" title="Book for Nestor Moroz (child)" data-name="Nestor Moroz">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                            <button class="btn btn-link btn-sm p-0 related-person" title="Book for Walter Moroz (child)" data-name="Walter Moroz">
+                                                <i class="fa fa-child text-info"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="selectedPatient" class="mt-2 p-2 bg-light rounded d-none">
+                            <span id="selectedPatientName" class="fw-bold"></span>
+                            <button type="button" class="btn-close float-end" id="clearPatientBtn" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="doctorSelect" class="form-label">Doctor</label>
+                        <select class="form-select" id="doctorSelect">
+                            <option value="" selected="" disabled="">Select a doctor</option>
+                            <option value="Dr. Adam Storm">Dr. Adam Storm - Psychotherapist</option>
+                            <option value="Dr. David West">Dr. David West - Psychiatrist</option>
+                            <option value="Dr. Anna Grey">Dr. Anna Grey - Psychotherapist</option>
+                            <option value="Dr. Julia Lane">Dr. Julia Lane - Psychiatrist</option>
+                            <option value="Dr. Krystyna Ross">Dr. Krystyna Ross - Psychotherapist</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="appointmentDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="appointmentDate">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="appointmentTime" class="form-label">Time</label>
+                        <input type="time" class="form-control" id="appointmentTime">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="appointmentNotes" class="form-label">Notes</label>
+                        <textarea class="form-control" id="appointmentNotes" rows="3" placeholder="Add any relevant information for this appointment..."></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary me-2">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="bookAppointmentBtn">Book Appointment</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -976,7 +1162,8 @@
 
         <p><b>Daily Tasks:</b></p>
         <p>This table displays daily responsibilities and actions that need to be completed by the Case Manager.
-            Click the <b>"Details"</b> button to open the To-Do interface, where you can add and track specific tasks related to each day.</p>
+            Click the <b>"Details"</b> button to open the To-Do interface, where you can add and track specific tasks
+            related to each day.</p>
         <p><b>Patients in Treatment:</b></p>
         <p>View a list of patients currently undergoing treatment. To see more information about a specific patient,
             click the <b>"Details"</b> button.</p>
@@ -1086,10 +1273,10 @@
                     const rowPhase = row.dataset.phase;
                     const rowDoctor = row.dataset.doctor;
 
-                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null;                    const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
-                    const phaseMatch = (currentFilters.phase === 'all' || 
-                                      currentFilters.phase === rowPhase || 
-                                      (currentFilters.phase === 'Therapy & Medication' && rowPhase === 'Therapy & Medication'));
+                    const isGreen = row.querySelector('td:first-child .rounded-circle.bg-success') !== null; const statusMatch = (currentFilters.status === 'all' || currentFilters.status === rowStatus);
+                    const phaseMatch = (currentFilters.phase === 'all' ||
+                        currentFilters.phase === rowPhase ||
+                        (currentFilters.phase === 'Therapy & Medication' && rowPhase === 'Therapy & Medication'));
                     const doctorMatch = (currentFilters.doctor === 'all' || currentFilters.doctor === rowDoctor);
 
                     const checkboxAllows = (showAllChecked || !isGreen); // Row is allowed if checkbox is checked OR if the row is not green
@@ -1173,4 +1360,196 @@
 
 
     </script>
+    <div class="d-none" id="page-guide">
+        <p>This is the main workspace for Case Managers, containing all essential information related to patient
+            management
+            and
+            coordination.</p>
+
+        <p><b>Key Features:</b></p>
+        <p><b>Daily Tasks:</b></p>
+
+        <p>This table displays daily responsibilities and actions that need to be completed by the Case Manager.
+            Click the <b>"Details"</b> button to open the To-Do interface, where you can add and track specific tasks
+            related to each
+            day.</p>
+
+        <p><b>Patients in Treatment:</b></p>
+        <p>View a list of patients currently undergoing treatment. To see more information about a specific patient,
+            click
+            the
+            <b>"Details"</b> button. To schedule a session, click the <b>"Book Appointment"</b> button — this will open
+            the
+            calendar in the
+            CRM
+            system.
+        </p>
+
+        <p><b>New Patients Table:</b></p>
+        <p>This section displays new patient entries submitted via the consultation request form.
+            Click <b>"Details"</b> to view the patient's full profile, including information submitted through the
+            request
+            form.
+        </p>
+        <p><b>Add Record / Case Manager Checklist:</b></p>
+        <p>Clicking the <b>"Add Record"</b> button opens the Case Manager Checklist, outlining the steps the Case
+            Manager
+            should
+            follow
+            for each case.</p>
+
+        <p><b>Doctors &amp; Assigned Patients:</b></p>
+        <p>This table shows a list of doctors and the number of patients assigned to each.
+        </p>
+        <p>Click on the number of assigned patients to view the list.</p>
+
+        <p>Click on a patient's name to access their full profile.</p>
+        <p><b>Appointments:</b></p>
+
+        <p>Use this section to schedule appointments by assigning specific dates and times for patient sessions with
+            doctors
+        </p>
+
+    </div>
 </div>
+
+<script>
+// Appointment Booking functionality
+document.addEventListener('DOMContentLoaded', function() {    // Patient search and selection
+    const patientSearch = document.getElementById('patientSearchBooking');
+    const patientDropdown = document.getElementById('patientDropdown');
+    const patientItems = document.querySelectorAll('.patient-item');
+    const selectedPatientDiv = document.getElementById('selectedPatient');
+    const selectedPatientName = document.getElementById('selectedPatientName');
+    const clearPatientBtn = document.getElementById('clearPatientBtn');
+    const patientSearchBtn = document.getElementById('patientSearchBtn');
+      // Show dropdown when the search field is clicked
+    function showDropdown() {
+        if (patientSearch) {
+            patientDropdown.style.display = 'block';
+        }
+    }
+      // Show patient dropdown when clicking on the search input
+    patientSearch.addEventListener('click', function() {
+        showDropdown();
+    });
+    
+    patientSearchBtn.addEventListener('click', function() {
+        showDropdown();
+    });
+    
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!patientSearch.contains(event.target) && !patientDropdown.contains(event.target) && !patientSearchBtn.contains(event.target)) {
+            patientDropdown.style.display = 'none';
+        }
+    });
+      // Filter patients as user types
+    patientSearch.addEventListener('input', function() {
+        const searchTerm = patientSearch.value.toLowerCase();
+        patientItems.forEach(function(item) {
+            // Look for patient name in the span for new structure or use text content for old structure
+            const patientNameElement = item.querySelector('span');
+            const patientName = patientNameElement ? patientNameElement.textContent.toLowerCase() : item.textContent.toLowerCase();
+            
+            if (patientName.includes(searchTerm)) {
+                item.style.display = 'flex'; // Changed to flex for new structure
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+      // Select patient when clicking on an item
+    patientItems.forEach(function(item) {
+        // Select patient when clicking on the name
+        const patientNameElement = item.querySelector('span');
+        if (patientNameElement) {
+            patientNameElement.addEventListener('click', function(e) {
+                e.stopPropagation(); // Stop event from bubbling
+                const name = this.textContent;
+                patientSearch.value = name;
+                selectedPatientName.textContent = name;
+                selectedPatientDiv.classList.remove('d-none');
+                patientDropdown.style.display = 'none';
+            });
+        } else {
+            // For backwards compatibility with existing items without the span structure
+            item.addEventListener('click', function(e) {
+                // Only handle click if it's not on a related-person button
+                if (!e.target.closest('.related-person')) {
+                    const name = this.textContent;
+                    patientSearch.value = name;
+                    selectedPatientName.textContent = name;
+                    selectedPatientDiv.classList.remove('d-none');
+                    patientDropdown.style.display = 'none';
+                }
+            });
+        }
+    });
+    
+    // Handle related person buttons
+    const relatedPersonButtons = document.querySelectorAll('.related-person');
+    relatedPersonButtons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent the list item click from firing
+            const relatedName = this.getAttribute('data-name');
+            patientSearch.value = relatedName;
+            selectedPatientName.textContent = relatedName;
+            selectedPatientDiv.classList.remove('d-none');
+            patientDropdown.style.display = 'none';
+        });
+    });
+    
+    // Clear selected patient
+    clearPatientBtn.addEventListener('click', function() {
+        patientSearch.value = '';
+        selectedPatientDiv.classList.add('d-none');
+    });
+    
+    // Book appointment button functionality
+    const bookAppointmentBtn = document.getElementById('bookAppointmentBtn');
+    bookAppointmentBtn.addEventListener('click', function() {
+        const patient = patientSearch.value;
+        const doctor = document.getElementById('doctorSelect').value;
+        const date = document.getElementById('appointmentDate').value;
+        const time = document.getElementById('appointmentTime').value;
+        const notes = document.getElementById('appointmentNotes').value;
+        
+        if (!patient) {
+            alert('Please select a patient');
+            return;
+        }
+        
+        if (!doctor) {
+            alert('Please select a doctor');
+            return;
+        }
+        
+        if (!date) {
+            alert('Please select a date');
+            return;
+        }
+        
+        if (!time) {
+            alert('Please select a time');
+            return;
+        }
+        
+        // Here you would typically send this data to your backend
+        // For now, just show a success message
+        alert(`Appointment booked successfully!\n\nPatient: ${patient}\nDoctor: ${doctor}\nDate: ${date}\nTime: ${time}`);
+        
+        // Clear form
+        patientSearch.value = '';
+        document.getElementById('doctorSelect').selectedIndex = 0;
+        document.getElementById('appointmentDate').value = '';
+        document.getElementById('appointmentTime').value = '';
+        document.getElementById('appointmentNotes').value = '';
+        selectedPatientDiv.classList.add('d-none');
+    });
+    
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('appointmentDate').setAttribute('min', today);
+});
+</script>

@@ -1,0 +1,310 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<title>Doctor Appointments</title>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" rel="stylesheet">
+<style>
+      .tabs {
+        overflow: hidden;
+        background-color: #f1f1f1;
+        padding: 10px;
+        border-radius: 8px;
+      }
+
+      .tablinks {
+        background-color: #aba6c5;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        padding: 14px 20px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-right: 8px;
+        border-radius: 6px;
+        border-right: 1px solid #847bb0;
+      }
+
+      .tablinks:hover {
+        background-color: #aba6c5;
+      }
+
+      .tablinks.active {
+        background-color: #847bb0;
+      }
+
+      .tabcontent {
+        display: none;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+        margin-top: 0;
+        text-align: center;
+      }
+
+      .appointment-list {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .appointment-item {
+        padding: 1rem;
+      }
+
+      .search-box input {
+        max-width: 400px;
+      }
+
+      .fc-day-grid-event {
+        font-size: 12px;
+      }
+
+      .fc-day-number {
+        font-size: 14px;
+      }
+
+      .fc-day {
+        height: 90px !important;
+        min-width: 120px !important;
+        padding: 6px !important;
+        vertical-align: top;
+      }
+
+      .calendar-wrapper {
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+      }
+    </style>
+
+<div class="container">
+      <h2>My Sessions</h2>
+      <table class="sessions-table table table-bordered">
+        <thead>
+          <tr>
+            <th style="background-color: #aba6c5; color: white">Date &amp; Time</th>
+            <th style="background-color: #aba6c5; color: white">Title</th>
+            <th style="background-color: #aba6c5; color: white">Doctor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-05-19, 10:00</td>
+            <td>Anxiety Consultation</td>
+            <td>Dr. Anna Grey</td>
+          </tr>
+          <tr>
+            <td>2025-05-24, 12:00</td>
+            <td>CBT Therapy</td>
+            <td>Dr. Anna Grey</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+<div class="english-section">
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event, 'upcoming-english')">Upcoming</button>
+    <button class="tablinks" onclick="openTab(event, 'past-english')">Past</button>
+  </div>
+
+  <div id="upcoming-english" class="tabcontent">
+    <h2>Upcoming Appointments</h2>
+    <div id="upcoming-calendar-en" class="calendar-wrapper"></div>
+  </div>
+
+  <div id="past-english" class="tabcontent">
+    <h2>Past Appointments</h2>
+    <div class="search-box mb-3">
+      <input type="text" class="form-control" placeholder="Search by date, doctor or service...">
+    </div>
+    <div class="appointment-list">
+      <div class="appointment-item border-bottom row align-items-center fw-bold text-center">
+        <div class="col-2">Date &amp; Time</div>
+        <div class="col-3">Doctor</div>
+        <div class="col-2">Specialty</div>
+        <div class="col-3">Visit Reason</div>
+        <div class="col-2">Visit Reports</div>
+      </div>
+      <div class="appointment-item border-bottom row align-items-center text-center">
+        <div class="col-2">
+          <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="calendar" width="40" loading="lazy">
+          <div class="mt-2 small">19.04.2025,<br>10:15</div>
+        </div>
+        <div class="col-3"><strong>Dr. Anna Grey</strong></div>
+        <div class="col-2"><small>Psychotherapist</small></div>
+        <div class="col-3"><span class="text-muted">Anxiety disorders management</span></div>
+        <div class="col-2">
+          <button class="btn btn-outline-primary" onclick="showDocumentPreview('<strong>Anxiety consultation summary:</strong><br>The patient discussed increased anxiety symptoms.<br>Recommended CBT and medication review.<br><br><a href=\'https://example.com/report1.pdf\' target=\'_blank\'>Download report (PDF)</a>')">Details of visit</button>
+          <button class="btn btn-outline-primary">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ukrainian-section">
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event, 'upcoming-ukrainian')">Найближчі консультації</button>
+    <button class="tablinks" onclick="openTab(event, 'past-ukrainian')">Минулі консультації</button>
+  </div>
+
+  <div id="upcoming-ukrainian" class="tabcontent">
+    <h2>Найближчі консультації</h2>
+    <div id="upcoming-calendar-ua" class="calendar-wrapper"></div>
+  </div>
+
+  <div id="past-ukrainian" class="tabcontent">
+    <h2>Минулі консультації</h2>
+    <div class="search-box mb-3">
+      <input type="text" class="form-control" placeholder="Пошук за датою, лікарем або послугою...">
+    </div>
+    <div class="appointment-list">
+      <div class="appointment-item border-bottom row align-items-center fw-bold text-center">
+        <div class="col-2">Дата та час</div>
+        <div class="col-3">Лікар</div>
+        <div class="col-2">Спеціальність</div>
+        <div class="col-3">Причина візиту</div>
+        <div class="col-2">Звіти з візиту</div>
+      </div>
+      <div class="appointment-item border-bottom row align-items-center text-center">
+        <div class="col-2">
+          <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="calendar" width="40" loading="lazy">
+          <div class="mt-2 small">19.04.2024,<br>10:15</div>
+        </div>
+        <div class="col-3"><strong>Dr. Anna Grey</strong></div>
+        <div class="col-2"><small>Психотерапевт</small></div>
+        <div class="col-3"><span class="text-muted">Управління тривожними розладами</span></div>
+        <div class="col-2">
+          <button class="btn btn-outline-primary btn-sm" onclick="showDocumentPreview('<strong>Резюме консультації з тривожності:</strong><br>Пацієнт обговорив підвищення симптомів тривожності.<br>Рекомендовано КПТ та перегляд ліків.<br><br><a href=\'https://example.com/report1.pdf\' target=\'_blank\'>Завантажити звіт (PDF)</a>')">Деталі візиту</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="documentModalLabel">Visit Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="documentModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<div class="text-start d-none" id="page-guide">
+            <p>In this section, you can manage all your scheduled therapy or medical sessions.</p>
+
+            <p><b>Sub-tabs:</b></p>
+
+            <p><b>Upcoming Appointments:</b></p>
+            <p>View all future sessions, including date, time, and the professional assigned. You can also reschedule or
+                cancel
+                appointments if necessary.</p>
+
+            <p><b>Past Appointments:</b></p>
+            <p>Review previously attended sessions, including detailed notes, session outcomes, and recommendations from
+                your
+                doctor or
+                therapist.</p>
+
+            <p>This section helps you stay organized and keep track of all appointments to ensure continuity of care.
+            </p>
+        </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/locale/uk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+      function openTab(evt, tabName) {
+        const tabcontent = document.getElementsByClassName("tabcontent");
+        for (let i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+        const tablinks = document.getElementsByClassName("tablinks");
+        for (let i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+      }
+
+      function showDocumentPreview(html) {
+        document.getElementById("documentModalBody").innerHTML = html;
+        const modal = new bootstrap.Modal(document.getElementById("documentModal"));
+        modal.show();
+      }
+
+      function initCalendar(selector, locale = "en") {
+        $(selector).fullCalendar({
+          locale: locale,
+          header: { left: "prev,next today", center: "title", right: "month" },
+          defaultView: "month",
+          height: "auto",
+          eventLimit: true,
+          timeFormat: "H:mm",
+          fixedWeekCount: false,
+          showNonCurrentDates: false,
+          events: [
+            {
+              title:
+                locale === "uk"
+                  ? "Dr. Anna Grey\nКонсультація з тривожності"
+                  : "Dr. Anna Grey\nAnxiety consultation",
+              start: "2025-05-19T10:00:00",
+              color: "#847bb0",
+              description:
+                locale === "uk"
+                  ? "Управління тривожними розладами з Dr. Anna Grey о 10:00"
+                  : "Anxiety consultation with Dr. Anna Grey at 10:00",
+            },
+            {
+              title:
+                locale === "uk"
+                  ? "Dr. Anna Grey\nКПТ терапія"
+                  : "Dr. Anna Grey\nCBT Therapy",
+              start: "2025-05-24T12:00:00",
+              color: "#847bb0",
+              description:
+                locale === "uk"
+                  ? "Когнітивно-поведінкова терапія з Dr. Anna Grey о 12:00"
+                  : "Cognitive Behavioral Therapy with Dr. Anna Grey at 12:00",
+            },
+          ],
+          eventRender: function (event, element) {
+            element.attr("title", event.description);
+          },
+          eventClick: function (event) {
+            $("#documentModalLabel").text(event.title.split("\n")[0]);
+            $("#documentModalBody").html("<p>" + event.description + "</p>");
+            var modal = new bootstrap.Modal(document.getElementById("documentModal"));
+            modal.show();
+          },
+        });
+      }
+
+      window.onload = function () {
+        const lang = document.documentElement.lang;
+        if (lang.startsWith("uk")) {
+          document.querySelector(".english-section").style.display = "none";
+          document.querySelector(".ukrainian-section").style.display = "block";
+          initCalendar("#upcoming-calendar-ua", "uk");
+        } else {
+          document.querySelector(".english-section").style.display = "block";
+          document.querySelector(".ukrainian-section").style.display = "none";
+          initCalendar("#upcoming-calendar-en");
+        }
+      };
+    </script>
